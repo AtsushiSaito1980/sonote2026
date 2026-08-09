@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ep003 制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep002/files.html">← ep002</a><a class="pn" href="../ep004/files.html">ep004 →</a></span></div>
+<div class="ep-head">
+  <div class="ep-date">2026-08-09（日）　<span class="badge ready">READY（公開準備）</span></div>
+  <h1>ep003｜時間をずらす</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP05 ずらす</span><span class="chip hand">OP14 名前を変える（味）</span><span class="chip motive">MO4 見てしまった</span><span class="chip tailwind">TW5 人口動態・環境</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep003</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>小ネタ＋本命型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> オートバイ用品店ナップスが\&quot;朝6時から営業\&quot;と\&quot;夜24時まで営業\&quot;を行う理由<br><span class='k'>published</span> 2026-07-14<br><span class='k'>source_url</span> prtimes.jp（ナップス公式）／報道: ネットショップ担当者フォーラム 7/16・バイクブロス 7/22・ヤングマシン 7/25 ほか</td></tr><tr><th>副トリガ</th><td>電通×unerry 猛暑時の外出行動調査（報道: ネットショップ担当者フォーラム 2026-07-28）<br>三陽商会「五季」2026年夏商戦発表（報道: 同フォーラム 2026-07-16）</td></tr><tr><th>題材</th><td>ナップスの早朝・深夜営業（本命）／電通×unerry調査・三陽商会「五季」（小ネタ）</td></tr><tr><th>手</th><td>OP05</td></tr><tr><th>動機</th><td>MO4</td></tr><tr><th>風</th><td>TW5</td></tr><tr><th>つかみ</th><td>31度。人が街から消え始める温度（35度ではなく）</td></tr><tr><th>きょうの手（案）</th><td>客は消えない、時間に隠れる。</td></tr><tr><th>宿題（案）</th><td>客が来ないとされる時間帯・季節を書き出し、その客が同じ日のいつ動いているかを調べる</td></tr><tr><th>壁・制約</th><td>深夜営業の近隣騒音（エンジン音）への配慮＝時間ずらしの調整コスト</td></tr><tr><th>備考</th><td>v3.2初適用（balanced既定・トリガ3層明示・ED定型「また明日」）。制作日8/9（日）はナップス早朝営業の実施日</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep003
+host: tokura                # 日替わり交互（前日ep002=三崎）
+episode_type: T1
+format: 小ネタ＋本命型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced           # v3.2新既定＝情報dense水準×芸人の語り
+anchor:                     # トリガ情報（制作日2026-08-09から1ヶ月以内・具体記載）
+  headline: &quot;オートバイ用品店ナップスが\&quot;朝6時から営業\&quot;と\&quot;夜24時まで営業\&quot;を行う理由&quot;
+  published: 2026-07-14     # ナップス公式プレスリリース（PR TIMES）発行日
+  source_url: &quot;prtimes.jp（ナップス公式）／報道: ネットショップ担当者フォーラム 7/16・バイクブロス 7/22・ヤングマシン 7/25 ほか&quot;
+sub_triggers:
+  - &quot;電通×unerry 猛暑時の外出行動調査（報道: ネットショップ担当者フォーラム 2026-07-28）&quot;
+  - &quot;三陽商会「五季」2026年夏商戦発表（報道: 同フォーラム 2026-07-16）&quot;
+case_name: &quot;ナップスの早朝・深夜営業（本命）／電通×unerry調査・三陽商会「五季」（小ネタ）&quot;
+operation_tags: [OP05]      # ずらす（時間）。三陽商会はOP14の掛け味
+motive_tag: MO4             # 見てしまった（ライダーの走行時間の変化を観察して追従）
+tailwind_tag: TW5           # 気候・環境変化（猛暑の常態化）を人口動態枠の環境変数として適用
+hook: &quot;31度。人が街から消え始める温度（35度ではなく）&quot;
+lesson_draft: &quot;客は消えない、時間に隠れる。&quot;
+homework_draft: &quot;客が来ないとされる時間帯・季節を書き出し、その客が同じ日のいつ動いているかを調べる&quot;
+opposition: &quot;深夜営業の近隣騒音（エンジン音）への配慮＝時間ずらしの調整コスト&quot;
+notes: &quot;v3.2初適用（balanced既定・トリガ3層明示・ED定型「また明日」）。制作日8/9（日）はナップス早朝営業の実施日&quot;
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>ナップス</td><td>早朝・夜間営業イベント発表</td><td class="fact-val">2026年8月実施</td><td>2026-07-14</td><td class="src">PR TIMES（公式・一次）／バイクブロス・モトメガネ・ヤングマシン・MotorFan・ネットショップ担当者フォーラム</td><td><span class="cb">×6</span></td></tr><tr><td><span class="fid">F02</span></td><td>ナップス</td><td>深夜営業</td><td class="fact-val">2026年8月28日・全店最大24時まで</td><td>2026-08</td><td class="src">PR TIMES（一次）ほか各報道</td><td><span class="cb">×5</span></td></tr><tr><td><span class="fid">F03</span></td><td>ナップス</td><td>早朝営業</td><td class="fact-val">8月の毎週日曜・朝6時からPITのみ・予約制・対象7店舗</td><td>2026-08</td><td class="src">PR TIMES（一次）ほか各報道</td><td><span class="cb">×5</span></td></tr><tr><td><span class="fid">F04</span></td><td>ナップス</td><td>2025年深夜営業の実績</td><td class="fact-val">計3回。第1回は18時以降約6800人（通常平均約970人・約7倍）</td><td>2025-08</td><td class="src">ネットショップ担当者フォーラム／モトメガネ／ヤングマシン</td><td><span class="cb">×3</span></td></tr><tr><td><span class="fid">F05</span></td><td>ライダー</td><td>行動変化</td><td class="fact-val">真夏の日中は体感40度超で早朝・夜間走行へ移行</td><td>継続</td><td class="src">PR TIMES（一次）／ネットショップ担当者フォーラム</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>ナップス</td><td>近隣配慮</td><td class="fact-val">店舗別の延長時間調整・エンジン音への配慮呼びかけ</td><td>2025-2026</td><td class="src">ネットショップ担当者フォーラム</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>電通×unerry</td><td>猛暑時の外出行動調査</td><td class="fact-val">31度前後から行動変化開始（猛暑日35度を待たない）</td><td>2026-07-28報道</td><td class="src">ネットショップ担当者フォーラム（調査発表の報道・準一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>同調査</td><td>猛暑日の土曜</td><td class="fact-val">日中の外出が夕方以降へシフト</td><td>2026-07</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>同調査</td><td>都市差</td><td class="fact-val">公共交通中心の都市は夕方シフトが起こりにくい</td><td>2026-07</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>三陽商会</td><td>五季カレンダー</td><td class="fact-val">2024年導入。夏を初夏・盛夏と猛暑に分割</td><td>2024〜</td><td class="src">ネットショップ担当者フォーラム（7/16）／Apparel Business Magazine（発表転載・準一次）／東洋経済・繊研（背景）</td><td><span class="cb">×4</span></td></tr><tr><td><span class="fid">F11</span></td><td>三陽商会</td><td>夏物展開期間</td><td class="fact-val">従来3ヶ月（5-7月）→5ヶ月（5-9月）</td><td>2026</td><td class="src">同フォーラム／ABM／繊研</td><td><span class="cb">×3</span></td></tr><tr><td><span class="fid">F12</span></td><td>三陽商会</td><td>増産計画</td><td class="fact-val">半袖ジャケット前年比約9倍・メンズ日傘220%・ドレスTシャツ等145%・シアージャケット110%</td><td>2026夏</td><td class="src">同フォーラム／ABM（発表転載）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F13</span></td><td>気象庁</td><td>新名称</td><td class="fact-val">最高気温40度以上の日を「酷暑日」と決定</td><td>2026</td><td class="src">同フォーラム／ABM／AdverTimes（5/18・予報用語として言及）</td><td><span class="cb">×3</span></td></tr><tr><td><span class="fid">F14</span></td><td>三陽商会</td><td>2025年盛夏の実績</td><td class="fact-val">7月1-3週の定価売上でジャケット41%増など</td><td>2025-07</td><td class="src">流通ニュース（背景）</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>電通×unerry（調査分析）</strong>「暑さの厳しさと行動変化の大きさは、必ずしも一致しない」<span class="src-note">ネットショップ担当者フォーラム 7/28／趣旨再現のみ可</span></li></ul><div class="ig-callout pre-line">・アンカー＝ナップス公式リリース（7/14）。副トリガ2件も1ヶ月以内でトリガ要件充足
+・F04の7倍系はナップス発表由来の報道3本。一次リリース（2025年当時）での最終確認を推奨
+・F13「酷暑日」は台本では40度の重複を避け呼称紹介に留める</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep003 検査レポート v2（review-episode／香月）— v3.3改稿版</h1>
+<p><strong>判定：PASS</strong>（人間の最終承認と通し聴取を残すのみ）</p>
+<h2>v3.3新設ゲート（聞き上手の型）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>規定</th><th>実測</th><th>判定</th></tr></thead><tbody><tr><td>キメ台詞</td><td>ゼロ（警句・対句・体言止め要約・ポエム調）</td><td>旧稿の「客は消えない、時間に隠れる」「営業時間は在庫」「予定のほうが暑さから逃げてる」「いちばん安い成長投資」をすべて排除・言い直し。検出0</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>「知らなかった」の表明</td><td>1回以上</td><td>2回（「私も先週まで知らなかった」「てっきりそこからだと思ってました」）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>香月とのやり取り</td><td>1回以上</td><td>2往復（『なんで三十五度より手前で変わるの』／7倍の理由確認「セールはやっていない」）＋言い直しへの返し（「概ね合ってるそうです」）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>他業界への応用例</td><td>1つ以上</td><td>2つ（ランチの客が減った定食屋→朝の弁当／朝型の現場町→朝6時開店）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>教訓の形</td><td>応用可能な原則（警句不可）</td><td>「売上が減った時間や季節を見つけたら、客がどの時間に移ったかを先に調べる」（条件＋動作）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>ED定型の◯◯</td><td>手の名前などプレーンな語</td><td>「時間をずらす」</td><td><span class="st pass">✓ PASS</span></td></tr></tbody></table></div>
+<h2>継続ゲート（balanced・実測）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>規定</th><th>実測</th><th>判定</th></tr></thead><tbody><tr><td>本文文字数</td><td>1,700〜2,000</td><td>1,861</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>facts消化</td><td>7点以上</td><td>11点</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>数字</td><td>5以内</td><td>5系統（31℃／猛暑日35℃／営業時間系6時・24時・28日／来店系970・6,800・7倍／9倍。体感40℃は数字を落とし「サウナの中で運動」に置換、正確値はnote）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>固有名詞</td><td>6以内</td><td>5（電通・ウネリー・三陽商会・気象庁・ナップス）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>例え話</td><td>2以内</td><td>1（サウナ。定食屋・現場町は応用例のため対象外＝§4-7除外規定）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>並走句</td><td>3〜4</td><td>3（「と思います？」「じゃないですか」「ありますよね」。香月への質問・確認は対象外）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>口癖／『』／解剖宣言／「…」／半角／OP・ED定型</td><td>—</td><td>1／1／あり／0／0／一致（また明日）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>トリガ明示</td><td>3層</td><td>台本3箇所＋note冒頭欄＋概要欄先頭</td><td><span class="st pass">✓ PASS</span></td></tr></tbody></table></div>
+<h2>v2改稿の差分（v3.3適用点）</h2>
+<ol><li>警句をすべて「聞き上手の言い直し」へ変換（例：「営業時間は在庫」→ ナップスの事実列挙＋「開ける時間を変えただけ」）</li><li>解剖を「香月と一緒に、他所で使える形に直した3箇条」として提示（条件＋動作の形式）。香月の「概ね合ってます」返しを初採用</li><li>記事タイトル・きょうの手カード・概要欄タイトルからポエム調を除去（「時間をずらす」に統一）</li><li>ホストの生活実例を1つ追加（昼の散歩を朝に）——伊集院型の「自分の体験への引き付け」</li></ol>
+<h2>制作日依存の注意（継続）</h2>
+<ul><li>「きょうは日曜」「けさ、朝六時から」は2026年8月9日（日・ナップス早朝営業実施日）前提。配信日がずれる場合はこの2文を差し替え</li></ul>
+<h2>読みチェック語（TTS生成後・最大4）</h2>
+<ol><li>ウネリー（unerry）</li><li>五季（ごき）</li><li>酷暑日（こくしょび）</li><li>九百七十人（数字の読みの流れ）</li></ol>
+<h2>dictionary.yaml 追記候補</h2>
+<p>unerry → ウネリー ／ PIT → ピット ／（誤読時）五季 → ごき</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep003 台本 v2（人間レビュー用・v3.3改稿）</h1>
+<h2>『その手があったか』｜時間をずらす</h2>
+<h3>ホスト：戸倉ハジメ／型2 小ネタ＋本命型／5分／density: balanced／聞き上手の型</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>まず、三十一度。これ、何の温度だと思います？　人が、街から消え始める温度だそうです。だそうです、と言ったのは、私も先週まで知らなかったからで。猛暑日って、三十五度からじゃないですか。人が出歩かなくなるのも、てっきりそこからだと思ってました。違うんですって。先月の末に、電通とウネリーという会社が出した調査によると、外に出る人の動きは、三十一度あたりからもう変わり始める。猛暑の土曜日は、昼に出かける人が減って、夕方以降にずれる。電車の街より、クルマの街のほうが、はっきりずれるそうです。で、調べてみたんですよ。『なんで三十五度より手前で変わるの』って。そしたら、暑さのつらさと、行動が変わるタイミングは、必ずしも一致しないから。ああ、そうか。体がまいる前に、みんな予定の側を先に変えてるんだ。私も先週、昼の散歩を朝に変えました。ああいうのが、もう数字に出てるんですね。</p>
+<p>もうひとつ。これも先月の発表です。三陽商会。コートやジャケットの、冬に強いアパレルです。ここが、季節の数を変えました。夏が長すぎるので、夏をふたつに割って、一年を五季。夏物を売る期間を秋口まで延ばして、今年は半袖のジャケットを、去年の約九倍作る。男の日傘まで増産するそうです。九倍って、最初は誤植かと思いましたよ。気象庁が四十度以上の日を酷暑日と呼ぶと決めた年に、服の会社は、暑さじゃなくて、カレンダーの側をいじってきた。</p>
+<p>さあ、本命です。</p>
+<p>きょうは日曜ですけど、けさ、朝六時から開いてたバイク用品の店があります。ナップスです。先月の半ばの発表で、今月の毎週日曜、朝六時から整備の受付を始めました。オイル交換とか、タイヤの交換とか。予約制です。反対側もあって、今月の二十八日は、全国の店で夜十二時まで開けます。</p>
+<p>なんでバイク屋がそんな時間に、って、私は最初思いました。理由は聞けば単純で、真夏の昼のバイクは、ヘルメットに革のウェアで、サウナの中で運動しているようなものだそうです。だからライダーは、バイクをやめたんじゃなくて、走る時間を朝と夜に移してた。で、店のほうが、そこについていった。朝六時の駐車場で整備を済ませて、涼しいうちに走り出せるように。</p>
+<p>去年の八月、試しに夜十二時まで開けてみたら、夕方六時以降の来店が、普段は全店で九百七十人ほどのところ、六千八百人。約七倍です。私、なにか大きな値引きでもしたのかと思って、あとで確かめたんです。違いました。セールはやっていない。開ける時間を変えただけ。しかも、エンジン音のご近所迷惑を考えて、店ごとに延長時間を調整して、ライダーには静かに来てねとお願いした上での、七倍です。</p>
+<p>ここから、商売の解剖です。きょうの手は、時間をずらす。バイク屋さんじゃなくても使える形に、自分なりに直してみました。三つあります。一、客が減ったように見えたら、消えたのか、移ったのかを、まず分ける。三十一度の調査が言っているのは、客は途中でいなくなるんじゃなくて、涼しい時間へ移動している、ということでした。二、移ったのなら、商品じゃなくて、時間の側を客に合わせる。ナップスが動かしたのは、店でも品揃えでもなく、営業時間だけ。三陽商会が動かしたのも、服じゃなくて、売る期間のほう。お金のかかるところは、ほとんど動かしていません。三、いきなり変えず、一日だけ試す。ナップスも最初は一回きりのイベントで、うまくいったから、今年は朝にも広げた。</p>
+<p>たとえば、ランチの客が減った定食屋さんなら、夜を頑張る前に、朝の弁当かもしれない。現場仕事が朝型になっている町なら、朝六時に開いているだけで、選ばれる店になるかもしれない。ここだけ持って帰ってください。売上が減った時間や季節を見つけたら、客が減った、と言う前に、客がどの時間に移ったかを先に調べる。ありますよね、うちの業界は昼型だから、って話。あれ、誰がいつ決めたんだろうと、私も今回、初めて考えました。</p>
+<p>今週の宿題です。自分の商売で「客が来ない」とされている時間帯か季節をひとつ書き出して、そのお客さんが、同じ日のいつ、どこで動いているかを調べてください。</p>
+<p>きょうの手は、時間をずらす、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』｜時間をずらす — 朝6時に開くバイク用品店</p>
+<p>人が街から消え始めるのは35℃ではなく31℃。バイク用品のナップスは客が移った先の時間に合わせて朝6時と夜24時に店を開け、来店約7倍。三陽商会は季節を「五季」に作り替えた。暑さと戦わずに時間を動かした商売を、5分で解剖します。</p>
+<p>▼ トリガになったニュース<br>・ナップス プレスリリース「朝6時から営業と夜24時まで営業を行う理由」（2026年7月14日・PR TIMES）<br>・電通×unerry 猛暑時の外出行動調査（ネットショップ担当者フォーラム 2026年7月28日）<br>・三陽商会「五季」2026年夏商戦（同 2026年7月16日）</p>
+<p>▼ 詳しい数値と出典はnote「その手があったか #003」で<br>（リンク）</p>
+<p>▼ そのほかの出典<br>バイクブロス／モトメガネ／ヤングマシン／MotorFan／Apparel Business Magazine／繊研新聞・東洋経済・流通ニュース（三陽商会「五季」背景）</p>
+<p>※本番組の音声はAIにより制作しています。事実は上記出典に基づき、表現は番組が独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』｜時間をずらす — 朝6時に開くバイク用品店
+
+人が街から消え始めるのは35℃ではなく31℃。バイク用品のナップスは客が移った先の時間に合わせて朝6時と夜24時に店を開け、来店約7倍。三陽商会は季節を「五季」に作り替えた。暑さと戦わずに時間を動かした商売を、5分で解剖します。
+
+▼ トリガになったニュース
+・ナップス プレスリリース「朝6時から営業と夜24時まで営業を行う理由」（2026年7月14日・PR TIMES）
+・電通×unerry 猛暑時の外出行動調査（ネットショップ担当者フォーラム 2026年7月28日）
+・三陽商会「五季」2026年夏商戦（同 2026年7月16日）
+
+▼ 詳しい数値と出典はnote「その手があったか #003」で
+（リンク）
+
+▼ そのほかの出典
+バイクブロス／モトメガネ／ヤングマシン／MotorFan／Apparel Business Magazine／繊研新聞・東洋経済・流通ニュース（三陽商会「五季」背景）
+
+※本番組の音声はAIにより制作しています。事実は上記出典に基づき、表現は番組が独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

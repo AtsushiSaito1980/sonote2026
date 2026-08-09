@@ -19,6 +19,8 @@
 | `episodes/ep001〜006` | 完成済みの見本6本（文体はここで決まる） |
 | `ledger/episodes_log.csv` | 放送済み台帳（同じネタの重複を防ぐ） |
 | `scripts/check.py` | 台本の自動検算 |
+| `scripts/build_site.py` | 制作アーカイブサイト（docs/）の生成 |
+| `docs/` | 全仕様 plan.md ＋ 生成済みの閲覧サイト |
 
 ## 毎日の流れ（スマホ）
 
@@ -32,3 +34,13 @@ PRを作って           → 提案書が立つ。読んで Merge
 ```
 
 そのあと `script_tts.txt` を ElevenLabs に貼り、**必ず一度通して聴いてから**公開する。
+
+## 制作アーカイブサイト（docs/）
+
+台本・note記事・インフォグラフィック・制作データを、日付とタイトルごとにブラウザで見られる静的サイト。
+
+- **見る**：`docs/index.html` をブラウザで開くだけで動く（サーバ不要）。GitHub Pages を使う場合は Settings → Pages で `main` ブランチの `/docs` を指定する
+- **各回のページ**：インフォグラフィック（図解）／note記事（Markdownコピー付き）／台本（**ワンボタンで ElevenLabs 用にコピー**・概要欄コピー付き）／制作ファイル（brief・事実カード・検査レポート・ドラフト）
+- **再生成**：`python3 scripts/build_site.py`（episodes/ と ledger/ から docs/ を作り直す。plan.md には触れない）
+- **インフォグラフィックの原稿**は `episodes/epNNN/infographic.html`（本文フラグメント）。無い回は facts.yaml から簡易版が自動生成される
+- 新しいエピソードを作ったら、再生成して docs/ もコミットする

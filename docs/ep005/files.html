@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ep005 制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep004/files.html">← ep004</a><a class="pn" href="../ep006/files.html">ep006 →</a></span></div>
+<div class="ep-head">
+  <div class="ep-date">2026-08-11（火）　<span class="badge review">レビュー中</span></div>
+  <h1>ep005｜当事者だった</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP02 足す（味）</span><span class="chip motive">MO1 当事者だった</span><span class="chip motive">MO2 許せなかった</span><span class="chip none">風＝なし</span><span class="chip none">日付は想定</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep005</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型3 人物深掘り型（動機回）</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>narrative</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> 銀座・和光×HERALBONY 特別企画展「Wako Sustainability Month GOOD LOOP 2026」開幕<br><span class='k'>published</span> 2026-08-06<br><span class='k'>source_url</span> heralbony.jp（公式）／prtimes.jp（2026年7月群・8月）</td></tr><tr><th>副トリガ</th><td>PR TIMES ヘラルボニー発信：7/6・7/16×2・7/17・7/24・制作日当日（10時間前）</td></tr><tr><th>題材</th><td>ヘラルボニー（松田崇弥・文登／動機起点の創業）</td></tr><tr><th>手</th><td>OP02</td></tr><tr><th>動機</th><td>MO1+MO2</td></tr><tr><th>風</th><td>none</td></tr><tr><th>つかみ</th><td>二千点。ある会社が預かって企業に貸し出しているアートの点数</td></tr><tr><th>きょうの手（案）</th><td>自分か家族の困りごと・違和感は市場調査より先にある一次情報。感じたら、同じ思いの人が何人いるかを先に数える</td></tr><tr><th>宿題（案）</th><td>自分か家族がこの1年で本気で困ったこと・腹が立ったことを1つ書き出し、同じ思いの人が何人いるか調べる</td></tr><tr><th>壁・制約</th><td>業界慣行＝手心を加えた発注・慈善文脈での購買。兄への偏見という原体験</td></tr><tr><th>備考</th><td>v3.5初適用（narrative・型3）。障害のある方への言及は続柄・公式公表事実のみ。兄・翔太さんの個人名は台本に出さず「四歳上のお兄さん」で扱う（敬意設計）</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep005
+host: tokura                # 日替わり交互（前日ep004=三崎）
+episode_type: T1
+format: 型3 人物深掘り型（動機回）
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: narrative          # 初使用。v3.5編成ルール⑥の実演
+anchor:
+  headline: &quot;銀座・和光×HERALBONY 特別企画展「Wako Sustainability Month GOOD LOOP 2026」開幕&quot;
+  published: 2026-08-06     # 開幕日（公式サイト掲載。PR TIMESでも7月に発信群、直近リリースは制作日当日）
+  source_url: &quot;heralbony.jp（公式）／prtimes.jp（2026年7月群・8月）&quot;
+sub_triggers:
+  - &quot;PR TIMES ヘラルボニー発信：7/6・7/16×2・7/17・7/24・制作日当日（10時間前）&quot;
+case_name: &quot;ヘラルボニー（松田崇弥・文登／動機起点の創業）&quot;
+operation_tags: [OP02]      # 足す（老舗・和光×スタートアップ）の掛け味。主役は動機軸
+motive_tag: MO1+MO2         # 当事者だった（兄）×許せなかった（偏見・「かわいそう」の慣行）
+tailwind_tag: none
+hook: &quot;二千点。ある会社が預かって企業に貸し出しているアートの点数&quot;
+lesson_draft: &quot;自分か家族の困りごと・違和感は市場調査より先にある一次情報。感じたら、同じ思いの人が何人いるかを先に数える&quot;
+homework_draft: &quot;自分か家族がこの1年で本気で困ったこと・腹が立ったことを1つ書き出し、同じ思いの人が何人いるか調べる&quot;
+opposition: &quot;業界慣行＝手心を加えた発注・慈善文脈での購買。兄への偏見という原体験&quot;
+notes: &quot;v3.5初適用（narrative・型3）。障害のある方への言及は続柄・公式公表事実のみ。兄・翔太さんの個人名は台本に出さず「四歳上のお兄さん」で扱う（敬意設計）&quot;
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>ヘラルボニー×和光</td><td>特別企画展</td><td class="fact-val">Wako Sustainability Month GOOD LOOP 2026・8月6日開幕</td><td>2026-08-06</td><td class="src">heralbony.jp（公式・一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F02</span></td><td>ヘラルボニー</td><td>事業規模</td><td class="fact-val">国内外の主に知的障害のある作家153名・2000点以上をライセンス管理</td><td>2026</td><td class="src">heralbony.jp（公式・一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>ヘラルボニー</td><td>事業モデル</td><td class="fact-val">アートデータで企業の取り組みをプロデュース→報酬→収益の一部を作品使用料として作家へ</td><td>継続</td><td class="src">heralbony.jp（公式・一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>松田崇弥・文登</td><td>創業体制</td><td class="fact-val">双子で設立。崇弥=企画会社出身（クリエイティブ統括・東京）、文登=ゼネコンで被災地再建に従事（国内統括・岩手）</td><td>2018創業</td><td class="src">heralbony.jp ABOUT（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F05</span></td><td>社名の由来</td><td>ヘラルボニー</td><td class="fact-val">4歳上の兄・翔太さんが小学校時代に記していた謎の言葉</td><td>—</td><td class="src">heralbony.jp ABOUT（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>創業の原点</td><td>動機</td><td class="fact-val">障害のある兄への偏見を正したいという思い</td><td>—</td><td class="src">日本政策金融公庫「日本公庫つなぐ」紹介</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F07</span></td><td>松田崇弥</td><td>動機の場面</td><td class="fact-val">母・兄と初訪問した「るんびにい美術館」（岩手・花巻）で作品に衝撃。出るやいなや文登へ電話『ここ、超ヤバいって！』</td><td>創業前</td><td class="src">heralbony.jp「ヘラルボニー100年史 EPISODE:00」（公式・一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>業界慣行</td><td>反対・制約</td><td class="fact-val">発注側の手心・慈善文脈での購買が多かった中で「市場で勝負できる形」に落とし込む挑戦</td><td>—</td><td class="src">PERSOL はたらくWell-being AWARDS 2023 審査コメント</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>松田文登</td><td>価値観の言葉</td><td class="fact-val">「異彩作家の作品なくしては、われわれが食べていけない、という逆の価値観を社会に提示したい」趣旨</td><td>2026-01</td><td class="src">nippon.com（2026年1月）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>ヘラルボニー</td><td>受賞・評価</td><td class="fact-val">第75回芸術選奨（芸術振興部門）文部科学大臣新人賞（兄弟で受賞）・Forbes JAPAN選出・著書『異彩を、放て。』</td><td>2025頃</td><td class="src">heralbony.jp ABOUT（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F11</span></td><td>HERALBONY Art Prize 2026</td><td>国際賞</td><td class="fact-val">3回目。77の国と地域から1342名・2943作品の応募。東京建物がプレゼンティングパートナー</td><td>2026-05〜06</td><td class="src">heralbony.jp（公式・一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F12</span></td><td>ヘラルボニー</td><td>海外展開</td><td class="fact-val">2025年10月パリ・ファッションウィーク参加（アンリアレイジ2026SSコラボ）</td><td>2025-10</td><td class="src">GOETHE（2026年2月）</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>松田崇弥（→文登への電話）</strong>「ここ、超ヤバいって！」<span class="src-note">公式100年史 EPISODE:00／公式社史掲載の本人発言・9字。事実の再現として使用可</span></li><li><span class="fid">Q02</span> <strong>松田文登</strong>「異彩作家の作品なくしては、われわれが食べていけない、という逆の価値観を社会に提示したい」<span class="src-note">nippon.com 2026-01／趣旨再現のみ</span></li></ul><div class="ig-callout pre-line">・アンカー＝和光展の開幕（8/6・3日前）。7月のPR TIMES発信群が副トリガ
+・台本の数字は3系統以内：事業規模系（153名・2000点）を軸に。Art Prize（77・1342・2943）はnoteのみ
+・兄・翔太さんは台本では「四歳上のお兄さん」（続柄）で扱う。障害の記載は公式・公庫の表現に準拠
+・創業年（2018）は複数報道で周知だが、台本では年数を使わず「双子で会社を作った」で運ぶ</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep005 検査レポート（review-episode）— v3.5初適用・動機回（narrative）</h1>
+<p><strong>判定：PASS</strong>（人間の最終承認と通し聴取を残すのみ）</p>
+<h2>v3.5新設ゲート（動機回）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>規定</th><th>実測</th><th>判定</th></tr></thead><tbody><tr><td>MOタグ</td><td>必須</td><td>MO1（当事者だった）×MO2（許せなかった）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>動機の「場面」再現</td><td>『』1〜2回</td><td>2回（『ここ、超ヤバいって』＝公式社史掲載の本人発言9字／『作家さんの作品がなければ、うちが食べていけない。その順番の価値観を』＝nippon.com趣旨再現）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>反対・制約の記録</td><td>必須</td><td>業界慣行（手心の発注・慈善文脈の購買）＋「偏見を正したい」の原点（公庫記事）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>解剖＝動機の一般化</td><td>条件＋動作・説教にしない</td><td>3箇条（一次情報として数える／価値の言葉への翻訳／意味でなく品質で売る）。命令形は宿題のみ</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>編成カバレッジ</td><td>動機回週1・未使用要素</td><td>narrative初使用・MO軸初の主役化・OP02味も初</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>episodes_log照合</td><td>重複なし</td><td>題材・業界（アートライセンス／福祉／老舗百貨店）とも初出</td><td><span class="st pass">✓ PASS</span></td></tr></tbody></table></div>
+<h2>継続ゲート（narrative・実測）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>narrative規定</th><th>実測</th><th>判定</th></tr></thead><tbody><tr><td>本文文字数</td><td>1,700〜2,000</td><td>1,737</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>facts消化</td><td>4点前後</td><td>9点（F01〜F10）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>数字</td><td>3以内</td><td>2系統（事業規模系153名・2,000点／「四歳上」は続柄で対象外）。Art Prize系はnoteのみ</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>固有名詞</td><td>4以内</td><td>3（ヘラルボニー・和光・松田）。規約：純粋な地名（岩手・銀座）は対象外、兄は続柄呼称、美術館は「福祉施設が運営する美術館」に一般化</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>キメ台詞／説教</td><td>0</td><td>検出0。「取材コストゼロの強み」は口癖行内の原則提示として許容判定</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>香月／「…」／半角</td><td>0</td><td>0／0／0</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>取材話法</td><td>伝聞形</td><td>「〜なんだそうです」「会社の記録に残っています」「紹介されています」「こういう趣旨のことを」</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>トリガ明示</td><td>3層</td><td>台本「今週の木曜から」「先月から発表が続いていて」／note冒頭欄／概要欄先頭</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>口癖／解剖宣言／OP・ED定型</td><td>—</td><td>1／あり／一致（また明日）</td><td><span class="st pass">✓ PASS</span></td></tr></tbody></table></div>
+<h2>敬意設計（本エピソード固有）</h2>
+<ul><li>兄・翔太さんは台本では「四歳上のお兄さん」（続柄のみ）。障害の記載は公式・公庫の表現に準拠し、診断名等の詳細は扱わない</li><li>動機の場面・発言はすべて本人たち・会社が公式に公開している記録（100年史・ABOUT・取材記事）に基づく</li><li>「支援ではなく市場で勝負」という同社自身の思想と、番組の扱い（品質・構造の話として語る）を一致させた</li></ul>
+<h2>制作日依存の注意</h2>
+<ul><li>「今週の木曜から」は和光展8月6日開幕・制作日8月9日前提。配信日がずれる場合は「今月の六日から」に差し替え</li></ul>
+<h2>読みチェック語（TTS生成後・最大4）</h2>
+<ol><li>ヘラルボニー（社名の通り）</li><li>和光（わこう）</li><li>異彩（いさい）</li><li>百五十三名（数字の読みの流れ）</li></ol>
+<h2>dictionary.yaml 追記候補</h2>
+<p>（誤読時）和光 → わこう ／ 異彩 → いさい</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep005 台本（人間レビュー用・v3.5適用）</h1>
+<h2>『その手があったか』｜当事者だった</h2>
+<h3>ホスト：戸倉ハジメ／型3 人物深掘り型／5分／density: narrative（初使用）</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>まず、二千点。これ、何の数字だと思います？　ある会社が預かって、企業に貸し出しているアートの点数です。描いているのは、国内外の百五十三名。主に、知的障害のある作家さんたちです。会社の名前は、ヘラルボニー。岩手の会社です。今週の木曜からは、銀座の和光、あの時計塔の老舗との特別企画展も始まりました。先月から発表が続いていて、いま勢いのある会社なんですが、きょうは商売の中身より先に、始まり方を聞いてほしいんです。</p>
+<p>商売はこうです。作家さんの作品をデータで預かる。それを企業の商品や建物に使ってもらう。会社が報酬を受け取って、その一部を、作品の使用料として作家さんに支払う。ネクタイとかハンカチにもなっていて、これがまず、私も見ましたけど、普通に格好いい。支援グッズの値段じゃなくて、ほしいものの値段で売られています。</p>
+<p>創業したのは、松田さんという双子の兄弟です。ふたりには、四歳上のお兄さんがいて、知的障害があります。会社名のヘラルボニーは、そのお兄さんが小学生のころ、自由帳に繰り返し書いていた、意味のわからない言葉なんだそうです。意味はわからないけど、家族には忘れられない言葉を、そのまま社名にした。で、会社を作る前に、こういう場面があったと、会社の記録に残っています。双子の片方が、お母さんとお兄さんと、岩手にある、福祉施設が運営する美術館に出かけた。そこで見た絵が、それまでどの美術館で観たものとも違った。何度も何度も描き込まれた模様。ボールペンの跡が残るほど、執拗に描かれた黒い丸。よく見ると数字や文字が潜んでいる絵。で、美術館を出てすぐ、もう片方に電話して、言ったそうです。『ここ、超ヤバいって』。こんなにすごいものが、こんな近くにあったのに、なんで世の中に知られていないんだ、と。</p>
+<p>ここに、壁がありました。それまで、障害のある人の仕事って、発注する側が手心を加えたり、買う側が、支援だからと買ったりすることが多かったんだそうです。善意なんだけど、値段も評価も、作品そのものには付いていない。ふたりの原点は、お兄さんへの偏見を正したい、という思いだったと紹介されています。かわいそう、と言われる側から、これが欲しい、と言われる側へ。だから支援の文脈じゃなく、品質と格好よさで、市場で勝負できる形に落とし込んだ。</p>
+<p>いま、この会社は海外のファッションウィークに出て、世界中から応募が集まる国際賞を主催して、兄弟そろって国の芸術選奨まで受賞しています。代表のひとりは取材で、こういう趣旨のことを言っています。『作家さんの作品がなければ、うちが食べていけない。その順番の価値観を、社会に見せたい』。支援する側とされる側を、ひっくり返す気なんですね。私、この一言で、この会社が福祉の会社じゃなくて、商売の会社なんだと理解しました。</p>
+<p>ここから、商売の解剖です。きょうの動機は、当事者だった、です。よそで使える形に直すと、三つ。一、自分や家族の困りごと、長年の違和感は、市場調査より先に手元にある一次情報です。感じたら、同じ思いの人が世の中に何人いるかを、先に数える。二、違和感は、そのままでは商品になりません。かわいそう、を、異彩、と言い換えたように、価値の言葉に翻訳して、初めて値札が付く。三、意味で売らない。品質で売る。いい話だから買ってください、と言った瞬間に、値段は下がるんです。</p>
+<p>新規事業の会議で、身内の話は出しにくい、ってありますよね。客観的じゃないから、って。でも、いちばん長く観察してきた課題は、たいてい自分の半径五メートルにあります。ここだけ持って帰ってください。当事者であることは、弱みじゃなくて、取材コストゼロの強みです。</p>
+<p>今週の宿題です。自分か家族が、この一年で本気で困ったこと、腹が立ったことをひとつ書き出して、同じ思いの人が、世の中に何人いるか、調べてください。</p>
+<p>きょうの手は、当事者から始める、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』｜当事者から始める — 兄への思いを事業にした双子</p>
+<p>作家153名・2,000点以上のアートを企業にライセンスするヘラルボニー。始まりは、双子の兄弟が抱いた「障害のある兄への偏見を正したい」という思いと、岩手の美術館で受けた衝撃でした。動機がそのまま設計図になった商売を、5分で。</p>
+<p>▼ トリガになったニュース<br>・銀座・和光×HERALBONY 特別企画展「GOOD LOOP 2026」開幕（2026年8月6日・公式サイト）<br>・ヘラルボニーのPR TIMES発信（2026年7月〜8月）</p>
+<p>▼ 詳しい数値と出典はnote「その手があったか #005」で<br>（リンク）</p>
+<p>▼ そのほかの出典<br>ヘラルボニー公式（100年史・ABOUT）／日本政策金融公庫「日本公庫つなぐ」／nippon.com（2026年1月）／PERSOL はたらくWell-being AWARDS 2023／GOETHE（2026年2月）</p>
+<p>※本番組の音声はAIにより制作しています。事実は上記出典に基づき、表現は番組が独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』｜当事者から始める — 兄への思いを事業にした双子
+
+作家153名・2,000点以上のアートを企業にライセンスするヘラルボニー。始まりは、双子の兄弟が抱いた「障害のある兄への偏見を正したい」という思いと、岩手の美術館で受けた衝撃でした。動機がそのまま設計図になった商売を、5分で。
+
+▼ トリガになったニュース
+・銀座・和光×HERALBONY 特別企画展「GOOD LOOP 2026」開幕（2026年8月6日・公式サイト）
+・ヘラルボニーのPR TIMES発信（2026年7月〜8月）
+
+▼ 詳しい数値と出典はnote「その手があったか #005」で
+（リンク）
+
+▼ そのほかの出典
+ヘラルボニー公式（100年史・ABOUT）／日本政策金融公庫「日本公庫つなぐ」／nippon.com（2026年1月）／PERSOL はたらくWell-being AWARDS 2023／GOETHE（2026年2月）
+
+※本番組の音声はAIにより制作しています。事実は上記出典に基づき、表現は番組が独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
