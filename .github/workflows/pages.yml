@@ -2,6 +2,12 @@ name: Deploy archive site to GitHub Pages
 
 # episodes/ から docs/ を作り直して GitHub Pages へ公開する。
 # main への push で自動実行。Actions タブの "Run workflow" から手動実行もできる。
+#
+# 【最初に一度だけ必要な設定】
+#   Settings → Pages → Build and deployment → Source を「GitHub Actions」にする。
+#   これはワークフローからは実行できない（GITHUB_TOKEN では Pages サイトを新規作成
+#   できず "Resource not accessible by integration" になる）。設定後に Actions タブ
+#   からこのワークフローを再実行すれば公開される。
 
 on:
   push:
@@ -35,10 +41,8 @@ jobs:
           echo "--- 公開されるファイル ---"
           find _site -type f | sort
 
-      # Pages が未設定なら、この step が有効化する（enablement: true）
+      # Settings → Pages の Source が「GitHub Actions」になっていないとここで失敗する
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
