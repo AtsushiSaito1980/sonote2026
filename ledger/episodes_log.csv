@@ -1,0 +1,8 @@
+episode,host,air_date,type,density,hands,motive,tailwind,industries,case_names,trigger_date,title,status
+ep001,tokura,2026-08-08,T1,balanced相当,OP04,none,TW1headwind,ゴルフ用品;オーラルケア;カラオケ,ミズノJPX ONE;ガム・プレミアム;VSING,2026-01〜03(旧基準),物差しを逆さに持て,archived_旧鮮度基準
+ep002,misaki,2026-08-08,T1,dense,OP11,none,TW1,人事労務;対策サービス;保険,カスハラ対策義務化,2026-07-20,施行日は開店日,ready
+ep003,tokura,2026-08-09,T1,balanced,OP05+OP14味,MO4,TW5,バイク用品;アパレル;調査,ナップス;三陽商会;電通×unerry,2026-07-14,時間をずらす,ready
+ep004,misaki,2026-08-10想定,T1,balanced,OP03,none,none(向かい風=コスト高),イベント;地域;飲料,いたばし;八王子;鎌倉;キリン晴れ風,2026-08-07,払う人を変える,in_review
+ep005,tokura,2026-08-11想定,T1,narrative,OP02味,MO1+MO2,none,アートライセンス;福祉;老舗百貨店,ヘラルボニー;和光,2026-08-06,当事者だった,in_review
+wait001,-,-,T1候補,balanced想定,OP06,MO3想定,none,建築;木材;イベント跡地,万博大屋根リング木材リユース,トリガ待ち(最終:2026-01引取先発表),解体材の行き先,trigger_wait
+ep006,misaki,2026-08-12想定,T1,balanced,OP01+OP10味,none,TW4+TW1味,エネルギー;素材;化学,ペロブスカイト太陽電池;積水化学SOLAFIL,2026-07(GCL参入・出来事),断られた理由を引く,in_review

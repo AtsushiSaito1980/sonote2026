@@ -1,0 +1,23 @@
+episode_id: ep005
+host: tokura                # 日替わり交互（前日ep004=三崎）
+episode_type: T1
+format: 型3 人物深掘り型（動機回）
+series: ""
+duration_min: 5
+mode: real
+density: narrative          # 初使用。v3.5編成ルール⑥の実演
+anchor:
+  headline: "銀座・和光×HERALBONY 特別企画展「Wako Sustainability Month GOOD LOOP 2026」開幕"
+  published: 2026-08-06     # 開幕日（公式サイト掲載。PR TIMESでも7月に発信群、直近リリースは制作日当日）
+  source_url: "heralbony.jp（公式）／prtimes.jp（2026年7月群・8月）"
+sub_triggers:
+  - "PR TIMES ヘラルボニー発信：7/6・7/16×2・7/17・7/24・制作日当日（10時間前）"
+case_name: "ヘラルボニー（松田崇弥・文登／動機起点の創業）"
+operation_tags: [OP02]      # 足す（老舗・和光×スタートアップ）の掛け味。主役は動機軸
+motive_tag: MO1+MO2         # 当事者だった（兄）×許せなかった（偏見・「かわいそう」の慣行）
+tailwind_tag: none
+hook: "二千点。ある会社が預かって企業に貸し出しているアートの点数"
+lesson_draft: "自分か家族の困りごと・違和感は市場調査より先にある一次情報。感じたら、同じ思いの人が何人いるかを先に数える"
+homework_draft: "自分か家族がこの1年で本気で困ったこと・腹が立ったことを1つ書き出し、同じ思いの人が何人いるか調べる"
+opposition: "業界慣行＝手心を加えた発注・慈善文脈での購買。兄への偏見という原体験"
+notes: "v3.5初適用（narrative・型3）。障害のある方への言及は続柄・公式公表事実のみ。兄・翔太さんの個人名は台本に出さず「四歳上のお兄さん」で扱う（敬意設計）"

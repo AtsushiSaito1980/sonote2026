@@ -1,0 +1,22 @@
+# 事実カード（extract-facts出力）
+facts:
+  - {id: F01, who: ナップス, what: 早朝・夜間営業イベント発表, value: 2026年8月実施, when: 2026-07-14, source_url: "PR TIMES（公式・一次）／バイクブロス・モトメガネ・ヤングマシン・MotorFan・ネットショップ担当者フォーラム", confirmed_by: 6, anchor: true}
+  - {id: F02, who: ナップス, what: 深夜営業, value: 2026年8月28日・全店最大24時まで, when: 2026-08, source_url: "PR TIMES（一次）ほか各報道", confirmed_by: 5}
+  - {id: F03, who: ナップス, what: 早朝営業, value: 8月の毎週日曜・朝6時からPITのみ・予約制・対象7店舗, when: 2026-08, source_url: "PR TIMES（一次）ほか各報道", confirmed_by: 5}
+  - {id: F04, who: ナップス, what: 2025年深夜営業の実績, value: 計3回。第1回は18時以降約6800人（通常平均約970人・約7倍）, when: 2025-08, source_url: "ネットショップ担当者フォーラム／モトメガネ／ヤングマシン", confirmed_by: 3}
+  - {id: F05, who: ライダー, what: 行動変化, value: 真夏の日中は体感40度超で早朝・夜間走行へ移行, when: 継続, source_url: "PR TIMES（一次）／ネットショップ担当者フォーラム", confirmed_by: 2}
+  - {id: F06, who: ナップス, what: 近隣配慮, value: 店舗別の延長時間調整・エンジン音への配慮呼びかけ, when: 2025-2026, source_url: "ネットショップ担当者フォーラム", confirmed_by: 1}
+  - {id: F07, who: 電通×unerry, what: 猛暑時の外出行動調査, value: 31度前後から行動変化開始（猛暑日35度を待たない）, when: 2026-07-28報道, source_url: "ネットショップ担当者フォーラム（調査発表の報道・準一次）", confirmed_by: 1}
+  - {id: F08, who: 同調査, what: 猛暑日の土曜, value: 日中の外出が夕方以降へシフト, when: 2026-07, source_url: "同上", confirmed_by: 1}
+  - {id: F09, who: 同調査, what: 都市差, value: 公共交通中心の都市は夕方シフトが起こりにくい, when: 2026-07, source_url: "同上", confirmed_by: 1}
+  - {id: F10, who: 三陽商会, what: 五季カレンダー, value: 2024年導入。夏を初夏・盛夏と猛暑に分割, when: 2024〜, source_url: "ネットショップ担当者フォーラム（7/16）／Apparel Business Magazine（発表転載・準一次）／東洋経済・繊研（背景）", confirmed_by: 4}
+  - {id: F11, who: 三陽商会, what: 夏物展開期間, value: 従来3ヶ月（5-7月）→5ヶ月（5-9月）, when: 2026, source_url: "同フォーラム／ABM／繊研", confirmed_by: 3}
+  - {id: F12, who: 三陽商会, what: 増産計画, value: 半袖ジャケット前年比約9倍・メンズ日傘220%・ドレスTシャツ等145%・シアージャケット110%, when: 2026夏, source_url: "同フォーラム／ABM（発表転載）", confirmed_by: 2}
+  - {id: F13, who: 気象庁, what: 新名称, value: 最高気温40度以上の日を「酷暑日」と決定, when: 2026, source_url: "同フォーラム／ABM／AdverTimes（5/18・予報用語として言及）", confirmed_by: 3}
+  - {id: F14, who: 三陽商会, what: 2025年盛夏の実績, value: 7月1-3週の定価売上でジャケット41%増など, when: 2025-07, source_url: "流通ニュース（背景）", confirmed_by: 1}
+quotes:
+  - {id: Q01, speaker: 電通×unerry（調査分析）, gist: "暑さの厳しさと行動変化の大きさは、必ずしも一致しない", source_url: "ネットショップ担当者フォーラム 7/28", note: "趣旨再現のみ可"}
+notes: |
+  ・アンカー＝ナップス公式リリース（7/14）。副トリガ2件も1ヶ月以内でトリガ要件充足
+  ・F04の7倍系はナップス発表由来の報道3本。一次リリース（2025年当時）での最終確認を推奨
+  ・F13「酷暑日」は台本では40度の重複を避け呼称紹介に留める

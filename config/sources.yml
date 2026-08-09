@@ -1,0 +1,38 @@
+# 巡回棚（6分類）。/patrol はこの全棚を必ず舐める。
+# robots.txt / 利用規約を確認したものだけ登録する。AI利用を拒否しているサイトは登録しない。
+
+shelves:
+  1_price_ops:
+    label: 価格・営業・商品
+    hint: 値上げ/値下げ、営業時間、品揃え、サブスク化、新商品リリース
+    sources: []          # 例: PR TIMES 各カテゴリ、業界紙
+
+  2_regulation:
+    label: 制度
+    hint: 官報、審議会、パブコメ、義務化の施行日、都道府県の条例審議（国の予告編）
+    sources: []
+
+  3_tech_milestone:
+    label: 技術の節目
+    hint: 量産開始、実用化、受賞、特許切れ、コスト逆転、学会発表→事業化
+    sources: []
+
+  4_partnership:
+    label: 提携
+    hint: 資本業務提携、協業開始、老舗×スタートアップ、大学発ベンチャー
+    sources: []
+
+  5_earnings:
+    label: 決算
+    hint: 四半期ごとに、在庫事例の「再トリガ」を確認する棚
+    sources: []
+
+  6_people:
+    label: 人物・動機の節目
+    hint: 上場、資金調達、受賞、周年、事業承継、書籍出版。創業物語はこの瞬間に再点火する
+    sources: []
+
+policy:
+  primary_first: true          # 一次情報を優先。Wikipediaはキー事実の単独ソースにしない
+  key_number_min_sources: 2    # キー数字は2ソース以上または一次資料
+  trigger_window_days: 31

@@ -1,0 +1,27 @@
+# 事実カード（extract-facts出力。以降の工程はこのファイルと quotes のみを参照する）
+facts:
+  - {id: F01, who: ミズノ, what: JPX ONEドライバー発表, value: 2026年1月29日, when: 2026-01, source_url: "corp.mizuno.com/jp/news-release/2026/20260129_02", confirmed_by: 2}
+  - {id: F02, who: ミズノ, what: JPX ONE発売, value: 2026年3月6日, when: 2026-03, source_url: "golfdigest.co.jp ギアカタログ", confirmed_by: 2}
+  - {id: F03, who: ミズノ, what: 価格, value: 92400円, when: 2026-03, source_url: "golfdigest.co.jp ギアカタログ", confirmed_by: 1}
+  - {id: F04, who: 東レ, what: NANOALLOY開発元, value: ポリマーアロイ技術, when: —, source_url: "corp.mizuno.com（公式リリース内）", confirmed_by: 2}
+  - {id: F05, who: NANOALLOY, what: 素材特性, value: 衝撃で柔らかくなる, when: —, source_url: "corp.mizuno.com／golfdigest-minna.jp", confirmed_by: 2}
+  - {id: F06, who: JPX ONE, what: フェース構造, value: チタン上に0.4mm樹脂層, when: —, source_url: "corp.mizuno.com", confirmed_by: 1}
+  - {id: F07, who: JPX ONE, what: 機構, value: 面がたわみ球の変形抑制, when: —, source_url: "corp.mizuno.com", confirmed_by: 2}
+  - {id: F08, who: ミズノ, what: 性能主張, value: 自社史上最高ボール初速, when: 2026, source_url: "corp.mizuno.com（自社発表・要帰属表現）", confirmed_by: 2}
+  - {id: F09, who: ゴルフ業界, what: 反発規制の存在, value: 高反発クラブはルール不適合, when: 継続, source_url: "一般周知（R&A/USGA規則）", confirmed_by: 2}
+  - {id: F10, who: ミズノ, what: 着想の系譜, value: 軟式バット等の発想を応用, when: —, source_url: "golfdigest-minna.jp／深夜試打記事", confirmed_by: 2}
+  - {id: F11, who: サンスター, what: ガム・プレミアム デンタルブラシ発売, value: 2026年3月30日, when: 2026-03, source_url: "prtimes.jp（公式リリース）", confirmed_by: 2}
+  - {id: F12, who: 同製品, what: 機構, value: くびれが余分な力を吸収, when: —, source_url: "prtimes.jp／jp.sunstargum.com", confirmed_by: 2}
+  - {id: F13, who: サンスター, what: 適切ブラッシング圧, value: 150〜200g, when: —, source_url: "club-sunstar.jp コラム", confirmed_by: 1}
+  - {id: F14, who: サンスター調査, what: 力を入れすぎる人の割合, value: 58.8%, when: 2025-12, source_url: "club-sunstar.jp コラム", confirmed_by: 1}
+  - {id: F15, who: VSING, what: 渋谷に日本初上陸, value: 2025年8月8日開業, when: 2025-08, source_url: "advertimes.com／プレス各記事", confirmed_by: 2}
+  - {id: F16, who: VSING, what: 事業構造, value: 歌う人が主役の応援型, when: —, source_url: "advertimes.com／公式・プレス", confirmed_by: 2}
+  - {id: F17, who: VSING, what: 展開規模, value: 東南アジア中心42店舗, when: 2025, source_url: "advertimes.com／プレス各記事", confirmed_by: 2}
+  - {id: F18, who: VSING, what: 位置づけ, value: 日本発カラオケの逆輸入, when: 2025, source_url: "advertimes.com", confirmed_by: 1}
+  - {id: F19, who: 運営, what: 日本展開企業, value: シン・コーポレーション, when: 2025, source_url: "advertimes.com／プレス", confirmed_by: 2}
+quotes:
+  - {id: Q01, speaker: 西川みさとプロ（試打）, gist: "弾くのではなく面に食いつくモチッとした感触", source_url: "lesson.golfdigest.co.jp 深夜試打", note: "趣旨再現のみ可・逐語不可"}
+  - {id: Q02, speaker: 消費者インタビュー（サンスター）, gist: "やさしく磨くべきと分かっていても力を入れてしまう", source_url: "club-sunstar.jp", note: "趣旨再現のみ可"}
+rejected:
+  - {claim: "日経MJ 2026上期ヒット番付に掲載", reason: "パイロット出典のみでconfirmed_by:1。台本では『売り上げ好調』（深夜試打記事に記載）へ降格", action: 台本不使用}
+  - {claim: "200g以上でネックがしなる", reason: "公式表現は『適切圧150〜200g・余分な力を吸収』。数値の閾値表現は出典と不一致", action: 表現修正}

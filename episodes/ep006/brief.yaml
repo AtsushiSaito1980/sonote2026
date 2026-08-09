@@ -1,0 +1,24 @@
+episode_id: ep006
+host: misaki                # 日替わり交互（前日ep005=戸倉）
+episode_type: T1
+format: 型1 一本深掘り型
+series: ""
+duration_min: 5
+mode: real
+density: balanced
+anchor:
+  headline: "中国大手GCL傘下、タンデム型ペロブスカイト太陽電池の日本での量産販売を2026年7月めどに開始予定（出来事が今月）"
+  published: 2026-07        # 参入時期そのものが窓内。報道はニュースイッチ(4月)・Japan Energy Times(6/2)・solar-mate(5/27)
+  source_url: "ニュースイッチ（日刊工業）／Japan Energy Times／solar-mate"
+sub_triggers:
+  - "2026年7月中旬更新の市場整理記事群（bright-co 7月時点整理・labmemo 等）"
+  - "背景（時期明示で使用）：積水化学 SOLAFIL事業開始 2026-03-27（公式）／発明2009年（周知・複数一次相当）"
+case_name: "ペロブスカイト太陽電池（積水化学 SOLAFIL／発明17年の物語）"
+operation_tags: [OP01]      # 引く（重さ・硬さ・工事を引く）。OP10「待つ」×TW4の掛け味
+motive_tag: none            # 構造・技術回（宮坂氏の場面はF10で扱うが主役は事業構造）
+tailwind_tag: TW4           # 技術（＋TW1味：2026年度からの導入目標義務化・環境省実装支援）
+hook: "工場の屋根が古くて、耐荷重でパネルを断られた——という定番の悩み"
+lesson_draft: "性能で負けている技術は、顧客に断られた理由を先に集める。性能以外の理由で断られた一覧が、競合のいない市場の地図"
+homework_draft: "自分の商品が「欲しいけど無理」と断られた理由を3つ書き出し、性能以外の理由に丸をつける"
+opposition: "効率・寿命でシリコンに劣る／シリコンで量産競争に敗れた歴史／発表当初は効率4%で誰にも追試されず"
+notes: "v3.5編成ルール⑦（技術系週1）の実演。企画書は無改訂で制作（最終検証）。GCLの7月参入は「予定」報道のため、台本では予定として伝聞"

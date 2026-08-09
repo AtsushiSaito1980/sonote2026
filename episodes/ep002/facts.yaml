@@ -1,0 +1,29 @@
+# 事実カード（extract-facts出力）
+facts:
+  - {id: F01, who: 政府, what: カスハラ対策義務化の施行, value: 2026年10月1日, when: 2026-10, source_url: "政令（令和8年政令第17号）／政府広報・解説各記事", confirmed_by: 4, anchor: true}
+  - {id: F02, who: 国会, what: 改正労働施策総合推進法の成立・公布, value: 2025年6月4日成立・6月11日公布, when: 2025-06, source_url: "NEWS DAILY／LINE WORKS（令和7年法律第63号）", confirmed_by: 3}
+  - {id: F03, who: 厚労省, what: 指針の公布, value: 2026年2月26日（告示第51号）, when: 2026-02, source_url: "NEWS DAILY／CHR／LINE WORKS", confirmed_by: 3}
+  - {id: F04, who: 厚労省, what: 指針案公表とパブコメ, value: 2025年12月10日案公表, when: 2025-12, source_url: "LINE WORKS", confirmed_by: 1}
+  - {id: F05, who: 厚労省, what: 運用通達・解釈Q&A公表, value: 2026年4月24日, when: 2026-04, source_url: "NEWS DAILY", confirmed_by: 1}
+  - {id: F06, who: 事業主, what: 義務の対象範囲, value: 労働者1人でも雇えば対象, when: 2026-10, source_url: "NEWS DAILY／パーソルBPD／BUSINESS LAWYERS", confirmed_by: 3}
+  - {id: F07, who: 事業主, what: 措置義務の内容, value: 方針明確化・相談体制・事案対応・抑止体制・プライバシー保護・不利益取扱い禁止, when: 2026-10, source_url: "パーソルBPD／政府広報", confirmed_by: 2}
+  - {id: F08, who: 行政, what: 違反時の措置, value: 報告徴求・助言・指導・勧告・公表（刑事罰なし）, when: 2026-10, source_url: "BUSINESS LAWYERS／NEWS DAILY", confirmed_by: 2}
+  - {id: F09, who: 指針, what: 顧客等の範囲, value: 消費者に加え取引先担当者も含む, when: 2026, source_url: "パーソルBPD／NEWS DAILY", confirmed_by: 2}
+  - {id: F10, who: 指針, what: 企業間の協力, value: 事実確認協力は努力義務, when: 2026, source_url: "NEWS DAILY", confirmed_by: 1}
+  - {id: F11, who: 企業, what: 民事リスク, value: 安全配慮義務違反による賠償, when: 継続, source_url: "CHRコラム", confirmed_by: 1}
+  - {id: F12, who: 厚労省調査, what: カスハラ相談があった企業の割合, value: 27.9%（前回比+8.4pt）, when: 2023年度, source_url: "政府広報オンライン（一次相当）", confirmed_by: 1}
+  - {id: F13, who: 企業・自治体, what: 名札の表示方法変更の動き, value: 個人特定の回避, when: 継続, source_url: "政府広報オンライン", confirmed_by: 1}
+  - {id: F14, who: インソース, what: 研修サービス, value: 方針〜マニュアル〜階層別研修の一気通貫, when: 継続, source_url: "インソース公式（一次）", confirmed_by: 1}
+  - {id: F15, who: LEC, what: 研修サービス, value: 厚労省マニュアル準拠のeラーニング・講師派遣, when: 継続, source_url: "LEC公式（一次）", confirmed_by: 1}
+  - {id: F16, who: 日本ハラスメントカウンセラー協会, what: 実務者認定研修, value: 弁護士による法令・体制解説, when: 継続, source_url: "協会公式（一次）", confirmed_by: 1}
+  - {id: F17, who: トビラシステムズ, what: 通話録音・文字起こしのカスハラ対策訴求, value: トビラフォンBiz/Cloud, when: 2026-07更新, source_url: "トビラシステムズ ブログ（一次）", confirmed_by: 1}
+  - {id: F18, who: 損保ジャパン×USENカメラソリューションズ, what: カメラ導入企業への補償, value: 弁護士費用等 最大140万円, when: 2025-08, source_url: "日本経済新聞（2025/8）", confirmed_by: 1}
+  - {id: F19, who: USEN少額短期保険, what: カスハラ保険, value: 1事故70万円・期間中140万円（損保ジャパン提携）, when: 継続, source_url: "USEN少額短期保険公式（一次）", confirmed_by: 1}
+  - {id: F20, who: 東京海上日動, what: カスハラ補償, value: 弁護士・カウンセラー相談費用等（対象拡大）, when: 2024, source_url: "日経（2024/6）／manegy解説", confirmed_by: 2}
+  - {id: F21, who: 大手損保4社, what: カスハラ保険契約件数, value: 2023年度は前年度比約2割増, when: 2024-06, source_url: "日本経済新聞（2024/6）", confirmed_by: 1}
+  - {id: F22, who: 東京都, what: 防止条例の先行施行, value: 2025年4月・全国初, when: 2025-04, source_url: "周知事実（東京都産業労働局）。都公式で最終確認推奨", confirmed_by: 1}
+  - {id: F23, who: 東京都・マイナビ, what: 2026年の実態調査公表, value: 都・令和7年度調査（4月）／マイナビ調査（3月）, when: 2026, source_url: "トビラシステムズ ブログ内言及", confirmed_by: 1}
+notes: |
+  ・F01〜F03・F06〜F09が記事の骨格。アンカーは施行80日前時点の解説・対応記事群（2026年7月）
+  ・F18・F21は1ヶ月超のため背景扱い（時期を明示して使用）
+  ・F22は制作時点の周知事実として使用。公開前に都公式で日付確認を推奨

@@ -1,0 +1,197 @@
+#!/usr/bin/env python3
+"""
+その手があったか — 数値ゲート検算スクリプト
+
+使い方:
+    python3 scripts/check.py episodes/ep007
+
+モデルは文字数や出現回数を正確に数えられないため、数えられるものは全部ここで数える。
+数字の「系統数」・固有名詞数・キメ台詞の有無は文脈判断が要るため、
+本スクリプトは候補を列挙するだけ。最終判定はモデルが行い、review.md に根拠を書くこと。
+"""
+import re
+import sys
+import unicodedata
+from pathlib import Path
+
+OP_PREFIX = "はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。"
+ED_CORE = ("あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。"
+           "答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。")
+
+DENSITY_LIMITS = {
+    "dense":     {"min_facts": 8, "num": 6, "proper": 7, "meta": 1, "heiso": 2},
+    "balanced":  {"min_facts": 7, "num": 5, "proper": 6, "meta": 2, "heiso": 4},
+    "narrative": {"min_facts": 4, "num": 3, "proper": 4, "meta": 2, "heiso": 99},
+}
+
+# 並走句（density で本数制限）。取材話法・確認形は聞き上手の芸の本体なので数えない
+HEISO_PATTERNS = ["と思います？", "じゃないですか", "ありますよね", "と思うんですけど"]
+
+# キメ台詞の検出ヒント（機械判定不能。候補を出すだけ）
+KIME_HINTS = ["に隠れる", "なんですよ。", "、いちばん", "こそが", "ではなく、", "の正体"]
+
+NOTE_FORBIDDEN = ["ラジオ", "放送", "番組", "音声", "リスナー", "読者投稿", "読者募集"]
+
+OK, NG, WARN = "PASS", "FAIL", "確認"
+results = []
+
+
+def add(status, label, detail):
+    results.append((status, label, detail))
+
+
+def body_of(md_text):
+    """見出しブロックを除いた本文（最後の --- 以降）"""
+    parts = re.split(r"\n-{3,}\n", md_text)
+    return parts[-1].strip()
+
+
+def jp_len(text):
+    return len(text.replace("\n", "").replace(" ", ""))
+
+
+def check_script(ep: Path, density: str):
+    p = ep / "script_draft.md"
+    if not p.exists():
+        add(NG, "script_draft.md", "見つかりません")
+        return None
+    body = body_of(p.read_text(encoding="utf-8"))
+    n = jp_len(body)
+    lim = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])
+
+    add(OK if 1700 <= n <= 2000 else NG, "本文文字数", f"{n}（規定 1,700〜2,000）")
+    add(OK if "…" not in body else NG, "三点リーダー", f"{body.count('…')} 個")
+
+    halfsp = len(re.findall(r"[ぁ-ヶ一-龥][ ][ぁ-ヶ一-龥]", body))
+    add(OK if halfsp == 0 else NG, "和文の半角スペース", f"{halfsp} 箇所")
+
+    add(OK if body.startswith(OP_PREFIX) else NG, "OP定型", "一字一句一致" if body.startswith(OP_PREFIX) else "不一致")
+    add(OK if ED_CORE in body else NG, "ED定型", "一致（また明日）" if ED_CORE in body else "不一致")
+
+    kaz = body.count("香月")
+    add(OK if kaz == 0 else NG, "「香月」の非登場", f"{kaz} 回")
+
+    quotes = body.count("『") - body.count("『その手があったか』")
+    add(OK if 1 <= quotes <= 2 else NG, "『』再現", f"{quotes} 箇所（規定 1〜2）")
+
+    add(OK if "ここから、商売の解剖です" in body else NG, "解剖パートの宣言", "あり" if "ここから、商売の解剖です" in body else "なし")
+
+    kuse = body.count("ここだけ持って帰ってください") + body.count("これ、現場やった人ならわかると思うんですけど")
+    add(OK if kuse <= 1 else NG, "口癖", f"{kuse} 回（規定 1回まで）")
+
+    heiso = sum(body.count(x) for x in HEISO_PATTERNS)
+    add(OK if heiso <= lim["heiso"] else NG, "並走句・自問自答", f"{heiso} 回（{density} 上限 {lim['heiso']}）")
+
+    # 取材話法（主語なし＋伝聞）
+    denbun = sum(body.count(x) for x in ["そうです", "とのことでした", "だそうで", "報じられ", "残っています", "紹介されています"])
+    torizai = sum(body.count(x) for x in ["調べてみ", "調べていく", "聞いてみ", "확", "あとで確かめ", "確かめた"])
+    add(OK if denbun >= 2 and torizai >= 1 else WARN, "取材話法",
+        f"伝聞 {denbun} 回 / 調べる・聞く {torizai} 回（各1以上が目安）")
+
+    # 数字候補（系統数はモデルが判断）
+    nums = re.findall(r"[〇一二三四五六七八九十百千万億]{2,}|[0-9]+[％%年月日円人倍]", body)
+    add(WARN, "数字の候補", f"{len(nums)} 個検出 → 系統でまとめて {lim['num']} 以内か判断: {nums[:14]}")
+
+    # キメ台詞候補
+    hits = [h for h in KIME_HINTS if h in body]
+    add(WARN if hits else OK, "キメ台詞の候補", f"{hits}（該当語があっても事実の平叙なら可。文脈で判断）" if hits else "検出なし")
+
+    return body
+
+
+def check_tts(ep: Path):
+    p = ep / "script_tts.txt"
+    if not p.exists():
+        add(WARN, "script_tts.txt", "未生成")
+        return
+    t = p.read_text(encoding="utf-8")
+    tags = re.findall(r"\[(bright|curious|serious|excited|thoughtful|warm|calm)\]", t)
+    add(OK if 4 <= len(tags) <= 6 else NG, "オーディオタグ", f"{len(tags)} 個 {tags}（規定 4〜6）")
+    add(OK if not re.search(r"^#|^##|MC：|ナレーター", t, re.M) else NG, "見出し・話者ラベル", "なし" if not re.search(r"^#", t, re.M) else "残存")
+    add(OK if "香月" not in t else NG, "TTS稿の「香月」", f"{t.count('香月')} 回")
+    add(OK if "…" not in t else NG, "TTS稿の三点リーダー", f"{t.count('…')} 個")
+    stripped = re.sub(r"\[[a-z]+\]", "", t)  # オーディオタグは除外して判定
+    ascii_words = re.findall(r"[A-Za-z]{2,}", stripped)
+    add(OK if not ascii_words else NG, "英字の残存（カタカナ展開漏れ）", f"{ascii_words}" if ascii_words else "なし")
+
+
+def check_article(ep: Path):
+    p = ep / "article.md"
+    if not p.exists():
+        add(WARN, "article.md", "未生成")
+        return
+    a = p.read_text(encoding="utf-8")
+    hits = {w: a.count(w) for w in NOTE_FORBIDDEN if a.count(w)}
+    add(OK if not hits else NG, "note の禁止語", f"{hits}" if hits else "なし（独立媒体として成立）")
+    add(OK if "今回のトリガ" in a else NG, "「今回のトリガ」欄", "あり" if "今回のトリガ" in a else "なし")
+    add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
+    add(OK if "出典" in a else NG, "出典欄", "あり" if "出典" in a else "なし")
+    add(OK if "…" not in a else WARN, "三点リーダー", f"{a.count('…')} 個")
+
+
+def check_meta(ep: Path):
+    b = ep / "brief.yaml"
+    density = "balanced"
+    if not b.exists():
+        add(NG, "brief.yaml", "見つかりません")
+        return density
+    txt = b.read_text(encoding="utf-8")
+    m = re.search(r"^density:\s*(\w+)", txt, re.M)
+    if m:
+        density = m.group(1)
+    add(OK, "density", density)
+    add(OK if re.search(r"^anchor:", txt, re.M) else NG, "anchor（トリガ）", "記載あり" if "anchor:" in txt else "なし")
+    pub = re.search(r"published:\s*([0-9]{4}-[0-9]{2}(?:-[0-9]{2})?)", txt)
+    add(WARN, "トリガ公開日", f"{pub.group(1) if pub else '未記載'} → 制作日から1ヶ月以内か目視確認")
+
+    f = ep / "facts.yaml"
+    if f.exists():
+        cards = len(re.findall(r"^\s*-\s*\{?id:", f.read_text(encoding="utf-8"), re.M))
+        lim = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])["min_facts"]
+        add(WARN, "事実カード枚数", f"{cards} 枚（{density} は台本で {lim} 点以上消化）")
+    else:
+        add(NG, "facts.yaml", "見つかりません")
+    return density
+
+
+def check_ledger(ep: Path):
+    led = Path("ledger/episodes_log.csv")
+    if not led.exists():
+        add(WARN, "episodes_log.csv", "未配置（重複回避の照合ができません）")
+        return
+    rows = [r for r in led.read_text(encoding="utf-8").splitlines()[1:] if r.strip()]
+    add(WARN, "台帳の照合", f"{len(rows)} 行 → 題材の重複・直近5回との手/業界の連続を目視確認")
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("使い方: python3 scripts/check.py episodes/ep007")
+        sys.exit(1)
+    ep = Path(sys.argv[1])
+    if not ep.exists():
+        print(f"見つかりません: {ep}")
+        sys.exit(1)
+
+    density = check_meta(ep)
+    check_script(ep, density)
+    check_tts(ep)
+    check_article(ep)
+    check_ledger(ep)
+
+    print(f"\n=== {ep.name} 検算結果 ===\n")
+    w = max(len(l) for _, l, _ in results) + 2
+    for status, label, detail in results:
+        mark = {"PASS": "OK ", "FAIL": "NG ", "確認": "－ "}[status]
+        print(f"{mark} {label.ljust(w, '　' if False else ' ')} {detail}")
+
+    fails = [l for s, l, _ in results if s == NG]
+    warns = [l for s, l, _ in results if s == WARN]
+    print()
+    if fails:
+        print(f"FAIL {len(fails)} 件 → 差し戻し: {', '.join(fails)}")
+        sys.exit(1)
+    print(f"機械判定はすべて PASS。要判断 {len(warns)} 件をモデルが確認し、review.md に根拠を書くこと。")
+
+
+if __name__ == "__main__":
+    main()

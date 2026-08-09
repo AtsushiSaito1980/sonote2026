@@ -1,0 +1,18 @@
+# エピソードブリーフ（人間が書く唯一の入力）
+episode_id: ep001
+host: tokura
+episode_type: T1
+format: 小ネタ＋本命型
+series: ""
+duration_min: 5
+mode: real
+case_name: "ミズノ JPX ONE（本命）／ガム・プレミアム デンタルブラシ・VSING（小ネタ）"
+operation_tags: [OP04]        # 逆にする（小ネタのVSINGはOP04×TW2の掛け味）
+motive_tag: none              # 出典に開発者個人の動機記録なし。構造回として扱う（review参照）
+tailwind_tag: TW1             # 向かい風として適用：クラブの反発規制＝業界共通の天井
+hook: "150〜200グラム。歯を磨くときの、ちょうどいい力"
+lesson_draft: "物差しを逆さに持て"
+homework_draft: "業界の物差しを紙に10個書き出し、一行ずつ逆さにする"
+opposition: "反発規制＝硬さ競争の天井（業界全体に平等に効く制約）"
+prev_episode_ref: ""
+notes: "テスト制作。パイロット誌vol.1の特集壱を、v3パイプラインで再制作"
