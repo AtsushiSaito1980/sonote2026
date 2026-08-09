@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ep006 制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep005/files.html">← ep005</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date">2026-08-12（水）　<span class="badge review">レビュー中</span></div>
+  <h1>ep006｜断られた理由を引く</h1>
+  <div class="chips"><span class="chip host">三崎アオイ</span><span class="chip hand">OP01 引く</span><span class="chip hand">OP10 待つ（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span><span class="chip tailwind">TW1 制度（味）</span><span class="chip none">日付は想定</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep006</td></tr><tr><th>ホスト</th><td>misaki（三崎アオイ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> 中国大手GCL傘下、タンデム型ペロブスカイト太陽電池の日本での量産販売を2026年7月めどに開始予定（出来事が今月）<br><span class='k'>published</span> 2026-07<br><span class='k'>source_url</span> ニュースイッチ（日刊工業）／Japan Energy Times／solar-mate</td></tr><tr><th>副トリガ</th><td>2026年7月中旬更新の市場整理記事群（bright-co 7月時点整理・labmemo 等）<br>背景（時期明示で使用）：積水化学 SOLAFIL事業開始 2026-03-27（公式）／発明2009年（周知・複数一次相当）</td></tr><tr><th>題材</th><td>ペロブスカイト太陽電池（積水化学 SOLAFIL／発明17年の物語）</td></tr><tr><th>手</th><td>OP01</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW4</td></tr><tr><th>つかみ</th><td>工場の屋根が古くて、耐荷重でパネルを断られた——という定番の悩み</td></tr><tr><th>きょうの手（案）</th><td>性能で負けている技術は、顧客に断られた理由を先に集める。性能以外の理由で断られた一覧が、競合のいない市場の地図</td></tr><tr><th>宿題（案）</th><td>自分の商品が「欲しいけど無理」と断られた理由を3つ書き出し、性能以外の理由に丸をつける</td></tr><tr><th>壁・制約</th><td>効率・寿命でシリコンに劣る／シリコンで量産競争に敗れた歴史／発表当初は効率4%で誰にも追試されず</td></tr><tr><th>備考</th><td>v3.5編成ルール⑦（技術系週1）の実演。企画書は無改訂で制作（最終検証）。GCLの7月参入は「予定」報道のため、台本では予定として伝聞</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep006
+host: misaki                # 日替わり交互（前日ep005=戸倉）
+episode_type: T1
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced
+anchor:
+  headline: &quot;中国大手GCL傘下、タンデム型ペロブスカイト太陽電池の日本での量産販売を2026年7月めどに開始予定（出来事が今月）&quot;
+  published: 2026-07        # 参入時期そのものが窓内。報道はニュースイッチ(4月)・Japan Energy Times(6/2)・solar-mate(5/27)
+  source_url: &quot;ニュースイッチ（日刊工業）／Japan Energy Times／solar-mate&quot;
+sub_triggers:
+  - &quot;2026年7月中旬更新の市場整理記事群（bright-co 7月時点整理・labmemo 等）&quot;
+  - &quot;背景（時期明示で使用）：積水化学 SOLAFIL事業開始 2026-03-27（公式）／発明2009年（周知・複数一次相当）&quot;
+case_name: &quot;ペロブスカイト太陽電池（積水化学 SOLAFIL／発明17年の物語）&quot;
+operation_tags: [OP01]      # 引く（重さ・硬さ・工事を引く）。OP10「待つ」×TW4の掛け味
+motive_tag: none            # 構造・技術回（宮坂氏の場面はF10で扱うが主役は事業構造）
+tailwind_tag: TW4           # 技術（＋TW1味：2026年度からの導入目標義務化・環境省実装支援）
+hook: &quot;工場の屋根が古くて、耐荷重でパネルを断られた——という定番の悩み&quot;
+lesson_draft: &quot;性能で負けている技術は、顧客に断られた理由を先に集める。性能以外の理由で断られた一覧が、競合のいない市場の地図&quot;
+homework_draft: &quot;自分の商品が「欲しいけど無理」と断られた理由を3つ書き出し、性能以外の理由に丸をつける&quot;
+opposition: &quot;効率・寿命でシリコンに劣る／シリコンで量産競争に敗れた歴史／発表当初は効率4%で誰にも追試されず&quot;
+notes: &quot;v3.5編成ルール⑦（技術系週1）の実演。企画書は無改訂で制作（最終検証）。GCLの7月参入は「予定」報道のため、台本では予定として伝聞&quot;
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>GCLペロブスカイト（中国大手GCL傘下）</td><td>日本市場参入</td><td class="fact-val">タンデム型の量産販売を2026年7月めどに開始予定</td><td>2026-07</td><td class="src">ニュースイッチ（日刊工業）／Japan Energy Times 6/2／solar-mate 5/27</td><td><span class="cb">×3</span></td></tr><tr><td><span class="fid">F02</span></td><td>積水化学</td><td>SOLAFIL事業開始</td><td class="fact-val">2026年3月27日・フィルム型・まず金属屋根向け年産10MW規模</td><td>2026-03</td><td class="src">積水化学 公式（一次）／unieco</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F03</span></td><td>SOLAFIL</td><td>最初の納入先</td><td class="fact-val">環境省「社会実装モデル創出支援事業」採択のさいたま市・滋賀県・西日本高速道路・福岡県・福岡市</td><td>2026</td><td class="src">unieco（12/18・詳細解説）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>SOLAFIL</td><td>現行性能</td><td class="fact-val">変換効率15%（目標20%）・耐用年数10年（目標20年）</td><td>2026</td><td class="src">unieco</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>積水化学</td><td>量産計画</td><td class="fact-val">堺のシャープ本社工場棟を250億円で取得。2027年度100MW・2030年度GW級</td><td>2024-12発表</td><td class="src">PVeye／公式リリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>積水ソーラーフィルム</td><td>事業会社</td><td class="fact-val">2025年1月設立（積水86%・日本政策投資銀行14%）</td><td>2025-01</td><td class="src">SOLAR JOURNAL</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>実証設置</td><td>場所の多様性</td><td class="fact-val">学校体育館屋根・風車タワー・神戸空港・水田（営農型・国内初）・駅ホーム屋根（国内初）・銀行店舗・データセンター壁面（16棟へ拡大計画）</td><td>2024〜2026</td><td class="src">積水化学 公式ニュース一覧（一次）／sgforum／enemanex</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F08</span></td><td>積水化学</td><td>課題認識</td><td class="fact-val">都市部は設置場所と建物荷重の制約が大きく従来パネルでは普及に限界</td><td>2025</td><td class="src">sgforum（積水化学の説明）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>宮坂力 教授（桐蔭横浜大）</td><td>発明</td><td class="fact-val">2009年に世界初のペロブスカイト太陽電池を発表。ノーベル賞候補</td><td>2009</td><td class="src">日本化学会／JST／経産省資源エネ庁（関西電力コラム経由）／日経</td><td><span class="cb">×4</span></td></tr><tr><td><span class="fid">F10</span></td><td>宮坂研究室</td><td>発明の場面</td><td class="fact-val">他大学から来た大学院生の発案で共同研究。2008年論文の効率は4%。「10%を超えると研究者がこぞって追試するが4%では注目されない」（本人談趣旨）</td><td>2008-2009</td><td class="src">日経クロステック 宮坂氏インタビュー</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F11</span></td><td>ヨウ素</td><td>主要原料の国産性</td><td class="fact-val">千葉県が日本の約80%を産出・日本は世界シェア約30%（世界2位）</td><td>2025</td><td class="src">経産省資料（Japan Energy Times経由）／ソーラーパートナーズ</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F12</span></td><td>制度</td><td>追い風</td><td class="fact-val">2026年度から年間1500kL以上のエネルギー使用企業に太陽光導入目標を義務化。軽量型ニーズ増、経産省は設置困難ケースへの新型活用に言及</td><td>2026年度</td><td class="src">関西電力 法人向けコラム</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F13</span></td><td>政府</td><td>長期目標</td><td class="fact-val">次世代型太陽電池戦略（2024年11月）で2040年に20GW導入</td><td>2040目標</td><td class="src">関西電力コラム／bright-co</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F14</span></td><td>シリコン太陽電池</td><td>competitive背景</td><td class="fact-val">中国勢の大量生産でコスト圧倒・サプライチェーンは中国依存。フィルム型は日本が先行</td><td>継続</td><td class="src">Japan Energy Times／solar-mate系解説</td><td><span class="cb">×2</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>宮坂力 教授</strong>「効率が10%を超えると世界中の研究者がこぞって追試を行うが、4%ではそれほど注目されない」<span class="src-note">日経クロステック（本人インタビュー）／趣旨再現のみ</span></li></ul><div class="ig-callout pre-line">・アンカー＝GCLの7月参入（出来事が窓内。報道4〜6月のため、台本では「今月をめどに始める予定と報じられている」と伝聞・予定で表現）
+・数字の台本採用は4系統：4%／15%／ヨウ素系（千葉8割・世界3割）／250億円。量産MW・寿命10年・20GW・1500kLはnoteのみ
+・SOLAFIL事業開始（3月）は「今年の三月」と時期明示。発明2009年は「十七年前」で時期明示</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep006 検査レポート（review-episode）— 技術回・企画書無改訂の最終検証</h1>
+<p><strong>判定：PASS</strong>（人間の最終承認と通し聴取を残すのみ。<strong>v3.5を一切改訂せずに制作</strong>）</p>
+<h2>検証の趣旨</h2>
+<p>編成ルール⑦（技術・提携系 週1本）と巡回棚③（技術の節目）が、仕様変更なしに技術回を生むかの確認。結果、トリガ（中国大手の日本参入＝今月の出来事）→事実カード→型1台本→記事まで、既存パイプラインのみで成立。</p>
+<h2>v3.5ゲート</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>規定</th><th>実測</th><th>判定</th></tr></thead><tbody><tr><td>アンカー鮮度</td><td>1ヶ月以内</td><td>GCLの日本量産販売開始（2026年7月めど＝出来事が窓内。報道4〜6月のため台本は「今月をめどに始める予定と報じられています」と予定・伝聞で表現。ep004の大会実施と同じ扱い）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>技術回の鉄則</td><td>凄さでなく「最初の顧客」</td><td>納入先を具体列挙（環境省採択のさいたま市・福岡市・高速道路会社等）。解剖3も「実績を作るのが仕事の客」を定式化</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>時期の明示</td><td>1ヶ月超は口頭明示</td><td>「今年の三月に出ました」（SOLAFIL）／「十七年前に発表された最初の論文」（2009年）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>episodes_log照合</td><td>重複・連続なし</td><td>手OP01初・TW4初・業界（エネルギー/素材/化学）初出</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>コールバック</td><td>月1回程度</td><td>初実演：「前に、施行日は開店日、って回をやりましたけど」（#002参照・義務化の追い風文脈）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>取材話法・香月ゼロ</td><td>—</td><td>「〜だそうです」「報じられています」／香月0</td><td><span class="st pass">✓ PASS</span></td></tr></tbody></table></div>
+<h2>継続ゲート（balanced・実測）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>規定</th><th>実測</th><th>判定</th></tr></thead><tbody><tr><td>本文文字数</td><td>1,700〜2,000</td><td>1,779</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>facts消化</td><td>7点以上</td><td>12点（F01〜F12）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>数字</td><td>5以内</td><td>4系統（4%／15%／ヨウ素系＝千葉8割・世界3割／250億円）。年産MW・寿命10年・20GW・1,500kLはnoteのみ</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>固有名詞</td><td>6以内</td><td>4（積水化学・ソラフィル・宮坂・シャープ）。GCLは「中国の大手」、納入先は地名＋一般名詞で表現</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>例え話</td><td>2以内</td><td>1（断られた一覧＝市場の地図）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>並走句</td><td>3〜4以内</td><td>2</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>キメ台詞</td><td>0</td><td>検出0（「液晶の記憶が残る場所」は事実の描写として許容判定）</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>知らなさの表明</td><td>1以上</td><td>「太陽電池って効率の勝負だと思ってたんですけど」</td><td><span class="st pass">✓ PASS</span></td></tr><tr><td>『』／解剖宣言／口癖／「…」／半角／OP・ED定型</td><td>—</td><td>1（宮坂氏談趣旨）／あり／1／0／0／一致（また明日）</td><td><span class="st pass">✓ PASS</span></td></tr></tbody></table></div>
+<h2>事実・帰属</h2>
+<ul><li>GCL参入は「予定」報道段階のため、断定を避け伝聞・予定で表現。<strong>配信前に開始有無の続報確認を推奨</strong></li><li>「断られた屋根が日本中にある」は、積水化学の課題説明（設置場所・荷重制約で普及に限界）と法人向け解説記事の定番悩みに基づく定性表現</li><li>効率15%・寿命10年・納入先の詳細は解説記事1本（unieco）由来。<strong>公開前に積水化学公式でのスペック最終確認を推奨</strong></li></ul>
+<h2>制作日依存の注意</h2>
+<ul><li>「今月、中国の大手が」「今年度から」は2026年8月制作前提。月をまたぐ場合は時点表現を差し替え</li></ul>
+<h2>読みチェック語（TTS生成後・最大4）</h2>
+<ol><li>ペロブスカイト（長音の流れ）</li><li>ソラフィル（SOLAFIL）</li><li>宮坂（みやさか）</li><li>耐荷重（たいかじゅう）</li></ol>
+<h2>dictionary.yaml 追記候補</h2>
+<p>SOLAFIL → ソラフィル ／（誤読時）耐荷重 → たいかじゅう</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep006 台本（人間レビュー用・v3.5適用／企画書無改訂の最終検証）</h1>
+<h2>『その手があったか』｜断られた理由を引く</h2>
+<h3>ホスト：三崎アオイ／型1 一本深掘り型／5分／density: balanced／技術回（TW4）</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p>
+<p>まず、ある工場の屋根の話をさせてください。古い工場の屋根に、太陽光パネルを載せたい。電気代も高いし、脱炭素も言われるし。ところが業者さんに調べてもらうと、断られるんです。理由は、屋根が重さに耐えられないから。これ、現場やった人ならわかると思うんですけど、古い建物の耐荷重って、どうにもならないんですよね。補強すれば載りますけど、それなら電気を買ったほうが安い。で、この「断られた屋根」、日本中にあるそうなんです。</p>
+<p>その断られた屋根を、まるごと市場にする製品が、今年の三月に出ました。積水化学の、ソラフィルというフィルム型の太陽電池です。ペロブスカイトという日本発の技術で、薄くて、曲がって、軽い。ガラスのパネルを架台で載せるんじゃなくて、屋根や壁に沿わせて貼れる。最初の納入先は、国の実装支援事業に採択された、さいたま市や福岡市、高速道路の会社などだそうです。実証の場所を並べると面白くて、学校の体育館の屋根、風力発電の塔、空港、水田、駅のホームの屋根。全部、これまでのパネルが載らなかった場所です。</p>
+<p>で、この技術の始まりが、いいんですよ。発明したのは、横浜の大学の宮坂さんという研究者の研究室。きっかけは、よその大学から来た大学院生の発案だったそうです。十七年前に発表された最初の論文の変換効率は、四パーセント。ご本人が取材でこういう趣旨のことを言ってます。『効率が十パーセントを超えると、世界中の研究者がこぞって追試をする。四パーセントでは、注目されない』。つまり最初は、世界中に無視されてたんです。そこから改良が続いて、いまや世界中の太陽電池研究の主役。ノーベル賞の候補にも名前が挙がっています。</p>
+<p>ただ、正直に言うと、製品としての性能はまだ追いついていません。いまの変換効率は十五パーセントで、シリコンのパネルより低い。寿命も短い。私、太陽電池って効率の勝負だと思ってたんですけど、この会社は勝負の軸をずらしたんですね。効率で勝てないなら、重さを引く。軽くて曲がるから、「載らない」という断り文句が消える。効率が少し低くても、そもそも競合がゼロの屋根や壁なら、比べる相手がいない。おまけに主原料のヨウ素は千葉でとれて、日本は世界シェアのおよそ三割。シリコンと違って、資源から国産でそろう。</p>
+<p>ここに、時間の勝負も重なってます。シリコンの太陽電池は、日本が先行して、量産の価格競争で海外勢に押された歴史があります。そして今月、中国の大手が、日本でペロブスカイトの量産販売を始める予定だと報じられています。同じ展開が、もう一度始まりかけてる。積水化学の量産拠点は、堺にある、シャープの本社工場だった建物です。二百五十億円で買い取った。液晶の記憶が残る場所で、次の量産の勝負をやるわけです。前に、施行日は開店日、って回をやりましたけど、こっちにも追い風があって、今年度から、エネルギーを多く使う会社に太陽光の導入目標が義務化されました。重い屋根に載らないなら、軽いのを、という順番で需要が来る。</p>
+<p>ここから、商売の解剖です。きょうの手は、断られた理由を引く。三つに直します。一、性能で負けている技術や商品は、顧客に断られた理由を先に集める。重い、硬い、工事ができない、資格がいる。性能以外の理由で断られた一覧は、そのまま、競合のいない市場の地図です。二、勝負の軸を、性能から「置ける場所の数」に動かす。効率で二番手でも、相手がいない面積で稼げます。三、最初のお客さんは、性能を買う人ではなく、実績を作るのが仕事の人から。自治体や実証事業が先頭にいるのは、偶然じゃないんです。</p>
+<p>会社で言うと、営業が持ち帰ってくる「欲しいけど、うちでは無理」という断り文句、ありますよね。あれ、捨てずに記録しておく。性能以外の理由で断られていたら、そこが次の市場の入り口です。</p>
+<p>今週の宿題です。自分の商品が「欲しいけど無理」と断られた理由を三つ書き出して、性能以外の理由に、丸をつけてください。</p>
+<p>きょうの手は、断られた理由を引く、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』｜断られた理由を引く — 効率で勝てない太陽電池の勝ち筋</p>
+<p>最初の論文は効率4%で世界に無視され、17年後のいまも効率ではシリコンに勝てない。それでも「重さ」を引いたら、耐荷重で断られてきた日本中の屋根が、競合ゼロの市場に変わりました。日本発ペロブスカイト太陽電池の商売を、5分で解剖します。</p>
+<p>▼ トリガになったニュース<br>・中国大手GCL傘下、タンデム型ペロブスカイトの日本量産販売を今月めどに開始予定（ニュースイッチ／Japan Energy Times 2026年6月）<br>・2026年7月時点の市場整理記事群（bright-co ほか）</p>
+<p>▼ 詳しい数値と出典はnote「その手があったか #006」で<br>（リンク）</p>
+<p>▼ そのほかの出典<br>積水化学工業 公式（SOLAFIL）／PVeye／unieco／関西電力 法人向けコラム（経産省資料）／日本化学会／JST／日経クロステック 宮坂力氏インタビュー ほか</p>
+<p>※本番組の音声はAIにより制作しています。事実は上記出典に基づき、表現は番組が独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』｜断られた理由を引く — 効率で勝てない太陽電池の勝ち筋
+
+最初の論文は効率4%で世界に無視され、17年後のいまも効率ではシリコンに勝てない。それでも「重さ」を引いたら、耐荷重で断られてきた日本中の屋根が、競合ゼロの市場に変わりました。日本発ペロブスカイト太陽電池の商売を、5分で解剖します。
+
+▼ トリガになったニュース
+・中国大手GCL傘下、タンデム型ペロブスカイトの日本量産販売を今月めどに開始予定（ニュースイッチ／Japan Energy Times 2026年6月）
+・2026年7月時点の市場整理記事群（bright-co ほか）
+
+▼ 詳しい数値と出典はnote「その手があったか #006」で
+（リンク）
+
+▼ そのほかの出典
+積水化学工業 公式（SOLAFIL）／PVeye／unieco／関西電力 法人向けコラム（経産省資料）／日本化学会／JST／日経クロステック 宮坂力氏インタビュー ほか
+
+※本番組の音声はAIにより制作しています。事実は上記出典に基づき、表現は番組が独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
