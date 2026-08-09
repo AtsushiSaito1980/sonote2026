@@ -1,0 +1,56 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  - {id: F01, who: クラス, what: 資金調達, value: 総額13億8000万円, when: 2026-07-28, source_url: "同社プレスリリース", confirmed_by: 3, anchor: true, verify: verified}
+  - {id: F02, who: クラス, what: 調達の内訳, value: 第三者割当増資1社と銀行3行の融資, when: 2026-07-28, source_url: "同社プレスリリース", confirmed_by: 2, verify: verified, note: "引受先＝パナソニックくらしビジョナリーファンド。融資＝静岡銀行・商工組合中央金庫・山梨中央銀行"}
+  - {id: F03, who: クラス, what: 累計調達額, value: 114億6000万円, when: 2026-07-28, source_url: "同社プレスリリース", confirmed_by: 2, verify: verified, note: "デットファイナンスを含む"}
+  - {id: F04, who: パナソニック, what: 出資の理由, value: 回収家電の再生・検査・再提供の経験, when: 2026-07-28, source_url: "パナソニック公式リリース", confirmed_by: 1, anchor: true, verify: verified, note: "一次リリース。出資額の記載はなし"}
+  - {id: F05, who: クラス, what: 設立とサービス開始, value: 2018年4月設立・同年8月開始, when: 2018, source_url: "同社公式／取材記事", confirmed_by: 2, verify: verified}
+  - {id: F06, who: クラス, what: 顧客の選択肢, value: 借りる・買う（残価払い）・返す, when: 継続, source_url: "同社公式／プレスリリース", confirmed_by: 2, verify: verified}
+  - {id: F07, who: クラス, what: 個人会員数, value: 27万人, when: 2026-02, source_url: "同社プレスリリース", confirmed_by: 2, verify: verified}
+  - {id: F08, who: クラス, what: 法人アカウント数, value: 3500件, when: 2026-02, source_url: "同社プレスリリース", confirmed_by: 2, verify: verified, note: "法人導入数は2200件"}
+  - {id: F09, who: クラス, what: 累計提供点数, value: 35万974点, when: 2026-04末, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified}
+  - {id: F10, who: クラス, what: 総循環回数, value: 33万6950回, when: 2026-04末, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified}
+  - {id: F11, who: クラス, what: 2026年2月期の採算, value: 売上総利益率61.3%, when: 2026-02期, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified}
+  - {id: F12, who: クラス, what: 2026年2月期の損益, value: 営業利益と営業CFが黒字化, when: 2026-02期, source_url: "同社プレスリリース", confirmed_by: 2, verify: verified}
+  - {id: F13, who: クラス, what: 5年平均成長率, value: 41.7%, when: 2021-02期〜2026-02期, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified}
+  - {id: F14, who: クラス, what: 社内で洗い出した課題, value: 届いた時と返却時に部品が不足, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated, note: "ほかにパーツ種類過多・メーカーから取り寄せ不可。時期明示が必須"}
+  - {id: F15, who: 家具・家電一般, what: 設計の前提, value: 再生を想定した設計ではない, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated, note: "同社が課題の根本原因として整理した認識"}
+  - {id: F16, who: クラス, what: 自社ブランド, value: 循環前提のCIRCLE, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated}
+  - {id: F17, who: CIRCLE, what: 部品数の削減, value: ソファ100以上から大幅削減, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated}
+  - {id: F18, who: CIRCLE, what: 部品の共通化, value: 3商品で同じネジを使用, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated, note: "ソファ・オットマン・サイドテーブル"}
+  - {id: F19, who: CIRCLE, what: 構造, value: 分解可能・部分交換に対応, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated, note: "複数回の組立・分解に対応"}
+  - {id: F20, who: CIRCLE, what: 天板の仕様, value: 黒天板・塗装で再生, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated}
+  - {id: F21, who: CIRCLE, what: ソファの耐用年数, value: 通常2年に対し10年, when: 2023-06, source_url: "同社名義STORY記事", confirmed_by: 1, verify: dated, note: "単独出典。原典での再確認を推奨"}
+  - {id: F22, who: クラス, what: 在庫の管理単位, value: 部品単位でユニークに管理, when: 2023-08, source_url: "同社への取材記事", confirmed_by: 1, verify: dated, note: "テーブルは天板と脚、ベッドは板ごとに分けて循環"}
+  - {id: F23, who: クラス, what: 修繕の優先順位, value: 回転率の高い品から先に修繕, when: 2023-08, source_url: "同社への取材記事", confirmed_by: 1, verify: dated, note: "低回転品は一定量の注文後に着手"}
+  - {id: F24, who: クラス, what: 発注の仕組み, value: 破損率と返却予測から自動計算, when: 2023-08, source_url: "同社への取材記事", confirmed_by: 1, verify: dated}
+  - {id: F25, who: 業界, what: 創業時の反応, value: 家具の貸し出しは成立しない, when: 2021, source_url: "創業者インタビュー", confirmed_by: 1, verify: dated, note: "配送コストが見合わないという指摘も"}
+  - {id: F26, who: クラス, what: 在庫リスクの外部化, value: リース取引枠 最大3億円, when: 2025-06-27, source_url: "リース会社プレスリリース", confirmed_by: 1, verify: partial, note: "一次PDFに未到達。原典での再確認を推奨。2023年4月開始の取引が拡大し家電も対象に"}
+  - {id: F27, who: クラス, what: 会員の属性, value: 一人暮らし51.2%・賃貸68.8%, when: 2026-02, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified, note: "30代以下が54.5%。TW5の根拠"}
+  - {id: F28, who: 需要側調査, what: 利用時に重視する点, value: 失敗リスクの回避28.7%, when: 2026-04-22, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified, note: "1位は初期費用・月額の安さ48.4%。認知率58%・利用経験16%"}
+  - {id: F29, who: 環境省実証事業, what: 売り切り型との比較, value: 廃棄物38%減・CO2 36%減, when: 2023-02, source_url: "同社公開情報", confirmed_by: 1, verify: dated, note: "台本では数字の系統が上限のため不使用。noteのデータ欄のみ"}
+  - {id: F30, who: クラス, what: 修繕を内製する理由, value: 外部発注は戻りに時間がかかる, when: 2021, source_url: "創業者インタビュー", confirmed_by: 1, verify: dated}
+  - {id: F31, who: クラス, what: 全国展開の条件, value: 地場の小規模配送業者との連携, when: 2021, source_url: "創業者インタビュー", confirmed_by: 1, verify: dated}
+  - {id: F32, who: クラス, what: 法人向けの内訳, value: 導入2200件・アカウント3500件, when: 2026-02, source_url: "同社プレスリリース", confirmed_by: 1, verify: verified, note: "オフィスの増減・移転で必要量が変わる需要"}
+quotes:
+  - {id: Q01, speaker: 業界関係者（創業当時）, gist: "家具を貸して回す商売は成立しない。運ぶ費用が見合わない", source_url: "創業者インタビュー", note: "趣旨再現。話者は名指ししない"}
+  - {id: Q02, speaker: 同社の社内調査（2023年）, gist: "届いた時点でも、返ってきた時点でも、部品がそろっていない", source_url: "同社名義STORY記事", note: "趣旨再現。原文の言い回しは使わない"}
+  - {id: Q03, speaker: 創業者（代表取締役社長）, gist: "一人に売り切るより、何人にも続けて使ってもらったほうが、最後は大きく儲かる", source_url: "創業者インタビュー", note: "趣旨再現のみ。個人名は出さない"}
+rejected:
+  - {claim: 1点あたり何回転で投資を回収するか, reason: 公開情報に記載がない, action: 台本・記事とも断定しない。「二周目・三周目で超える」という構造の説明にとどめる}
+  - {claim: 稼働率・倉庫の規模・従業員数, reason: 一次資料に到達できず, action: 不使用}
+  - {claim: CIRCLEの現在（2026年）の点数・比率, reason: 2023年3月時点の約3500点が最新の公開値, action: 台本では点数を使わず、設計思想のみを扱う}
+  - {claim: 動機の「場面」（いつ・何を見て始めたか）, reason: 志の言葉はあるが場面まで下りた一次記録が取れない, action: 型3（動機回）を見送り構造回として制作。motive_tag は none}
+  - {claim: 出資額（パナソニック分）, reason: パナソニック公式リリースに金額の記載なし, action: 総額13.8億円としてのみ扱う}
+notes: |
+  ・アンカー＝2026年7月28日の資金調達発表（制作日の12日前）。同日のパナソニック公式リリースが副トリガ。ともにトリガ窓31日以内
+  ・台本の数字は7系統以内（balanced×拡大版1.5倍＝上限8）：
+    ①時期（八年前・三年ほど前・去年・今年の二月期・先月の末）②会員規模（27万人・3500）
+    ③循環実績（35万点・33万回）④設計（部品100以上・2年→10年）⑤在庫の外出し（3億円）
+    ⑥調達（14億円・114億円）⑦採算（粗利およそ六割）
+  ・**F14〜F25 は2023年前後の情報。台本・記事とも時期を明示すること（§4）**
+  ・F21（2年→10年）とF26（3億円）は単独出典。**原典での再確認を推奨**（人間の裏取り対象）
+  ・F29（38%・36%）は正確値をnoteのデータ欄にのみ記載
+  ・個人名は台本・記事とも出さない（憲法§3）

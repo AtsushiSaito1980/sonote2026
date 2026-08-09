@@ -24,6 +24,37 @@ DENSITY_LIMITS = {
     "narrative": {"min_facts": 4, "num": 3, "proper": 4, "meta": 2, "heiso": 99},
 }
 
+# 拡大版の倍率（企画書§5-3「拡大版は各1.5〜2倍まで」）。下限側の1.5倍を採る
+EXPANDED_MULT = 1.5
+
+
+def spec_for(duration_min: int, density: str):
+    """尺と density から数値ゲートを決める。
+
+    5分＝標準（1,700〜2,000字）。それ以外は拡大版として毎分300字で換算する
+    （企画書§5-1 の「18分＝5,400字前後」＝毎分300字に合わせる）。
+    """
+    base = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])
+    if duration_min <= 5:
+        return {
+            "chars": (1700, 2000), "quotes": (1, 2), "kuse": 1, "tags": (4, 6),
+            "mult": 1.0, **base,
+        }
+    target = duration_min * 300
+    r50 = lambda x: int(round(x / 50.0) * 50)
+    return {
+        "chars": (r50(target * 0.955), r50(target * 1.067)),
+        "quotes": (2, 3),
+        "kuse": int(round(1 * EXPANDED_MULT)),
+        "tags": (int(round(4 * duration_min / 5)), int(round(6 * duration_min / 5))),
+        "mult": EXPANDED_MULT,
+        "min_facts": int(round(base["min_facts"] * EXPANDED_MULT)),
+        "num": int(round(base["num"] * EXPANDED_MULT)),
+        "proper": int(round(base["proper"] * EXPANDED_MULT)),
+        "meta": int(round(base["meta"] * EXPANDED_MULT)),
+        "heiso": base["heiso"] if base["heiso"] >= 99 else int(round(base["heiso"] * EXPANDED_MULT)),
+    }
+
 # 並走句（density で本数制限）。取材話法・確認形は聞き上手の芸の本体なので数えない
 HEISO_PATTERNS = ["と思います？", "じゃないですか", "ありますよね", "と思うんですけど"]
 
@@ -50,16 +81,16 @@ def jp_len(text):
     return len(text.replace("\n", "").replace(" ", ""))
 
 
-def check_script(ep: Path, density: str):
+def check_script(ep: Path, lim: dict, density: str, duration_min: int):
     p = ep / "script_draft.md"
     if not p.exists():
         add(NG, "script_draft.md", "見つかりません")
         return None
     body = body_of(p.read_text(encoding="utf-8"))
     n = jp_len(body)
-    lim = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])
+    lo, hi = lim["chars"]
 
-    add(OK if 1700 <= n <= 2000 else NG, "本文文字数", f"{n}（規定 1,700〜2,000）")
+    add(OK if lo <= n <= hi else NG, "本文文字数", f"{n}（{duration_min}分の規定 {lo:,}〜{hi:,}）")
     add(OK if "…" not in body else NG, "三点リーダー", f"{body.count('…')} 個")
 
     halfsp = len(re.findall(r"[ぁ-ヶ一-龥][ ][ぁ-ヶ一-龥]", body))
@@ -72,12 +103,13 @@ def check_script(ep: Path, density: str):
     add(OK if kaz == 0 else NG, "「香月」の非登場", f"{kaz} 回")
 
     quotes = body.count("『") - body.count("『その手があったか』")
-    add(OK if 1 <= quotes <= 2 else NG, "『』再現", f"{quotes} 箇所（規定 1〜2）")
+    qlo, qhi = lim["quotes"]
+    add(OK if qlo <= quotes <= qhi else NG, "『』再現", f"{quotes} 箇所（規定 {qlo}〜{qhi}）")
 
     add(OK if "ここから、商売の解剖です" in body else NG, "解剖パートの宣言", "あり" if "ここから、商売の解剖です" in body else "なし")
 
     kuse = body.count("ここだけ持って帰ってください") + body.count("これ、現場やった人ならわかると思うんですけど")
-    add(OK if kuse <= 1 else NG, "口癖", f"{kuse} 回（規定 1回まで）")
+    add(OK if kuse <= lim["kuse"] else NG, "口癖", f"{kuse} 回（規定 {lim['kuse']}回まで）")
 
     heiso = sum(body.count(x) for x in HEISO_PATTERNS)
     add(OK if heiso <= lim["heiso"] else NG, "並走句・自問自答", f"{heiso} 回（{density} 上限 {lim['heiso']}）")
@@ -99,14 +131,15 @@ def check_script(ep: Path, density: str):
     return body
 
 
-def check_tts(ep: Path):
+def check_tts(ep: Path, lim: dict):
     p = ep / "script_tts.txt"
     if not p.exists():
         add(WARN, "script_tts.txt", "未生成")
         return
     t = p.read_text(encoding="utf-8")
     tags = re.findall(r"\[(bright|curious|serious|excited|thoughtful|warm|calm)\]", t)
-    add(OK if 4 <= len(tags) <= 6 else NG, "オーディオタグ", f"{len(tags)} 個 {tags}（規定 4〜6）")
+    tlo, thi = lim["tags"]
+    add(OK if tlo <= len(tags) <= thi else NG, "オーディオタグ", f"{len(tags)} 個 {tags}（規定 {tlo}〜{thi}）")
     add(OK if not re.search(r"^#|^##|MC：|ナレーター", t, re.M) else NG, "見出し・話者ラベル", "なし" if not re.search(r"^#", t, re.M) else "残存")
     add(OK if "香月" not in t else NG, "TTS稿の「香月」", f"{t.count('香月')} 回")
     add(OK if "…" not in t else NG, "TTS稿の三点リーダー", f"{t.count('…')} 個")
@@ -131,15 +164,19 @@ def check_article(ep: Path):
 
 def check_meta(ep: Path):
     b = ep / "brief.yaml"
-    density = "balanced"
+    density, duration_min = "balanced", 5
     if not b.exists():
         add(NG, "brief.yaml", "見つかりません")
-        return density
+        return density, duration_min
     txt = b.read_text(encoding="utf-8")
     m = re.search(r"^density:\s*(\w+)", txt, re.M)
     if m:
         density = m.group(1)
+    d = re.search(r"^duration_min:\s*(\d+)", txt, re.M)
+    if d:
+        duration_min = int(d.group(1))
     add(OK, "density", density)
+    add(OK, "尺", f"{duration_min} 分" + ("（標準）" if duration_min <= 5 else f"（拡大版・上限×{EXPANDED_MULT}）"))
     add(OK if re.search(r"^anchor:", txt, re.M) else NG, "anchor（トリガ）", "記載あり" if "anchor:" in txt else "なし")
     pub = re.search(r"published:\s*([0-9]{4}-[0-9]{2}(?:-[0-9]{2})?)", txt)
     add(WARN, "トリガ公開日", f"{pub.group(1) if pub else '未記載'} → 制作日から1ヶ月以内か目視確認")
@@ -147,11 +184,11 @@ def check_meta(ep: Path):
     f = ep / "facts.yaml"
     if f.exists():
         cards = len(re.findall(r"^\s*-\s*\{?id:", f.read_text(encoding="utf-8"), re.M))
-        lim = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])["min_facts"]
-        add(WARN, "事実カード枚数", f"{cards} 枚（{density} は台本で {lim} 点以上消化）")
+        need = spec_for(duration_min, density)["min_facts"]
+        add(WARN, "事実カード枚数", f"{cards} 枚（{density}×{duration_min}分 は台本で {need} 点以上消化）")
     else:
         add(NG, "facts.yaml", "見つかりません")
-    return density
+    return density, duration_min
 
 
 def check_ledger(ep: Path):
@@ -172,9 +209,10 @@ def main():
         print(f"見つかりません: {ep}")
         sys.exit(1)
 
-    density = check_meta(ep)
-    check_script(ep, density)
-    check_tts(ep)
+    density, duration_min = check_meta(ep)
+    lim = spec_for(duration_min, density)
+    check_script(ep, lim, density, duration_min)
+    check_tts(ep, lim)
     check_article(ep)
     check_ledger(ep)
 

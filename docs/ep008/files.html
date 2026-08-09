@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ep008 制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep007/files.html">← ep007</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date">2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>ep008｜返ってくる前提で分けておく</h1>
+  <div class="chips"><span class="chip host">三崎アオイ</span><span class="chip hand">OP07 分ける</span><span class="chip hand">OP06 拾う</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW5 人口動態・環境</span><span class="chip none">日付は想定</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep008</td></tr><tr><th>ホスト</th><td>misaki（三崎アオイ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型（拡大版）</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>15</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> クラス、パナソニックくらしビジョナリーファンド等から総額13.8億円を調達（累計114.6億円）<br><span class='k'>published</span> 2026-07-28<br><span class='k'>source_url</span> sources/collected.md（同社プレスリリース／パナソニック公式リリース）</td></tr><tr><th>副トリガ</th><td>パナソニック公式リリース（2026-07-28）：回収した家電を再生・検査して再提供してきた経験を出資理由に挙げる</td></tr><tr><th>題材</th><td>クラス（家具・家電を月額で貸し、返却品を直して回す循環モデル）</td></tr><tr><th>手</th><td>OP07<br>OP06</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW5</td></tr><tr><th>つかみ</th><td>倉庫に戻ってくるのは新品ではなく、誰かの部屋で使われた家具。それを直してまた送り出す現場</td></tr><tr><th>きょうの手（案）</th><td>返ってくる前提で、分けておく</td></tr><tr><th>宿題（案）</th><td>自社の商品か社内の道具をひとつ選び、どこから壊れるかを書き出し、その部分だけ替えられる形に分けられないか考える</td></tr><tr><th>壁・制約</th><td>創業時に業界から『家具を貸して回す商売は成り立たない』『配送コストが見合わない』という趣旨の反応。在庫を自社保有するため拡大するほど先行投資が重く、リース枠（最大3億円・2025年6月に家電へも拡大）で在庫リスクを外に分けている</td></tr><tr><th>前回参照</th><td><span class="muted">—</span></td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep008
+host: misaki                # 日替わり交互（前日ep007=戸倉）
+episode_type: T1
+format: 型1 一本深掘り型（拡大版）
+series: &quot;&quot;
+duration_min: 15            # 拡大版。企画書§5-1の毎分300字換算＝4,500字目安（許容 4,300〜4,800）
+mode: real
+density: balanced           # 拡大版のため各上限は×1.5（§5-3）
+anchor:                     # トリガ情報（制作日2026-08-09から1ヶ月以内＝12日前）
+  headline: &quot;クラス、パナソニックくらしビジョナリーファンド等から総額13.8億円を調達（累計114.6億円）&quot;
+  published: 2026-07-28
+  source_url: &quot;sources/collected.md（同社プレスリリース／パナソニック公式リリース）&quot;
+sub_triggers:
+  - &quot;パナソニック公式リリース（2026-07-28）：回収した家電を再生・検査して再提供してきた経験を出資理由に挙げる&quot;
+case_name: &quot;クラス（家具・家電を月額で貸し、返却品を直して回す循環モデル）&quot;
+operation_tags: [OP07, OP06]   # 分ける（主）×拾う（味）。ともに初使用
+motive_tag: none            # 構造回。創業の志は取れるが、動機の「場面」まで下りた一次記録が無く型3は見送り
+tailwind_tag: TW5           # 人口動態（会員の51.2%が一人暮らし・68.8%が賃貸・54.5%が30代以下）
+hook: &quot;倉庫に戻ってくるのは新品ではなく、誰かの部屋で使われた家具。それを直してまた送り出す現場&quot;
+lesson_draft: &quot;返ってくる前提で、分けておく&quot;
+homework_draft: &quot;自社の商品か社内の道具をひとつ選び、どこから壊れるかを書き出し、その部分だけ替えられる形に分けられないか考える&quot;
+opposition: &quot;創業時に業界から『家具を貸して回す商売は成り立たない』『配送コストが見合わない』という趣旨の反応。在庫を自社保有するため拡大するほど先行投資が重く、リース枠（最大3億円・2025年6月に家電へも拡大）で在庫リスクを外に分けている&quot;
+prev_episode_ref: &quot;&quot;
+notes: |
+  ・15分は企画書に定義がなかった尺。人間の承認を得て、毎分300字換算（4,500字・許容4,300〜4,800）、
+    数字/固有名詞/例え話/並走句の上限は§5-3の「拡大版は1.5〜2倍」の下限側1.5倍で確定。
+    scripts/check.py に duration_min を読ませて機械判定に落とした（目視判定にしない）。
+  ・循環の仕組み（自社ブランドの設計・部品単位の在庫管理）は2023年時点の公開情報。
+    台本・記事とも「三年ほど前」と時期を明示する（§4）。
+  ・1点あたりの回転数・損益分岐点は非公開。台本で断定しない。
+  ・個人名は台本に出さない（憲法§3）。創業者は「この会社を始めた人」で扱う。
+  ・環境負荷の削減率（38%・36%）は数字の系統が上限に達するため台本では不使用。noteのデータ欄へ。
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>クラス</td><td>資金調達</td><td class="fact-val">総額13億8000万円</td><td>2026-07-28</td><td class="src">同社プレスリリース</td><td><span class="cb">×3</span></td></tr><tr><td><span class="fid">F02</span></td><td>クラス</td><td>調達の内訳</td><td class="fact-val">第三者割当増資1社と銀行3行の融資</td><td>2026-07-28</td><td class="src">同社プレスリリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F03</span></td><td>クラス</td><td>累計調達額</td><td class="fact-val">114億6000万円</td><td>2026-07-28</td><td class="src">同社プレスリリース</td><td><span class="cb">×2</span></td></tr><tr class="anchor-row"><td><span class="fid">F04</span><span class="anchor-chip">アンカー</span></td><td>パナソニック</td><td>出資の理由</td><td class="fact-val">回収家電の再生・検査・再提供の経験</td><td>2026-07-28</td><td class="src">パナソニック公式リリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>クラス</td><td>設立とサービス開始</td><td class="fact-val">2018年4月設立・同年8月開始</td><td>2018</td><td class="src">同社公式／取材記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>クラス</td><td>顧客の選択肢</td><td class="fact-val">借りる・買う（残価払い）・返す</td><td>継続</td><td class="src">同社公式／プレスリリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F07</span></td><td>クラス</td><td>個人会員数</td><td class="fact-val">27万人</td><td>2026-02</td><td class="src">同社プレスリリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F08</span></td><td>クラス</td><td>法人アカウント数</td><td class="fact-val">3500件</td><td>2026-02</td><td class="src">同社プレスリリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F09</span></td><td>クラス</td><td>累計提供点数</td><td class="fact-val">35万974点</td><td>2026-04末</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>クラス</td><td>総循環回数</td><td class="fact-val">33万6950回</td><td>2026-04末</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F11</span></td><td>クラス</td><td>2026年2月期の採算</td><td class="fact-val">売上総利益率61.3%</td><td>2026-02期</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F12</span></td><td>クラス</td><td>2026年2月期の損益</td><td class="fact-val">営業利益と営業CFが黒字化</td><td>2026-02期</td><td class="src">同社プレスリリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F13</span></td><td>クラス</td><td>5年平均成長率</td><td class="fact-val">41.7%</td><td>2021-02期〜2026-02期</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F14</span></td><td>クラス</td><td>社内で洗い出した課題</td><td class="fact-val">届いた時と返却時に部品が不足</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F15</span></td><td>家具・家電一般</td><td>設計の前提</td><td class="fact-val">再生を想定した設計ではない</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F16</span></td><td>クラス</td><td>自社ブランド</td><td class="fact-val">循環前提のCIRCLE</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F17</span></td><td>CIRCLE</td><td>部品数の削減</td><td class="fact-val">ソファ100以上から大幅削減</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F18</span></td><td>CIRCLE</td><td>部品の共通化</td><td class="fact-val">3商品で同じネジを使用</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F19</span></td><td>CIRCLE</td><td>構造</td><td class="fact-val">分解可能・部分交換に対応</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F20</span></td><td>CIRCLE</td><td>天板の仕様</td><td class="fact-val">黒天板・塗装で再生</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F21</span></td><td>CIRCLE</td><td>ソファの耐用年数</td><td class="fact-val">通常2年に対し10年</td><td>2023-06</td><td class="src">同社名義STORY記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F22</span></td><td>クラス</td><td>在庫の管理単位</td><td class="fact-val">部品単位でユニークに管理</td><td>2023-08</td><td class="src">同社への取材記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F23</span></td><td>クラス</td><td>修繕の優先順位</td><td class="fact-val">回転率の高い品から先に修繕</td><td>2023-08</td><td class="src">同社への取材記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F24</span></td><td>クラス</td><td>発注の仕組み</td><td class="fact-val">破損率と返却予測から自動計算</td><td>2023-08</td><td class="src">同社への取材記事</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F25</span></td><td>業界</td><td>創業時の反応</td><td class="fact-val">家具の貸し出しは成立しない</td><td>2021</td><td class="src">創業者インタビュー</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F26</span></td><td>クラス</td><td>在庫リスクの外部化</td><td class="fact-val">リース取引枠 最大3億円</td><td>2025-06-27</td><td class="src">リース会社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F27</span></td><td>クラス</td><td>会員の属性</td><td class="fact-val">一人暮らし51.2%・賃貸68.8%</td><td>2026-02</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F28</span></td><td>需要側調査</td><td>利用時に重視する点</td><td class="fact-val">失敗リスクの回避28.7%</td><td>2026-04-22</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F29</span></td><td>環境省実証事業</td><td>売り切り型との比較</td><td class="fact-val">廃棄物38%減・CO2 36%減</td><td>2023-02</td><td class="src">同社公開情報</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F30</span></td><td>クラス</td><td>修繕を内製する理由</td><td class="fact-val">外部発注は戻りに時間がかかる</td><td>2021</td><td class="src">創業者インタビュー</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F31</span></td><td>クラス</td><td>全国展開の条件</td><td class="fact-val">地場の小規模配送業者との連携</td><td>2021</td><td class="src">創業者インタビュー</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F32</span></td><td>クラス</td><td>法人向けの内訳</td><td class="fact-val">導入2200件・アカウント3500件</td><td>2026-02</td><td class="src">同社プレスリリース</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>業界関係者（創業当時）</strong>「家具を貸して回す商売は成立しない。運ぶ費用が見合わない」<span class="src-note">創業者インタビュー／趣旨再現。話者は名指ししない</span></li><li><span class="fid">Q02</span> <strong>同社の社内調査（2023年）</strong>「届いた時点でも、返ってきた時点でも、部品がそろっていない」<span class="src-note">同社名義STORY記事／趣旨再現。原文の言い回しは使わない</span></li><li><span class="fid">Q03</span> <strong>創業者（代表取締役社長）</strong>「一人に売り切るより、何人にも続けて使ってもらったほうが、最後は大きく儲かる」<span class="src-note">創業者インタビュー／趣旨再現のみ。個人名は出さない</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>1点あたり何回転で投資を回収するか</strong><br>理由：公開情報に記載がない<br>処置：台本・記事とも断定しない。「二周目・三周目で超える」という構造の説明にとどめる</li><li><strong>稼働率・倉庫の規模・従業員数</strong><br>理由：一次資料に到達できず<br>処置：不使用</li><li><strong>CIRCLEの現在（2026年）の点数・比率</strong><br>理由：2023年3月時点の約3500点が最新の公開値<br>処置：台本では点数を使わず、設計思想のみを扱う</li><li><strong>動機の「場面」（いつ・何を見て始めたか）</strong><br>理由：志の言葉はあるが場面まで下りた一次記録が取れない<br>処置：型3（動機回）を見送り構造回として制作。motive_tag は none</li><li><strong>出資額（パナソニック分）</strong><br>理由：パナソニック公式リリースに金額の記載なし<br>処置：総額13.8億円としてのみ扱う</li></ul><div class="ig-callout pre-line">・アンカー＝2026年7月28日の資金調達発表（制作日の12日前）。同日のパナソニック公式リリースが副トリガ。ともにトリガ窓31日以内
+・台本の数字は7系統以内（balanced×拡大版1.5倍＝上限8）：
+①時期（八年前・三年ほど前・去年・今年の二月期・先月の末）②会員規模（27万人・3500）
+③循環実績（35万点・33万回）④設計（部品100以上・2年→10年）⑤在庫の外出し（3億円）
+⑥調達（14億円・114億円）⑦採算（粗利およそ六割）
+・**F14〜F25 は2023年前後の情報。台本・記事とも時期を明示すること（§4）**
+・F21（2年→10年）とF26（3億円）は単独出典。**原典での再確認を推奨**（人間の裏取り対象）
+・F29（38%・36%）は正確値をnoteのデータ欄にのみ記載
+・個人名は台本・記事とも出さない（憲法§3）</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep008 検査レポート（review-episode）</h1>
+<p><strong>対象</strong>：script_draft.md / script_tts.txt / article.md / shownotes.md<br><strong>検査日</strong>：2026-08-09<br><strong>結果</strong>：<strong>PASS（人間の裏取り2件つき）</strong></p>
+<pre><code>python3 scripts/check.py episodes/ep008
+→ 機械判定はすべて PASS。要判断 5 件</code></pre>
+<hr>
+<h2>0. 今回だけの前提：15分という尺</h2>
+<p>企画書 v3.5 は5分（1,700〜2,000字）と拡大版18分（5,400字前後）しか定義していない。<strong>15分は未定義の尺だったため、生成前に人間の承認を取り、次で確定した。</strong></p>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>15分の値</th><th>根拠</th></tr></thead><tbody><tr><td>本文字数</td><td>4,500目安／4,300〜4,800</td><td>§5-1の「18分＝5,400字」＝毎分300字換算</td></tr><tr><td>数字の系統・固有名詞・例え話・並走句</td><td>balanced の<strong>1.5倍</strong></td><td>§5-3「拡大版は各1.5〜2倍まで」の下限側を採用</td></tr><tr><td>『』再現</td><td>2〜3</td><td>同上（標準1〜2の1.5倍）</td></tr><tr><td>facts消化</td><td>10点以上</td><td>balanced 7点×1.5</td></tr><tr><td>オーディオタグ</td><td>12〜18</td><td>§5-4「5分で4〜6個」の線形換算</td></tr></tbody></table></div>
+<p><strong>この換算は目視判定にせず、<code>scripts/check.py</code> に <code>duration_min</code> を読ませて機械判定に落とした。</strong> 5分回の判定は従来どおり（ep006・ep007で回帰確認済み）。</p>
+<blockquote><p><strong>企画書への申し送り</strong>：15分は今回の承認で確定した運用値であり、<code>docs/plan.md</code> §5-1 にはまだ書かれていない。恒常化するなら本書を更新すること（憲法「方針変更は口頭で伝えず、本書自体を更新する」）。</p></blockquote>
+<hr>
+<h2>1. スクリプト検算（機械判定）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>結果</th></tr></thead><tbody><tr><td>本文文字数</td><td><strong>4,423</strong>（規定 4,300〜4,800） PASS</td></tr><tr><td>三点リーダー／和文の半角スペース</td><td>0／0 PASS</td></tr><tr><td>OP定型・ED定型</td><td>一字一句一致 PASS</td></tr><tr><td>「香月」の非登場</td><td>台本0回・TTS稿0回 PASS</td></tr><tr><td>『』再現</td><td>3箇所（規定2〜3） PASS</td></tr><tr><td>解剖パートの宣言</td><td>あり PASS</td></tr><tr><td>口癖</td><td>1回（拡大版の規定2回まで。<strong>あえて1回に抑えた</strong>） PASS</td></tr><tr><td>並走句・自問自答</td><td>4回（上限6） PASS</td></tr><tr><td>取材話法</td><td>伝聞18／調べる・聞く3 PASS</td></tr><tr><td>オーディオタグ</td><td>16個（規定12〜18） PASS</td></tr><tr><td>英字の残存</td><td>なし PASS</td></tr><tr><td>note の禁止語</td><td>なし PASS</td></tr><tr><td>リスク語×実名の共起</td><td><strong>0件</strong>（ng.yml の9語すべてで走査済み） PASS</td></tr></tbody></table></div>
+<h2>2. 要判断項目（モデルが文脈で判断・数え方の規約つき）</h2>
+<h3>2-1. 数字の系統数 → <strong>7系統／上限8</strong> 適合</h3>
+<p><strong>数え方の規約</strong>：同一の施策・同一の統計・同一の発表を構成する数値群は1系統として数える。時点表現（八年前・去年・今年の二月期など）は「時期」として一括で1系統。列挙の談話標識（一、二、三／出口が三つ）は対象外。</p>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>系統</th><th>台本の数値</th><th>事実ID</th></tr></thead><tbody><tr><td>①</td><td>時期</td><td>八年前／三年ほど前／去年／今年の二月・四月末・二月期／先月の末</td><td>F05・F14〜F26</td></tr><tr><td>②</td><td>会員規模</td><td>二十七万人・三千五百</td><td>F07・F08</td></tr><tr><td>③</td><td>循環実績</td><td>三十五万点・三十三万回</td><td>F09・F10</td></tr><tr><td>④</td><td>設計</td><td>部品百以上・二年→十年</td><td>F17・F21</td></tr><tr><td>⑤</td><td>在庫の外部化</td><td>最大三億円</td><td>F26</td></tr><tr><td>⑥</td><td>調達</td><td>十四億円・百十四億円</td><td>F01・F03</td></tr><tr><td>⑦</td><td>採算</td><td>粗利およそ六割</td><td>F11</td></tr></tbody></table></div>
+<p><strong>台本で意図的に落とした数字</strong>：環境省実証の削減率（38%・36%）、5年CAGR 41.7%、需要側調査の割合（48.4%・28.7%・58%・16%）、法人導入2,200件、会員属性の百分率。いずれも系統が上限に達するため。<strong>正確値はすべて note のデータ欄にある。</strong></p>
+<h3>2-2. 固有名詞 → <strong>3個／上限9</strong> 適合</h3>
+<p>クラス／サークル／パナソニック。</p>
+<ul><li>ホスト名「三崎アオイ」は OP・ED 定型の署名のため対象外（ep007 で戸倉ハジメを対象外とした基準を踏襲）。</li><li>銀行3行・リース会社の社名は台本では出さず、note のデータ欄にのみ記載。</li><li>個人名は台本・note とも不使用（憲法§3）。創業者は「この会社を始めた人」で扱った。</li></ul>
+<h3>2-3. キメ台詞の候補 → <strong>可</strong>（キメ台詞ゼロと判定）</h3>
+<p>スクリプトが検出したのは <code>なんですよ。</code> の1件、該当箇所は「これ、工場の考え方なんですよ。」。<strong>対句でも体言止めの要約でもポエム調でもなく、自分の職歴へ話を引き込む口語の平叙</strong>のため可と判定。</p>
+<p>解剖の3箇条も全数点検した。いずれも<strong>条件＋動作</strong>の形になっており、警句化していない。</p>
+<ul><li>一「一回で回収しないと決めたなら、二周目の手間を、設計の段階で先に削っておく」</li><li>二「持ち物は、傷みやすいところを境目にして、分けて持つ」</li><li>三「重さは、自分で持つ分と、外に出す分に割る」</li></ul>
+<p>教訓一行「返ってくる前提で、分けておく」も、条件（返ってくる前提で）＋動作（分けておく）であり、対句・体言止めではない。</p>
+<blockquote><p>執筆時に回避した表現：初稿で「持ち物は、いちばん傷むところで分けて持つ」としていた箇所を「傷みやすいところを境目にして」に変更した（<code>、いちばん</code> はキメの検出ヒント）。</p></blockquote>
+<h3>2-4. 例え話 → <strong>1個／上限3</strong> 適合</h3>
+<ol><li>生産技術時代の実感（直しやすさを設計に入れるかどうかで後工程の手間が変わる）</li></ol>
+<p>「修理の見積もりが新品より高い」は<strong>他業界への応用例</strong>のため、§4-7 により例え話に数えない。三崎の大技（感嘆）は「運用のほうで、うなったところがありまして」の1回のみ。</p>
+<h3>2-5. トリガ鮮度 → 適合</h3>
+<ul><li><strong>アンカーは2026年7月28日</strong>（同社リリース／パナソニック公式リリース、同日）。制作日の<strong>12日前</strong>で、トリガ窓31日以内。</li><li>台本では「そして、先月の末です」で時点を、「大手家電メーカー、パナソニックの投資部門」で発表主体を口頭明示している（§5-2）。</li><li><strong>1ヶ月を超える事実には、すべて時期を明示した</strong>（§4）：社内課題の洗い出しと自社ブランドの設計＝「三年ほど前」（2023年）／リース枠の拡大＝「去年」（2025年6月）／業界の反対＝「始めたころ」（2018年前後の証言）／会員数＝「今年の二月の時点で」／循環実績＝「今年の四月末の集計」。</li></ul>
+<h3>2-6. 台帳照合（ledger/episodes_log.csv） → 適合、ただし1件の申し送りあり</h3>
+<div class="table-scroll"><table><thead><tr><th>観点</th><th>判定</th></tr></thead><tbody><tr><td>題材の重複</td><td>クラス／家具・家電レンタルは ep001〜007 に無し。<strong>重複なし</strong></td></tr><tr><td>直近5回（ep003〜007）と手の連続</td><td>既出は OP05・OP14・OP03・OP02・OP01・OP10・OP12・OP08。ep008 は <strong>OP07・OP06 でともに初使用</strong>。連続なし</td></tr><tr><td>直近5回と主要業界の連続</td><td>既出はバイク／アパレル／イベント／飲料／アート／福祉／百貨店／エネルギー／化学／自動運転／自動車。ep008 は<strong>家具・家電・物流</strong>。連続なし</td></tr><tr><td>ホストの交互</td><td>ep007＝戸倉 → ep008＝<strong>三崎</strong>。適合</td></tr><tr><td>週内のジャンル混合</td><td>生活消費系（ep004・ep005）とBtoB・技術系（ep006・ep007）が既にあり、ep008 は<strong>個人向けと法人向けの両方</strong>を扱う。適合</td></tr><tr><td>週1本以上の動機回</td><td>ep005（narrative）で充足済み</td></tr><tr><td>週1本以上の技術・提携系</td><td>ep006・ep007 で充足済み</td></tr><tr><td><strong>月2回以上の型の変化球</strong></td><td><strong>未充足。ep001〜008 がすべて T1。</strong></td></tr></tbody></table></div>
+<blockquote><p><strong>編成への申し送り（重要）</strong>：§9④「月2回以上は型の変化球（T2失敗回・T4数字回・T5お題回）を挟む」が8本連続で未消化。<strong>来週の編成で T4 数字回を1本入れることを推奨する。</strong> 今回の巡回で、2026年7月の人手不足倒産（東京商工リサーチ・過去最多63件／うち人件費高騰36件が2.1倍）と、帝国データバンクの「従業員退職型」倒産（2026-08-07公表・1〜7月83件）がトリガとして生きている。ただしトリガ窓が短いため、8月中に使わないと寝かせ直しになる。</p></blockquote>
+<h2>3. 一人三役・芸の土台（§4-5／§8-4）</h2>
+<div class="table-scroll"><table><thead><tr><th>要件</th><th>該当箇所</th><th>判定</th></tr></thead><tbody><tr><td>当事者・有識者の『』再現</td><td>業界の反応／社内調査の困りごと／循環で稼ぐ考え方 の3箇所</td><td>○</td></tr><tr><td>翻訳者の宣言</td><td>「ここから、商売の解剖です」</td><td>○</td></tr><tr><td>芸人の先回りツッコミ</td><td>「それ、儲かるんですか」「ここで、あれ、と思ったんですよ」</td><td>○</td></tr><tr><td>「知らなかった」の表明</td><td>「私、これ、先週まで知らなかったんですけど」</td><td>○（1回）</td></tr><tr><td>質問→伝聞の答え→言い直し</td><td>「二周目をどう作るのか」→社内課題→「貸すのに向いた商品が売っていなかった、ということですよね」／「なんで売らない側に出資するのか」→発表の記述→「入り口が違うだけで、向いている方向は同じ」</td><td>○（2回）</td></tr><tr><td>他業界への応用例</td><td>工場の設備・店の棚・社内の仕組み。「修理の見積もりが新品より高い」</td><td>○</td></tr><tr><td>動詞終わりの宿題</td><td>「分けられないか、考えてみてください」</td><td>○</td></tr></tbody></table></div>
+<h2>4. 禁止事項（§1-5／§2）の照合</h2>
+<div class="table-scroll"><table><thead><tr><th>#</th><th>禁止</th><th>判定</th></tr></thead><tbody><tr><td>1</td><td>諦めの正当化・会社や上司の悪口</td><td>なし。制約は構造として提示（在庫の重さ・配送費）</td></tr><tr><td>2</td><td>説教・講義口調・見下し</td><td>なし。「大量消費はよくない」の方向へ寄せていない</td></tr><tr><td>3</td><td>精神論での締め</td><td>なし。締めは条件＋動作</td></tr><tr><td>4</td><td>カタカナ手法名</td><td><strong>台本ではゼロ</strong>。サブスクリプション／サーキュラーエコノミー／プラットフォーム／リユース／SKU を全て回避し、「月ぎめで貸す」「返ってきたものを直して回す」「品物ごと」に置換。<strong>note でのみ手法名（PaaS・Design for Disassembly・リマニュファクチャリング）を使用</strong></td></tr><tr><td>5</td><td>カード外の数字・固有名詞</td><td>なし。台本の全数値が F01〜F32 に対応</td></tr><tr><td>6</td><td>個人の失敗を嗤う／人格を扱う</td><td>なし。会社と構造のみ</td></tr><tr><td>7</td><td>ダジャレ・キャラ芸</td><td>なし</td></tr><tr><td>8</td><td>定型句・台本内の注釈や出典読み上げ</td><td>なし。出典は shownotes.md が背負う</td></tr><tr><td>9</td><td>決め台詞・警句・ポエム調</td><td>なし（2-3で詳述）</td></tr><tr><td>10</td><td>「香月」の語</td><td>台本0・TTS稿0</td></tr><tr><td>11</td><td>note のラジオ言及</td><td>禁止語5種すべて0件</td></tr><tr><td>12</td><td>読者募集・拡散施策</td><td>なし</td></tr></tbody></table></div>
+<h2>5. TTS稿（§5-4）</h2>
+<ul><li>見出し・話者ラベル・注釈なし。本文とタグのみ ○</li><li>オーディオタグ16個、すべて段落頭に1つ ○</li><li>三点リーダー0／半角分かち書き0 ○</li><li>英字の残存なし。数字はすべて漢数字 ○</li><li><strong>テスト駆動の方針どおり、先回りでの漢字開きは最小限にした。</strong> 生成前に手を入れたのは、意味が変わる誤読リスクのある2語のみ：<ul><li>「剥げた塗装」→「塗装のはげたところ」（はげ／はく の誤読回避）</li><li>「外の会社のほうが上手なので」→「得意なので」（じょうず／うわて／かみて の誤読回避）</li></ul></li></ul>
+<h3>読みチェック語（TTS生成後に人間が確認するもの・最大4）</h3>
+<ol><li><strong>天板</strong>（てんばん／てんいた）— 本編に4回出る。誤読すると解剖の要が崩れる</li><li><strong>脚</strong>（あし／きゃく）— 「天板と脚」の対で出るため、天板とセットで確認</li><li><strong>粗利</strong>（あらり／そり）</li><li><strong>月ぎめ</strong>（つきぎめ）— 「げつ」読みの事故</li></ol>
+<p>誤読が出たら <code>library/dictionary.yaml</code> に追記すること。</p>
+<h2>6. 事実面（人間の裏取りが必要なもの）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状況</th><th>対応</th></tr></thead><tbody><tr><td><strong>F21：ソファの耐用年数 2年→10年</strong></td><td>同社名義STORY記事の<strong>単独出典</strong>、かつ2023年6月時点</td><td><strong>原典での再確認を推奨。</strong> 台本では「ふつうなら二年で使えなくなるソファが、十年もつようになった」と伝聞で扱い、note にも単独出典である旨を明記した</td></tr><tr><td><strong>F26：リース取引枠 最大3億円</strong></td><td>一次PDFに未到達（検索結果の要約経由）、2025年6月時点</td><td><strong>原典での再確認を推奨。</strong> note の出典欄と注記に記載済み</td></tr><tr><td>F04：パナソニックの出資理由</td><td>一次リリース1本のみだが<strong>発表主体そのもの</strong>のため一次資料として扱う</td><td>追加確認は不要</td></tr><tr><td>F09〜F13：循環実績・業績</td><td>同社プレスリリース（一次資料）。第三者による検証はなし</td><td>一次資料のため可。ただし<strong>監査済み財務数値ではない</strong>点に留意</td></tr><tr><td>1点あたりの回転数・損益分岐点・稼働率</td><td><strong>公開情報に存在しない</strong></td><td>台本・note とも推計せず、「二周目、三周目でやっと超える」という構造の説明にとどめた</td></tr></tbody></table></div>
+<h2>7. 制作日依存の表現</h2>
+<div class="table-scroll"><table><thead><tr><th>箇所</th><th>内容</th><th>差し替え条件</th></tr></thead><tbody><tr><td>「そして、先月の末です」</td><td>2026-07-28 を指す</td><td><strong>配信が2026年8月中であることが前提。</strong> 9月にずれ込む場合は「先々月の末」に差し替える</td></tr><tr><td>「今年の二月の時点で」「今年の四月末の集計」「今年の二月期に」</td><td>2026年内は有効</td><td>年をまたぐ場合は「去年の」に差し替え</td></tr><tr><td>「私、これ、先週まで知らなかったんですけど」</td><td>慣用表現。実日付に依存しない</td><td>差し替え不要</td></tr></tbody></table></div>
+<h2>8. 総合判定</h2>
+<p><strong>PASS。</strong> 機械判定22項目すべて PASS、要判断5項目すべて適合。</p>
+<p>残る人間の仕事は次の4つ。</p>
+<ol><li>F21（耐用年数10年）と F26（リース枠3億円）の<strong>原典での裏取り</strong></li><li>TTS生成後の<strong>通し聴取</strong>（読みチェック語4語を確認し、誤読を dictionary.yaml へ）</li><li>配信日が8月内であることの確認（§7の制作日依存）</li><li>公開の承認</li></ol></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep008 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜返ってくる前提で、分けておく</h2>
+<h3>ホスト：三崎アオイ／型1 一本深掘り型（拡大版）／15分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p>
+<p>まず、ある倉庫の話をさせてください。朝、トラックが着きます。荷台の扉が開いて、降ろされるのは、新品の家具じゃないんです。誰かの部屋で何年か使われて、返ってきたソファ。角に傷のついた棚。使い込まれた洗濯機。それを一点ずつ、汚れを落として、傷を埋めて、塗装のはげたところを塗り直して、家電なら中の部品まで外して掃除して、ちゃんと動くかを確かめる。そうして、また次の人のところへ送り出す。</p>
+<p>そういう会社が、日本にあります。クラス、という名前の会社です。家具と家電を、月ぎめで貸す。八年前に始まりました。今年の二月の時点で、個人の会員が二十七万人。会社として使っているところが、三千五百。借りているのは、一人暮らしで、賃貸に住んでいる人が中心だとのことでした。引っ越しのたびに、大きい家具を買い直すか、運ぶか、捨てるかで悩む。あの層です。</p>
+<p>しかも、借りたあとの出口が三つあります。返す。別のものに交換する。気に入ったら、それまでに払った分を差し引いて、そのまま買う。試してから決められる、という形になっています。</p>
+<p>使っている人に理由を聞くと、最初に来るのが、はじめの出費を抑えたいから。その次に来るのが、選んで失敗したくないから、なんだそうです。家具って、部屋に置いてみるまで、大きさも色も本当のところは分からないじゃないですか。返せるなら、先に置いてみればいい。</p>
+<p>会社のほうが伸びている理由も、聞いてみたら分かりやすくて。人が増えれば机がいる。減れば余る。移転すれば、いったん全部いらなくなる。買ってしまうと、その増減が全部、資産と処分になって返ってきます。借りていれば、数だけ動かせばいい。</p>
+<p>これまでに貸した数が、のべ三十五万点。そのうち、返ってきて、また出ていった回数が、三十三万回。今年の四月末の集計だそうです。</p>
+<p>私、この数字を見て、最初に思ったことがありまして。それ、儲かるんですか、と。</p>
+<p>だって、貸すということは、その家具の代金を、自分が先に払っているということですよね。ソファを一台仕入れて、月いくらで貸す。一人目のお客さんが一年借りてくれても、たぶん仕入れ値には届かない。二人目、三人目と続いて、やっと超える。売り切りなら今日お金になるものを、わざわざ何年もかけて回収する形に変えている。これ、現場やった人ならわかると思うんですけど、在庫を自分で持つのって、とにかく重いんです。置く場所がいる。運ぶ人がいる。壊れたら直す人がいる。</p>
+<p>始めたころは、業界の人からこう言われたとのことでした。『家具を貸して回すなんて、商売にならないよ』。運ぶだけで足が出る、と。</p>
+<p>で、二周目、三周目をどうやって作っているのかを調べてみたんですけど、ここが面白かったんです。この会社、三年ほど前に、自分たちの困りごとを社内で洗い出しています。出てきたのが、こういう話でした。お客さんに届いた時点で、部品がそろっていない。返ってきたものも、部品が欠けている。部品の種類が多すぎて、どれがどれだかわからない。メーカーに問い合わせても、その部品はもう出てこない。ひとことでまとめると、『届く時も、返ってくる時も、部品が足りない』。</p>
+<p>それで、行き着いた答えが、これだそうです。世の中の家具や家電は、そもそも、直してもう一度使うことを想定して作られていない。</p>
+<p>私、これ、先週まで知らなかったんですけど、言われてみると、たしかにそうなんですよね。家具って、買った人が最後まで使う前提で設計されている。だから、ネジが特殊でも困らないんです。一回組み立てたら、もうバラさないじゃないですか。分解する前提がないから、分解すると戻らない。</p>
+<p>つまりこの会社は、貸す商売を始めたのに、貸すのに向いた商品が、世の中に売っていなかった、ということですよね。</p>
+<p>そこで、自分たちで作ったそうです。サークル、という自社ブランド。設計の考え方が、ふつうと逆でして。</p>
+<p>まず、部品を減らす。ソファひとつで百を超えていた部品の数を、大きく削っています。次に、部品をそろえる。ソファと、足を乗せる台と、脇に置く小さいテーブルで、同じネジを使う。一種類そろえておけば、三つの商品が直せます。それから、壊れたところだけ取り替えられるように、分解できる形にしておく。天板は黒にする。傷が目立たなくて、塗り直せば元に戻せるからだそうです。</p>
+<p>結果、どうなったか。ふつうなら二年で使えなくなるソファが、十年もつようになった。</p>
+<p>これ、工場の考え方なんですよ。私、生産技術にいたころ、直しやすさを最初の設計に入れるかどうかで、あとの手間がまるっきり変わるのを、何度も見ました。作る側の都合だけで決めた形は、たいてい、直す側が泣きます。</p>
+<p>もうひとつ、運用のほうで、うなったところがありまして。この会社、在庫を、商品ごとではなくて、部品ごとに一つずつ管理しているそうです。会社向けのテーブルなら、天板と脚を別々に数えて、別々に回す。ベッドなら、頭の板、横の板、床の板と、分けて持つ。</p>
+<p>そうすると、どうなるか。天板だけ傷んだら、天板だけ取り替えればいい。一台まるごと廃棄になりません。しかも、脚のほうは無事なまま、次の現場へ行けます。</p>
+<p>オフィスの机を、天板と脚に分けて回している、というのは、さっきの、人が増えたり減ったりする需要と、そのままつながっているわけです。</p>
+<p>直す順番も決まっていて、よく貸し出される品から先に手をつける。あまり動かない品は、注文がある程度たまってから直す。倉庫に戻ってきた山を、全部いっぺんに直そうとしていないんですね。仕入れのほうも、これから出る量と、返ってくる量の予測に、品物ごとの壊れやすさを掛けて、発注の数が自動で出てくるようにしているそうです。</p>
+<p>なぜここまで自分たちの手でやるのか。直すのを外に出すと、戻ってくるまでに時間がかかるからだそうです。倉庫で止まっている家具は、一円も生みません。運ぶほうも同じで、全国へ広げるには、その土地の小さい運送会社と、一軒ずつ組んでいく必要がある。派手なところが一つもないんですけど、二周目の商売って、こういうところで採算が決まるんですよね。</p>
+<p>それと、さっきの三つの出口ですけど、あれ、借りる人のためだけの仕組みじゃないんですね。気に入った人がそのまま買ってくれれば、その一点は倉庫に戻ってきません。運ぶ費用も、直す手間も、置く場所も、そこで終わる。返ってくる前提で作っておいて、返ってこなければ、それはそれで助かる。どちらに転んでも成立するようにしてある、ということですよね。</p>
+<p>ただ、ここまで聞くと、うまくいっている話ばかりに聞こえますけど、この商売、構造としては重いままです。貸す数を増やそうとしたら、その分だけ、先にモノを買わないといけない。</p>
+<p>そこも、分けていました。増やす分の家具を、全部、自分のお金で買うのではありません。リース会社の枠を使う。三年ほど前に始まった取り決めが、去年、最大三億円まで広がって、家電も対象に入ったそうです。在庫の重さを、自分で持つ分と、外に置く分に割っている。</p>
+<p>そして、先月の末です。この会社が、あわせて十四億円ほどのお金を集めたと発表しました。出したのは、大手家電メーカー、パナソニックの投資部門と、いくつかの銀行です。これまでの調達を全部足すと、百十四億円あまりになるとのことでした。</p>
+<p>ここで、あれ、と思ったんですよ。家電を売っている会社が、なんで、家電を売らない側に出資するんだろう、と。</p>
+<p>発表を読んでみたら、こう書いてありました。自分たちは、回収した家電を再生して、検査して、品質を確かめたうえで、もう一度届けてきた。その経験があるから、組みたいのだ、と。</p>
+<p>売る側にも、回収して直す部門はあるんですね。貸す側には、回して稼ぐ仕組みがある。この二つ、入り口が違うだけで、向いている方向は同じなんです。</p>
+<p>数字の節目も来ていまして、今年の二月期に、営業の利益と、営業で出入りする現金が、はじめて黒字になったそうです。売った金額から仕入れを引いた粗利は、およそ六割。この会社を始めた人は、こういう趣旨のことを言っています。『一人に売り切るより、何人にも続けて使ってもらったほうが、最後は大きく儲かる』。八年かけて、その二周目、三周目の分が、ようやく効いてきた、ということですよね。</p>
+<p>ここから、商売の解剖です。きょうの手は、返ってくる前提で、分けておく。三つに分けます。</p>
+<p>一、一回で回収しないと決めたなら、二周目の手間を、設計の段階で先に削っておく。この会社が本当にやったのは、貸すことではありません。返ってきたあとに発生する作業を、モノの形のほうで軽くしたことです。部品を減らす。共通にする。分解できるようにする。たとえば、ネジを共通にしておくと、直す人が迷いません。迷わなければ、一点あたりの作業時間が短くなる。作業時間が短くなれば、二周目の原価が下がる。設計をいじった効果が、何年もあとの人件費のほうに出てくるんです。回収を後ろにずらす商売は、後ろの手間が軽くないと、二周目で赤字が出ます。</p>
+<p>二、持ち物は、傷みやすいところを境目にして、分けて持つ。天板と脚を別々に管理していれば、傷んだ側だけ替えられます。一体のまま持っていると、一か所の傷で、全部が使えなくなる。自分の商品を、どこから壊れるかで一度バラしてみると、替えの効く単位が見えてきます。</p>
+<p>三、重さは、自分で持つ分と、外に出す分に割る。在庫そのものは自社で抱えるけれど、増やす分の資金はリースの枠を使う。全部自前でやるか、全部外に出すか、の二択にしていない。線の引き方は、そこが儲けの源かどうかで決めればいいと思います。直す工程は、この会社の強みなので手放さない。お金の重さのほうは、外の会社のほうが得意なので任せる。</p>
+<p>これ、家具の話に聞こえますけど、たぶん、どの業界でも同じです。工場の設備でも、店の棚でも、社内で使っている仕組みでも、いま、買って、壊れたら捨てる、で回っているものは、直す前提で作られていない可能性が高い。修理の見積もりを取ったら、新品を買うほうが安かった。ありますよね。あれ、材料費の話ではなくて、直しにくく作られている、という意味なんです。</p>
+<p>今週の宿題です。自社の商品でも、社内で毎日使っている道具でも、どちらでもいいので、ひとつ選んでください。それが壊れるとき、どこから壊れるかを書き出してください。そのうえで、その壊れるところだけを取り替えられる形に分けられないか、考えてみてください。</p>
+<p>きょうの手は、返ってくる前提で、分けておく、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第8回｜返ってくる前提で、分けておく（拡大版・15分）</p>
+<p>家具と家電を月ぎめで貸す会社があります。一人目のお客さんでは仕入れ値に届かない。二周目、三周目でやっと超える。売り切りなら今日入るお金を、何年もかけて回収する形に変えている会社が、八年目にどうやって黒字にしたのか。返ってきたものを直して、また送り出す倉庫のほうから解剖します。</p>
+<p>▼ トリガになったニュース<br>・株式会社クラス「パナソニックくらしビジョナリーファンド等から総額13.8億円の資金調達を実施。累計調達額は114.6億円へ」（2026/7/28）<br>・パナソニック「家具・家電レンタル・サブスクサービスを展開するCLASへ パナソニックくらしビジョナリーファンドから出資」（2026/7/28）</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・株式会社クラス プレスリリース（2026/5/28）累計提供点数350,974点・総循環回数336,950回<br>・株式会社クラス プレスリリース（2026/4/22）設立8周年・利用実態調査<br>・「循環を前提としたプライベートブランド『CIRCLE』の開発ストーリー」（同社名義・2023/6/5）<br>・同社への取材記事（2023/8/30）部品単位の在庫管理<br>・創業者インタビュー（2021/10/18）<br>・昭和リース「株式会社クラスとの家具サブスクリプションビジネスに関する取引の拡大について」（2025/6/27）</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第8回｜返ってくる前提で、分けておく（拡大版・15分）
+
+家具と家電を月ぎめで貸す会社があります。一人目のお客さんでは仕入れ値に届かない。二周目、三周目でやっと超える。売り切りなら今日入るお金を、何年もかけて回収する形に変えている会社が、八年目にどうやって黒字にしたのか。返ってきたものを直して、また送り出す倉庫のほうから解剖します。
+
+▼ トリガになったニュース
+・株式会社クラス「パナソニックくらしビジョナリーファンド等から総額13.8億円の資金調達を実施。累計調達額は114.6億円へ」（2026/7/28）
+・パナソニック「家具・家電レンタル・サブスクサービスを展開するCLASへ パナソニックくらしビジョナリーファンドから出資」（2026/7/28）
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・株式会社クラス プレスリリース（2026/5/28）累計提供点数350,974点・総循環回数336,950回
+・株式会社クラス プレスリリース（2026/4/22）設立8周年・利用実態調査
+・「循環を前提としたプライベートブランド『CIRCLE』の開発ストーリー」（同社名義・2023/6/5）
+・同社への取材記事（2023/8/30）部品単位の在庫管理
+・創業者インタビュー（2021/10/18）
+・昭和リース「株式会社クラスとの家具サブスクリプションビジネスに関する取引の拡大について」（2025/6/27）
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
