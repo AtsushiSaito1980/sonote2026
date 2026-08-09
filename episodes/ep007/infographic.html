@@ -1,0 +1,175 @@
+<!-- ep007 インフォグラフィック（手作り・数値は facts.yaml 準拠）。docs/ は build_site.py が包んで出力する -->
+<div class="ig-hero">
+  <div class="kicker">きょうの手</div>
+  <div class="lesson">中核を開いて、周りで稼ぐ。</div>
+  <div class="lead">自動運転ソフト「Autoware」を10年以上<strong>無償で配り続けた</strong>会社が、2026年7月に上場した。採用は世界500社以上（2025年7月時点の集計）。配ったものが本体なら、いったい何を売っているのか——上場が、その問いに公開の場で答えさせた。</div>
+</div>
+
+<div class="ig-callout"><strong>この回は裏取りが未了です。</strong>制作環境から一次資料へ直接アクセスできず、数値はすべて検索結果の要約経由で取得しています。公開前に <code>review.md</code> の「公開前の必須作業」6件を原典で確認してください。</div>
+
+<section class="ig-section">
+  <h2><span class="no">1</span>数字で見る</h2>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="label">Autoware を採用した企業</div>
+      <div class="value">500<small>社以上</small></div>
+      <div class="note">20を超える国と地域・30車種以上での実験</div>
+    </div>
+    <div class="stat">
+      <div class="label">無償公開の開始</div>
+      <div class="value">2015<small>年8月</small></div>
+      <div class="note">以来ずっと無料。期間限定ではない</div>
+    </div>
+    <div class="stat">
+      <div class="label">時価総額（上場初日終値ベース）</div>
+      <div class="value mid">644.8億円</div>
+      <div class="note">2026年7月22日・東証グロース（593A）。終値1,015円</div>
+    </div>
+    <div class="stat">
+      <div class="label">初値</div>
+      <div class="value mid">1,009円</div>
+      <div class="note">公募価格1,085円を7.0%下回る公募割れ</div>
+    </div>
+    <div class="stat">
+      <div class="label">売上高（2025年9月期）</div>
+      <div class="value mid">64.1億円</div>
+      <div class="note">前期比 65.6%増</div>
+    </div>
+    <div class="stat">
+      <div class="label">純損失（同期）</div>
+      <div class="value mid">48億円</div>
+      <div class="note">経常損失は55.0億円</div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="no">2</span>どこが無料で、どこから有料か</h2>
+  <p class="sec-note">無料なのは<strong>試用まで</strong>。実際に車へ載せ、量産して市場に出す段階から請求が発生する。</p>
+  <div class="flow">
+    <div class="fnode"><div class="t">① 入手する</div><div class="d">Autoware をダウンロードして試す</div></div>
+    <div class="farr">→</div>
+    <div class="fnode hl"><div class="t">② 車に載せる</div><div class="d">車両ごとの作り込み・カスタマイズ<br><strong>量産前の一時収入</strong></div></div>
+    <div class="farr">→</div>
+    <div class="fnode hl"><div class="t">③ 開発を回す</div><div class="d">クラウド開発基盤・センサーや計算機の参照設計<br><strong>基盤と機材の売上</strong></div></div>
+    <div class="farr">→</div>
+    <div class="fnode hl"><div class="t">④ 量産する</div><div class="d">プラットフォームのライセンス料。1台ごとのロイヤルティは将来構想<br><strong>継続収入（未計上）</strong></div></div>
+  </div>
+  <div class="legend">
+    <span class="key"><span class="sw" style="background:color-mix(in srgb, var(--ink) 12%, transparent)"></span>無料（入口）</span>
+    <span class="key"><span class="sw" style="background:var(--accent)"></span>有料（本気で使い始めてから）</span>
+  </div>
+  <div class="ig-callout">課金の位置が<strong>出口寄りに置かれている</strong>のがこの手の要点。多くの企業は中核を守って周辺を無料で配るが、この会社は逆に、中核を配って周辺（実装・運用基盤・量産対応）を有料にしている。ただし<strong>④はまだ収益として立っていない</strong>。2025年9月期の売上64.1億円は②③にあたるモビリティサービス22.6億円・デベロップメント13.3億円・ソリューション28.1億円の合計で、量産ライセンスの計上はない。</div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="no">3</span>ふつうの順序と、逆にした順序</h2>
+  <div class="flip">
+    <div class="flip-row">
+      <div class="from"><span class="fld">よくある形</span>中核は守る／周辺サービスを無料で配って集客する</div>
+      <div class="arr">→</div>
+      <div class="to">中核を配る／周辺を有料にする<span class="fld">守るのは技術そのものではなく、普及後に必ず要る面倒な工程のほう</span></div>
+    </div>
+    <div class="flip-row">
+      <div class="from"><span class="fld">無料の目的</span>宣伝・集客（フリーミアム）</div>
+      <div class="arr">→</div>
+      <div class="to">標準を取ること<span class="fld">500社が同じ土台を使えば、その作法が業界の共通言語になる＝OP08 束ねる</span></div>
+    </div>
+    <div class="flip-row">
+      <div class="from"><span class="fld">業界の前提</span>開発から生産・販売まで大手が一手に握る垂直統合</div>
+      <div class="arr">→</div>
+      <div class="to">誰でも使える部品を1つ置く<span class="fld">技術を持たない企業もそこから始められる</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="no">4</span>この手が抱える時間差</h2>
+  <p class="sec-note">課金が量産開始後に置かれている以上、採用企業が量産に到達するまで主要な収益は立たない。2025年9月期の姿がそれを示している。</p>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div>売上高</div>
+      <div class="bar-lane"><div class="bar-fill" style="width:100%"></div><span class="bar-val">64.1億円</span></div>
+    </div>
+    <div class="bar-row">
+      <div>経常損失</div>
+      <div class="bar-lane"><div class="bar-fill alt" style="width:85.8%"></div><span class="bar-val">55.0億円</span></div>
+    </div>
+    <div class="bar-row">
+      <div>純損失</div>
+      <div class="bar-lane"><div class="bar-fill alt" style="width:74.9%"></div><span class="bar-val">48億円</span></div>
+    </div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="label">IPOでの調達額</div>
+      <div class="value mid">約204億円</div>
+      <div class="note">研究開発 約88億円／サプライチェーン構築 約83億円。吸収金額ベースでは約250億円と、基準により報道値に幅がある</div>
+    </div>
+    <div class="stat">
+      <div class="label">手元現金</div>
+      <div class="value mid">69億円</div>
+    </div>
+    <div class="stat">
+      <div class="label">従業員（2026年5月末・単体）</div>
+      <div class="value mid">404人</div>
+      <div class="note">平均年齢37.7歳・平均年間給与1,098万2千円</div>
+    </div>
+  </div>
+  <div class="ig-callout">500社が採用していても、<strong>そのうち何社がいつ量産に入るかは自社の裁量の外</strong>にある。無償公開は普及を速める代わりに、収益化の時点を後ろへずらす。48億円の赤字は失敗の証拠ではなく、この手を選んだ場合に先払いすることになる費用である。</div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="no">5</span>成立の三条件</h2>
+  <div class="point-cards">
+    <div class="point">
+      <span class="pno">1</span>
+      <h3>中核を開き、周辺を有料にする</h3>
+      <p>順序が逆ではない。守るべきは技術そのものではなく、普及したあとに必要になる実装・運用基盤・量産対応のほう。</p>
+    </div>
+    <div class="point">
+      <span class="pno">2</span>
+      <h3>目的は宣伝ではなく標準の獲得</h3>
+      <p>無償公開は、分散した相手を一つの規格へ束ねる手段。標準になったとき最も深く理解しているのは公開元であり、その非対称性が収益に変わる。</p>
+    </div>
+    <div class="point">
+      <span class="pno">3</span>
+      <h3>収益化までの時間を資金で埋められる</h3>
+      <p>最大の参入条件。体力がない組織がこの手だけを模倣すると、配って終わる。</p>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="no">6</span>制度化と、次の一手</h2>
+  <div class="vtl">
+    <div class="vtl-item dim">
+      <div class="vtl-date">2015年8月</div>
+      <div class="vtl-body">名古屋大学の研究室で開発された自動運転ソフト「Autoware」をオープンソースで公開</div>
+    </div>
+    <div class="vtl-item dim">
+      <div class="vtl-date">2015年12月</div>
+      <div class="vtl-body">ティアフォー設立（本社・東京都品川区）</div>
+    </div>
+    <div class="vtl-item">
+      <div class="vtl-date">2018年</div>
+      <div class="vtl-body"><strong>Autoware Foundation 設立。</strong>自動運転分野で世界初の国際業界団体とされ、デファクトスタンダード化を掲げる。無償公開が一社の判断から業界団体の運営へ制度化された</div>
+    </div>
+    <div class="vtl-item major">
+      <div class="vtl-date">2026年7月22日</div>
+      <div class="vtl-body"><strong>東証グロース市場へ上場。</strong>初値1,009円は公募価格1,085円を7.0%下回る公募割れ。終値1,015円で時価総額644億7,700万円</div>
+    </div>
+    <div class="vtl-item">
+      <div class="vtl-date">2026年7月23日</div>
+      <div class="vtl-body">上場会見。Linux・Android・DeepSeek を引き合いにオープンソースが産業変革を起こしてきた前例を説明。<strong>車載半導体チップの設計もオープンソース化を視野に</strong>と述べ、同じ手を反復可能な型として扱う姿勢を示した</div>
+    </div>
+  </div>
+</section>
+
+<div class="ig-quote">
+  <div class="q">自社が絶対に外に出さないと決めているものほど、無料で配ったときに何が売れるようになるかを検討する価値がある。ただし、課金が立つまでの時間を資金で埋められることが条件になる。</div>
+  <div class="steps">
+    <strong>効く日</strong>：「これは自社の生命線だから公開できない」で議論が止まった日<br>
+    <strong>最初の一歩</strong>：自社が外に出していないものを1つ選び、それを無料で配ったとき、誰が何を買いに来るかを3つ挙げる
+  </div>
+</div>

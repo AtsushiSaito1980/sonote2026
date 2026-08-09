@@ -1,0 +1,43 @@
+# 事実カード（extract-facts出力）
+# 2026-08-09 一次資料で再調査。verify 欄の意味：
+#   verified = 一次資料または会見の書き起こしで確認済み
+#   range    = 報道により幅がある。基準を明示して使うか、使わない
+#   partial  = 一部のみ確認（丸めて使用）
+facts:
+  - {id: F01, who: ティアフォー, what: 新規上場, value: 2026年7月22日・東証グロース市場（コード593A）, when: 2026-07-22, source_url: "https://tier4.co.jp/updates/press-release/20260722-tokyo-stock-exchange-growth-market-listing", confirmed_by: 4, anchor: true, verify: verified}
+  - {id: F02, who: ティアフォー, what: 上場時の市場評価, value: 公募価格1085円に対し初値1009円（76円・7.0%の公募割れ）。初日は安値896円・高値1081円・終値1015円, when: 2026-07-22, source_url: "日本経済新聞／初日株価報道", confirmed_by: 3, verify: verified, note: "初回の『公募価格1050円』は誤り。1085円が正"}
+  - {id: F02b, who: ティアフォー, what: 時価総額, value: 644億7700万円（上場初日終値1015円ベース）。前引け時点は約646億円, when: 2026-07-22, source_url: "初日株価報道／日本経済新聞", confirmed_by: 2, verify: verified, note: "想定発行価格ベースでは約645億〜700億円と報道値に幅。基準の明示が必須"}
+  - {id: F03, who: ティアフォー, what: 設立と出自, value: 2015年12月設立。名古屋大学の研究室で開発された自動運転ソフトが土台。本社は東京都品川区, when: 2015-12, source_url: "同社公式／上場関連報道", confirmed_by: 4, verify: verified}
+  - {id: F04, who: Autoware, what: オープンソース公開, value: 2015年8月に公開。以後、無償で誰でも使える, when: 2015-08, source_url: "同社公式／複数報道", confirmed_by: 3, verify: verified}
+  - {id: F05, who: Autoware, what: 採用の広がり, value: 世界500社以上が採用。20以上の国と地域、30車種以上, when: 2025-07, source_url: "https://autoware.org/autoware-foundation-monthly-newsletter-issue-1/", confirmed_by: 2, verify: verified, note: "原文 'over 20 countries, more than 30 vehicle types, over 500 organizations'。2025年7月16日付＝約1年前。§4により時期明示が必須"}
+  - {id: F06, who: Autoware Foundation, what: 業界団体の設立, value: 2018年設立。自動運転で世界初の国際業界団体。デファクト標準化を掲げる。正式メンバーは70社超, when: 2018, source_url: "同財団公式（'Since its founding in 2018'）", confirmed_by: 2, verify: partial, note: "設立月（12月）は未確認のため丸めた。財団メンバー70社超と『採用500社』は別概念"}
+  - {id: F07, who: ティアフォー, what: 収益モデル, value: 会見の三層＝第1層オープンソース／第2層TIER IVプラットフォーム／第3層ラストワンマイルの開発。Autoware本体では課金しない, when: 2026-07-23, source_url: "上場会見書き起こし／c-eye", confirmed_by: 2, verify: verified}
+  - {id: F08, who: ティアフォー, what: 収益の流れ, value: 量産前は専用開発支援とハードウェアキット販売で一時収入。量産開始後はプラットフォームのライセンス料で継続収益, when: 継続, source_url: "上場会見書き起こし（CEO発言）", confirmed_by: 2, verify: verified}
+  - {id: F08b, who: ティアフォー, what: 1台ごとの課金は構想段階, value: 「将来的には、販売された車両1台ごとに対価を得るライセンスモデルやロイヤルティモデルへの展開が想定」。現時点で未計上, when: 将来構想, source_url: "事業計画及び成長可能性に関する事項／上場会見", confirmed_by: 2, verify: verified, note: "初回は既存の仕組みとして書いていた。時制の誤り。台本・記事とも修正済み"}
+  - {id: F09, who: ティアフォー, what: 2025年9月期の業績, value: 売上高64.1億円（前期比65.6%増）・経常損失55.0億円・純損失48億円, when: 2025-09期, source_url: "有価証券届出書ベースの報道（複数一致）", confirmed_by: 3, verify: verified, note: "営業損失は確定できず未使用"}
+  - {id: F09b, who: ティアフォー, what: 売上の内訳, value: モビリティサービス22.6億円・デベロップメント13.3億円・ソリューション28.1億円。量産ライセンスの計上はない, when: 2025-09期, source_url: "上場関連報道", confirmed_by: 1, verify: verified, note: "合計64.0億円でF09の売上高と整合。F08bの裏付けになる"}
+  - {id: F10, who: ティアフォー, what: 資金の状況, value: 手元現金69億円。IPO調達額 約204億円（使途は研究開発 約88億円・サプライチェーン構築 約83億円）。届出書の手取概算額は98億〜298億円, when: 2026, source_url: "上場関連報道／有価証券届出書ベースの報道", confirmed_by: 2, verify: range, note: "吸収金額ベースでは約250億円と報じられ、基準が異なる。累計調達額は379.3億円と381億円超で報道に差があり本文では不使用"}
+  - {id: F11, who: ティアフォー, what: 組織規模, value: 従業員404人（2026年5月末・単体）・平均年齢37.7歳・平均年間給与1098万2千円, when: 2026-05, source_url: "有価証券届出書ベースの報道", confirmed_by: 2, verify: verified}
+  - {id: F12, who: 上場会見, what: 戦略の説明, value: 「コンピューターシステムの『Linux』、スマートフォンの『Android』、直近ではAIの『DeepSeek』と、オープンソースのアプローチが産業変革を起こしてきました」, when: 2026-07-23, source_url: "上場会見書き起こし", confirmed_by: 2, anchor: true, verify: verified}
+  - {id: F13, who: 上場会見, what: 次の一手, value: 「ソフトウェアと同様にハードウェアの領域でも競争環境をオープン化」。車載半導体チップのオープンソース化も視野, when: 2026-07-23, source_url: "上場会見書き起こし／c-eye", confirmed_by: 2, verify: verified}
+  - {id: F14, who: 自動車業界, what: 前提となる構造, value: 開発から生産・販売までを大手が一手に担う垂直統合型のクローズドな構造, when: 継続, source_url: "創業者インタビュー記事（複数）", confirmed_by: 2, verify: verified}
+  - {id: F15, who: ティアフォー, what: 協業の広がり, value: 完成車メーカー・一次サプライヤーあわせて18社（2026年5月時点）。会見ではトヨタ・いすゞ・ヤマハ・スズキ・小松製作所を名指し。開発受託の顧客は13社, when: 2026-05, source_url: "上場会見書き起こし／事業計画及び成長可能性に関する事項", confirmed_by: 2, verify: verified}
+  - {id: F16, who: 上場会見, what: 見通し, value: 当期売上予想84億円、年平均成長率75%, when: 2026-07-23, source_url: "上場会見書き起こし", confirmed_by: 1, verify: verified}
+quotes:
+  - {id: Q01, speaker: 創業者（代表取締役CEO）, gist: "日本のスタートアップがシリコンバレーの大企業に勝つ方法は、オープンソースしかない", source_url: "創業者インタビュー記事", note: "趣旨再現のみ。個人名は台本に出さない（役職で扱う）"}
+  - {id: Q02, speaker: 同上, gist: "目指すのは技術の民主化。独占ではなく開放", source_url: "同上", note: "趣旨再現のみ。台本では地の文に溶かす"}
+  - {id: Q03, speaker: 同上, gist: "量産開始後は、お客さまからプラットフォームをご利用いただくためのライセンス料をいただき、継続的に収益を得る仕組みです", source_url: "上場会見書き起こし", note: "収益モデルの原文。記事で使用"}
+rejected:
+  - {claim: 動機の場面（いつ・どこで・誰に対して決めたか）, reason: 再調査でも場面まで下りた一次記録が取れず、志の言葉しかない, action: 動機回（型3）を見送り構造回として制作。motive_tag は none（初回判断を維持）}
+  - {claim: 累計調達額, reason: 「379.3億円」「381億円超」と報道により差がある, action: 台本・記事の本文では使わない。データ欄に不採用の理由を注記}
+  - {claim: 2025年9月期の営業損失, reason: 数値が確定できない（検索要約が返した「105億600万円」は経常損失55.0億円と整合せず誤りと判断）, action: 不使用}
+  - {claim: 提携先の個別企業名を台本で使うこと, reason: 会見で公表済みのため伏せる根拠は消えたが、台本の固有名詞は balanced 上限6個, action: 台本では引き続き一般名詞。記事のデータ欄には社名を記載}
+notes: |
+  ・**2026-08-09 に一次資料で再調査を実施。憲法§7-2 の裏取りは完了。**
+    初回は検索要約経由のみで、公募価格・時価総額の基準・1台ごと課金の時制・500社の時点に
+    誤りがあった。詳細は sources/collected.md の「再調査で判明した初回の誤り」を参照
+  ・アンカー＝7月22日の上場（18日前）と7月23日の上場会見（17日前）。ともにトリガ窓31日以内
+  ・台本の数字は5系統以内：①500社 ②業績（64億・48億） ③上場評価（644億） ④2015年 ⑤20以上の国と地域
+  ・売上内訳・協業18社・売上予想84億円・従業員404人・年収1098万円・調達額は note のみ
+  ・個人名は台本に出さない（憲法§3）。note でも「創業者」で統一
+  ・**F05（500社）は2025年7月時点の集計。台本・記事とも時期を明示すること（§4）**
