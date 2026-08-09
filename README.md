@@ -39,7 +39,8 @@ PRを作って           → 提案書が立つ。読んで Merge
 
 台本・note記事・インフォグラフィック・制作データを、日付とタイトルごとにブラウザで見られる静的サイト。
 
-- **見る**：`docs/index.html` をブラウザで開くだけで動く（サーバ不要）。GitHub Pages を使う場合は Settings → Pages で `main` ブランチの `/docs` を指定する
+- **見る**：`docs/index.html` をブラウザで開くだけで動く（サーバ不要）
+- **Web で見る**：main に push すると `.github/workflows/pages.yml` がサイトを作り直して GitHub Pages へ公開する（URL は Actions の実行結果に出る）。**Pages のサイトは URL を知っていれば誰でも読める**ので、未放送の台本を載せたくない期間は Settings → Pages で公開を止める
 - **各回のページ**：インフォグラフィック（図解）／note記事（Markdownコピー付き）／台本（**ワンボタンで ElevenLabs 用にコピー**・概要欄コピー付き）／制作ファイル（brief・事実カード・検査レポート・ドラフト）
 - **再生成**：`python3 scripts/build_site.py`（episodes/ と ledger/ から docs/ を作り直す。plan.md には触れない）
 - **インフォグラフィックの原稿**は `episodes/epNNN/infographic.html`（本文フラグメント）。無い回は facts.yaml から簡易版が自動生成される
