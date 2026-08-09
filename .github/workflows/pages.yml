@@ -3,17 +3,19 @@ name: Deploy archive site to GitHub Pages
 # episodes/ から docs/ を作り直して GitHub Pages へ公開する。
 # main への push で自動実行。Actions タブの "Run workflow" から手動実行もできる。
 #
-# 【最初に一度だけ必要な設定】
-#   Settings → Pages → Build and deployment → Source を「GitHub Actions」にする。
-#   ワークフローからは自動化できない。GITHUB_TOKEN には Pages サイトを新規作成する
-#   権限がなく、configure-pages の enablement: true は public/private いずれでも
-#   "Resource not accessible by integration" で失敗することを確認済み
-#   （run #1 = private / run #4 = public）。
+# 【最初に一度だけ必要な設定】この2つはワークフローからは自動化できない
+#   1. Settings → Pages → Source を「GitHub Actions」にする
+#      （GITHUB_TOKEN に Pages サイトを新規作成する権限がないため。
+#        configure-pages の enablement: true は public/private いずれでも
+#        "Resource not accessible by integration" で失敗する）
+#   2. Settings → Actions → General → Workflow permissions を
+#      「Read and write permissions」にする
+#      （読み取り専用だと下の permissions: の要求が上限に阻まれ、
+#        deploy ジョブがステップを1つも実行せず即失敗する）
 #
-# 【deploy ジョブがステップを実行せず即失敗するとき】
-#   github-pages 環境のデプロイ許可ブランチに main が入っていない可能性がある。
-#   Settings → Environments → github-pages → Deployment branches を確認する。
-#   Pages を有効化した直後は反映待ちのこともあるので、まず再実行を試す。
+# 【それでも deploy が即失敗するとき】
+#   Settings → Environments → github-pages → Deployment branches に
+#   main が含まれているか確認する。
 
 on:
   push:
