@@ -28,7 +28,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: サイトを再生成（episodes/ が唯一の情報源）
         run: python3 scripts/build_site.py
@@ -57,3 +57,12 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # 実行結果の画面に公開URLを大きく出す（毎回ログを掘らなくて済むように）
+      - name: 公開URLを実行サマリに書く
+        run: |
+          {
+            echo "## サイトを公開しました"
+            echo
+            echo "**${{ steps.deployment.outputs.page_url }}**"
+          } >> "$GITHUB_STEP_SUMMARY"
