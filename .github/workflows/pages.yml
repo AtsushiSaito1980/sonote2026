@@ -56,12 +56,12 @@ jobs:
         with:
           path: _site
 
+  # environment: github-pages を宣言すると、この環境のデプロイ許可設定で弾かれた場合に
+  # ジョブがステップを1つも実行せず即失敗し、ログも残らない（run #5〜#7 で観測）。
+  # 宣言を外すとジョブは起動するので、失敗しても deploy-pages のエラーが読める。
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
