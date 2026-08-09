@@ -40,12 +40,11 @@ PRを作って           → 提案書が立つ。読んで Merge
 台本・note記事・インフォグラフィック・制作データを、日付とタイトルごとにブラウザで見られる静的サイト。
 
 - **見る**：`docs/index.html` をブラウザで開くだけで動く（サーバ不要）
-- **Web で見る（GitHub Pages）**：
-  1. **最初に一度だけ** — GitHub のリポジトリ画面で **Settings → Pages → Build and deployment → Source を「GitHub Actions」** に変更する（この操作だけは自動化できない）
-  2. 以降、main に push するたび `.github/workflows/pages.yml` がサイトを作り直して自動公開する。URL は `https://atsushisaito1980.github.io/sonote2026/`
-  3. すぐ公開したいときは Actions タブ →「Deploy archive site to GitHub Pages」→ Run workflow
-  - private リポジトリで Pages を使うには GitHub Pro 以上が必要。Free の場合は Settings → Pages にその旨が表示されるので、リポジトリを public にするかプランを上げる
-  - **Pages のサイトは URL を知っていれば誰でも読める**（閲覧制限つき Pages は Enterprise 限定）。未放送の台本を出したくない期間は Settings → Pages で公開を止める
+- **Web で見る**：<https://atsushisaito1980.github.io/sonote2026/>
+  - main に push するたび `.github/workflows/pages.yml` がサイトを作り直して自動公開する
+  - すぐ反映したいときは Actions タブ →「Deploy archive site to GitHub Pages」→ Run workflow
+  - Pages の設定（Settings → Pages → Source =「GitHub Actions」）は設定済み。作り直すときはこの設定が要る（ワークフローからは自動化できない）
+  - **サイトは URL を知っていれば誰でも読める**（閲覧制限つき Pages は Enterprise 限定）。未放送の台本を出したくない期間は Settings → Pages で公開を止める
 - **各回のページ**：インフォグラフィック（図解）／note記事（Markdownコピー付き）／台本（**ワンボタンで ElevenLabs 用にコピー**・概要欄コピー付き）／制作ファイル（brief・事実カード・検査レポート・ドラフト）
 - **再生成**：`python3 scripts/build_site.py`（episodes/ と ledger/ から docs/ を作り直す。plan.md には触れない）
 - **インフォグラフィックの原稿**は `episodes/epNNN/infographic.html`（本文フラグメント）。無い回は facts.yaml から簡易版が自動生成される
