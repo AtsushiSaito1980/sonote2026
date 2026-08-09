@@ -1,0 +1,21 @@
+# 事実カード（extract-facts出力）
+facts:
+  - {id: F01, who: 花火大会運営, what: 運営課題の実態, value: 9割が運営に課題, when: 2026-08-07報道, source_url: "Business Insider Japan（NewsPicks掲載）", confirmed_by: 1, anchor: true}
+  - {id: F02, who: キリン（晴れ風）, what: 花火大会支援, value: 売上の一部で支援・寄付2.4億円超, when: 2026-08-07報道, source_url: "同上（原典で金額の再確認を推奨）", confirmed_by: 1, anchor: true}
+  - {id: F03, who: キリン（晴れ風）×茅ヶ崎, what: 代替打ち上げ, value: 中止になった他地域の花火を茅ヶ崎で打ち上げ, when: 2026, source_url: "同上", confirmed_by: 1}
+  - {id: F04, who: いたばし花火大会, what: 無料エリアの有料化, value: 野球場等を有料自由席2000円に変更（2026年・会場レイアウト変更）, when: 2026-08-01開催, source_url: "いたばし花火大会 公式サイト（一次）", confirmed_by: 1}
+  - {id: F05, who: 八王子花火大会, what: 初の個人協賛席, value: 陸上競技場を有料化・無料観覧場所を2か所増設, when: 2026-08-01開催, source_url: "多摩ポン（2026-06-30・主催発表ベース）", confirmed_by: 1}
+  - {id: F06, who: 八王子花火大会, what: 有料化の理由, value: 2025年に約9万人来場・観覧集中で安全課題, when: 2025, source_url: "同上（主催者談）", confirmed_by: 1}
+  - {id: F07, who: 鎌倉市観光協会, what: 費用構造の発言, value: 総予算の3分の1が警備費・警備費は前年比25%増・予備日設定で費用1.8倍・警備約1600人, when: 2026-07-10, source_url: "テレビ朝日系（Yahoo!ニュース）", confirmed_by: 1}
+  - {id: F08, who: 花火大会（全国調査）, what: 有料席の普及率, value: 動員10万人以上106大会の約7割が有料化（2023年7-9月調査）, when: 2023調査・2025-08記事, source_url: "サイネックス・マガジン", confirmed_by: 1}
+  - {id: F09, who: 松江水郷祭, what: 費用構造の変化, value: コロナ前比総額+3000万円・警備費約2.6倍・環境整備約1.8倍・火薬等約1.5倍, when: 2023頃, source_url: "サイネックス・マガジン（2025-08）", confirmed_by: 2}
+  - {id: F10, who: 全国, what: 中止状況, value: 2025年7月時点で28会場の中止確定, when: 2025-07, source_url: "hanabeam（2026-03）", confirmed_by: 1}
+  - {id: F11, who: 長岡花火, what: 協賛返礼モデル, value: 2万円協賛でスポンサー席1枚, when: 2026（大会8/2-3）, source_url: "長岡花火情報サイト（2026-05）", confirmed_by: 1}
+  - {id: F12, who: 岡崎市花火大会, what: 協賛席価格, value: マスA協賛38000円・一般51000円（6名）・協賛5.6万円以上で優待, when: 2026-08-01, source_url: "岡崎市公式（一次）", confirmed_by: 1}
+  - {id: F13, who: 全国, what: 有料席の規模感, value: 有料席チケット情報374件（2026年）, when: 2026-08（1週間前更新）, source_url: "ウォーカープラス", confirmed_by: 1}
+quotes:
+  - {id: Q01, speaker: 鎌倉市観光協会 会長, gist: "総予算の3分の1が警備費", source_url: "テレビ朝日系（2026-07）", note: "役職での趣旨再現のみ可。個人名は台本に出さない"}
+notes: |
+  ・アンカー＝BI Japan記事（2日前）。板橋・八王子は「今月頭の大会実施」を時点として扱い、鎌倉は「先月の報道」と口頭明示
+  ・1ヶ月超の背景（F08〜F10）は台本・記事内で時期を明示（「一昨年の調査」「去年の時点で」等）
+  ・数字の台本採用は5系統：2000円／警備3分の1（『』内）／約7割／約9万人／2.4億円。25%増・1.8倍・1600人・374件・協賛価格はnoteのみ

@@ -1,0 +1,22 @@
+# 事実カード（extract-facts出力）
+facts:
+  - {id: F01, who: GCLペロブスカイト（中国大手GCL傘下）, what: 日本市場参入, value: タンデム型の量産販売を2026年7月めどに開始予定, when: 2026-07, source_url: "ニュースイッチ（日刊工業）／Japan Energy Times 6/2／solar-mate 5/27", confirmed_by: 3, anchor: true}
+  - {id: F02, who: 積水化学, what: SOLAFIL事業開始, value: 2026年3月27日・フィルム型・まず金属屋根向け年産10MW規模, when: 2026-03, source_url: "積水化学 公式（一次）／unieco", confirmed_by: 2}
+  - {id: F03, who: SOLAFIL, what: 最初の納入先, value: 環境省「社会実装モデル創出支援事業」採択のさいたま市・滋賀県・西日本高速道路・福岡県・福岡市, when: 2026, source_url: "unieco（12/18・詳細解説）", confirmed_by: 1}
+  - {id: F04, who: SOLAFIL, what: 現行性能, value: 変換効率15%（目標20%）・耐用年数10年（目標20年）, when: 2026, source_url: "unieco", confirmed_by: 1}
+  - {id: F05, who: 積水化学, what: 量産計画, value: 堺のシャープ本社工場棟を250億円で取得。2027年度100MW・2030年度GW級, when: 2024-12発表, source_url: "PVeye／公式リリース", confirmed_by: 2}
+  - {id: F06, who: 積水ソーラーフィルム, what: 事業会社, value: 2025年1月設立（積水86%・日本政策投資銀行14%）, when: 2025-01, source_url: "SOLAR JOURNAL", confirmed_by: 1}
+  - {id: F07, who: 実証設置, what: 場所の多様性, value: 学校体育館屋根・風車タワー・神戸空港・水田（営農型・国内初）・駅ホーム屋根（国内初）・銀行店舗・データセンター壁面（16棟へ拡大計画）, when: 2024〜2026, source_url: "積水化学 公式ニュース一覧（一次）／sgforum／enemanex", confirmed_by: 2}
+  - {id: F08, who: 積水化学, what: 課題認識, value: 都市部は設置場所と建物荷重の制約が大きく従来パネルでは普及に限界, when: 2025, source_url: "sgforum（積水化学の説明）", confirmed_by: 1}
+  - {id: F09, who: 宮坂力 教授（桐蔭横浜大）, what: 発明, value: 2009年に世界初のペロブスカイト太陽電池を発表。ノーベル賞候補, when: 2009, source_url: "日本化学会／JST／経産省資源エネ庁（関西電力コラム経由）／日経", confirmed_by: 4}
+  - {id: F10, who: 宮坂研究室, what: 発明の場面, value: 他大学から来た大学院生の発案で共同研究。2008年論文の効率は4%。「10%を超えると研究者がこぞって追試するが4%では注目されない」（本人談趣旨）, when: 2008-2009, source_url: "日経クロステック 宮坂氏インタビュー", confirmed_by: 1}
+  - {id: F11, who: ヨウ素, what: 主要原料の国産性, value: 千葉県が日本の約80%を産出・日本は世界シェア約30%（世界2位）, when: 2025, source_url: "経産省資料（Japan Energy Times経由）／ソーラーパートナーズ", confirmed_by: 2}
+  - {id: F12, who: 制度, what: 追い風, value: 2026年度から年間1500kL以上のエネルギー使用企業に太陽光導入目標を義務化。軽量型ニーズ増、経産省は設置困難ケースへの新型活用に言及, when: 2026年度, source_url: "関西電力 法人向けコラム", confirmed_by: 1}
+  - {id: F13, who: 政府, what: 長期目標, value: 次世代型太陽電池戦略（2024年11月）で2040年に20GW導入, when: 2040目標, source_url: "関西電力コラム／bright-co", confirmed_by: 2}
+  - {id: F14, who: シリコン太陽電池, what: competitive背景, value: 中国勢の大量生産でコスト圧倒・サプライチェーンは中国依存。フィルム型は日本が先行, when: 継続, source_url: "Japan Energy Times／solar-mate系解説", confirmed_by: 2}
+quotes:
+  - {id: Q01, speaker: 宮坂力 教授, gist: "効率が10%を超えると世界中の研究者がこぞって追試を行うが、4%ではそれほど注目されない", source_url: "日経クロステック（本人インタビュー）", note: "趣旨再現のみ"}
+notes: |
+  ・アンカー＝GCLの7月参入（出来事が窓内。報道4〜6月のため、台本では「今月をめどに始める予定と報じられている」と伝聞・予定で表現）
+  ・数字の台本採用は4系統：4%／15%／ヨウ素系（千葉8割・世界3割）／250億円。量産MW・寿命10年・20GW・1500kLはnoteのみ
+  ・SOLAFIL事業開始（3月）は「今年の三月」と時期明示。発明2009年は「十七年前」で時期明示

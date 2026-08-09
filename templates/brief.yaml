@@ -1,0 +1,28 @@
+# episodes/<id>/brief.yaml — 人間が書く唯一の入力
+episode_id: ep000
+host: tokura                # tokura | misaki（前日と交互）
+episode_type: T1            # library/episode_types.md
+format: 型1 一本深掘り型     # 型1 | 型2 小ネタ＋本命 | 型3 人物深掘り（動機回）
+series: ""                  # 例: analog_gyakushu
+duration_min: 5             # 標準5。拡大版18は指定時のみ
+mode: real                  # real | fictional
+density: balanced           # balanced（既定）| dense | narrative（動機回）
+
+anchor:                     # トリガ。1ヶ月以内・推定日は不可
+  headline: ""
+  published: 2026-00-00
+  source_url: ""
+sub_triggers: []            # 複数トピック回は各トピックにトリガを紐づける
+
+case_name: ""
+operation_tags: [OP00]      # 1つ。掛け算回のみ2つ
+motive_tag: none            # 動機回は必須（MO1〜MO7）
+tailwind_tag: none          # TW1〜TW5。向かい風も同タグ
+
+hook: ""                    # つかみ（数字 or 場面）
+lesson_draft: ""            # 教訓＝条件＋動作の原則形（警句にしない）
+homework_draft: ""          # 宿題（動詞終わり）
+opposition: ""              # 反対・制約の記録（動機回は必須）
+notes: ""
+
+# 数字・発言はここに書かない。sources/ に素材を置き、extract-facts に facts.yaml を作らせる

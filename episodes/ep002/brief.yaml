@@ -1,0 +1,20 @@
+episode_id: ep002
+host: misaki                # 編成表#10相当（記事を先行制作。台本は未着手）
+episode_type: T1
+series: ""
+duration_min: 5
+mode: real
+density: dense              # v3.1新設。情報主体
+anchor:                     # 起点情報（制作日2026-08-08から1ヶ月以内）
+  headline: "カスハラ対策義務化（2026年10月1日施行）への企業対応解説・対策サービス動向"
+  published: 2026-07-20     # 相対日付表示（2〜3週間前）からの推定。施行80日前の駆け込み期
+  source_url: "NEWS DAILY（2026/7）／パーソルビジネスプロセスデザイン コラム（2026/7）"
+case_name: "カスハラ対策義務化が生む市場"
+operation_tags: [OP11]      # 乗る
+motive_tag: none            # 構造特集。個人の動機は扱わない
+tailwind_tag: TW1           # 制度・追い風（義務化）
+hook: "2026年10月1日、労働者を1人でも雇う全事業主に同じ宿題が発生する"
+lesson_draft: "施行日は、開店日。"
+homework_draft: "業界に関わる施行待ちの法令・指針・条例を3つ書き出し、施行日を並べる"
+opposition: "—（構造特集のため人物の制約描写なし）"
+notes: "v3.1初適用。note専用記事のみ先行制作"

@@ -1,0 +1,22 @@
+# 事実カード（extract-facts出力）
+facts:
+  - {id: F01, who: ヘラルボニー×和光, what: 特別企画展, value: "Wako Sustainability Month GOOD LOOP 2026・8月6日開幕", when: 2026-08-06, source_url: "heralbony.jp（公式・一次）", confirmed_by: 1, anchor: true}
+  - {id: F02, who: ヘラルボニー, what: 事業規模, value: 国内外の主に知的障害のある作家153名・2000点以上をライセンス管理, when: 2026, source_url: "heralbony.jp（公式・一次）", confirmed_by: 1}
+  - {id: F03, who: ヘラルボニー, what: 事業モデル, value: アートデータで企業の取り組みをプロデュース→報酬→収益の一部を作品使用料として作家へ, when: 継続, source_url: "heralbony.jp（公式・一次）", confirmed_by: 1}
+  - {id: F04, who: 松田崇弥・文登, what: 創業体制, value: 双子で設立。崇弥=企画会社出身（クリエイティブ統括・東京）、文登=ゼネコンで被災地再建に従事（国内統括・岩手）, when: 2018創業, source_url: "heralbony.jp ABOUT（一次）", confirmed_by: 2}
+  - {id: F05, who: 社名の由来, what: ヘラルボニー, value: 4歳上の兄・翔太さんが小学校時代に記していた謎の言葉, when: —, source_url: "heralbony.jp ABOUT（一次）", confirmed_by: 2}
+  - {id: F06, who: 創業の原点, what: 動機, value: 障害のある兄への偏見を正したいという思い, when: —, source_url: "日本政策金融公庫「日本公庫つなぐ」紹介", confirmed_by: 2}
+  - {id: F07, who: 松田崇弥, what: 動機の場面, value: 母・兄と初訪問した「るんびにい美術館」（岩手・花巻）で作品に衝撃。出るやいなや文登へ電話『ここ、超ヤバいって！』, when: 創業前, source_url: "heralbony.jp「ヘラルボニー100年史 EPISODE:00」（公式・一次）", confirmed_by: 1}
+  - {id: F08, who: 業界慣行, what: 反対・制約, value: 発注側の手心・慈善文脈での購買が多かった中で「市場で勝負できる形」に落とし込む挑戦, when: —, source_url: "PERSOL はたらくWell-being AWARDS 2023 審査コメント", confirmed_by: 1}
+  - {id: F09, who: 松田文登, what: 価値観の言葉, value: 「異彩作家の作品なくしては、われわれが食べていけない、という逆の価値観を社会に提示したい」趣旨, when: 2026-01, source_url: "nippon.com（2026年1月）", confirmed_by: 1}
+  - {id: F10, who: ヘラルボニー, what: 受賞・評価, value: 第75回芸術選奨（芸術振興部門）文部科学大臣新人賞（兄弟で受賞）・Forbes JAPAN選出・著書『異彩を、放て。』, when: 2025頃, source_url: "heralbony.jp ABOUT（一次）", confirmed_by: 1}
+  - {id: F11, who: HERALBONY Art Prize 2026, what: 国際賞, value: 3回目。77の国と地域から1342名・2943作品の応募。東京建物がプレゼンティングパートナー, when: 2026-05〜06, source_url: "heralbony.jp（公式・一次）", confirmed_by: 1}
+  - {id: F12, who: ヘラルボニー, what: 海外展開, value: 2025年10月パリ・ファッションウィーク参加（アンリアレイジ2026SSコラボ）, when: 2025-10, source_url: "GOETHE（2026年2月）", confirmed_by: 1}
+quotes:
+  - {id: Q01, speaker: 松田崇弥（→文登への電話）, gist: "ここ、超ヤバいって！", source_url: "公式100年史 EPISODE:00", note: "公式社史掲載の本人発言・9字。事実の再現として使用可"}
+  - {id: Q02, speaker: 松田文登, gist: "異彩作家の作品なくしては、われわれが食べていけない、という逆の価値観を社会に提示したい", source_url: "nippon.com 2026-01", note: "趣旨再現のみ"}
+notes: |
+  ・アンカー＝和光展の開幕（8/6・3日前）。7月のPR TIMES発信群が副トリガ
+  ・台本の数字は3系統以内：事業規模系（153名・2000点）を軸に。Art Prize（77・1342・2943）はnoteのみ
+  ・兄・翔太さんは台本では「四歳上のお兄さん」（続柄）で扱う。障害の記載は公式・公庫の表現に準拠
+  ・創業年（2018）は複数報道で周知だが、台本では年数を使わず「双子で会社を作った」で運ぶ
