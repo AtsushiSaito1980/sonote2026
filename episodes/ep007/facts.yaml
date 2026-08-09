@@ -1,0 +1,30 @@
+# 事実カード（extract-facts出力）
+# verify: high = 台本/記事に採用した数字のうち、公開前の一次資料確認が必須のもの
+facts:
+  - {id: F01, who: ティアフォー, what: 新規上場, value: 2026年7月22日・東証グロース市場（コード593A）, when: 2026-07-22, source_url: "JPX新規上場会社情報／同社公式リリース／各紙報道", confirmed_by: 4, anchor: true, verify: high}
+  - {id: F02, who: ティアフォー, what: 上場時の市場評価, value: 公募価格1050円に対し初値1009円（公募割れ）。時価総額644億7700万円, when: 2026-07-22, source_url: "各紙報道（株探・IPO系媒体・ビジネス媒体）", confirmed_by: 3, verify: high}
+  - {id: F03, who: ティアフォー, what: 設立と出自, value: 2015年12月設立。大学の研究室で開発された自動運転ソフトが土台。本社は東京都品川区, when: 2015-12, source_url: "同社公式／JPX上場資料／複数報道", confirmed_by: 4}
+  - {id: F04, who: Autoware, what: オープンソース公開, value: 2015年8月に公開。以後、無償で誰でも使える, when: 2015-08, source_url: "同社公式（Autoware10周年記事）／複数報道", confirmed_by: 3}
+  - {id: F05, who: Autoware, what: 採用の広がり, value: 世界500社以上が採用。20以上の国と地域、30車種以上での実験, when: 2025〜2026, source_url: "同社公式／Autoware Foundation／複数報道", confirmed_by: 3, verify: high}
+  - {id: F06, who: Autoware Foundation, what: 業界団体の設立, value: 2018年12月設立。自動運転で世界初の国際業界団体。デファクト標準化を掲げる, when: 2018-12, source_url: "同財団公式／複数報道", confirmed_by: 2}
+  - {id: F07, who: ティアフォー, what: 収益モデル, value: Autoware本体では課金せず、車両搭載・クラウド開発基盤・参照設計を商品化, when: 継続, source_url: "上場資料（事業計画及び成長可能性に関する事項）／上場会見報道", confirmed_by: 3}
+  - {id: F08, who: ティアフォー, what: 収益の流れ, value: 量産前の専用開発で一時収入→ハードウェア販売→量産開始後は車両1台ごとのライセンス料・ロイヤルティ, when: 継続, source_url: "上場会見報道（複数媒体）", confirmed_by: 2, verify: high}
+  - {id: F09, who: ティアフォー, what: 2025年9月期の業績, value: 売上高64.1億円（前期比65.6%増）・経常損失55.0億円・純損失48億円, when: 2025-09期, source_url: "有価証券届出書／上場に伴う決算情報／複数報道", confirmed_by: 3, verify: high}
+  - {id: F10, who: ティアフォー, what: 資金の状況, value: 累計調達額379.3億円。手元現金69億円。今回の吸収金額 約250億円, when: 2026, source_url: "上場関連報道／スタートアップ情報データベース", confirmed_by: 2, verify: high}
+  - {id: F11, who: ティアフォー, what: 組織規模, value: 従業員404人（2026年5月末・単体）・平均年齢37.7歳・平均年間給与1098万2千円, when: 2026-05, source_url: "有価証券届出書ベースの報道", confirmed_by: 2}
+  - {id: F12, who: 上場会見, what: 戦略の説明, value: Linux・Android等を引き合いに、オープンソースが産業変革を起こしてきたと説明。国内大手と量産化を推進, when: 2026-07-23, source_url: "上場会見報道（複数媒体）", confirmed_by: 3, anchor: true}
+  - {id: F13, who: 上場会見, what: 次の一手, value: ソフト以外に車載半導体の研究開発も進め、将来は半導体チップ設計のオープンソース化も視野, when: 2026-07-23, source_url: "上場会見報道（技術媒体）", confirmed_by: 2}
+  - {id: F14, who: 自動車業界, what: 前提となる構造, value: 開発から生産・販売までを大手が一手に担う垂直統合型のクローズドな構造, when: 継続, source_url: "創業者インタビュー記事（複数）", confirmed_by: 2}
+quotes:
+  - {id: Q01, speaker: 創業者（代表取締役CEO）, gist: "日本のスタートアップがシリコンバレーの大企業に勝つ方法は、オープンソースしかない", source_url: "創業者インタビュー記事（要約経由）", note: "趣旨再現のみ。個人名は台本に出さない（役職で扱う）"}
+  - {id: Q02, speaker: 同上, gist: "目指すのは技術の民主化。独占ではなく開放", source_url: "同上", note: "趣旨再現のみ。台本では地の文に溶かす"}
+rejected:
+  - {claim: 動機の場面（いつ・どこで・誰に対して決めたか）, reason: 場面まで下りた一次記録が取れず、要約経由の志の言葉しかない, action: 動機回（型3）を見送り構造回として制作。motive_tag は none}
+  - {claim: 提携先の個別企業名, reason: 上場会見報道の要約経由で、提携の範囲・段階が確認できない, action: 台本・記事とも社名を出さず「国内の大手メーカー」等の一般名詞で扱う}
+notes: |
+  ・アンカー＝7月22日の上場（18日前）と7月23日の上場会見（17日前）。ともにトリガ窓31日以内
+  ・**本エピソードの数字はすべて要約経由**。制作環境から一次資料へ直接アクセスできないため、
+    憲法§7-2の裏取りは未了。verify: high の6件は公開前に必ず原典で確認すること
+  ・台本の数字は5系統以内：①500社 ②業績（64億・48億） ③上場評価（644億） ④2015年 ⑤20以上の国と地域
+  ・累計調達379.3億円・従業員404人・年収1098万円は note のみ
+  ・個人名は台本に出さない（憲法§3）。note では役職＋文脈で扱い、個人名は避ける
