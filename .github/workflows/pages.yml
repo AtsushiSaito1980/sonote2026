@@ -9,6 +9,11 @@ name: Deploy archive site to GitHub Pages
 #   権限がなく、configure-pages の enablement: true は public/private いずれでも
 #   "Resource not accessible by integration" で失敗することを確認済み
 #   （run #1 = private / run #4 = public）。
+#
+# 【deploy ジョブがステップを実行せず即失敗するとき】
+#   github-pages 環境のデプロイ許可ブランチに main が入っていない可能性がある。
+#   Settings → Environments → github-pages → Deployment branches を確認する。
+#   Pages を有効化した直後は反映待ちのこともあるので、まず再実行を試す。
 
 on:
   push:
