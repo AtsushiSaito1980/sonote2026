@@ -1,0 +1,25 @@
+# note の公開URLと、記事どうしの関連
+#
+# 目的：9本たまっても、1本読んだ人が2本目へ行く導線が無かった。
+#       note はマガジンと記事間リンクが効く媒体なので、そこを埋める。
+#
+# 使い方：
+#   - url … note に公開したらURLを書き足す。空のあいだは「（未公開）」と表示される
+#   - related … 関連が近い順に2本。エピソードIDで書く
+#   - magazine … 入れるマガジン名。note 側で先に作っておく
+#
+# 記事末尾の「あわせて読む」は、この表から自動で組み立てられる（build_site.py）。
+# article.md には書かない。URLは後から変わるため。
+
+magazine: その手があったか
+
+entries:
+  - {ep: ep001, url: "", related: "ep006;ep003"}
+  - {ep: ep002, url: "", related: "ep006;ep004"}
+  - {ep: ep003, url: "", related: "ep008;ep004"}
+  - {ep: ep004, url: "", related: "ep009;ep002"}
+  - {ep: ep005, url: "", related: "ep001;ep008"}
+  - {ep: ep006, url: "", related: "ep002;ep001"}
+  - {ep: ep007, url: "", related: "ep009;ep005"}
+  - {ep: ep008, url: "", related: "ep003;ep009"}
+  - {ep: ep009, url: "", related: "ep007;ep004"}

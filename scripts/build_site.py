@@ -275,6 +275,42 @@ def article_tables(md: str) -> list:
     return out
 
 
+def load_note_links() -> dict:
+    """ledger/note_links.yaml → {'magazine': str, 'entries': {ep: {...}}}"""
+    text = read(ROOT / "ledger" / "note_links.yaml")
+    mag = ""
+    m = re.search(r"^magazine:\s*(.+)$", text, re.M)
+    if m:
+        mag = m.group(1).strip().strip('"')
+    entries = {}
+    for raw in text.splitlines():
+        mm = re.match(r"^\s*-\s*(\{.*\})\s*$", raw)
+        if mm:
+            d = parse_flow_map(mm.group(1))
+            if d.get("ep"):
+                entries[d["ep"]] = d
+    return {"magazine": mag, "entries": entries}
+
+
+def related_md(ep: str, links: dict, titles: dict) -> str:
+    """記事末尾の「あわせて読む」。URLは公開後に note_links.yaml へ書き足す"""
+    e = links["entries"].get(ep)
+    if not e or not e.get("related"):
+        return ""
+    rows = []
+    for rid in [x.strip() for x in e["related"].split(";") if x.strip()]:
+        title = titles.get(rid)
+        if not title:
+            continue
+        url = (links["entries"].get(rid) or {}).get("url", "")
+        rows.append(f"- [{title}]({url})" if url else f"- {title}（未公開）")
+    if not rows:
+        return ""
+    mag = links.get("magazine")
+    tail = f"\n\nマガジン「{mag}」に、これまでの記事をまとめています。" if mag else ""
+    return "\n\n---\n\n### あわせて読む\n\n" + "\n".join(rows) + tail
+
+
 def note_body_md(md: str, ep: str) -> str:
     """note に貼る本文（Markdown）。H1 はタイトル欄へ回すので外し、表は画像の目印に置き換える"""
     m = re.search(r"^#\s+.+?$", md, re.M)
@@ -522,7 +558,7 @@ def build_script_page(meta, ep_dir):
     return page("../", f'{meta["ep"]} 台本 — その手があったか', body)
 
 
-def build_article_page(meta, ep_dir):
+def build_article_page(meta, ep_dir, links=None, titles=None):
     md = read(ep_dir / "article.md")
     if not md:
         inner = '<p class="empty">article.md がまだありません。</p>'
@@ -533,7 +569,9 @@ def build_article_page(meta, ep_dir):
         m = re.search(r"^#\s+(.+?)\s*$", md, re.M)
         title = m.group(1).strip() if m else ""
         n_tbl = len(article_tables(md))
-        body_md = note_body_md(md, meta["ep"])
+        # 「あわせて読む」は貼り付け用の本文にだけ足す（正本の article.md には書かない）
+        rel = related_md(meta["ep"], links, titles) if links and titles else ""
+        body_md = note_body_md(md, meta["ep"]) + rel
         src = (copy_source("src-article", body_md)
                + copy_source("src-title", title)
                + copy_source("src-plain", md_to_plain(body_md))
@@ -1008,11 +1046,20 @@ def main():
     (OUT / "assets" / "site.css").write_text(SITE_CSS, encoding="utf-8")
     (OUT / "assets" / "site.js").write_text(SITE_JS, encoding="utf-8")
 
+    # note の公開URLと記事間の関連。記事末尾の「あわせて読む」に使う
+    note_links = load_note_links()
+    note_titles = {}
+    for meta in metas:
+        m = re.search(r"^#\s+(.+?)\s*$", read(meta["dir"] / "article.md"), re.M)
+        if m:
+            note_titles[meta["ep"]] = m.group(1).strip()
+
     for meta in metas:
         out_dir = OUT / meta["ep"]
         out_dir.mkdir(exist_ok=True)
         (out_dir / "infographic.html").write_text(build_infographic_page(meta, meta["dir"]), encoding="utf-8")
-        (out_dir / "article.html").write_text(build_article_page(meta, meta["dir"]), encoding="utf-8")
+        (out_dir / "article.html").write_text(
+            build_article_page(meta, meta["dir"], note_links, note_titles), encoding="utf-8")
         (out_dir / "script.html").write_text(build_script_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "figures.html").write_text(build_figures_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "files.html").write_text(build_files_page(meta, meta["dir"]), encoding="utf-8")
@@ -1432,6 +1479,20 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
   flex-wrap: wrap; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);
   font-size: 10.5px; color: var(--muted); }
 .fig-foot b { font-weight: 700; color: var(--ink-2); letter-spacing: .02em; }
+
+/* 見出し画像：note の推奨 1280×670（1.91:1）。2倍で撮るので実寸は 640×335 */
+.cover-wrap { overflow-x: auto; margin: 18px 0; }
+.fig.cover { width: 640px; height: 335px; margin: 0; padding: 30px 34px;
+  display: flex; flex-direction: column; justify-content: space-between; }
+.fig.cover .cv-lesson { font-size: 27px; font-weight: 800; line-height: 1.5;
+  letter-spacing: -.02em; margin-top: 6px; }
+.fig.cover .cv-title { font-size: 13.5px; color: var(--ink-2); line-height: 1.7; margin-top: 10px; }
+.fig.cover .cv-stat { display: flex; align-items: baseline; gap: 9px; margin-top: 12px; }
+.fig.cover .cv-n { font-size: 34px; font-weight: 800; line-height: 1; color: var(--accent);
+  letter-spacing: -.02em; }
+.fig.cover .cv-n small { font-size: 15px; font-weight: 700; }
+.fig.cover .cv-cap { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.fig.cover .fig-foot { margin-top: 0; }
 
 /* 書き出し済み PNG のダウンロード欄 */
 .dl-shelf { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
