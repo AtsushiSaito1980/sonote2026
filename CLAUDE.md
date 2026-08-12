@@ -61,6 +61,9 @@
   4. review-episode  scripts/check.py 実行 → review.md（FAILなら3へ差し戻し・最大2周）
   5. tts-format      draft+dictionary → script_tts.txt
   6. write-article   brief+facts → article.md + shownotes.md → 再レビュー
+  7. write-infographic facts+article → infographic.html（省略不可）
+  8. build_site.py   docs/ を再生成（出力が「自動」なら7が漏れている）
+（人間が選ばなかった候補は ledger/backlog.yaml へ書き戻す）
 ```
 
 ## 6. 数値ゲートは必ずスクリプトで

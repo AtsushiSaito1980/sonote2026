@@ -337,6 +337,67 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
 .ig-quote .steps strong { color: var(--ink); }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
-.ig svg.icon { width: 20px; height: 20px; stroke: var(--accent); fill: none;
-  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -4px; }
 .ig .compare th:first-child, .ig .compare td:first-child { white-space: nowrap; font-weight: 700; }
+
+/* ---- アイコン（インラインSVG・線画） ---- */
+.ig svg.icon { width: 1.15em; height: 1.15em; stroke: currentColor; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  vertical-align: -0.2em; flex: none; }
+.ig-section > h2 .ico { flex: none; width: 23px; height: 23px; border-radius: 7px;
+  background: color-mix(in srgb, var(--accent) 13%, transparent); color: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center; }
+.ig-section > h2 .ico svg.icon { width: 15px; height: 15px; vertical-align: 0; }
+
+/* ---- シーケンス図（やり取りの順番） ---- */
+.seq { list-style: none; margin: 14px 0; padding: 0; display: grid; gap: 8px;
+  counter-reset: seq; }
+.seq-step { display: grid; grid-template-columns: 26px 1fr; gap: 11px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 13px;
+  padding: 12px 14px; position: relative; }
+.seq-step::before { counter-increment: seq; content: counter(seq);
+  grid-column: 1; grid-row: 1;
+  width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+/* 本文は必ず2列目に置く（放っておくと1列目26pxに落ちて縦書きになる） */
+.seq-step > * { grid-column: 2; min-width: 0; }
+.seq-step.back::before { background: var(--accent-2); }
+.seq-step.back { border-color: color-mix(in srgb, var(--accent-2) 35%, transparent); }
+.seq-pair { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.seq-a { font-size: 12.5px; font-weight: 700; border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  border-radius: 8px; padding: 3px 10px; display: inline-flex; align-items: center; gap: 5px; }
+.seq-ar { color: var(--accent); font-weight: 800; font-size: 15px; }
+.seq-step.back .seq-ar { color: var(--accent-2); }
+.seq-do { font-size: 13px; color: var(--ink-2); line-height: 1.8; margin-top: 5px; }
+.seq-do strong { color: var(--ink); }
+.seq-note { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+
+/* ---- 層の図（ブロック図） ---- */
+.layers { display: grid; gap: 3px; margin: 14px 0; }
+.layer { display: grid; grid-template-columns: minmax(96px, 150px) 1fr; gap: 12px;
+  align-items: center; background: var(--surface); border: 1px solid var(--border);
+  padding: 12px 15px; }
+.layer:first-child { border-radius: 13px 13px 4px 4px; }
+.layer:last-child { border-radius: 4px 4px 13px 13px; }
+.layer.hl { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.ly-label { font-size: 12px; font-weight: 800; color: var(--accent); line-height: 1.5; }
+.layer.dim .ly-label { color: var(--muted); }
+.ly-body { font-size: 13px; line-height: 1.75; }
+.ly-body small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+@media (max-width: 560px) { .layer { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ---- リング（比率をひとつだけ見せる） ---- */
+.ring-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px 18px; margin: 14px 0; }
+.ring { flex: none; width: 108px; height: 108px; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .track { fill: none; stroke: color-mix(in srgb, var(--ink) 8%, transparent); stroke-width: 12; }
+.ring .arc { fill: none; stroke: var(--accent); stroke-width: 12; stroke-linecap: round; }
+.ring .rv { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; }
+.ring .rv b { font-size: 22px; font-weight: 800; line-height: 1; }
+.ring .rv span { font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+.ring-txt { flex: 1 1 210px; font-size: 13px; line-height: 1.85; color: var(--ink-2); }
+.ring-txt strong { color: var(--ink); }

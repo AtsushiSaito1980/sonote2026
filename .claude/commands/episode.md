@@ -21,8 +21,14 @@ argument-hint: <episode_id>
    - FAIL → 3へ差し戻し（最大2周、それで通らなければ人間へ）
 5. **tts-format** → `script_tts.txt`
 6. **write-article** → `article.md` ＋ `shownotes.md` → 再度 review
+7. **write-infographic** → `infographic.html`（**省略不可**）
+   - 書かないとサイトが `facts.yaml` からの簡易ビューに落ちる
+   - 数値は事実カードにあるものだけ。図の種類は内容で選ぶ
+8. **サイト再生成** → `python3 scripts/build_site.py`
+   - 出力の `[インフォグラフィック: 手作り]` を確認する。`自動` なら7が漏れている
 
 ## 完了後の報告
 - 検算結果のサマリ（PASSした項目数・要判断の判断根拠）
 - **人間がやること**：単独出典の裏取り／TTS通し聴取／制作日依存の表現の確認
 - `ledger/episodes_log.csv` に1行追記する
+- 巡回で選ばれなかった候補を `ledger/backlog.yaml` に書き戻す（`/patrol` の手順4）

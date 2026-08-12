@@ -191,6 +191,33 @@ def check_meta(ep: Path):
     return density, duration_min
 
 
+def check_infographic(ep: Path):
+    p = ep / "infographic.html"
+    if not p.exists():
+        add(NG, "infographic.html", "見つかりません（サイトが facts.yaml の簡易ビューに落ちます）")
+        return
+    h = p.read_text(encoding="utf-8")
+    add(OK if "ig-hero" in h else NG, "きょうの手ブロック",
+        "あり" if "ig-hero" in h else "ig-hero がありません")
+    n_sec = h.count('class="ig-section"')
+    add(OK if n_sec >= 5 else WARN, "セクション数", f"{n_sec}（5分回で5〜7、拡大版で8程度）")
+    add(OK if "ig-quote" in h else NG, "締めのカード",
+        "あり" if "ig-quote" in h else "ig-quote がありません")
+
+    # フラグメントであること（build_site.py が包むので土台のタグは書かない）
+    bad = [t for t in ("<html", "<head", "<body", "<!DOCTYPE") if t.lower() in h.lower()]
+    add(OK if not bad else NG, "フラグメント形式", f"{bad} が混入" if bad else "土台のタグなし")
+
+    # 図の種類。同じ部品ばかりだと構造を捉えきれていない疑い
+    parts = {"統計タイル": "stat-grid", "反転の対比": "flip-row", "フロー図": "fnode",
+             "シーケンス図": "seq-step", "層の図": "layer ", "リング": "ring-row",
+             "バーチャート": "bar-row", "比率バー": "prop", "タイムライン": "vtl-item",
+             "要点カード": "point-cards", "比較表": "compare", "アイコン": "svg class=\"icon\""}
+    used = [k for k, v in parts.items() if v in h]
+    add(OK if len(used) >= 4 else WARN, "図の種類",
+        f"{len(used)}種: {'/'.join(used)}（4種以上が目安）")
+
+
 def check_ledger(ep: Path):
     led = Path("ledger/episodes_log.csv")
     if not led.exists():
@@ -214,6 +241,7 @@ def main():
     check_script(ep, lim, density, duration_min)
     check_tts(ep, lim)
     check_article(ep)
+    check_infographic(ep)
     check_ledger(ep)
 
     print(f"\n=== {ep.name} 検算結果 ===\n")
