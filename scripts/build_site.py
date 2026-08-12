@@ -194,6 +194,28 @@ def parse_facts(text: str) -> dict:
     return out
 
 
+def parse_backlog(text: str) -> list:
+    """ledger/backlog.yaml → [dict]（facts.yaml と同じフロー記法）"""
+    out = []
+    for raw in text.splitlines():
+        m = re.match(r"^\s*-\s*(\{.*\})\s*$", raw)
+        if m:
+            out.append(parse_flow_map(m.group(1)))
+    return out
+
+
+# 見送り理由。順序＝表示順（復活の見込みが高いものから）
+BACKLOG_STATUS = [
+    ("trigger_wait",  "トリガ待ち",   "wait",    "手は立つ。窓内の発表がまだ無い"),
+    ("trigger_stale", "鮮度切れ",     "stale",   "トリガはあったが31日の窓を外れた"),
+    ("overlap",       "直近と被る",   "overlap", "手・業界が直近5回と重なる"),
+    ("unverifiable",  "裏取り不能",   "unver",   "一次資料に到達できない"),
+    ("hand_weak",     "手が立たない", "weak",    "現象ではあるが商売の手に落ちない"),
+    ("used",          "別回で消化",   "used",    "他の回に組み込んだ"),
+    ("dropped",       "見送り確定",   "dropped", "復活の見込みなし"),
+]
+
+
 # ---------------------------------------------------------------- Markdown ミニレンダラ
 
 BOLD = re.compile(r"\*\*(.+?)\*\*")
@@ -345,6 +367,7 @@ def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
 <header class="site">
   <div class="brand"><a href="{rel}index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
   <div class="site-nav">
+    <a href="{rel}backlog.html" class="nav-link{' on' if active_nav == 'backlog' else ''}">ボツネタ棚</a>
     <a href="{rel}ledger.html" class="nav-link{' on' if active_nav == 'ledger' else ''}">台帳</a>
     <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
   </div>
@@ -636,14 +659,18 @@ def build_index(metas, waits):
 
     wait_html = ""
     if waits:
+        live = [w for w in waits if w.get("status") not in ("used", "dropped")]
+        preview = [w for w in waits if w.get("status") == "trigger_wait"][:3]
         items = "".join(
             f'<li><strong>{esc(w.get("title", ""))}</strong>'
-            f'<span class="src-note">{esc(w.get("case_names", ""))}／{esc(w.get("trigger_date", ""))}</span></li>'
-            for w in waits)
+            f'<span class="src-note">{esc(w.get("case_names", ""))}</span></li>'
+            for w in preview)
         wait_html = f"""
 <section class="wait-sec">
-  <h2>寝かせ中のネタ（トリガ待ち）</h2>
+  <h2>ボツネタ棚</h2>
+  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ。見送った理由と、いつ復活できるかを添えて {len(live)} 件寝かせています。</p>
   <ul class="wait-list">{items}</ul>
+  <p><a class="btn" href="backlog.html" style="display:inline-block;padding:8px 18px">ボツネタ棚をぜんぶ見る →</a></p>
 </section>"""
 
     latest = max((m["date"] for m in metas if m["date"]), default=None)
@@ -679,6 +706,71 @@ def build_ledger_page(rows, header):
 <div class="table-scroll"><table>{f"<thead><tr>{ths}</tr></thead>"}<tbody>{"".join(trs)}</tbody></table></div>
 """
     return page("", "台帳 — その手があったか", body, active_nav="ledger")
+
+
+def build_backlog_page(entries, tag_names):
+    by_status = {}
+    for e in entries:
+        by_status.setdefault(e.get("status", "dropped"), []).append(e)
+
+    counts = "".join(
+        f'<span class="bl-count {cls}"><b>{len(by_status[key])}</b>{esc(label)}</span>'
+        for key, label, cls, _ in BACKLOG_STATUS if by_status.get(key))
+
+    sections = []
+    for key, label, cls, blurb in BACKLOG_STATUS:
+        group = by_status.get(key)
+        if not group:
+            continue
+        cards = []
+        for e in group:
+            chips = (tag_chips(e.get("hand", ""), "hand", tag_names)
+                     + tag_chips(e.get("motive", ""), "motive", tag_names)
+                     + tag_chips(e.get("tailwind", ""), "tailwind", tag_names))
+            chip_html = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in chips)
+            rows = []
+            if e.get("case_names"):
+                rows.append(("題材", esc(e["case_names"].replace(";", "／"))))
+            if e.get("industries"):
+                rows.append(("業界", esc(e["industries"].replace(";", "／"))))
+            if e.get("reason"):
+                rows.append(("見送った理由", esc(e["reason"])))
+            if e.get("revive_when"):
+                rows.append(("復活の条件", f'<strong>{esc(e["revive_when"])}</strong>'))
+            if e.get("sources"):
+                rows.append(("手がかり", f'<span class="src">{esc(e["sources"])}</span>'))
+            if e.get("note"):
+                rows.append(("メモ", esc(e["note"])))
+            kv = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows)
+            found = " ".join(x for x in (e.get("found_on", ""), e.get("found_in", "")) if x)
+            cards.append(f"""
+<article class="bl-card {cls}">
+  <div class="bl-head">
+    <span class="bl-id">{esc(e.get("id", ""))}</span>
+    <h3>{esc(e.get("title", ""))}</h3>
+    <span class="bl-found">{esc(found)}</span>
+  </div>
+  <div class="chips">{chip_html}</div>
+  <div class="table-scroll"><table class="kv bl-kv">{kv}</table></div>
+</article>""")
+        sections.append(f"""
+<section class="bl-sec">
+  <h2><span class="badge {cls}">{esc(label)}</span><span class="bl-blurb">{esc(blurb)}</span></h2>
+  {"".join(cards)}
+</section>""")
+
+    if not entries:
+        sections = ['<p class="empty">まだ寝かせているネタはありません。</p>']
+
+    body = f"""
+<div class="ep-head">
+  <h1>ボツネタ棚</h1>
+  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
+  <div class="bl-counts">{counts}</div>
+</div>
+{"".join(sections)}
+"""
+    return page("", "ボツネタ棚 — その手があったか", body, active_nav="backlog")
 
 
 # ---------------------------------------------------------------- メイン
@@ -746,12 +838,26 @@ def main():
         (out_dir / "script.html").write_text(build_script_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "files.html").write_text(build_files_page(meta, meta["dir"]), encoding="utf-8")
 
-    waits = [r for r in ledger_rows if r.get("status") == "trigger_wait"]
-    (OUT / "index.html").write_text(build_index(metas, waits), encoding="utf-8")
-    (OUT / "ledger.html").write_text(build_ledger_page(ledger_rows, header), encoding="utf-8")
+    backlog = parse_backlog(read(ROOT / "ledger" / "backlog.yaml"))
+    # 旧方式（episodes_log.csv の trigger_wait 行）が残っていれば拾って合流させる
+    known = {b.get("title") for b in backlog}
+    for r in ledger_rows:
+        if r.get("status") == "trigger_wait" and r.get("title") not in known:
+            backlog.append({
+                "id": r.get("episode", ""), "title": r.get("title", ""),
+                "case_names": r.get("case_names", ""), "industries": r.get("industries", ""),
+                "hand": r.get("hands", ""), "motive": r.get("motive", ""),
+                "tailwind": r.get("tailwind", ""), "status": "trigger_wait",
+                "reason": r.get("trigger_date", ""),
+                "note": "episodes_log.csv から自動で取り込み。backlog.yaml へ移すこと",
+            })
 
-    n_pages = 2 + 4 * len(metas)
-    print(f"生成完了: docs/ に {n_pages} ページ（エピソード {len(metas)} 本）")
+    (OUT / "index.html").write_text(build_index(metas, backlog), encoding="utf-8")
+    (OUT / "ledger.html").write_text(build_ledger_page(ledger_rows, header), encoding="utf-8")
+    (OUT / "backlog.html").write_text(build_backlog_page(backlog, tag_names), encoding="utf-8")
+
+    n_pages = 3 + 4 * len(metas)
+    print(f"生成完了: docs/ に {n_pages} ページ（エピソード {len(metas)} 本・ボツネタ {len(backlog)} 件）")
     for meta in metas:
         has_ig = "手作り" if (meta["dir"] / "infographic.html").exists() else "自動"
         print(f"  {meta['ep']}  {meta['title']}  [インフォグラフィック: {has_ig}]")
@@ -865,11 +971,52 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .btn:hover { border-color: var(--accent); color: var(--accent); }
 .btn.primary { background: var(--accent); border-color: transparent; color: #fff; font-weight: 700; }
 .btn.primary:hover { color: #fff; filter: brightness(1.06); }
-.wait-sec { margin-top: 34px; }
-.wait-sec h2 { font-size: 15px; color: var(--ink-2); }
-.wait-list { margin: 0; padding-left: 20px; font-size: 13.5px; }
+.wait-sec { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 20px; }
+.wait-sec h2 { font-size: 16px; margin-bottom: 4px; }
+.wait-list { margin: 10px 0 14px; padding-left: 20px; font-size: 13.5px; }
 .wait-list li { margin: 6px 0; }
 .src-note { display: block; font-size: 11.5px; color: var(--muted); }
+
+/* ボツネタ棚 */
+.badge.stale { background: color-mix(in srgb, var(--accent-2) 14%, transparent); }
+.badge.stale::before { background: var(--accent-2); }
+.badge.overlap { background: color-mix(in srgb, var(--warn) 16%, transparent); }
+.badge.overlap::before { background: var(--warn); }
+.badge.unver { background: color-mix(in srgb, var(--crit) 12%, transparent); }
+.badge.unver::before { background: var(--crit); }
+.badge.weak { background: color-mix(in srgb, var(--ink) 5%, transparent); color: var(--ink-2); }
+.badge.weak::before { background: var(--muted); }
+.badge.used { background: color-mix(in srgb, var(--good) 12%, transparent); color: var(--good-text); }
+.badge.used::before { background: var(--good); }
+.badge.dropped { color: var(--muted); }
+.badge.dropped::before { background: var(--baseline); }
+.bl-counts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.bl-count { font-size: 11.5px; color: var(--ink-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 4px 12px; background: var(--surface);
+  display: inline-flex; align-items: baseline; gap: 6px; }
+.bl-count b { font-size: 14px; color: var(--ink); font-weight: 800; }
+.bl-count.wait b { color: var(--serious); }
+.bl-count.stale b { color: var(--accent-2); }
+.bl-sec { margin: 34px 0; }
+.bl-sec > h2 { font-size: 15px; display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap; margin-bottom: 12px; }
+.bl-blurb { font-size: 12px; color: var(--muted); font-weight: 400; }
+.bl-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 15px 17px 12px; margin: 10px 0; border-left: 4px solid var(--baseline); }
+.bl-card.wait { border-left-color: var(--serious); }
+.bl-card.stale { border-left-color: var(--accent-2); }
+.bl-card.overlap { border-left-color: var(--warn); }
+.bl-card.unver { border-left-color: var(--crit); }
+.bl-card.used { border-left-color: var(--good); }
+.bl-head { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+.bl-head h3 { font-size: 16px; margin: 0; line-height: 1.5; flex: 1 1 auto; }
+.bl-id { font-size: 11px; font-weight: 800; color: var(--accent); font-family: ui-monospace, monospace; }
+.bl-found { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.bl-card .chips { margin: 8px 0 4px; }
+table.bl-kv { font-size: 12.5px; }
+table.bl-kv th { width: 92px; font-size: 11.5px; padding: 6px 10px 6px 0; }
+table.bl-kv td { padding: 6px 0; }
+table.bl-kv tr:last-child th, table.bl-kv tr:last-child td { border-bottom: 0; }
 
 /* エピソードページ共通 */
 .crumbs { display: flex; justify-content: space-between; font-size: 13px; margin: 4px 0 12px; }
@@ -1057,9 +1204,70 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
 .ig-quote .steps strong { color: var(--ink); }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 @media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
-.ig svg.icon { width: 20px; height: 20px; stroke: var(--accent); fill: none;
-  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -4px; }
 .ig .compare th:first-child, .ig .compare td:first-child { white-space: nowrap; font-weight: 700; }
+
+/* ---- アイコン（インラインSVG・線画） ---- */
+.ig svg.icon { width: 1.15em; height: 1.15em; stroke: currentColor; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  vertical-align: -0.2em; flex: none; }
+.ig-section > h2 .ico { flex: none; width: 23px; height: 23px; border-radius: 7px;
+  background: color-mix(in srgb, var(--accent) 13%, transparent); color: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center; }
+.ig-section > h2 .ico svg.icon { width: 15px; height: 15px; vertical-align: 0; }
+
+/* ---- シーケンス図（やり取りの順番） ---- */
+.seq { list-style: none; margin: 14px 0; padding: 0; display: grid; gap: 8px;
+  counter-reset: seq; }
+.seq-step { display: grid; grid-template-columns: 26px 1fr; gap: 11px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 13px;
+  padding: 12px 14px; position: relative; }
+.seq-step::before { counter-increment: seq; content: counter(seq);
+  grid-column: 1; grid-row: 1;
+  width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+/* 本文は必ず2列目に置く（放っておくと1列目26pxに落ちて縦書きになる） */
+.seq-step > * { grid-column: 2; min-width: 0; }
+.seq-step.back::before { background: var(--accent-2); }
+.seq-step.back { border-color: color-mix(in srgb, var(--accent-2) 35%, transparent); }
+.seq-pair { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.seq-a { font-size: 12.5px; font-weight: 700; border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  border-radius: 8px; padding: 3px 10px; display: inline-flex; align-items: center; gap: 5px; }
+.seq-ar { color: var(--accent); font-weight: 800; font-size: 15px; }
+.seq-step.back .seq-ar { color: var(--accent-2); }
+.seq-do { font-size: 13px; color: var(--ink-2); line-height: 1.8; margin-top: 5px; }
+.seq-do strong { color: var(--ink); }
+.seq-note { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+
+/* ---- 層の図（ブロック図） ---- */
+.layers { display: grid; gap: 3px; margin: 14px 0; }
+.layer { display: grid; grid-template-columns: minmax(96px, 150px) 1fr; gap: 12px;
+  align-items: center; background: var(--surface); border: 1px solid var(--border);
+  padding: 12px 15px; }
+.layer:first-child { border-radius: 13px 13px 4px 4px; }
+.layer:last-child { border-radius: 4px 4px 13px 13px; }
+.layer.hl { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.ly-label { font-size: 12px; font-weight: 800; color: var(--accent); line-height: 1.5; }
+.layer.dim .ly-label { color: var(--muted); }
+.ly-body { font-size: 13px; line-height: 1.75; }
+.ly-body small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+@media (max-width: 560px) { .layer { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ---- リング（比率をひとつだけ見せる） ---- */
+.ring-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px 18px; margin: 14px 0; }
+.ring { flex: none; width: 108px; height: 108px; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .track { fill: none; stroke: color-mix(in srgb, var(--ink) 8%, transparent); stroke-width: 12; }
+.ring .arc { fill: none; stroke: var(--accent); stroke-width: 12; stroke-linecap: round; }
+.ring .rv { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; }
+.ring .rv b { font-size: 22px; font-weight: 800; line-height: 1; }
+.ring .rv span { font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+.ring-txt { flex: 1 1 210px; font-size: 13px; line-height: 1.85; color: var(--ink-2); }
+.ring-txt strong { color: var(--ink); }
 """
 
 SITE_JS = """// その手があったか — 制作アーカイブ（build_site.py が生成）

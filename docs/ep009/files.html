@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ep009 制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep008/files.html">← ep008</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date">2026-08-17（月）　<span class="badge review">レビュー中</span></div>
+  <h1>ep009｜ネットの当たり前を売場に持ち込む</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP13 翻訳する</span><span class="chip hand">OP14 名前を変える（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span><span class="chip none">日付は想定</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep009</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> エブリー（DELISH KITCHEN）、東証グロース上場。初値は公開価格を28%上回る294円<br><span class='k'>published</span> 2026-08-04<br><span class='k'>source_url</span> sources/collected.md（同社上場リリース／IPOナビ上場承認レポート／庶民のIPO）</td></tr><tr><th>副トリガ</th><td>上場承認（2026-06-30）：有価証券届出書が公開され、サイネージ11,000台・収益構造・食品卸2社が大株主である資本構成が開示された</td></tr><tr><th>題材</th><td>エブリー（無料レシピ動画と、スーパーの売場サイネージで広告を測れるようにした会社）</td></tr><tr><th>手</th><td>OP13<br>OP14</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW3</td></tr><tr><th>つかみ</th><td>スーパーの精肉売場の上で光っている小さい画面。あれが、広告の世界でいちばん伸びると言われている場所</td></tr><tr><th>きょうの手（案）</th><td>ネットの当たり前を、売場に持ち込む</td></tr><tr><th>宿題（案）</th><td>自社の商売で「効果を測っていない出費」をひとつ選び、隣の業界がそれをどう測っているかをひとつ調べる</td></tr><tr><th>壁・制約</th><td>少なくとも直近5期は経常赤字が続き（2021年6月期▲13.7億円）、レシピ動画の首位争いでは後発のクラシル（売上3倍・時価総額約9倍）に離された。売場サイネージへの展開後、2026年6月期第3四半期累計で黒字転換して上場。auコマース＆ライフとの契約終了（2026年9月末）も開示されている</td></tr><tr><th>前回参照</th><td>ep007</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep009
+host: tokura                # 日替わり交互（前日ep008=三崎）
+episode_type: T1
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced
+anchor:                     # トリガ情報（制作日2026-08-12から1ヶ月以内＝8日前）
+  headline: &quot;エブリー（DELISH KITCHEN）、東証グロース上場。初値は公開価格を28%上回る294円&quot;
+  published: 2026-08-04
+  source_url: &quot;sources/collected.md（同社上場リリース／IPOナビ上場承認レポート／庶民のIPO）&quot;
+sub_triggers:
+  - &quot;上場承認（2026-06-30）：有価証券届出書が公開され、サイネージ11,000台・収益構造・食品卸2社が大株主である資本構成が開示された&quot;
+case_name: &quot;エブリー（無料レシピ動画と、スーパーの売場サイネージで広告を測れるようにした会社）&quot;
+operation_tags: [OP13, OP14]   # 翻訳する（主）×名前を変える（味）。OP13は初使用
+motive_tag: none            # 構造回。創業の確信の言葉は引用経由のみで、場面まで下りた一次記録が取れず（原文リンク切れ）
+tailwind_tag: TW3           # 時流（広告費のシフト：リテールメディア市場2029年に2024年比約4倍の予測）。TW3は初使用
+hook: &quot;スーパーの精肉売場の上で光っている小さい画面。あれが、広告の世界でいちばん伸びると言われている場所&quot;
+lesson_draft: &quot;ネットの当たり前を、売場に持ち込む&quot;
+homework_draft: &quot;自社の商売で「効果を測っていない出費」をひとつ選び、隣の業界がそれをどう測っているかをひとつ調べる&quot;
+opposition: &quot;少なくとも直近5期は経常赤字が続き（2021年6月期▲13.7億円）、レシピ動画の首位争いでは後発のクラシル（売上3倍・時価総額約9倍）に離された。売場サイネージへの展開後、2026年6月期第3四半期累計で黒字転換して上場。auコマース＆ライフとの契約終了（2026年9月末）も開示されている&quot;
+prev_episode_ref: &quot;ep007&quot;   # 同じ「上場」トリガの構造回。ep007は「開く」（中核を配って周りで稼ぐ）、今回は「翻訳する」（よその業界の当たり前を持ち込む）。台本で混同しない
+notes: |
+  ・キー数字は有価証券届出書ベース（IPOナビ転載）＋会社リリース。届出書原本（EDINET）での再確認を人間裏取り事項とする。
+  ・不使用と決めた数字：FY2026通期会社予想（ソース間不一致）／2019年6月期純損失24億円・8割ダウンラウンド（単独ソース）／
+    累計調達100億円・元本割れ（SNS経由）。台本・記事とも使わない。
+  ・時期明示が必要な事実：retail HUB開始（2023年9月）、万代全167店舗（2024年1月時点）、サイネージ累計11,000台（2024年11月時点）、
+    購買の95.5%が店頭（2025年8月公表の調査）。
+  ・個人名は台本に出さない（憲法§3）。創業者は「携帯ゲームを立ち上げてきた人」で扱う。
+  ・クラシル・クックパッド・万代・DELISH KITCHENの固有名詞は事実カード対応の範囲で使用可。ただし固有名詞の系統数上限に注意し、
+    台本ではクックパッドを落とす選択肢を優先。
+  ・「リテールメディア」はカタカナの業界用語。台本では多用せず「売場をメディアにする」等の言い換えを基本にする（憲法§2-4の趣旨）。
+  ・ep007と「タダで配って別で稼ぐ」構図が似て見える点に注意。今回の芯は無料配布ではなく、
+    「ネット広告の当たり前（狙って出す・効いたか測る）を、効果を測ってこなかった店頭販促の世界に持ち込んだ」こと。
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>エブリー</td><td>新規上場</td><td class="fact-val">東証グロース・607A</td><td>2026-08-04</td><td class="src">同社上場リリース／IPO情報各サイト</td><td><span class="cb">×3</span></td></tr><tr><td><span class="fid">F02</span></td><td>エブリー</td><td>上場の値付け</td><td class="fact-val">公開価格230円・初値294円</td><td>2026-08-04</td><td class="src">IPO情報サイト2件</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F03</span></td><td>エブリー</td><td>上場時時価総額</td><td class="fact-val">約47.7億円</td><td>2026-08-04</td><td class="src">IPOナビ（届出書ベース）／分析記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F04</span></td><td>エブリー</td><td>設立</td><td class="fact-val">2015年9月</td><td>2015-09</td><td class="src">IPOナビ／同社公式</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F05</span></td><td>創業者</td><td>前職</td><td class="fact-val">携帯ゲーム事業の立ち上げ役</td><td>2006〜2015</td><td class="src">IPOナビ（インタビュー引用経由）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F06</span></td><td>デリッシュキッチン</td><td>月間利用者</td><td class="fact-val">3100万超</td><td>2026</td><td class="src">届出書経由（IPOナビ）／IPO情報サイト</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F07</span></td><td>デリッシュキッチン</td><td>レシピ動画本数</td><td class="fact-val">5万7000本以上</td><td>2026-04</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>エブリー</td><td>広告収益の型</td><td class="fact-val">タイアップ＋表示連動ほか</td><td>継続</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>エブリー</td><td>店頭広告の型</td><td class="fact-val">サイネージで動画広告配信</td><td>継続</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>エブリー</td><td>小売向け事業</td><td class="fact-val">サイネージ設置とアプリ開発保守</td><td>継続</td><td class="src">届出書経由（IPOナビ）／同社リリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F11</span></td><td>エブリー</td><td>サイネージ累計台数</td><td class="fact-val">1万1000台超</td><td>2024-11</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F12</span></td><td>万代</td><td>サイネージ導入</td><td class="fact-val">全167店舗</td><td>2024-01</td><td class="src">同社リリース（2024-02-28）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F13</span></td><td>万代</td><td>設置場所</td><td class="fact-val">精肉・鮮魚・青果・惣菜の売場</td><td>2024-01</td><td class="src">同社リリース</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F14</span></td><td>エブリー</td><td>創業期の他メディア</td><td class="fact-val">分散型で複数展開</td><td>2015〜</td><td class="src">IPOナビ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F15</span></td><td>エブリー</td><td>2021年6月期業績</td><td class="fact-val">売上20.9億・経常▲13.7億</td><td>2021-06期</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F16</span></td><td>エブリー</td><td>2025年6月期業績</td><td class="fact-val">売上42.5億・経常▲0.3億</td><td>2025-06期</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F17</span></td><td>エブリー</td><td>直近9ヶ月の業績</td><td class="fact-val">売上38.3億・経常＋3.2億</td><td>2025-07〜2026-03</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F18</span></td><td>エブリー</td><td>広告事業の伸び</td><td class="fact-val">31.4億円・前期比38.6%増</td><td>2025-06期</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F19</span></td><td>エブリー</td><td>大口顧客数</td><td class="fact-val">42社から62社へ</td><td>2025-06期</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F20</span></td><td>エブリー</td><td>大株主</td><td class="fact-val">通信1社・食品卸2社</td><td>2026-06-30</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F21</span></td><td>エブリー</td><td>設置網の広げ方</td><td class="fact-val">食品卸とのアライアンス</td><td>2023-02</td><td class="src">IPOナビ（業界紙引用経由）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F22</span></td><td>経産省調査</td><td>食品購買の場所</td><td class="fact-val">店頭が95.5%</td><td>2025-08公表</td><td class="src">届出書引用（経産省 令和6年度EC市場調査）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F23</span></td><td>調査会社</td><td>売場広告市場の予測</td><td class="fact-val">2029年に1939億円</td><td>2026-01</td><td class="src">届出書引用（CARTA HOLDINGS推計）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F24</span></td><td>電通調査</td><td>ネット広告費</td><td class="fact-val">4兆459億円</td><td>2025年</td><td class="src">届出書引用（日本の広告費）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F25</span></td><td>クラシル</td><td>規模の比較</td><td class="fact-val">時価総額約420億円</td><td>2026-06</td><td class="src">IPOナビ比較表／分析記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F26</span></td><td>エブリー</td><td>契約終了の開示</td><td class="fact-val">2026年9月末で1件終了予定</td><td>2026-06-30</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F27</span></td><td>エブリー</td><td>売出の構成</td><td class="fact-val">公募110万株・売出482万株</td><td>2026-08-04</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F28</span></td><td>エブリー</td><td>利用者向け課金</td><td class="fact-val">月額480円と冷凍弁当EC</td><td>継続</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F29</span></td><td>エブリー</td><td>小売支援の開始</td><td class="fact-val">2023年9月発表</td><td>2023-09</td><td class="src">同社プレスリリース</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F30</span></td><td>エブリー</td><td>売りにする効果</td><td class="fact-val">店頭での広告効果の可視化</td><td>継続</td><td class="src">届出書経由（IPOナビ）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F31</span></td><td>小売業界</td><td>導入小売数</td><td class="fact-val">160社以上</td><td>時点未確認</td><td class="src">同社広告サービスblog</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>創業者（代表取締役社長）</strong>「動画がテレビCMに取って代わる、という確信で会社を始めた」<span class="src-note">STARTUPS JOURNAL 2018-06（IPOナビ引用経由）／原文リンク切れ・引用経由のため台本不使用。記事でも扱う場合は伝聞明示</span></li><li><span class="fid">Q02</span> <strong>同社（届出書の課題認識）</strong>「これまでのネット広告では、実際の店で売れたかどうかまでは測れなかった」<span class="src-note">届出書経由（IPOナビ）／趣旨再現。台本使用可</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>2026年6月期通期の会社予想（売上50.16億 or 54.3億）</strong><br>理由：ソース間で数値が不一致<br>処置：台本・記事とも不使用。8月中旬の本決算で確定値が出てから扱う</li><li><strong>2019年6月期に純損失約24億円</strong><br>理由：分析記事の単独記述・届出書の掲載期間外<br>処置：不使用。赤字の深さはF15（▲13.7億円）で代表させる</li><li><strong>2022年調達時比8割のダウンラウンド上場</strong><br>理由：会員限定記事の単独記述<br>処置：不使用。評価の低さはF03とF25の対比で示す</li><li><strong>累計調達約100億円・既存投資家のほぼ全員が元本割れ</strong><br>理由：SNS・個人ブログ経由のみ<br>処置：不使用</li><li><strong>サイネージ1台あたりの広告単価・retail HUBの料金</strong><br>理由：非公開<br>処置：「誰が払うか」の構造説明にとどめ単価は言わない</li><li><strong>導入小売160社以上</strong><br>理由：自社blogだが時点が特定できない<br>処置：台本・記事とも不使用（F31参照）</li><li><strong>創業の「場面」まで下りた動機の一次記録</strong><br>理由：インタビュー原文がリンク切れ<br>処置：動機回を見送り構造回として制作。motive_tag は none</li></ul><div class="ig-callout pre-line">・アンカー＝2026年8月4日の東証グロース上場（制作日の8日前）。副トリガ＝6月30日の上場承認・届出書公開。トリガ窓31日以内
+・台本の数字は5系統以内（標準回balanced：数字5・固有名詞6・例え話2）。系統案：
+①時期（十一年前・三年前・おととし・今年三月まで・今月四日）②店頭比率（95.5%）
+③売場の網（1万1000台・167店舗）④利用規模（3100万人）⑤損益の転換（▲13.7億→＋3.2億）
+→ 初値・時価総額・クラシル420億・市場予測4倍は台本では数字を使わず言葉で扱い、正確値はnoteのデータ欄へ
+・固有名詞は6系統以内。使用：エブリー／デリッシュキッチン／万代／クラシル／東証グロース（＋スーパー・食品メーカー等の一般名詞）
+不使用（一般名詞化）：KDDI・伊藤忠食品・加藤産業・旭食品→「通信の大手」「食品の卸の大手」、グリー→「携帯ゲームの会社」、
+retail HUB→「小売向けの仕組み」、KALOS・MAMADAYS・TIMELINE・クックパッド→出さない
+・F11〜F13・F21・F29 は2023〜2024年時点の情報。**台本・記事とも時期を明示すること（§4）**
+・F11（1万1000台）・F21（卸アライアンス）・F23（市場予測）は届出書・業界紙の転載経由。**EDINET原本での再確認を推奨**（人間の裏取り対象）
+・個人名は台本・記事とも出さない（憲法§3）。創業者は「携帯ゲームを立ち上げてきた人」
+・「リテールメディア」はカタカナ業界用語のため台本では原則使わず「売場をメディアにする」等で言い換える。noteでは使用可</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep009 検査レポート（review-episode出力）</h1>
+<p>検査日：2026-08-12／検査対象：script_draft.md（v1・差し戻し1周目で文字数のみ修正）<br>機械検査：<code>python3 scripts/check.py episodes/ep009</code> → <strong>機械判定 全項目 PASS</strong>（本文2,000字・OP/ED一字一句一致・三点リーダー0・香月0・『』1・口癖1・並走句3・取材話法 伝聞7/調べる2）</p>
+<hr>
+<h2>要判断項目の判断と数え方の規約</h2>
+<h3>1. 数字の系統数 → <strong>5系統（上限5・PASS）</strong></h3>
+<p>検出11個を以下の規約でまとめた。</p>
+<div class="table-scroll"><table><thead><tr><th>系統</th><th>台本上の数字</th><th>事実ID</th></tr></thead><tbody><tr><td>① 店頭比率</td><td>九十五点五パーセント（2回）・九割五分（同一統計の言い換え）</td><td>F22</td></tr><tr><td>② 売場の網</td><td>百六十七店舗・一万一千台（同一施策＝サイネージ設置網の数値群）</td><td>F11・F12</td></tr><tr><td>③ 利用規模</td><td>三千百万人</td><td>F06</td></tr><tr><td>④ 損益の転換</td><td>二十億円ほど・十四億円近く（五年前）／三十八億円・三億円あまり（今年）——同一の業績推移として1系統</td><td>F15・F17</td></tr><tr><td>⑤ 時期</td><td>十一年前・五年前・三年前・おととし（の十一月）・去年の八月・今月の四日</td><td>F01・F04・F29ほか</td></tr></tbody></table></div>
+<p>規約：(a) 同一統計の言い換え（95.5%⇄九割五分）は1系統。(b) 同一施策を構成する数値群（167店舗と1万1千台）は1系統。(c) 業績の推移（赤字期→黒字期）は1系統。(d) 「ふたつ」「三つ」「一、二、三」「ひとつ」は列挙の談話標識で対象外。(e) 「何百社」は概数の修辞で数値情報を担わないため対象外。</p>
+<h3>2. 固有名詞 → <strong>6系統（上限6・PASS）</strong></h3>
+<p>エブリー／デリッシュキッチン／クラシル／万代／東京証券取引所（グロース市場）／経済産業省。<br>経済産業省は出典明示のための発表主体だが、保守的に1系統として数えても上限内。<br>一般名詞化の確認：問屋の大手（伊藤忠食品・加藤産業）・携帯ゲームの会社（グリー）・小売のアプリ（retail HUB）——台帳・記事側でのみ実名。人物は「携帯ゲームの事業を立ち上げてきた人」で役職・経歴扱い、個人名なし（憲法§3 ✓）。</p>
+<h3>3. キメ台詞候補 → <strong>該当なし（PASS）</strong></h3>
+<p>検出『ではなく、』は「商品ではなく、商売の置き場所を買う場所へ動かす」——条件＋動作の平叙文で、対句・体言止め・ポエム調のいずれにも該当しない。<br>持ち帰りパート（「新しい技術の話では、ないんです。〜運んだ。それで、赤字が黒字になっています」）も事実の平叙。ED直前に警句なし ✓</p>
+<h3>4. 例え話 → <strong>2（上限2・PASS）</strong></h3>
+<p>①新聞のチラシ（測れない出費の説明）②試食販売（売場の画面の働きの説明）。<br>「小さいテレビみたいなやつ」は物の形状描写で例え話に数えない。「機械メーカーの展示会・飲食店の駅前の看板」は他業界への応用例のため対象外（規約どおり）。</p>
+<h3>5. トリガ鮮度 → <strong>PASS</strong></h3>
+<p>anchor＝2026-08-04（上場日）。制作日2026-08-12から8日、窓31日以内。<br>1ヶ月超の事実の時期明示：95.5%「去年の八月に経済産業省が出した調査」（2025-08）✓／決算「五年前」（2021年6月期）✓／売場進出「三年前に発表」（2023-09）✓／万代167店舗「おととし」（2024-01）✓／1万1千台「おととしの十一月の時点」（2024-11）✓／創業「十一年前」（2015-09）✓——すべて明示あり。</p>
+<h3>6. 台帳照合 → <strong>PASS</strong></h3>
+<ul><li>題材重複：エブリー・レシピ動画・売場サイネージは過去回になし。</li><li>手：OP13（初使用）＋OP14味（ep003味以来6回ぶり）。直近5回（OP03／OP02味／OP01+OP10味／OP12+OP08／OP07+OP06）と重複なし。<strong>未使用だったOP13を消化。</strong></li><li>業界：メディア・広告・食品小売。直近5回（イベント地域飲料／アート福祉百貨店／エネルギー素材化学／自動運転SW自動車／家具家電物流）と重複なし。</li><li>注意：「上場」トリガの構造回は ep007（ティアフォー）と同型だが、手が異なる（開く⇄翻訳する）。台本は「タダで配って周りで稼ぐ」構図に寄せず、「測れない出費を測れるようにした」に芯を置いており、混同なしと判断。</li><li>風：TW3（時流）初使用。</li></ul>
+<h3>7. facts消化 → <strong>20枚（7点以上・PASS）</strong></h3>
+<p>F01・F04・F05・F06・F07・F08・F09・F10・F11・F12・F13・F15・F17・F20・F21・F22・F25・F29・F30・Q02。</p>
+<hr>
+<h2>事実面（人間の裏取り対象）</h2>
+<p><strong>原典での再確認を推奨（要約・転載経由）：</strong></p>
+<ol><li><strong>一万一千台（F11・2024年11月時点）</strong>——有価証券届出書の転載（IPOナビ）経由。EDINET原本で再確認。</li><li><strong>業績数値（F15・F17）</strong>——売上20.9億／経常▲13.7億（2021年6月期）、売上38.3億／経常+3.2億（2026年6月期3Q累計）。同じく届出書原本で再確認。</li><li><strong>95.5%（F22）</strong>——届出書が引用する経産省「令和6年度電子商取引に関する市場調査」（2025年8月公表）。経産省の公表資料で再確認。</li><li><strong>問屋の網・株主構成（F20・F21）</strong>——株主比率は届出書経由で堅いが、「卸との連携で設置網拡大」の因果は業界紙引用経由。強い断定を避け「〜とのことでした」の伝聞で処理済み。</li><li><strong>『』内の会社の説明（Q02）</strong>——届出書の課題認識の<strong>趣旨再現</strong>であり逐語引用ではない。人間レビューで違和感がないか確認。</li></ol>
+<p><strong>不使用の徹底を確認</strong>：FY2026通期予想／2019年損失24億／8割ダウンラウンド／累計調達100億／導入160社——台本に登場しない ✓</p>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li>問屋（とんや）</li><li>青果（せいか）</li><li>精肉（せいにく）</li><li>九十五点五（きゅうじゅうごてんご）——「点」の読み落とし・間の崩れに注意</li></ol>
+<h2>制作日依存の表現</h2>
+<ul><li>「今月の四日」（上場8/4）：<strong>放送が8月中なら成立</strong>（想定8/17）。9月以降にずれる場合は「先月の四日」へ差し替えること。</li><li>「去年の八月」「おととし」「今年の三月までの九ヶ月」：2026年内の放送なら成立。</li><li>曜日依存の表現なし ✓</li></ul>
+<hr>
+<h2>再レビュー（tts-format・write-article 後／2026-08-12）</h2>
+<p><code>check.py</code> 再実行 → <strong>機械判定 全項目 PASS</strong>（オーディオタグ6個・見出しラベルなし・英字残存なし・note禁止語なし・トリガ欄/手カード/出典欄あり）。</p>
+<h3>TTS稿（script_tts.txt）</h3>
+<ul><li>タグ6個＝[bright][curious][serious][curious][thoughtful][warm]。感情の切り替わる段落頭のみ、規定4〜6内 ✓</li><li>数字は全て漢数字・英字略語なし（辞書適用対象なし）✓ 三点リーダー0・半角分かち書き0 ✓</li><li>台本からの逸脱なし（本文同一）✓</li></ul>
+<h3>note記事（article.md）＋概要欄（shownotes.md）</h3>
+<ul><li>独立媒体性：記事本文にラジオ・放送・番組・音声・リスナーへの言及なし ✓（奥付は規定文言のみ）</li><li>台本の再構成ではなく「広告費と購買場所の断絶」から再構成。年表・収益源表・データ欄あり ✓</li><li>きょうの手カード：原則形（条件＋動作）で警句形でない ✓ 最初の一歩は動詞終わり ✓</li><li>手法名（リテールメディア・OMO・トレードマーケティング）は note のみで使用 ✓ 台本には不在 ✓</li><li>数字：台本で丸めた値（九割五分・二十億円ほど等）の正確値をデータ欄に記載 ✓</li><li>単独出典・転載経由の注記を記事末尾に明記 ✓ 読者募集・拡散施策なし ✓</li><li>概要欄：トリガ先頭・note導線・その他出典・AI制作表記の4点あり ✓ 台本本編に注釈・出典なし（概要欄が背負う）✓</li></ul>
+<h2>総合判定</h2>
+<p><strong>PASS（人間工程へ）</strong>。残タスク＝人間の裏取り（上記4点）、TTS通し聴取（読みチェック語4つ）、公開承認。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep009 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜ネットの当たり前を、売場に持ち込む</h2>
+<h3>ホスト：戸倉ハジメ／型1 一本深掘り／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>まず、九十五点五パーセント。これ、何の割合だと思います？　食べものと飲みものの買い物のうち、お店の中で買われている割合だそうです。去年の八月に経済産業省が出した調査にありました。ネットで何でも買う時代って言われるじゃないですか。でも食べものだけは、いまだにほとんど、スーパーのカゴの中で決まっている。私、この数字は知りませんでした。で、この数字で儲け方を変えた会社が、今月の四日、東京証券取引所のグロース市場に上場しました。エブリーという、レシピ動画の会社です。きょうは、無料のレシピ動画で、なんで儲かるんですか、という話をします。</p>
+<p>デリッシュキッチンという名前なら、ご存じの方も多いと思います。十一年前に、携帯ゲームの事業を立ち上げてきた人が作った会社で、管理栄養士さん監修のレシピ動画を、月に三千百万人が見ている。ぜんぶ無料です。じゃあ誰が払っているのか。一段目は、食品メーカーでした。自社の商品を使ったレシピを動画にして流してもらうのに、メーカーがお金を払う。コマーシャルの枠を買うのではなくて、きょうの献立の提案の中で、自分の商品が主役になる。見ている側はレシピで、払っている側は宣伝。ってことですよね。</p>
+<p>ただ、ここまでなら、よくある形なんです。同じレシピ動画では、クラシルという先を行く会社があって、規模ではだいぶ離された。それに、タダで配って広告で稼ぐ商売は、一番大きいところに広告費が集まる世界です。実際、五年前の決算は、売上二十億円ほどに対して、赤字が十四億円近い。二番手のまま広告だけを追っても、出口が見えない。</p>
+<p>で、この会社が三年前に発表したのが、スーパーの売場に、画面を置く事業です。棚の上で光っている、小さいテレビみたいなやつです。おととしには、関西の万代というスーパー全店、百六十七店舗。精肉、鮮魚、青果、お惣菜の売場の上でレシピが流れている。全国では、おととしの十一月の時点で、累計一万一千台だそうです。</p>
+<p>そこに、レシピと一緒にメーカーの広告が流れる。最初の九十五点五パーセントが、ここで効いてくる。レシピはスマホで見る。でも買うのは九割五分、店の中。だったら、見る場所を、買う場所まで持っていってしまえと。試食販売って、あるじゃないですか。売場で味を見せて、その場で買ってもらう。あれを、画面でやっている。</p>
+<p>しかも、です。調べてみたら、『ネット広告では、実際にお店で売れたかまでは測れなかった』というのが、この会社の説明だそうで。ここは、店の売上とつないで、広告を流したらその商品がどれだけ売れたかまで、測って見せる。新聞のチラシは、効いたかどうか確かめようがないまま、また撒きますよね。あの、分からないままの出費が、測れる出費に変わる。お金の入り口もふたつ。広告の分はメーカーから、画面の設置やアプリ作りの費用はスーパーから。広げ方は、食品の問屋の網に乗ったとのことでした。株主にも、問屋の大手が並んでいます。</p>
+<p>で、どうなったか。今年の三月までの九ヶ月で、売上三十八億円、利益は三億円あまり。黒字になって、今月の上場です。</p>
+<p>ここから、商売の解剖です。きょうの手は、ネットの当たり前を、売場に持ち込む。三つに分けます。</p>
+<p>一、効いたか測っていない出費を見つけたら、それを毎日測っている業界を探す。店頭の販促のお金は、長らく勘と付き合いで撒かれてきたそうです。ネット広告の世界では、誰に出して、効いたかを測るのが当たり前。やったのは、その当たり前の持ち込みです。</p>
+<p>二、客が見る場所と買う場所で切れていたら、商品ではなく、商売の置き場所を買う場所へ動かす。スマホの中で完結させずに、売場へ出て行った。売場の棚の上を、宣伝を流せる場所として売り直した、とも言えます。</p>
+<p>三、持ち込む先へ一軒ずつ入れないなら、通り道を持っている人と組む。何百社のスーパーを回る代わりに、問屋の取引の網に乗る。資本まで入ってもらう。</p>
+<p>たとえば、機械メーカーの展示会。飲食店の駅前の看板。効いたかどうか分からないまま毎年払っているお金は、どの業界にもあります。</p>
+<p>ここだけ持って帰ってください。新しい技術の話では、ないんです。ネット広告では十年来の当たり前だった測り方を、まだ誰も測っていなかった売場に運んだ。それで、赤字が黒字になっています。</p>
+<p>今週の宿題です。自分の商売で、効いたかどうかを測らないまま払い続けている出費を、ひとつ書き出してください。隣の業界がそれをどう測っているかを、ひとつ調べてみてください。</p>
+<p>きょうの手は、ネットの当たり前を売場に持ち込む、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第9回｜ネットの当たり前を、売場に持ち込む</p>
+<p>無料のレシピ動画を月に三千百万人が見ている会社があります。でも、食べものの買い物の九十五点五パーセントは、いまもお店の中で起きている。この会社は、スマホの中で完結させずに、スーパーの精肉や青果の売場に画面を持ち込みました。広告を流したら、その店でその商品がどれだけ売れたかまで測って見せる。赤字が続いた会社が黒字転換して上場するまでを、売場の棚の上から解剖します。</p>
+<p>▼ トリガになったニュース<br>・株式会社エブリー、東京証券取引所グロース市場へ新規上場（2026/8/4・証券コード607A。公開価格230円・初値294円）<br>・同社の上場承認・有価証券届出書の公開（2026/6/30）</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・経済産業省「令和6年度電子商取引に関する市場調査」（2025/8公表）食品・飲料・酒類の店頭購買比率95.5%<br>・株式会社エブリー「『retail HUB ストアDX』、万代の全167店舗に店頭サイネージを導入」（2024/2/28）<br>・有価証券届出書（EDINET・2026/6/30提出）業績・サイネージ累計11,000台（2024年11月時点）・収益構造・株主構成<br>・同社 retail HUB 発表（2023/9）<br>・CARTA HOLDINGS リテールメディア広告市場調査（2026/1）2029年に1,939億円予測</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第9回｜ネットの当たり前を、売場に持ち込む
+
+無料のレシピ動画を月に三千百万人が見ている会社があります。でも、食べものの買い物の九十五点五パーセントは、いまもお店の中で起きている。この会社は、スマホの中で完結させずに、スーパーの精肉や青果の売場に画面を持ち込みました。広告を流したら、その店でその商品がどれだけ売れたかまで測って見せる。赤字が続いた会社が黒字転換して上場するまでを、売場の棚の上から解剖します。
+
+▼ トリガになったニュース
+・株式会社エブリー、東京証券取引所グロース市場へ新規上場（2026/8/4・証券コード607A。公開価格230円・初値294円）
+・同社の上場承認・有価証券届出書の公開（2026/6/30）
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・経済産業省「令和6年度電子商取引に関する市場調査」（2025/8公表）食品・飲料・酒類の店頭購買比率95.5%
+・株式会社エブリー「『retail HUB ストアDX』、万代の全167店舗に店頭サイネージを導入」（2024/2/28）
+・有価証券届出書（EDINET・2026/6/30提出）業績・サイネージ累計11,000台（2024年11月時点）・収益構造・株主構成
+・同社 retail HUB 発表（2023/9）
+・CARTA HOLDINGS リテールメディア広告市場調査（2026/1）2029年に1,939億円予測
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
