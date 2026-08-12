@@ -1,5 +1,6 @@
 # episodes/<id>/brief.yaml — 人間が書く唯一の入力
 episode_id: ep000
+created_on: 2026-00-00      # 制作日。アーカイブの時系列はこの日付で並ぶ
 host: tokura                # tokura | misaki（前日と交互）
 episode_type: T1            # library/episode_types.md
 format: 型1 一本深掘り型     # 型1 | 型2 小ネタ＋本命 | 型3 人物深掘り（動機回）
