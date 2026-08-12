@@ -63,6 +63,12 @@ KIME_HINTS = ["に隠れる", "なんですよ。", "、いちばん", "こそ�
 
 NOTE_FORBIDDEN = ["ラジオ", "放送", "番組", "音声", "リスナー", "読者投稿", "読者募集"]
 
+# 外へ出るもの（note記事・配信概要欄・台本本文）に、制作手順と選定基準を混ぜない。
+# 逆に brief・事実カード・検査レポート・台帳・ボツネタ棚・アーカイブサイトは
+# 人間が追跡するための道具なので、詳しいまま残す。ここは検査しない。
+METHOD_LEAK = re.compile(r"OP\d{2}|MO\d\b|TW\d\b|トリガ|事実カード|density|巡回棚|"
+                         r"ボツネタ|検査レポート|数字の系統|並走句|取材話法|掛け味")
+
 OK, NG, WARN = "PASS", "FAIL", "確認"
 results = []
 
@@ -92,6 +98,12 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
 
     add(OK if lo <= n <= hi else NG, "本文文字数", f"{n}（{duration_min}分の規定 {lo:,}〜{hi:,}）")
     add(OK if "…" not in body else NG, "三点リーダー", f"{body.count('…')} 個")
+
+    # 本文は将来そのまま音声になる。制作手順・選定基準を混ぜない
+    # （--- より上の見出しブロックは読み上げ対象外なので検査しない）
+    leaks = sorted(set(METHOD_LEAK.findall(body)))
+    add(OK if not leaks else NG, "台本本文の制作情報",
+        f"{leaks} ← 読み上げられるので消すこと" if leaks else "なし")
 
     halfsp = len(re.findall(r"[ぁ-ヶ一-龥][ ][ぁ-ヶ一-龥]", body))
     add(OK if halfsp == 0 else NG, "和文の半角スペース", f"{halfsp} 箇所")
@@ -156,7 +168,17 @@ def check_article(ep: Path):
     a = p.read_text(encoding="utf-8")
     hits = {w: a.count(w) for w in NOTE_FORBIDDEN if a.count(w)}
     add(OK if not hits else NG, "note の禁止語", f"{hits}" if hits else "なし（独立媒体として成立）")
-    add(OK if "今回のトリガ" in a else NG, "「今回のトリガ」欄", "あり" if "今回のトリガ" in a else "なし")
+
+    # 制作手順・選定基準の露出（note と概要欄は外部公開）
+    leaks = sorted(set(METHOD_LEAK.findall(a)))
+    sn = ep / "shownotes.md"
+    if sn.exists():
+        leaks = sorted(set(leaks) | set(METHOD_LEAK.findall(sn.read_text(encoding="utf-8"))))
+    add(OK if not leaks else NG, "制作手順・選定基準の露出",
+        f"{leaks} ← note/概要欄から消すこと" if leaks else "なし")
+
+    add(OK if "きっかけになったニュース" in a else NG, "きっかけ欄",
+        "あり" if "きっかけになったニュース" in a else "なし")
     add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
     add(OK if "出典" in a else NG, "出典欄", "あり" if "出典" in a else "なし")
     add(OK if "…" not in a else WARN, "三点リーダー", f"{a.count('…')} 個")
