@@ -1242,6 +1242,33 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
 .ig-callout { border: 1px dashed var(--baseline); border-radius: 13px; padding: 12px 16px;
   font-size: 12.5px; color: var(--ink-2); line-height: 1.9;
   background: color-mix(in srgb, var(--ink) 2%, transparent); margin: 14px 0; }
+/* ig-internal：制作上のメモ。アーカイブでは見えるが、note へ書き出す画像には入れない */
+.export .ig-internal { display: none !important; }
+/* punch：説明文の代わりに、数字ひとつで言い切る帯 */
+.punch { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+  border-radius: 13px; padding: 16px 20px; margin: 14px 0; }
+.punch .pn { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+.punch .pn small { font-size: 17px; font-weight: 700; color: var(--ink-2); margin-left: 2px; }
+.punch .pt { font-size: 13.5px; color: var(--ink-2); line-height: 1.75; flex: 1 1 180px; }
+.punch .pt strong { color: var(--ink); }
+.punch.warn { border-left-color: var(--accent-2); }
+/* vs：2つの数字を正面からぶつける */
+.vs { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px;
+  margin: 14px 0; }
+.vs .vside { background: var(--surface); border: 1px solid var(--border); border-radius: 13px;
+  padding: 14px 16px; text-align: center; min-width: 0; }
+.vs .vside .vl { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+.vs .vside .vn { font-size: 28px; font-weight: 800; line-height: 1.25; margin-top: 2px;
+  overflow-wrap: anywhere; }
+.vs .vside .vn small { font-size: 14px; font-weight: 700; color: var(--ink-2); }
+.vs .vside.win .vn { color: var(--accent); }
+.vs .vside.lose .vn { color: var(--accent-2); }
+.vs .vmid { font-size: 12px; font-weight: 800; color: var(--muted); white-space: nowrap; }
+@media (max-width: 560px) {
+  .vs { grid-template-columns: 1fr; }
+  .vs .vmid { text-align: center; }
+}
 .ig-quote { background: color-mix(in srgb, var(--accent) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
   border-radius: 15px; padding: 18px 20px; margin-top: 28px; }

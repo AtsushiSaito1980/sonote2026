@@ -236,6 +236,22 @@ def check_infographic(ep: Path):
     add(OK if "ig-quote" in h else NG, "締めのカード",
         "あり" if "ig-quote" in h else "ig-quote がありません")
 
+    # 文字量。図に語らせるページなので、説明文が増えたら図に変換できないか考える
+    text = re.sub(r"<[^>]*>", "", h)
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
+    n_chr = len(re.sub(r"\s", "", text))
+    add(OK if n_chr <= 4000 else WARN, "文字量",
+        f"{n_chr}字 → 4,000字が目安。説明文を .punch / .vs に置き換えられないか"
+        if n_chr > 4000 else f"{n_chr}字")
+
+    # 内部用語の露出。画像に書き出して note へ持っていくため、外に出る前提で見る。
+    # class="ig-internal" のブロックは書き出しから外れるので、判定の対象にしない
+    outer = re.sub(r'<(\w+)[^>]*class="[^"]*ig-internal[^"]*"[^>]*>.*?</\1>', "", h, flags=re.S)
+    leaks = sorted(set(METHOD_LEAK.findall(outer)))
+    add(OK if not leaks else NG, "内部用語の露出",
+        f'{leaks} → 記号や制作用語を消すか、class="ig-internal" を付ける'
+        if leaks else "なし")
+
     # フラグメントであること（build_site.py が包むので土台のタグは書かない）
     bad = [t for t in ("<html", "<head", "<body", "<!DOCTYPE") if t.lower() in h.lower()]
     add(OK if not bad else NG, "フラグメント形式", f"{bad} が混入" if bad else "土台のタグなし")
