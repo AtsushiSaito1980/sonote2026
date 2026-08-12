@@ -166,6 +166,17 @@ def check_article(ep: Path):
         add(WARN, "article.md", "未生成")
         return
     a = p.read_text(encoding="utf-8")
+
+    # H1 は note のタイトル欄にそのまま入る。連番・誌名だけの見出しは検索にも一覧にも効かない
+    m = re.search(r"^#\s+(.+?)\s*$", a, re.M)
+    h1 = m.group(1).strip() if m else ""
+    bad_title = (not h1) or re.search(r"(#\s*\d|vol\.\s*\d|その手があったか)", h1, re.I)
+    add(NG if bad_title else OK, "note タイトル（H1）",
+        f"「{h1}」→ 連番・誌名ではなく、中身が分かる実質タイトルにする" if bad_title
+        else f"「{h1}」{len(h1)}字")
+    add(WARN if len(h1) > 45 else OK, "タイトルの長さ",
+        f"{len(h1)}字 → 一覧で切れる。45字以内を目安に" if len(h1) > 45 else f"{len(h1)}字")
+
     hits = {w: a.count(w) for w in NOTE_FORBIDDEN if a.count(w)}
     add(OK if not hits else NG, "note の禁止語", f"{hits}" if hits else "なし（独立媒体として成立）")
 

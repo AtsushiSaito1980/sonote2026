@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #006</h1>
-<p><strong>特集｜「断られた理由を引く」— 効率で勝てない太陽電池が、載らなかった屋根を市場にするまで</strong></p>
+<h1>効率で勝てない太陽電池が、載らなかった屋根を市場にするまで</h1>
+<p><strong>断られた理由を引く</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>中国大手GCL傘下・GCLペロブスカイトが、タンデム型ペロブスカイト太陽電池の日本での量産販売を2026年7月めどに開始予定（ニュースイッチ〈日刊工業新聞〉報・Japan Energy Times 2026年6月2日・solar-mate 2026年5月27日。参入時期そのものが今月）／2026年7月中旬更新の市場整理記事群（bright-co ほか）</p></blockquote>
 <hr>
@@ -63,9 +63,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #006
-
-**特集｜「断られた理由を引く」— 効率で勝てない太陽電池が、載らなかった屋根を市場にするまで**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**断られた理由を引く**
 
 文＝香月（編集部）
 
@@ -140,7 +138,7 @@
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">効率で勝てない太陽電池が、載らなかった屋根を市場にするまで</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

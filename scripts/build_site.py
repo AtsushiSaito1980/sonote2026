@@ -462,14 +462,19 @@ def build_article_page(meta, ep_dir):
         src = btn = ""
     else:
         inner = md_to_html(md)
-        src = copy_source("src-article", md)
+        # note の投稿画面はタイトル欄と本文欄が別なので、コピーも別々に出す
+        m = re.search(r"^#\s+(.+?)\s*$", md, re.M)
+        title = m.group(1).strip() if m else ""
+        body_md = md[m.end():].lstrip("\n") if m else md
+        src = copy_source("src-article", body_md) + copy_source("src-title", title)
         n_fig = read(ep_dir / "figures.html").count('class="fig"')
         fig_link = (f'<a class="copy-btn secondary" href="figures.html">note用の画像（{n_fig}枚）→</a>'
                     if n_fig else "")
         btn = ('<div class="action-bar">'
-               '<button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button>'
+               '<button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button>'
+               '<button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button>'
                f'{fig_link}'
-               '<span class="count-note">note 投稿用の元テキスト</span></div>')
+               '<span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>')
     body = f"""{ep_header(meta, "article")}
 {btn}
 <article class="prose">

@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #003</h1>
-<p><strong>特集｜「時間をずらす」— 猛暑が動かした営業時間とカレンダー</strong></p>
+<h1>夜24時まで店を開けたら、来店が7倍になった</h1>
+<p><strong>時間をずらす — 猛暑が動かした営業時間とカレンダー</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>ナップス プレスリリース「オートバイ用品店ナップスが&quot;朝6時から営業&quot;と&quot;夜24時まで営業&quot;を行う理由」（2026年7月14日・PR TIMES）／電通×unerry「猛暑時の外出行動」調査（ネットショップ担当者フォーラム 2026年7月28日報道）／三陽商会 2026年夏商戦発表（同 2026年7月16日報道）</p></blockquote>
 <hr>
@@ -66,9 +66,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #003
-
-**特集｜「時間をずらす」— 猛暑が動かした営業時間とカレンダー**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**時間をずらす — 猛暑が動かした営業時間とカレンダー**
 
 文＝香月（編集部）
 
@@ -145,7 +143,7 @@
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">夜24時まで店を開けたら、来店が7倍になった</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

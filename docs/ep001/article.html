@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>週刊 その手があったか vol.000（テスト号）</h1>
-<p><strong>特集｜物差しの反転 — 硬さの競争から、静かに降りた日</strong></p>
+<h1>業界が磨いてきた物差しを、逆さに持った3つの商品</h1>
+<p><strong>物差しの反転 — 硬さの競争から、静かに降りた日</strong></p>
 <p>文＝香月（構成）</p>
 <hr>
 <p>今週のラジオで扱った三つの商品には、共通点がある。業界が何十年も磨いてきた評価軸——本誌はこれを「物差し」と呼ぶ——を、逆さに持ったことだ。しかも三つとも、性能を落とすどころか、逆さに持ったほうが性能が出ている。奇抜さの話ではない。余っていた伸びしろの回収の話である。順に見ていく。</p>
@@ -71,9 +71,7 @@
 <p><strong>読者投稿募集｜「うちの業界の、まだ動かされていない当たり前」</strong><br>あなたの業界で、全員が磨き続けている物差しをひとつ、お寄せください。次号以降の「持ち寄り回」で取り上げます。</p>
 <p><em>本誌はAI音声ラジオ番組『その手があったか』の放送台本を、Web読み物として再構成したものです。記事中の数値・事実は上記出典に基づき、表現は編集部が独自に要約・言い換えたものです。企業名・商品名は各社の商標です。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># 週刊 その手があったか vol.000（テスト号）
-
-**特集｜物差しの反転 — 硬さの競争から、静かに降りた日**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**物差しの反転 — 硬さの競争から、静かに降りた日**
 
 文＝香月（構成）
 
@@ -162,7 +160,7 @@
 あなたの業界で、全員が磨き続けている物差しをひとつ、お寄せください。次号以降の「持ち寄り回」で取り上げます。
 
 *本誌はAI音声ラジオ番組『その手があったか』の放送台本を、Web読み物として再構成したものです。記事中の数値・事実は上記出典に基づき、表現は編集部が独自に要約・言い換えたものです。企業名・商品名は各社の商標です。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">業界が磨いてきた物差しを、逆さに持った3つの商品</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

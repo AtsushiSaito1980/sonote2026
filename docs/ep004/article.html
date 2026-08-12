@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #004</h1>
-<p><strong>特集｜「払う人を変える」— 無料の花火は、誰の財布で上がっているのか</strong></p>
+<h1>無料の花火大会は、いま誰の財布で上がっているのか</h1>
+<p><strong>払う人を変える</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>Business Insider Japan「休止や中止も…コスト高で揺らぐ花火大会。9割が『運営に課題』、ビール会社が動く理由」（2026年8月7日ごろ・NewsPicks掲載）／いたばし花火大会 公式サイト・会場レイアウト変更告知（大会開催 2026年8月1日）／テレビ朝日系・鎌倉花火大会の警備費報道（2026年7月10日開催時）</p></blockquote>
 <hr>
@@ -64,9 +64,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #004
-
-**特集｜「払う人を変える」— 無料の花火は、誰の財布で上がっているのか**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**払う人を変える**
 
 文＝香月（編集部）
 
@@ -142,7 +140,7 @@ Business Insider Japan（NewsPicks掲載・2026年8月）／いたばし花火�
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">無料の花火大会は、いま誰の財布で上がっているのか</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

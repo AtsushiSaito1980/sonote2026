@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><a class="copy-btn secondary" href="figures.html">note用の画像（2枚）→</a><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #009</h1>
-<p><strong>特集｜「ネットの当たり前を、売場に持ち込む」— 無料レシピ動画の会社が、スーパーの棚の上で黒字化するまで</strong></p>
+<h1>無料レシピ動画の会社が、スーパーの棚の上で黒字化するまで</h1>
+<p><strong>ネットの当たり前を、売場に持ち込む</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>株式会社エブリー、東京証券取引所グロース市場へ新規上場（2026年8月4日・証券コード607A）。公開価格230円に対し初値294円（+27.8%）。先立つ6月30日の上場承認で有価証券届出書が公開され、業績・収益構造・店頭サイネージの設置台数・株主構成が開示された</p></blockquote>
 <hr>
@@ -73,9 +73,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #009
-
-**特集｜「ネットの当たり前を、売場に持ち込む」— 無料レシピ動画の会社が、スーパーの棚の上で黒字化するまで**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**ネットの当たり前を、売場に持ち込む**
 
 文＝香月（編集部）
 
@@ -178,7 +176,7 @@ Marketing Solution事業の売上は2024年6月期22.68億円から2025年6月�
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">無料レシピ動画の会社が、スーパーの棚の上で黒字化するまで</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
