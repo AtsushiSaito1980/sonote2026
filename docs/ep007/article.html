@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #007</h1>
-<p><strong>特集｜「中核を開いて、周りで稼ぐ」— タダで配ったソフトが、上場企業になるまで</strong></p>
+<h1>10年タダで配り続けたソフトが、上場企業になるまで</h1>
+<p><strong>中核を開いて、周りで稼ぐ</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>ティアフォー、東京証券取引所グロース市場へ新規上場（2026年7月22日・コード593A）。公募価格1,085円に対し初値1,009円（7.0%の公募割れ）、初日終値1,015円・時価総額644億7,700万円／上場会見（2026年7月23日）でオープンソースを軸としたライセンス収益モデルと、車載半導体のオープンソース化構想を説明</p></blockquote>
 <hr>
@@ -76,9 +76,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #007
-
-**特集｜「中核を開いて、周りで稼ぐ」— タダで配ったソフトが、上場企業になるまで**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**中核を開いて、周りで稼ぐ**
 
 文＝香月（編集部）
 
@@ -182,7 +180,7 @@ Autoware Foundation は2018年に設立された。自動運転分野で世界�
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">10年タダで配り続けたソフトが、上場企業になるまで</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
