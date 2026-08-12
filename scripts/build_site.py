@@ -663,7 +663,7 @@ def build_index(metas, waits):
         preview = [w for w in waits if w.get("status") == "trigger_wait"][:3]
         items = "".join(
             f'<li><strong>{esc(w.get("title", ""))}</strong>'
-            f'<span class="src-note">{esc(w.get("case_names", ""))}</span></li>'
+            f'<span class="src-note">{esc(w.get("gist") or w.get("case_names", ""))}</span></li>'
             for w in preview)
         wait_html = f"""
 <section class="wait-sec">
@@ -729,6 +729,7 @@ def build_backlog_page(entries, tag_names):
                      + tag_chips(e.get("motive", ""), "motive", tag_names)
                      + tag_chips(e.get("tailwind", ""), "tailwind", tag_names))
             chip_html = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in chips)
+            # gist（どんな話か）と復活の条件は畳まず、常に見える位置に置く
             rows = []
             if e.get("case_names"):
                 rows.append(("題材", esc(e["case_names"].replace(";", "／"))))
@@ -736,14 +737,25 @@ def build_backlog_page(entries, tag_names):
                 rows.append(("業界", esc(e["industries"].replace(";", "／"))))
             if e.get("reason"):
                 rows.append(("見送った理由", esc(e["reason"])))
-            if e.get("revive_when"):
-                rows.append(("復活の条件", f'<strong>{esc(e["revive_when"])}</strong>'))
             if e.get("sources"):
                 rows.append(("手がかり", f'<span class="src">{esc(e["sources"])}</span>'))
             if e.get("note"):
                 rows.append(("メモ", esc(e["note"])))
             kv = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows)
             found = " ".join(x for x in (e.get("found_on", ""), e.get("found_in", "")) if x)
+
+            gist = e.get("gist", "")
+            gist_html = (f'<p class="bl-gist">{esc(gist)}</p>' if gist else
+                         '<p class="bl-gist none">ひとこと説明（gist）が未記入。'
+                         'backlog.yaml に追記すること</p>')
+            revive = e.get("revive_when", "")
+            revive_html = (f'<p class="bl-revive"><span>復活の条件</span>{esc(revive)}</p>'
+                           if revive else "")
+            more_html = (f"""
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv">{kv}</table></div>
+  </details>""" if rows else "")
             cards.append(f"""
 <article class="bl-card {cls}">
   <div class="bl-head">
@@ -751,8 +763,9 @@ def build_backlog_page(entries, tag_names):
     <h3>{esc(e.get("title", ""))}</h3>
     <span class="bl-found">{esc(found)}</span>
   </div>
+  {gist_html}
   <div class="chips">{chip_html}</div>
-  <div class="table-scroll"><table class="kv bl-kv">{kv}</table></div>
+  {revive_html}{more_html}
 </article>""")
         sections.append(f"""
 <section class="bl-sec">
@@ -768,8 +781,21 @@ def build_backlog_page(entries, tag_names):
   <h1>ボツネタ棚</h1>
   <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
   <div class="bl-counts">{counts}</div>
+  <button class="btn bl-toggle" id="bl-toggle" type="button">詳細をすべて開く</button>
 </div>
 {"".join(sections)}
+<script>
+(function () {{
+  var btn = document.getElementById('bl-toggle');
+  if (!btn) return;
+  var open = false;
+  btn.addEventListener('click', function () {{
+    open = !open;
+    document.querySelectorAll('details.bl-more').forEach(function (d) {{ d.open = open; }});
+    btn.textContent = open ? '詳細をすべて閉じる' : '詳細をすべて開く';
+  }});
+}})();
+</script>
 """
     return page("", "ボツネタ棚 — その手があったか", body, active_nav="backlog")
 
@@ -1019,6 +1045,20 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .bl-id { font-size: 11px; font-weight: 800; color: var(--accent); font-family: ui-monospace, monospace; }
 .bl-found { font-size: 11px; color: var(--muted); white-space: nowrap; }
 .bl-card .chips { margin: 8px 0 4px; }
+.bl-gist { font-size: 14px; line-height: 1.85; color: var(--ink); margin: 9px 0 0; }
+.bl-gist.none { font-size: 12.5px; color: var(--muted); font-style: italic; }
+.bl-revive { font-size: 12.5px; line-height: 1.8; color: var(--ink-2); margin: 9px 0 0;
+  padding: 8px 12px; background: var(--page); border: 1px solid var(--border); border-radius: 9px; }
+.bl-revive span { font-size: 10.5px; font-weight: 800; color: var(--serious);
+  letter-spacing: .04em; display: block; margin-bottom: 2px; }
+.bl-more { margin-top: 9px; }
+.bl-more > summary { font-size: 11.5px; color: var(--muted); cursor: pointer;
+  padding: 3px 0; list-style: none; user-select: none; }
+.bl-more > summary::-webkit-details-marker { display: none; }
+.bl-more > summary::before { content: "▸ "; }
+.bl-more[open] > summary::before { content: "▾ "; }
+.bl-more > summary:hover { color: var(--accent); }
+.bl-toggle { margin-top: 12px; font-size: 12px; padding: 6px 14px; }
 table.bl-kv { font-size: 12.5px; }
 table.bl-kv th { width: 92px; font-size: 11.5px; padding: 6px 10px 6px 0; }
 table.bl-kv td { padding: 6px 0; }
