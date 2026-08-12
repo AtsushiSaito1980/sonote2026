@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #005</h1>
-<p><strong>特集｜「当事者から始める」— 兄への偏見を、事業の設計図に変えた双子</strong></p>
+<h1>兄への偏見を、事業の設計図に変えた双子</h1>
+<p><strong>当事者から始める</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>銀座・和光×HERALBONY 特別企画展「Wako Sustainability Month GOOD LOOP 2026」開幕（2026年8月6日・ヘラルボニー公式サイト）／PR TIMESでの同社発信（2026年7月6日・16日・17日・24日ほか、直近は8月上旬）</p></blockquote>
 <hr>
@@ -63,9 +63,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #005
-
-**特集｜「当事者から始める」— 兄への偏見を、事業の設計図に変えた双子**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**当事者から始める**
 
 文＝香月（編集部）
 
@@ -133,7 +131,7 @@
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">兄への偏見を、事業の設計図に変えた双子</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

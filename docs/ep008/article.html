@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>その手があったか #008</h1>
-<p><strong>特集｜「返ってくる前提で、分けておく」— 一回で回収しない商売が、八年目に黒字化するまで</strong></p>
+<h1>一回で回収しない商売が、八年目に黒字化するまで</h1>
+<p><strong>返ってくる前提で、分けておく</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>株式会社クラス「パナソニックくらしビジョナリーファンド等から総額13.8億円の資金調達を実施。累計調達額は114.6億円へ」（2026年7月28日）／同日、パナソニック「家具・家電レンタル・サブスクサービスを展開するCLASへ パナソニックくらしビジョナリーファンドから出資」を発表。出資理由として、回収した家電を再生し検査を経て再販売・提供してきた自社の経験を挙げている</p></blockquote>
 <hr>
@@ -84,9 +84,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># その手があったか #008
-
-**特集｜「返ってくる前提で、分けておく」— 一回で回収しない商売が、八年目に黒字化するまで**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**返ってくる前提で、分けておく**
 
 文＝香月（編集部）
 
@@ -216,7 +214,7 @@
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">一回で回収しない商売が、八年目に黒字化するまで</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

@@ -28,10 +28,10 @@
 </div>
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html" aria-current="page">note記事</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
-<div class="action-bar"><button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button><span class="count-note">note 投稿用の元テキスト</span></div>
+<div class="action-bar"><button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button><button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button><span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>
 <article class="prose">
-<h1>週刊 その手があったか vol.001</h1>
-<p><strong>特集｜施行日は、開店日。— カスハラ対策義務化が生む市場</strong></p>
+<h1>カスハラ対策義務化の2ヶ月前に、もう開いていた四つの売り場</h1>
+<p><strong>施行日は、開店日。</strong></p>
 <p>文＝香月（編集部）</p>
 <blockquote><p><strong>きっかけになったニュース</strong><br>カスタマーハラスメント対策義務化（2026年10月1日施行）をめぐり、企業向けの解説記事・対策サービスの発信が2026年7月に相次いだ（NEWS DAILY／パーソルビジネスプロセスデザイン コラム／LINE WORKS コラム ほか。施行80日前の駆け込み期）</p></blockquote>
 <hr>
@@ -68,9 +68,7 @@
 <hr>
 <p><em>記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。</em></p>
 </article>
-<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true"># 週刊 その手があったか vol.001
-
-**特集｜施行日は、開店日。— カスハラ対策義務化が生む市場**
+<textarea id="src-article" class="visually-hidden" readonly aria-hidden="true">**施行日は、開店日。**
 
 文＝香月（編集部）
 
@@ -155,7 +153,7 @@
 ---
 
 *記事中の数値・事実は文末の出典に基づき、表現は編集部が独自に構成したものです。企業名・商品名は各社の商標です。本誌の制作には生成AIを活用しています。*
-</textarea>
+</textarea><textarea id="src-title" class="visually-hidden" readonly aria-hidden="true">カスハラ対策義務化の2ヶ月前に、もう開いていた四つの売り場</textarea>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
