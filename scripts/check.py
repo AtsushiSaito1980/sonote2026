@@ -63,7 +63,9 @@ KIME_HINTS = ["に隠れる", "なんですよ。", "、いちばん", "こそ�
 
 NOTE_FORBIDDEN = ["ラジオ", "放送", "番組", "音声", "リスナー", "読者投稿", "読者募集"]
 
-# note・概要欄は外部公開。制作手順と選定基準は出さない（自分の道具は見せない）
+# 外へ出るもの（note記事・配信概要欄・台本本文）に、制作手順と選定基準を混ぜない。
+# 逆に brief・事実カード・検査レポート・台帳・ボツネタ棚・アーカイブサイトは
+# 人間が追跡するための道具なので、詳しいまま残す。ここは検査しない。
 METHOD_LEAK = re.compile(r"OP\d{2}|MO\d\b|TW\d\b|トリガ|事実カード|density|巡回棚|"
                          r"ボツネタ|検査レポート|数字の系統|並走句|取材話法|掛け味")
 
@@ -96,6 +98,12 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
 
     add(OK if lo <= n <= hi else NG, "本文文字数", f"{n}（{duration_min}分の規定 {lo:,}〜{hi:,}）")
     add(OK if "…" not in body else NG, "三点リーダー", f"{body.count('…')} 個")
+
+    # 本文は将来そのまま音声になる。制作手順・選定基準を混ぜない
+    # （--- より上の見出しブロックは読み上げ対象外なので検査しない）
+    leaks = sorted(set(METHOD_LEAK.findall(body)))
+    add(OK if not leaks else NG, "台本本文の制作情報",
+        f"{leaks} ← 読み上げられるので消すこと" if leaks else "なし")
 
     halfsp = len(re.findall(r"[ぁ-ヶ一-龥][ ][ぁ-ヶ一-龥]", body))
     add(OK if halfsp == 0 else NG, "和文の半角スペース", f"{halfsp} 箇所")
