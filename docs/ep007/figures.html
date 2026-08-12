@@ -29,11 +29,11 @@
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html" aria-current="page">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
 <div class="ep-head">
-  <p class="hint">note の本文に貼る図版（2枚）。<strong>1枚で意味が通るように作ってあります。</strong>
-  下のプレビューがそのまま画像になります。</p>
+  <p class="hint">note の本文に貼る図版（3枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
   <div class="dl-shelf">
-  <div class="dl-head">書き出し済みの画像（2枚・2倍解像度）</div>
-  <div class="dl-list"><a class="dl" href="images/ep007-combo.png" download><span class="dl-name">ep007-combo.png</span><span class="dl-size">101 KB</span></a><a class="dl" href="images/ep007-number.png" download><span class="dl-name">ep007-number.png</span><span class="dl-size">96 KB</span></a></div>
+  <div class="dl-head">書き出し済みの画像（3枚・2倍解像度）</div>
+  <div class="dl-list"><a class="dl" href="images/ep007-combo.png" download><span class="dl-name">ep007-combo.png</span><span class="dl-size">101 KB</span></a><a class="dl" href="images/ep007-number.png" download><span class="dl-name">ep007-number.png</span><span class="dl-size">96 KB</span></a><a class="dl" href="images/ep007-table-1.png" download><span class="dl-name">ep007-table-1.png</span><span class="dl-size">106 KB</span></a></div>
   <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
   作り直したら <code>python3 scripts/export_figures.py ep007</code> を再実行。</p>
 </div>
@@ -86,6 +86,13 @@
   <div class="fig-foot"><b>その手があったか</b><span>無料なのは試用まで。本命の課金は、量産のあとに置かれている</span></div>
 </figure>
 
+<figure class="fig" data-fig="table-1">
+  <div class="fig-kicker">記事の表 1</div>
+  <p class="fig-lead">二、どこで課金しているか——収益の三層</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th>層</th><th>内容</th><th>課金のタイミング</th></tr></thead><tbody><tr><td>開発</td><td>車両ごとの作り込み・カスタマイズ（Pilot.Auto ほか）</td><td>量産前に一時収入</td></tr><tr><td>基盤・機材</td><td>クラウド開発基盤（Web.Auto）、センサー・計算機の参照設計（Edge.Auto）</td><td>導入時</td></tr><tr><td>量産</td><td>プラットフォームのライセンス料。将来的には車両1台ごとのロイヤルティへ</td><td><strong>量産開始後（構想段階・未計上）</strong></td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

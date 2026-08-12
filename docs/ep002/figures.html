@@ -29,11 +29,11 @@
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html" aria-current="page">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
 <div class="ep-head">
-  <p class="hint">note の本文に貼る図版（2枚）。<strong>1枚で意味が通るように作ってあります。</strong>
-  下のプレビューがそのまま画像になります。</p>
+  <p class="hint">note の本文に貼る図版（3枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
   <div class="dl-shelf">
-  <div class="dl-head">書き出し済みの画像（2枚・2倍解像度）</div>
-  <div class="dl-list"><a class="dl" href="images/ep002-combo.png" download><span class="dl-name">ep002-combo.png</span><span class="dl-size">85 KB</span></a><a class="dl" href="images/ep002-number.png" download><span class="dl-name">ep002-number.png</span><span class="dl-size">96 KB</span></a></div>
+  <div class="dl-head">書き出し済みの画像（3枚・2倍解像度）</div>
+  <div class="dl-list"><a class="dl" href="images/ep002-combo.png" download><span class="dl-name">ep002-combo.png</span><span class="dl-size">85 KB</span></a><a class="dl" href="images/ep002-number.png" download><span class="dl-name">ep002-number.png</span><span class="dl-size">96 KB</span></a><a class="dl" href="images/ep002-table-1.png" download><span class="dl-name">ep002-table-1.png</span><span class="dl-size">120 KB</span></a></div>
   <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
   作り直したら <code>python3 scripts/export_figures.py ep002</code> を再実行。</p>
 </div>
@@ -83,6 +83,13 @@
   <div class="fig-foot"><b>その手があったか</b><span>対象は、労働者を1人でも雇うすべての事業主</span></div>
 </figure>
 
+<figure class="fig" data-fig="table-1">
+  <div class="fig-kicker">記事の表 1</div>
+  <p class="fig-lead">一、義務の中身と、施行までの日程</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th>日付</th><th>出来事</th></tr></thead><tbody><tr><td>2025年6月4日</td><td>改正労働施策総合推進法が成立（6月11日公布・令和7年法律第63号）</td></tr><tr><td>2025年12月10日</td><td>厚生労働省が指針案を公表、パブリックコメントへ</td></tr><tr><td>2026年2月26日</td><td>指針を正式策定・公布（令和8年厚生労働省告示第51号）</td></tr><tr><td>2026年4月24日</td><td>運用通達と解釈Q&amp;Aを公表。制度の全体像が出そろう</td></tr><tr><td><strong>2026年10月1日</strong></td><td><strong>施行</strong>（令和8年政令第17号で確定）</td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

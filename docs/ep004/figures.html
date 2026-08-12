@@ -29,11 +29,11 @@
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html" aria-current="page">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
 <div class="ep-head">
-  <p class="hint">note の本文に貼る図版（2枚）。<strong>1枚で意味が通るように作ってあります。</strong>
-  下のプレビューがそのまま画像になります。</p>
+  <p class="hint">note の本文に貼る図版（3枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
   <div class="dl-shelf">
-  <div class="dl-head">書き出し済みの画像（2枚・2倍解像度）</div>
-  <div class="dl-list"><a class="dl" href="images/ep004-combo.png" download><span class="dl-name">ep004-combo.png</span><span class="dl-size">99 KB</span></a><a class="dl" href="images/ep004-number.png" download><span class="dl-name">ep004-number.png</span><span class="dl-size">95 KB</span></a></div>
+  <div class="dl-head">書き出し済みの画像（3枚・2倍解像度）</div>
+  <div class="dl-list"><a class="dl" href="images/ep004-combo.png" download><span class="dl-name">ep004-combo.png</span><span class="dl-size">99 KB</span></a><a class="dl" href="images/ep004-number.png" download><span class="dl-name">ep004-number.png</span><span class="dl-size">95 KB</span></a><a class="dl" href="images/ep004-table-1.png" download><span class="dl-name">ep004-table-1.png</span><span class="dl-size">91 KB</span></a></div>
   <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
   作り直したら <code>python3 scripts/export_figures.py ep004</code> を再実行。</p>
 </div>
@@ -83,6 +83,13 @@
   <div class="fig-foot"><b>その手があったか</b><span>2025年7月時点で、全国28会場の中止が確定していた</span></div>
 </figure>
 
+<figure class="fig" data-fig="table-1">
+  <div class="fig-kicker">記事の表 1</div>
+  <p class="fig-lead">三、請求先を変えるときの、三つの原則</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th>段階</th><th>買い手</th><th>売っているもの</th></tr></thead><tbody><tr><td>有料席</td><td>観客</td><td>確実さ・場所・導線（花火そのものではない）</td></tr><tr><td>協賛・返礼</td><td>地元企業・熱心なファン</td><td>席という対価＋名前が出る価値</td></tr><tr><td>販促取り込み</td><td>全国区の企業</td><td>「文化を支える」ブランド文脈</td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

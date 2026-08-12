@@ -29,11 +29,11 @@
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html" aria-current="page">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
 <div class="ep-head">
-  <p class="hint">note の本文に貼る図版（2枚）。<strong>1枚で意味が通るように作ってあります。</strong>
-  下のプレビューがそのまま画像になります。</p>
+  <p class="hint">note の本文に貼る図版（4枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。うち2枚は記事中の表で、note が表に対応しないため画像にしています。</p>
   <div class="dl-shelf">
-  <div class="dl-head">書き出し済みの画像（2枚・2倍解像度）</div>
-  <div class="dl-list"><a class="dl" href="images/ep009-combo.png" download><span class="dl-name">ep009-combo.png</span><span class="dl-size">103 KB</span></a><a class="dl" href="images/ep009-number.png" download><span class="dl-name">ep009-number.png</span><span class="dl-size">95 KB</span></a></div>
+  <div class="dl-head">書き出し済みの画像（4枚・2倍解像度）</div>
+  <div class="dl-list"><a class="dl" href="images/ep009-combo.png" download><span class="dl-name">ep009-combo.png</span><span class="dl-size">103 KB</span></a><a class="dl" href="images/ep009-number.png" download><span class="dl-name">ep009-number.png</span><span class="dl-size">95 KB</span></a><a class="dl" href="images/ep009-table-1.png" download><span class="dl-name">ep009-table-1.png</span><span class="dl-size">104 KB</span></a><a class="dl" href="images/ep009-table-2.png" download><span class="dl-name">ep009-table-2.png</span><span class="dl-size">85 KB</span></a></div>
   <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
   作り直したら <code>python3 scripts/export_figures.py ep009</code> を再実行。</p>
 </div>
@@ -83,6 +83,20 @@
   <div class="fig-foot"><b>その手があったか</b><span>スマホに広告費を払っても、財布が開くのは売場だった</span></div>
 </figure>
 
+<figure class="fig" data-fig="table-1">
+  <div class="fig-kicker">記事の表 1</div>
+  <p class="fig-lead">三、売場に画面を持ち込む</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th>年</th><th>出来事</th></tr></thead><tbody><tr><td>2015年9月</td><td>創業。『DELISH KITCHEN』開始</td></tr><tr><td>2021年6月期</td><td>売上20.9億円に対し経常損失13.7億円</td></tr><tr><td>2023年9月</td><td>「retail HUB」発表。売場サイネージ事業へ</td></tr><tr><td>2024年</td><td>万代全167店舗導入（1月）／全国累計11,000台超（11月）</td></tr><tr><td>2026年6月期3Q累計</td><td>売上38.3億円・経常利益3.2億円に黒字転換</td></tr><tr><td>2026年8月4日</td><td>東証グロース上場</td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
+<figure class="fig" data-fig="table-2">
+  <div class="fig-kicker">記事の表 2</div>
+  <p class="fig-lead">五、広告主と小売、二つの支払い手</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th>収益源</th><th>支払う者</th><th>中身</th></tr></thead><tbody><tr><td>タイアップ・ディスプレイ広告</td><td>食品メーカー等</td><td>レシピ動画の制作・配信、表示連動広告</td></tr><tr><td>ストアビジョン広告</td><td>食品メーカー等</td><td>全国のサイネージでの動画広告配信</td></tr><tr><td>retail HUB（ストアDX）</td><td>小売</td><td>サイネージ設置、小売アプリ・ネットスーパーの開発保守</td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

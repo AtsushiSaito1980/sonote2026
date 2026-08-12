@@ -29,11 +29,11 @@
 <nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html" aria-current="page">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
 
 <div class="ep-head">
-  <p class="hint">note の本文に貼る図版（2枚）。<strong>1枚で意味が通るように作ってあります。</strong>
-  下のプレビューがそのまま画像になります。</p>
+  <p class="hint">note の本文に貼る図版（3枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
   <div class="dl-shelf">
-  <div class="dl-head">書き出し済みの画像（2枚・2倍解像度）</div>
-  <div class="dl-list"><a class="dl" href="images/ep006-combo.png" download><span class="dl-name">ep006-combo.png</span><span class="dl-size">93 KB</span></a><a class="dl" href="images/ep006-number.png" download><span class="dl-name">ep006-number.png</span><span class="dl-size">105 KB</span></a></div>
+  <div class="dl-head">書き出し済みの画像（3枚・2倍解像度）</div>
+  <div class="dl-list"><a class="dl" href="images/ep006-combo.png" download><span class="dl-name">ep006-combo.png</span><span class="dl-size">94 KB</span></a><a class="dl" href="images/ep006-number.png" download><span class="dl-name">ep006-number.png</span><span class="dl-size">105 KB</span></a><a class="dl" href="images/ep006-table-1.png" download><span class="dl-name">ep006-table-1.png</span><span class="dl-size">113 KB</span></a></div>
   <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
   作り直したら <code>python3 scripts/export_figures.py ep006</code> を再実行。</p>
 </div>
@@ -83,6 +83,13 @@
   <div class="fig-foot"><b>その手があったか</b><span>世界に無視された17年が、いま量産の競争に入っている</span></div>
 </figure>
 
+<figure class="fig" data-fig="table-1">
+  <div class="fig-kicker">記事の表 1</div>
+  <p class="fig-lead">三、重さを取り除くと、勝負の軸が変わる</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th></th><th>シリコン系（従来）</th><th>フィルム型ペロブスカイト</th></tr></thead><tbody><tr><td>勝負の軸</td><td>変換効率・価格</td><td><strong>設置できる場所の数</strong></td></tr><tr><td>引いたもの</td><td>—</td><td>重さ・硬さ（ガラス・架台）</td></tr><tr><td>市場</td><td>載る屋根・野立て（競合過密）</td><td>載らなかった屋根・壁・水面（競合ゼロ）</td></tr><tr><td>原料</td><td>中国依存のサプライチェーン</td><td>ヨウ素＝千葉県が国内の約80%を産出、日本は世界シェア約30%（世界2位）</td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
 
 <footer class="site-foot">
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>

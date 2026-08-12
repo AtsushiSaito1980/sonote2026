@@ -245,6 +245,73 @@ def decorate_status(cell: str) -> str:
     return inline(cell)
 
 
+TABLE_SEP = re.compile(r"^\s*\|?[\s:|-]+\|[\s:|-]*$")
+
+
+def article_tables(md: str) -> list:
+    """article.md の表を、直前の見出しごと拾う。
+
+    note のエディタは表に対応していないので、貼り付け用の本文からは外して
+    画像に回す。ここで拾った表が figures ページの図版になる。
+    """
+    lines = md.splitlines()
+    out, i, n, heading = [], 0, len(lines), ""
+    while i < n:
+        s = lines[i].strip()
+        if s.startswith("## "):
+            heading = s[3:].strip()
+        if (s.startswith("|") and i + 1 < n
+                and TABLE_SEP.match(lines[i + 1]) and "-" in lines[i + 1]):
+            header = [c.strip() for c in s.strip("|").split("|")]
+            j, rows = i + 2, []
+            while j < n and lines[j].strip().startswith("|"):
+                rows.append([c.strip() for c in lines[j].strip().strip("|").split("|")])
+                j += 1
+            out.append({"start": i, "end": j, "caption": heading,
+                        "header": header, "rows": rows})
+            i = j
+            continue
+        i += 1
+    return out
+
+
+def note_body_md(md: str, ep: str) -> str:
+    """note に貼る本文（Markdown）。H1 はタイトル欄へ回すので外し、表は画像の目印に置き換える"""
+    m = re.search(r"^#\s+.+?$", md, re.M)
+    if m:
+        md = md[m.end():].lstrip("\n")
+    tables = article_tables(md)
+    if not tables:
+        return md
+    lines = md.splitlines()
+    drop, ins = set(), {}
+    for k, t in enumerate(tables, 1):
+        cols = "／".join(c for c in t["header"] if c)
+        ins[t["start"]] = f"［ここに画像を挿入：{ep}-table-{k}.png（{cols}）］"
+        drop.update(range(t["start"], t["end"]))
+    out = []
+    for idx, line in enumerate(lines):
+        if idx in ins:
+            out.append(ins[idx])
+        if idx not in drop:
+            out.append(line)
+    return "\n".join(out)
+
+
+def md_to_plain(md: str) -> str:
+    """書式付き貼り付けが使えないとき用。記号だけ落として、構造は改行で残す"""
+    out = []
+    for line in md.splitlines():
+        s = re.sub(r"^#{1,6}\s+", "", line)
+        s = re.sub(r"^>\s?", "", s)
+        s = BOLD.sub(r"\1", s)
+        s = EM.sub(r"\1", s)
+        s = CODE.sub(r"\1", s)
+        s = LINK.sub(r"\1", s)
+        out.append(s)
+    return "\n".join(out)
+
+
 def md_to_html(text: str) -> str:
     lines = text.splitlines()
     out, i, n = [], 0, len(lines)
@@ -465,16 +532,26 @@ def build_article_page(meta, ep_dir):
         # note の投稿画面はタイトル欄と本文欄が別なので、コピーも別々に出す
         m = re.search(r"^#\s+(.+?)\s*$", md, re.M)
         title = m.group(1).strip() if m else ""
-        body_md = md[m.end():].lstrip("\n") if m else md
-        src = copy_source("src-article", body_md) + copy_source("src-title", title)
-        n_fig = read(ep_dir / "figures.html").count('class="fig"')
+        n_tbl = len(article_tables(md))
+        body_md = note_body_md(md, meta["ep"])
+        src = (copy_source("src-article", body_md)
+               + copy_source("src-title", title)
+               + copy_source("src-plain", md_to_plain(body_md))
+               + copy_source("src-html", md_to_html(body_md)))
+        n_fig = read(ep_dir / "figures.html").count('class="fig"') + n_tbl
         fig_link = (f'<a class="copy-btn secondary" href="figures.html">note用の画像（{n_fig}枚）→</a>'
                     if n_fig else "")
+        note = ("note のタイトル欄・本文欄にそれぞれ貼る。"
+                f"表{n_tbl}つは画像に置き換えてあります" if n_tbl
+                else "note のタイトル欄・本文欄にそれぞれ貼る")
         btn = ('<div class="action-bar">'
                '<button class="copy-btn" type="button" data-copy="src-title">タイトルをコピー</button>'
-               '<button class="copy-btn secondary" type="button" data-copy="src-article">本文をコピー</button>'
+               '<button class="copy-btn" type="button" data-copy="src-plain" '
+               'data-copy-html="src-html">本文を書式つきでコピー</button>'
+               '<button class="copy-btn secondary" type="button" data-copy="src-article">'
+               'Markdownでコピー</button>'
                f'{fig_link}'
-               '<span class="count-note">note のタイトル欄・本文欄にそれぞれ貼る</span></div>')
+               f'<span class="count-note">{note}</span></div>')
     body = f"""{ep_header(meta, "article")}
 {btn}
 <article class="prose">
@@ -493,7 +570,24 @@ def build_figures_page(meta, ep_dir):
                  '<code>.claude/skills/write-figures</code> の手順で作成してください。</p>')
     else:
         inner = frag
-    n = frag.count('class="fig"')
+
+    # 記事の表を図版に足す。note は表に対応しないので、貼るときは画像にする
+    md = read(ep_dir / "article.md")
+    tbls = article_tables(md)
+    for k, t in enumerate(tbls, 1):
+        thead = "".join(f"<th>{inline(c)}</th>" for c in t["header"])
+        tbody = "".join("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>"
+                        for r in t["rows"])
+        cap = esc(t["caption"]) or "記事中の表"
+        inner += f"""
+<figure class="fig" data-fig="table-{k}">
+  <div class="fig-kicker">記事の表 {k}</div>
+  <p class="fig-lead">{cap}</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr>{thead}</tr></thead><tbody>{tbody}</tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>"""
+    n = inner.count('class="fig"')
 
     # 書き出し済みの PNG があれば、先頭にダウンロード欄を出す
     pngs = sorted((OUT / meta["ep"] / "images").glob("*.png")) if n else []
@@ -517,7 +611,7 @@ def build_figures_page(meta, ep_dir):
     body = f"""{ep_header(meta, "figures")}
 <div class="ep-head">
   <p class="hint">note の本文に貼る図版（{n}枚）。<strong>1枚で意味が通るように作ってあります。</strong>
-  下のプレビューがそのまま画像になります。</p>
+  下のプレビューがそのまま画像になります。{f"うち{len(tbls)}枚は記事中の表で、note が表に対応しないため画像にしています。" if tbls else ""}</p>
   {shelf}
 </div>
 {inner}
@@ -1483,13 +1577,32 @@ SITE_JS = """// その手があったか — 制作アーカイブ（build_site.
       ta.remove(); return ok;
     } catch (e) { return false; }
   }
+  // note のエディタは書式付きの貼り付けを受け取れるので、HTML も一緒にクリップボードへ置く。
+  // 見出し・太字・引用・箇条書きがそのまま入る（失敗したらプレーンに落とす）
+  async function copyRich(html, text) {
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' }),
+      })]);
+      return true;
+    } catch (e) {}
+    return copyText(text);
+  }
+  function srcText(id) {
+    var el = document.getElementById(id);
+    if (!el) return '';
+    return ('value' in el && el.tagName === 'TEXTAREA') ? el.value : el.textContent;
+  }
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-copy]');
     if (!btn) return;
     var src = document.getElementById(btn.getAttribute('data-copy'));
     if (!src) return;
     var text = ('value' in src && src.tagName === 'TEXTAREA') ? src.value : src.textContent;
-    copyText(text).then(function (ok) {
+    var htmlId = btn.getAttribute('data-copy-html');
+    var run = htmlId ? copyRich(srcText(htmlId), text) : copyText(text);
+    run.then(function (ok) {
       var orig = btn.textContent;
       btn.textContent = ok ? 'コピーしました ✓' : 'コピーできませんでした';
       btn.classList.add('copied');

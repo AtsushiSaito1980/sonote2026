@@ -177,6 +177,18 @@ def check_article(ep: Path):
     add(WARN if len(h1) > 45 else OK, "タイトルの長さ",
         f"{len(h1)}字 → 一覧で切れる。45字以内を目安に" if len(h1) > 45 else f"{len(h1)}字")
 
+    # 表は画像になる。列が多いと画像で潰れるので、書く段階で止める
+    wide = []
+    for ln in a.splitlines():
+        s = ln.strip()
+        if s.startswith("|") and s.endswith("|"):
+            cols = len([c for c in s.strip("|").split("|")])
+            if cols > 3 and not re.match(r"^[\s:|-]+$", s.strip("|")):
+                wide.append(cols)
+    add(WARN if wide else OK, "表の列数",
+        f"{max(wide)}列の表がある → note では画像になるので3列までに収める" if wide
+        else "3列以内")
+
     hits = {w: a.count(w) for w in NOTE_FORBIDDEN if a.count(w)}
     add(OK if not hits else NG, "note の禁止語", f"{hits}" if hits else "なし（独立媒体として成立）")
 
