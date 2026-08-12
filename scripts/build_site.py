@@ -385,7 +385,7 @@ def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
 
 def ep_tabs(ep_id: str, current: str) -> str:
     tabs = [("infographic", "インフォグラフィック"), ("article", "note記事"),
-            ("script", "台本（コピー用）"), ("files", "制作ファイル")]
+            ("figures", "note用の画像"), ("script", "台本（コピー用）"), ("files", "制作ファイル")]
     links = []
     for key, label in tabs:
         cur = ' aria-current="page"' if key == current else ""
@@ -463,8 +463,12 @@ def build_article_page(meta, ep_dir):
     else:
         inner = md_to_html(md)
         src = copy_source("src-article", md)
+        n_fig = read(ep_dir / "figures.html").count('class="fig"')
+        fig_link = (f'<a class="copy-btn secondary" href="figures.html">note用の画像（{n_fig}枚）→</a>'
+                    if n_fig else "")
         btn = ('<div class="action-bar">'
                '<button class="copy-btn secondary" type="button" data-copy="src-article">記事のMarkdownをコピー</button>'
+               f'{fig_link}'
                '<span class="count-note">note 投稿用の元テキスト</span></div>')
     body = f"""{ep_header(meta, "article")}
 {btn}
@@ -474,6 +478,46 @@ def build_article_page(meta, ep_dir):
 {src}
 """
     return page("../", f'{meta["ep"]} note記事 — その手があったか', body)
+
+
+def build_figures_page(meta, ep_dir):
+    """note に貼る図版。1つの .fig が画像1枚になる（scripts/export_figures.py が書き出す）"""
+    frag = read(ep_dir / "figures.html")
+    if not frag:
+        inner = ('<p class="empty">figures.html がまだありません。'
+                 '<code>.claude/skills/write-figures</code> の手順で作成してください。</p>')
+    else:
+        inner = frag
+    n = frag.count('class="fig"')
+
+    # 書き出し済みの PNG があれば、先頭にダウンロード欄を出す
+    pngs = sorted((OUT / meta["ep"] / "images").glob("*.png")) if n else []
+    if pngs:
+        items = "".join(
+            f'<a class="dl" href="images/{p.name}" download>'
+            f'<span class="dl-name">{esc(p.name)}</span>'
+            f'<span class="dl-size">{p.stat().st_size // 1024} KB</span></a>'
+            for p in pngs)
+        shelf = f"""<div class="dl-shelf">
+  <div class="dl-head">書き出し済みの画像（{len(pngs)}枚・2倍解像度）</div>
+  <div class="dl-list">{items}</div>
+  <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
+  作り直したら <code>python3 scripts/export_figures.py {meta["ep"]}</code> を再実行。</p>
+</div>"""
+    else:
+        shelf = f'<p class="hint">まだ書き出されていません。' \
+                f'<code>python3 scripts/export_figures.py {meta["ep"]}</code> を実行すると ' \
+                f'<code>docs/{meta["ep"]}/images/</code> に PNG が出ます。</p>' if n else ""
+
+    body = f"""{ep_header(meta, "figures")}
+<div class="ep-head">
+  <p class="hint">note の本文に貼る図版（{n}枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。</p>
+  {shelf}
+</div>
+{inner}
+"""
+    return page("../", f'{meta["ep"]} note用の画像 — その手があったか', body)
 
 
 def facts_section(facts: dict) -> str:
@@ -846,9 +890,15 @@ def main():
 
     # 出力（docs/ の生成対象だけ消して作り直す。plan.md 等は残す）
     OUT.mkdir(exist_ok=True)
+    known = {m["ep"] for m in metas}
     for old in OUT.glob("ep*"):
-        if old.is_dir():
-            shutil.rmtree(old)
+        if not old.is_dir():
+            continue
+        if old.name not in known:
+            shutil.rmtree(old)          # ソースが消えた回は、まるごと片づける
+            continue
+        for f in old.glob("*.html"):    # 生成物だけ消す。
+            f.unlink()                  # images/ は export_figures.py の成果物なので残す
     for name in ("index.html", "ledger.html"):
         (OUT / name).unlink(missing_ok=True)
     if (OUT / "assets").exists():
@@ -861,10 +911,11 @@ def main():
 
     for meta in metas:
         out_dir = OUT / meta["ep"]
-        out_dir.mkdir()
+        out_dir.mkdir(exist_ok=True)
         (out_dir / "infographic.html").write_text(build_infographic_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "article.html").write_text(build_article_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "script.html").write_text(build_script_page(meta, meta["dir"]), encoding="utf-8")
+        (out_dir / "figures.html").write_text(build_figures_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "files.html").write_text(build_files_page(meta, meta["dir"]), encoding="utf-8")
 
     backlog = parse_backlog(read(ROOT / "ledger" / "backlog.yaml"))
@@ -1269,6 +1320,76 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
   .vs { grid-template-columns: 1fr; }
   .vs .vmid { text-align: center; }
 }
+/* ============ note 用の書き出し図版 ============
+   .fig ひとつが画像1枚になる。単体で意味が通るように、見出し・出典・誌名まで入れる。
+   data-fig がファイル名になる。scripts/export_figures.py が拾う */
+.fig { background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 26px 28px 20px; margin: 18px 0; }
+.fig-kicker { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--accent);
+  text-transform: uppercase; }
+.fig-lead { font-size: 17px; font-weight: 700; line-height: 1.75; margin: 6px 0 18px;
+  letter-spacing: -.01em; }
+.fig-foot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  flex-wrap: wrap; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 10.5px; color: var(--muted); }
+.fig-foot b { font-weight: 700; color: var(--ink-2); letter-spacing: .02em; }
+
+/* 書き出し済み PNG のダウンロード欄 */
+.dl-shelf { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 14px 16px 10px; margin-top: 14px; }
+.dl-head { font-size: 12px; font-weight: 800; color: var(--ink-2); margin-bottom: 9px; }
+.dl-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.dl { display: inline-flex; align-items: baseline; gap: 8px; text-decoration: none;
+  border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px;
+  background: var(--page); font-size: 12px; }
+.dl:hover { border-color: var(--accent); }
+.dl-name { font-weight: 700; color: var(--ink); font-family: ui-monospace, monospace; }
+.dl-size { font-size: 10.5px; color: var(--muted); }
+.dl-shelf .hint { margin-top: 10px; }
+
+/* 掛け合わせ図：A × B ＝ C */
+.combo { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 8px; }
+.cbox { background: var(--page); border: 1px solid var(--border); border-radius: 13px;
+  padding: 15px 14px; text-align: center; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cbox .cico { width: 30px; height: 30px; stroke: var(--ink-2); stroke-width: 1.6;
+  fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cbox .ct { font-size: 14px; font-weight: 800; line-height: 1.6; overflow-wrap: anywhere; }
+.cbox .cd { font-size: 11px; color: var(--muted); line-height: 1.65; }
+.cbox.out { background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 32%, transparent); }
+.cbox.out .cico { stroke: var(--accent); }
+.cbox.out .ct { color: var(--accent); }
+.cop { align-self: center; font-size: 19px; font-weight: 800; color: var(--muted); }
+@media (max-width: 620px) {
+  .combo { grid-template-columns: 1fr; }
+  .cop { justify-self: center; }
+}
+
+/* 数字図：左に図、右に読み。図は内容に合わせて donut / thermo / pie / dots を選ぶ */
+.figstat { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.figviz { flex: 0 0 auto; }
+.figtxt { flex: 1 1 220px; min-width: 0; }
+.figtxt .fn { font-size: 52px; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
+.figtxt .fn small { font-size: 22px; font-weight: 700; color: var(--ink-2); margin-left: 2px; }
+.figtxt .fl { font-size: 15.5px; font-weight: 700; line-height: 1.8; margin-top: 8px; }
+.figtxt .fs { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+.viz { display: block; }
+.viz .track { fill: none; stroke: var(--line); stroke-width: 15; }
+.viz .arc { fill: none; stroke: var(--accent); stroke-width: 15; stroke-linecap: round;
+  transform: rotate(-90deg); transform-origin: 50% 50%; }
+.viz .arc.alt { stroke: var(--accent-2); }
+.viz .wedge { fill: var(--accent-2); stroke: var(--surface); stroke-width: 2; }
+.viz .rest { fill: var(--line); }
+.viz .tube { fill: var(--line); }
+.viz .merc { fill: var(--accent-2); }
+.viz .tick { stroke: var(--ink-2); stroke-width: 1.5; stroke-linecap: round; }
+.viz .tlab { font-size: 11px; font-weight: 700; fill: var(--ink-2); }
+.viz .dot { fill: var(--line); }
+.viz .dot.on { fill: var(--accent); }
+.viz .b1 { fill: var(--line); }
+.viz .b2 { fill: var(--accent); }
+.viz .vlab { font-size: 11px; font-weight: 700; fill: var(--ink-2); }
 .ig-quote { background: color-mix(in srgb, var(--accent) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
   border-radius: 15px; padding: 18px 20px; margin-top: 28px; }
