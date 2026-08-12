@@ -179,6 +179,18 @@ def check_article(ep: Path):
 
     add(OK if "きっかけになったニュース" in a else NG, "きっかけ欄",
         "あり" if "きっかけになったニュース" in a else "なし")
+
+    # 文体：借りて書く（personas/kazuki.md）。事実の断定は可、解釈の断定は開く
+    add(OK if "仕事の上に成り立って" in a else NG, "出典への謝辞（奥付）",
+        "あり" if "仕事の上に成り立って" in a else "なし（奥付の固定文言に含める）")
+    add(OK if "編集部なりに整理した" in a or "編集部が整理した" in a else WARN, "解釈の立場表明",
+        "あり" if ("編集部なりに整理した" in a or "編集部が整理した" in a)
+        else "見当たらない → 解剖・一般化の章の冒頭で一度、立場を明かす")
+    assertive = ["なのである", "に他ならない", "にすぎない。", "は明らかだ",
+                 "疑いようがない", "べきである", "しかない。", "間違いない"]
+    hits = {w: a.count(w) for w in assertive if w in a}
+    add(WARN if hits else OK, "断定調の候補",
+        f"{hits} → 事実の断定は可。解釈の断定なら開く（〜と読める／〜だろう）" if hits else "なし")
     add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
     add(OK if "出典" in a else NG, "出典欄", "あり" if "出典" in a else "なし")
     add(OK if "…" not in a else WARN, "三点リーダー", f"{a.count('…')} 個")
