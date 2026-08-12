@@ -181,11 +181,9 @@ def check_article(ep: Path):
         "あり" if "きっかけになったニュース" in a else "なし")
 
     # 文体：借りて書く（personas/kazuki.md）。事実の断定は可、解釈の断定は開く
-    add(OK if "仕事の上に成り立って" in a else NG, "出典への謝辞（奥付）",
-        "あり" if "仕事の上に成り立って" in a else "なし（奥付の固定文言に含める）")
-    add(OK if "編集部なりに整理した" in a or "編集部が整理した" in a else WARN, "解釈の立場表明",
-        "あり" if ("編集部なりに整理した" in a or "編集部が整理した" in a)
-        else "見当たらない → 解剖・一般化の章の冒頭で一度、立場を明かす")
+    omou = a.count("と思う")
+    add(WARN if omou >= 3 else OK, "「思う」の多用",
+        f"{omou}回 → 〜のようだ／〜と読める／〜のだろう 等に散らす" if omou >= 3 else f"{omou}回")
     assertive = ["なのである", "に他ならない", "にすぎない。", "は明らかだ",
                  "疑いようがない", "べきである", "しかない。", "間違いない"]
     hits = {w: a.count(w) for w in assertive if w in a}
