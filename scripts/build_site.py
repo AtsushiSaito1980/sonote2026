@@ -93,14 +93,14 @@ def tag_chips(spec: str, kind: str, names: dict) -> list:
 
 
 def parse_date(s: str):
-    """'2026-08-10想定' → (date, 想定フラグ, 表示文字列)"""
+    """'2026-08-09推定' → (date, 不確かフラグ, 表示文字列)"""
     m = re.search(r"(\d{4})-(\d{2})-(\d{2})", s or "")
     if not m:
         return None, False, s or "—"
     d = date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
-    assumed = "想定" in s
+    uncertain = ("推定" in s) or ("想定" in s)
     disp = f"{d.year}-{d.month:02d}-{d.day:02d}（{WEEKDAYS[d.weekday()]}）"
-    return d, assumed, disp
+    return d, uncertain, disp
 
 
 # ---------------------------------------------------------------- YAML 軽量パーサ
@@ -396,13 +396,13 @@ def ep_tabs(ep_id: str, current: str) -> str:
 def ep_header(meta: dict, current: str) -> str:
     chips = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in meta["chips"])
     status_cls, status_label = meta["status"]
-    assumed = '<span class="chip none">日付は想定</span>' if meta["assumed"] else ""
+    assumed = '<span class="chip none">作成日は推定</span>' if meta["assumed"] else ""
     prev_l = f'<a class="pn" href="../{meta["prev"]}/{current}.html">← {meta["prev"]}</a>' if meta["prev"] else "<span></span>"
     next_l = f'<a class="pn" href="../{meta["next"]}/{current}.html">{meta["next"]} →</a>' if meta["next"] else "<span></span>"
     return f"""
 <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
 <div class="ep-head">
-  <div class="ep-date">{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <div class="ep-date"><span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
   <h1>{esc(meta["ep"])}｜{esc(meta["title"])}</h1>
   <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>
 </div>
@@ -642,10 +642,10 @@ def build_index(metas, waits):
     for m in sorted(metas, key=lambda x: (x["date"] or date.min, x["ep"]), reverse=True):
         chips = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in m["chips"])
         status_cls, status_label = m["status"]
-        assumed = "・想定" if m["assumed"] else ""
+        assumed = "・推定" if m["assumed"] else ""
         cards.append(f"""
 <article class="ep-card">
-  <div class="ep-date">{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <div class="ep-date"><span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
   <h2 class="ep-title"><a href="{m["ep"]}/infographic.html">{esc(m["ep"])}｜{esc(m["title"])}</a></h2>
   <p class="ep-hook">{esc(m.get("hook", ""))}</p>
   <div class="chips">{f'<span class="chip host">{esc(m["host"])}</span>' if m["host"] else ''}{chips}</div>
@@ -677,8 +677,8 @@ def build_index(metas, waits):
     body = f"""
 <div class="hero">
   <h1>その手があったか</h1>
-  <p class="tagline">なんで、それで儲かるんですか？ — 平日毎日5分。台本・note記事・インフォグラフィック・制作データの置き場。</p>
-  <p class="hero-meta">エピソード {len(metas)} 本{f'・最新 {latest.month}月{latest.day}日' if latest else ''}</p>
+  <p class="tagline">なんで、それで儲かるんですか？ — 5分の音声番組と note 記事。台本・記事・インフォグラフィック・制作データの置き場。</p>
+  <p class="hero-meta">エピソード {len(metas)} 本{f'・最新の作成 {latest.month}月{latest.day}日' if latest else ''}　<span class="muted">日付は作成日です。公開するかどうかは、ここを見て決めます</span></p>
 </div>
 {"".join(cards)}
 {wait_html}
@@ -687,7 +687,8 @@ def build_index(metas, waits):
 
 
 def build_ledger_page(rows, header):
-    jp = {"episode": "回", "host": "ホスト", "air_date": "放送日", "type": "型",
+    jp = {"episode": "回", "host": "ホスト", "created_on": "作成日",
+          "air_date": "公開予定日", "type": "型",
           "density": "密度", "hands": "手", "motive": "動機", "tailwind": "風",
           "industries": "業界", "case_names": "題材", "trigger_date": "トリガ日",
           "title": "タイトル", "status": "状態"}
@@ -701,8 +702,8 @@ def build_ledger_page(rows, header):
         tds = "".join(f"<td>{esc(r.get(h, ''))}</td>" for h in header)
         trs.append(f"<tr{cls}>{tds}</tr>")
     body = f"""
-<div class="ep-head"><h1>放送済み台帳</h1>
-<p class="hint">重複回避のための照合元（<code>ledger/episodes_log.csv</code>）。新しいネタを企画するときは、題材の重複と直近5回との手・業界の連続をここで確認する。</p></div>
+<div class="ep-head"><h1>制作台帳</h1>
+<p class="hint">重複回避のための照合元（<code>ledger/episodes_log.csv</code>）。新しいネタを企画するときは、題材の重複と直近5回との手・業界の連続をここで確認する。<strong>公開予定日は目安で、実際に出すかどうかは人間が決める。</strong></p></div>
 <div class="table-scroll"><table>{f"<thead><tr>{ths}</tr></thead>"}<tbody>{"".join(trs)}</tbody></table></div>
 """
     return page("", "台帳 — その手があったか", body, active_nav="ledger")
@@ -794,7 +795,9 @@ def main():
     for idx, d in enumerate(ep_dirs):
         led = ledger_by_ep.get(d.name, {})
         brief = parse_brief(read(d / "brief.yaml"))
-        dt, assumed, disp = parse_date(led.get("air_date", ""))
+        # 日付は「作成日」を使う。公開するかどうかは人間が決めるので、
+        # 公開予定日（air_date）はアーカイブの時系列には使わない
+        dt, assumed, disp = parse_date(led.get("created_on") or led.get("air_date", ""))
         status_raw = (led.get("status") or "").strip()
         if status_raw.startswith("archived"):
             note = status_raw.split("_", 1)[1] if "_" in status_raw else ""
@@ -936,6 +939,9 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .ep-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
   padding: 18px 20px 16px; margin: 14px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
 .ep-date { font-size: 12.5px; color: var(--ink-2); }
+.dlabel { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .06em;
+  border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; margin-right: 7px;
+  vertical-align: 1px; }
 .ep-title { font-size: 20px; margin: 6px 0 2px; line-height: 1.5; }
 .ep-title a { color: inherit; text-decoration: none; }
 .ep-title a:hover { color: var(--accent); }
