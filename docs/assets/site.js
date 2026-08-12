@@ -12,13 +12,32 @@
       ta.remove(); return ok;
     } catch (e) { return false; }
   }
+  // note のエディタは書式付きの貼り付けを受け取れるので、HTML も一緒にクリップボードへ置く。
+  // 見出し・太字・引用・箇条書きがそのまま入る（失敗したらプレーンに落とす）
+  async function copyRich(html, text) {
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' }),
+      })]);
+      return true;
+    } catch (e) {}
+    return copyText(text);
+  }
+  function srcText(id) {
+    var el = document.getElementById(id);
+    if (!el) return '';
+    return ('value' in el && el.tagName === 'TEXTAREA') ? el.value : el.textContent;
+  }
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-copy]');
     if (!btn) return;
     var src = document.getElementById(btn.getAttribute('data-copy'));
     if (!src) return;
     var text = ('value' in src && src.tagName === 'TEXTAREA') ? src.value : src.textContent;
-    copyText(text).then(function (ok) {
+    var htmlId = btn.getAttribute('data-copy-html');
+    var run = htmlId ? copyRich(srcText(htmlId), text) : copyText(text);
+    run.then(function (ok) {
       var orig = btn.textContent;
       btn.textContent = ok ? 'コピーしました ✓' : 'コピーできませんでした';
       btn.classList.add('copied');
