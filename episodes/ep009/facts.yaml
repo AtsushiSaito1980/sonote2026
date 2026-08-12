@@ -1,0 +1,59 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  - {id: F01, who: エブリー, what: 新規上場, value: 東証グロース・607A, when: 2026-08-04, source_url: "同社上場リリース／IPO情報各サイト", confirmed_by: 3, anchor: true, verify: verified}
+  - {id: F02, who: エブリー, what: 上場の値付け, value: 公開価格230円・初値294円, when: 2026-08-04, source_url: "IPO情報サイト2件", confirmed_by: 2, verify: verified, note: "初値は公開価格比+27.8%"}
+  - {id: F03, who: エブリー, what: 上場時時価総額, value: 約47.7億円, when: 2026-08-04, source_url: "IPOナビ（届出書ベース）／分析記事", confirmed_by: 2, verify: verified, note: "想定発行価格230円×発行済株式総数ベース"}
+  - {id: F04, who: エブリー, what: 設立, value: 2015年9月, when: 2015-09, source_url: "IPOナビ／同社公式", confirmed_by: 2, verify: verified}
+  - {id: F05, who: 創業者, what: 前職, value: 携帯ゲーム事業の立ち上げ役, when: 2006〜2015, source_url: "IPOナビ（インタビュー引用経由）", confirmed_by: 1, verify: partial, note: "ヤフー→グリー執行役員。原文リンク切れのため経歴の骨子のみ使用。個人名は出さない"}
+  - {id: F06, who: デリッシュキッチン, what: 月間利用者, value: 3100万超, when: 2026, source_url: "届出書経由（IPOナビ）／IPO情報サイト", confirmed_by: 2, verify: verified, note: "アプリ・ウェブ合算。SNSフォロワー1300万超"}
+  - {id: F07, who: デリッシュキッチン, what: レシピ動画本数, value: 5万7000本以上, when: 2026-04, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "管理栄養士監修"}
+  - {id: F08, who: エブリー, what: 広告収益の型, value: タイアップ＋表示連動ほか, when: 継続, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "メーカー商品を題材にレシピ動画を制作・配信し制作費＋配信費を得る"}
+  - {id: F09, who: エブリー, what: 店頭広告の型, value: サイネージで動画広告配信, when: 継続, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "ストアビジョン広告。広告主＝食品メーカー等"}
+  - {id: F10, who: エブリー, what: 小売向け事業, value: サイネージ設置とアプリ開発保守, when: 継続, source_url: "届出書経由（IPOナビ）／同社リリース", confirmed_by: 2, verify: verified, note: "retail HUB。支払うのは小売。広告と合わせ、払う人が2系統"}
+  - {id: F11, who: エブリー, what: サイネージ累計台数, value: 1万1000台超, when: 2024-11, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: dated, note: "全国の食品スーパー等。時期明示が必須。EDINET原本での再確認を推奨"}
+  - {id: F12, who: 万代, what: サイネージ導入, value: 全167店舗, when: 2024-01, source_url: "同社リリース（2024-02-28）", confirmed_by: 2, verify: dated, note: "関西の大手食品スーパー。時期明示が必須"}
+  - {id: F13, who: 万代, what: 設置場所, value: 精肉・鮮魚・青果・惣菜の売場, when: 2024-01, source_url: "同社リリース", confirmed_by: 1, verify: dated, note: "放映は広告のほかPB情報・食べ方提案"}
+  - {id: F14, who: エブリー, what: 創業期の他メディア, value: 分散型で複数展開, when: 2015〜, source_url: "IPOナビ", confirmed_by: 1, verify: partial, note: "KALOS・MAMADAYS・TIMELINE等。台本では固有名詞不使用"}
+  - {id: F15, who: エブリー, what: 2021年6月期業績, value: 売上20.9億・経常▲13.7億, when: 2021-06期, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified}
+  - {id: F16, who: エブリー, what: 2025年6月期業績, value: 売上42.5億・経常▲0.3億, when: 2025-06期, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "5期連続の経常赤字の最終年。ほぼ収支均衡"}
+  - {id: F17, who: エブリー, what: 直近9ヶ月の業績, value: 売上38.3億・経常＋3.2億, when: 2025-07〜2026-03, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "2026年6月期3Q累計。黒字転換。純利益も＋3.2億"}
+  - {id: F18, who: エブリー, what: 広告事業の伸び, value: 31.4億円・前期比38.6%増, when: 2025-06期, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "Marketing Solution売上。前期22.7億円"}
+  - {id: F19, who: エブリー, what: 大口顧客数, value: 42社から62社へ, when: 2025-06期, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "年間取引1千万円以上の顧客。+47.6%"}
+  - {id: F20, who: エブリー, what: 大株主, value: 通信1社・食品卸2社, when: 2026-06-30, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "KDDI13.09%・伊藤忠食品10.91%・加藤産業10.91%。台本では社名を出さず「食品の卸の大手」"}
+  - {id: F21, who: エブリー, what: 設置網の広げ方, value: 食品卸とのアライアンス, when: 2023-02, source_url: "IPOナビ（業界紙引用経由）", confirmed_by: 1, verify: dated, note: "伊藤忠食品・加藤産業・旭食品。卸が持つスーパーとの取引網に乗る"}
+  - {id: F22, who: 経産省調査, what: 食品購買の場所, value: 店頭が95.5%, when: 2025-08公表, source_url: "届出書引用（経産省 令和6年度EC市場調査）", confirmed_by: 2, verify: verified, note: "食品・飲料・酒類のEC化率4.5%の裏返し。物販系全体より極端に店頭寄り"}
+  - {id: F23, who: 調査会社, what: 売場広告市場の予測, value: 2029年に1939億円, when: 2026-01, source_url: "届出書引用（CARTA HOLDINGS推計）", confirmed_by: 1, verify: verified, note: "リテールメディア広告市場。2024年比約4倍。うちサイネージ350億円規模"}
+  - {id: F24, who: 電通調査, what: ネット広告費, value: 4兆459億円, when: 2025年, source_url: "届出書引用（日本の広告費）", confirmed_by: 1, verify: verified, note: "前年比+10.8%。うち動画広告1兆275億円（+21.8%）"}
+  - {id: F25, who: クラシル, what: 規模の比較, value: 時価総額約420億円, when: 2026-06, source_url: "IPOナビ比較表／分析記事", confirmed_by: 2, verify: verified, note: "売上131億円（2025年3月期）・営業利益率約20%。エブリーの約9倍の時価総額"}
+  - {id: F26, who: エブリー, what: 契約終了の開示, value: 2026年9月末で1件終了予定, when: 2026-06-30, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "auコマース＆ライフ（ライブコマース）。台本不使用・記事データ欄のみ"}
+  - {id: F27, who: エブリー, what: 売出の構成, value: 公募110万株・売出482万株, when: 2026-08-04, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "既存株主の換金色が強い構成。台本不使用・記事データ欄のみ"}
+  - {id: F28, who: エブリー, what: 利用者向け課金, value: 月額480円と冷凍弁当EC, when: 継続, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "プレミアム会員・ミールズ。収益の柱ではない"}
+  - {id: F29, who: エブリー, what: 小売支援の開始, value: 2023年9月発表, when: 2023-09, source_url: "同社プレスリリース", confirmed_by: 2, verify: dated, note: "retail HUB。時期明示が必須"}
+  - {id: F30, who: エブリー, what: 売りにする効果, value: 店頭での広告効果の可視化, when: 継続, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "オンラインの行動データ×店頭・小売の購買データの統合"}
+  - {id: F31, who: 小売業界, what: 導入小売数, value: 160社以上, when: 時点未確認, source_url: "同社広告サービスblog", confirmed_by: 1, verify: partial, note: "自社名義だが時点不明。台本不使用。記事でも時点を書けないため不使用"}
+quotes:
+  - {id: Q01, speaker: 創業者（代表取締役社長）, gist: "動画がテレビCMに取って代わる、という確信で会社を始めた", source_url: "STARTUPS JOURNAL 2018-06（IPOナビ引用経由）", note: "原文リンク切れ・引用経由のため台本不使用。記事でも扱う場合は伝聞明示"}
+  - {id: Q02, speaker: 同社（届出書の課題認識）, gist: "これまでのネット広告では、実際の店で売れたかどうかまでは測れなかった", source_url: "届出書経由（IPOナビ）", note: "趣旨再現。台本使用可"}
+rejected:
+  - {claim: 2026年6月期通期の会社予想（売上50.16億 or 54.3億）, reason: ソース間で数値が不一致, action: 台本・記事とも不使用。8月中旬の本決算で確定値が出てから扱う}
+  - {claim: 2019年6月期に純損失約24億円, reason: 分析記事の単独記述・届出書の掲載期間外, action: 不使用。赤字の深さはF15（▲13.7億円）で代表させる}
+  - {claim: 2022年調達時比8割のダウンラウンド上場, reason: 会員限定記事の単独記述, action: 不使用。評価の低さはF03とF25の対比で示す}
+  - {claim: 累計調達約100億円・既存投資家のほぼ全員が元本割れ, reason: SNS・個人ブログ経由のみ, action: 不使用}
+  - {claim: サイネージ1台あたりの広告単価・retail HUBの料金, reason: 非公開, action: 「誰が払うか」の構造説明にとどめ単価は言わない}
+  - {claim: 導入小売160社以上, reason: 自社blogだが時点が特定できない, action: 台本・記事とも不使用（F31参照）}
+  - {claim: 創業の「場面」まで下りた動機の一次記録, reason: インタビュー原文がリンク切れ, action: 動機回を見送り構造回として制作。motive_tag は none}
+notes: |
+  ・アンカー＝2026年8月4日の東証グロース上場（制作日の8日前）。副トリガ＝6月30日の上場承認・届出書公開。トリガ窓31日以内
+  ・台本の数字は5系統以内（標準回balanced：数字5・固有名詞6・例え話2）。系統案：
+    ①時期（十一年前・三年前・おととし・今年三月まで・今月四日）②店頭比率（95.5%）
+    ③売場の網（1万1000台・167店舗）④利用規模（3100万人）⑤損益の転換（▲13.7億→＋3.2億）
+    → 初値・時価総額・クラシル420億・市場予測4倍は台本では数字を使わず言葉で扱い、正確値はnoteのデータ欄へ
+  ・固有名詞は6系統以内。使用：エブリー／デリッシュキッチン／万代／クラシル／東証グロース（＋スーパー・食品メーカー等の一般名詞）
+    不使用（一般名詞化）：KDDI・伊藤忠食品・加藤産業・旭食品→「通信の大手」「食品の卸の大手」、グリー→「携帯ゲームの会社」、
+    retail HUB→「小売向けの仕組み」、KALOS・MAMADAYS・TIMELINE・クックパッド→出さない
+  ・F11〜F13・F21・F29 は2023〜2024年時点の情報。**台本・記事とも時期を明示すること（§4）**
+  ・F11（1万1000台）・F21（卸アライアンス）・F23（市場予測）は届出書・業界紙の転載経由。**EDINET原本での再確認を推奨**（人間の裏取り対象）
+  ・個人名は台本・記事とも出さない（憲法§3）。創業者は「携帯ゲームを立ち上げてきた人」
+  ・「リテールメディア」はカタカナ業界用語のため台本では原則使わず「売場をメディアにする」等で言い換える。noteでは使用可

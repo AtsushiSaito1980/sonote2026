@@ -8,3 +8,5 @@ wait001,-,-,T1候補,balanced想定,OP06,MO3想定,none,建築;木材;イベン�
 ep006,misaki,2026-08-12想定,T1,balanced,OP01+OP10味,none,TW4+TW1味,エネルギー;素材;化学,ペロブスカイト太陽電池;積水化学SOLAFIL,2026-07(GCL参入・出来事),断られた理由を引く,in_review
 ep007,tokura,2026-08-13想定,T1,balanced,OP12+OP08,none,TW2,自動運転;ソフトウェア;自動車,ティアフォー;Autoware,2026-07-22,中核を開いて周りで稼ぐ,in_review
 ep008,misaki,2026-08-14想定,T1,balanced(15分拡大版),OP07+OP06,none,TW5,家具;家電;物流,クラス;CIRCLE,2026-07-28,返ってくる前提で分けておく,in_review
+wait002,-,-,T1候補,balanced想定,OP14味,none,TW1,エネルギー;製造;金融,GX-ETS排出量取引2026年度義務化,トリガ待ち(割当・届出期限・取引開始の日付イベント),排出枠という商品,trigger_wait
+ep009,tokura,2026-08-17想定,T1,balanced,OP13+OP14味,none,TW3,メディア;広告;食品小売,エブリー;DELISH KITCHEN;retail HUB,2026-08-04,ネットの当たり前を売場に持ち込む,in_review
