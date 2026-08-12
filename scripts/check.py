@@ -234,6 +234,39 @@ def check_meta(ep: Path):
     return density, duration_min
 
 
+def check_figures(ep: Path):
+    """note に貼る図版。1枚が単体で流通するので、出典と誌名まで入っているかを見る"""
+    p = ep / "figures.html"
+    if not p.exists():
+        add(WARN, "figures.html", "未作成（note に貼る画像が無い状態）")
+        return
+    h = p.read_text(encoding="utf-8")
+    names = re.findall(r'data-fig="([^"]+)"', h)
+    add(OK if len(names) >= 2 else WARN, "図版の数",
+        f"{len(names)}枚 {names} → 掛け合わせ図と数字図の2枚が基本" if len(names) < 2
+        else f"{len(names)}枚 {names}")
+    for key, label in (("combo", "掛け合わせ図"), ("number", "数字図")):
+        add(OK if key in names else WARN, label,
+            "あり" if key in names else f'data-fig="{key}" が無い')
+
+    n_fig = h.count('class="fig"')
+    add(OK if h.count("fig-foot") >= n_fig else NG, "誌名フッタ",
+        f'{h.count("fig-foot")}/{n_fig} → 単体で流れるので全figに入れる'
+        if h.count("fig-foot") < n_fig else "全図にあり")
+    add(OK if h.count('class="fs"') >= 1 or "number" not in names else NG, "数字図の出典",
+        "あり" if h.count('class="fs"') >= 1 else '.fs に出典を書く')
+    add(OK if 'role="img"' in h or "<svg" not in h else WARN, "SVGの代替テキスト",
+        "あり" if 'role="img"' in h else 'role="img" と aria-label を付ける')
+
+    # 掛け合わせ図は「手の名前」を出さずに、その回の言葉で書く
+    leaks = sorted(set(METHOD_LEAK.findall(h)))
+    add(OK if not leaks else NG, "図版の内部用語",
+        f"{leaks} → その回の中身の言葉に言い換える" if leaks else "なし")
+
+    bad = [t for t in ("<html", "<head", "<body", "<!DOCTYPE") if t.lower() in h.lower()]
+    add(OK if not bad else NG, "図版のフラグメント形式", f"{bad} が混入" if bad else "土台のタグなし")
+
+
 def check_infographic(ep: Path):
     p = ep / "infographic.html"
     if not p.exists():
@@ -301,6 +334,7 @@ def main():
     check_tts(ep, lim)
     check_article(ep)
     check_infographic(ep)
+    check_figures(ep)
     check_ledger(ep)
 
     print(f"\n=== {ep.name} 検算結果 ===\n")
