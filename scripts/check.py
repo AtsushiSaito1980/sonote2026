@@ -179,6 +179,16 @@ def check_article(ep: Path):
 
     add(OK if "きっかけになったニュース" in a else NG, "きっかけ欄",
         "あり" if "きっかけになったニュース" in a else "なし")
+
+    # 文体：借りて書く（personas/kazuki.md）。事実の断定は可、解釈の断定は開く
+    omou = a.count("と思う")
+    add(WARN if omou >= 3 else OK, "「思う」の多用",
+        f"{omou}回 → 〜のようだ／〜と読める／〜のだろう 等に散らす" if omou >= 3 else f"{omou}回")
+    assertive = ["なのである", "に他ならない", "にすぎない。", "は明らかだ",
+                 "疑いようがない", "べきである", "しかない。", "間違いない"]
+    hits = {w: a.count(w) for w in assertive if w in a}
+    add(WARN if hits else OK, "断定調の候補",
+        f"{hits} → 事実の断定は可。解釈の断定なら開く（〜と読める／〜だろう）" if hits else "なし")
     add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
     add(OK if "出典" in a else NG, "出典欄", "あり" if "出典" in a else "なし")
     add(OK if "…" not in a else WARN, "三点リーダー", f"{a.count('…')} 個")
