@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>商習慣が捨てる物を拾う｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep012/files.html">← ep012</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep013</span><span class="dlabel">作成</span>2026-08-13（木）　<span class="badge review">レビュー中</span></div>
+  <h1>商習慣が捨てる物を拾う</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP06 拾う</span><span class="chip motive">MO3 もったいなかった</span><span class="chip none">風＝なし</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep013</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> クラダシ、2027年6月期は経常利益6.4倍・6期ぶり最高益の見通し（8/13本決算発表）<br><span class='k'>published</span> 2026-08-13<br><span class='k'>source_url</span> sources/collected.md（株探・BigGo報道。短信原本の金額確定は人間裏取り）</td></tr><tr><th>副トリガ</th><td>2026-08-12 蓄電所2案件（匿名組合出資・埼玉滑川蓄電所着工）／2026-08-05 経産省補助金採択（蓄電池つき食品物流拠点）＝複線化が同じ週に並んだ</td></tr><tr><th>題材</th><td>クラダシ（3分の1ルールが生む『まだ食べられるのに行き場を失う品』を最大97%引きで売る1.5次流通EC）</td></tr><tr><th>手</th><td>OP06</td></tr><tr><th>動機</th><td>MO3</td></tr><tr><th>風</th><td>none</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>商習慣が捨てる物を拾う</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep011</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep013
+host: tokura                # 日替わり交互（前日ep012=三崎）。数字コールドオープンと決算読みの芸
+episode_type: T1            # 事例回・一本深掘り（動機は「添え」で厚めに入れる）
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced           # 数字5系統・固有名詞6・facts7点以上・例え話2・並走句3〜4
+anchor:                     # トリガ情報（制作日2026-08-13 当日の引け後発表）
+  headline: &quot;クラダシ、2027年6月期は経常利益6.4倍・6期ぶり最高益の見通し（8/13本決算発表）&quot;
+  published: 2026-08-13
+  source_url: &quot;sources/collected.md（株探・BigGo報道。短信原本の金額確定は人間裏取り）&quot;
+sub_triggers:
+  - &quot;2026-08-12 蓄電所2案件（匿名組合出資・埼玉滑川蓄電所着工）／2026-08-05 経産省補助金採択（蓄電池つき食品物流拠点）＝複線化が同じ週に並んだ&quot;
+case_name: &quot;クラダシ（3分の1ルールが生む『まだ食べられるのに行き場を失う品』を最大97%引きで売る1.5次流通EC）&quot;
+operation_tags: [OP06]      # 拾う（主役は初。ep008は味のみ）。商習慣の副産物を仕入れに変える
+motive_tag: MO3             # もったいなかった（未使用◎）。添え＝動機段落1つ。
+                            # 場面：父の言葉／阪神淡路大震災の無力感／商社中国駐在でコンテナ単位の廃棄を目撃（すべて原文到達）
+tailwind_tag: none
+hook: &quot;&quot;                    # write-outlineで起こす。戸倉の数字CO「まず、三分の一。」
+lesson_draft: &quot;商習慣が捨てる物を拾う&quot;
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;              # 型3ではないが、『100戦100敗』『現金問屋と間違えられ与信が通らない』を展開で使う
+prev_episode_ref: &quot;ep011&quot;   # 戸倉の前回（T4）。今回は数字CO「三分の一」から入るが、統計でなく会社が主役
+notes: |
+  ・採点（selection.yaml ep013）：Q1○ Q2△→**収集で一次動機に到達したため実質○**（rowのnote参照）・C1〜C5○・面白さ80〜100
+  ・数字は5系統設計（1系統余裕）：
+    ①時期（十二年前創業・六年前・三年前上場・今月十三日・一九九五年）
+    ②三分の一ルール（製造日→賞味期限の三等分）
+    ③割引（最大九十七パーセント引き）
+    ④業績（経常六・四倍・六期ぶり最高益・六年前の最高は経常六千万円あまり・売上三十億円あまり）
+    ⑤（予備。会員30万人等のKPIは2021年時点のため台本不使用・記事で時期明示のうえ使用）
+  ・固有名詞：クラダシ＋阪神淡路大震災（歴史的事件名）の2系統以内。中国・埼玉は地名。山本山・社名各種は記事のみ
+  ・**金額を言わない**：6.4倍の分母（2026年6月期実績）が未取得のため、比率と「6年前の6千万円あまり」だけで語る
+  ・「きょう」と言わない：発表は「今月十三日の決算発表」と日付で言う（放送想定8/21）
+  ・『』は2回：①父の言葉『この世に生を受けたということは、その命をいかに社会で全うするか』②『100戦100敗のような状況…』
+    「大株主は、この地球です」は記事（note）で使用
+  ・蓄電所・物流拠点は事実の列挙＋確認形まで。「捨てられる電気を拾う」という読みは記事でも解釈として開く
+  ・ep008（クラス）のOP06味（自社の困りごと洗い出し）との混同注意：ep013の芯は**業界の商習慣の副産物を仕入れに変える**こと
+  ・寄付の仕組み＝「安売りがブランドを壊さないための装置」という説明は対談の趣旨の範囲で。断定しすぎない
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>クラダシ</td><td>本決算発表</td><td class="fact-val">2026-08-13</td><td>2026-08-13</td><td class="src">株探・BigGo報道</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F02</span></td><td>クラダシ</td><td>今期の見通し</td><td class="fact-val">経常6.4倍・6期ぶり最高益</td><td>2027-06期予想</td><td class="src">株探・BigGo報道</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F03</span></td><td>クラダシ</td><td>過去最高益</td><td class="fact-val">経常6,070万円</td><td>2021-06期</td><td class="src">irbank</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>クラダシ</td><td>業績の系列</td><td class="fact-val">売上12.6→30.8億円</td><td>2021〜2025-06期</td><td class="src">irbank</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>クラダシ</td><td>直近の黒字転換</td><td class="fact-val">3Q累計で経常+6,600万円</td><td>2026-03まで9ヶ月</td><td class="src">フィスコ報道（Yahoo!ファイナンス）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F06</span></td><td>クラダシ</td><td>上場</td><td class="fact-val">2023年6月・東証グロース</td><td>2023-06</td><td class="src">各記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F07</span></td><td>食品業界</td><td>3分の1ルール</td><td class="fact-val">賞味期限までを三等分</td><td>商習慣</td><td class="src">日立システムズ対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>クラダシ</td><td>販売の仕組み</td><td class="fact-val">最大97%割引でEC販売</td><td>継続</td><td class="src">日立システムズ対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>クラダシ</td><td>市場の位置づけ</td><td class="fact-val">1.5次流通</td><td>継続</td><td class="src">日立システムズ対談（原文）／日刊ゲンダイ記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F10</span></td><td>クラダシ</td><td>出し手側の利点</td><td class="fact-val">廃棄コスト減・ブランド保全・換金</td><td>継続</td><td class="src">日立システムズ対談（趣旨）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F11</span></td><td>クラダシ</td><td>規模の実績</td><td class="fact-val">会員30万人超ほか</td><td>2021-02時点</td><td class="src">日立システムズ対談</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F12</span></td><td>クラダシ</td><td>蓄電所事業への進出</td><td class="fact-val">国内2案件・埼玉で着工</td><td>2026-08-12</td><td class="src">公式ニュース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F13</span></td><td>クラダシ</td><td>補助金採択</td><td class="fact-val">蓄電池つき食品物流拠点</td><td>2026-08-05</td><td class="src">公式ニュース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F14</span></td><td>クラダシ</td><td>本業の手入れ</td><td class="fact-val">サイト全面リニューアル</td><td>2026-08-06</td><td class="src">公式ニュース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F15</span></td><td>創業者</td><td>現在の役職</td><td class="fact-val">代表取締役会長</td><td>2024-07-01〜</td><td class="src">代表取締役異動リリース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F16</span></td><td>創業者</td><td>父の教え</td><td class="fact-val">戦争で両親を亡くした父</td><td>幼少期</td><td class="src">日立システムズ対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F17</span></td><td>創業者</td><td>震災の経験</td><td class="fact-val">救援に向かい無力を痛感</td><td>1995-01</td><td class="src">日立システムズ対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F18</span></td><td>創業者</td><td>廃棄を見た場面</td><td class="fact-val">中国でコンテナ単位の廃棄</td><td>商社駐在時代</td><td class="src">日立システムズ対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F19</span></td><td>クラダシ</td><td>創業</td><td class="fact-val">2014年7月</td><td>2014-07</td><td class="src">日刊ゲンダイ記事ほか</td><td><span class="cb">×2</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>創業者の父</strong>「この世に生を受けたということは、その命をいかに社会で全うするかだぞ」<span class="src-note">日立システムズ対談（原文）／『』候補①。戦争で両親を亡くした父が繰り返した言葉</span></li><li><span class="fid">Q02</span> <strong>創業者（現会長）</strong>「100戦100敗のような状況。現金問屋と間違えられたり、与信が通らなかったりするのは当たり前だった」<span class="src-note">日立システムズ対談（原文）／『』候補②。創業期の反対・制約の記録</span></li><li><span class="fid">Q03</span> <strong>創業者（現会長）</strong>「私たちの大株主は、この地球です」<span class="src-note">日立システムズ対談（原文）／台本では使わずnote記事で使用（キメ性が強いため地の文の引用として）</span></li><li><span class="fid">Q04</span> <strong>会社</strong>「もったいないを価値へ」<span class="src-note">同上（ミッション）／ミッション表記。記事で使用</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>2026年6月期実績・2027年6月期予想の金額</strong><br>理由：短信原本に未到達（各金融サイトが機械アクセス403）<br>処置：台本・記事とも金額を書かない。「6.4倍」「6期ぶり」「6年前の最高6,070万円」のみ。短信での確定＝人間裏取り</li><li><strong>蓄電所は「捨てられる電気を拾う」事業</strong><br>理由：当方の解釈（リリースは系統安定化・災害時供給の文脈）<br>処置：台本は事実列挙＋確認形まで。記事では「〜と読める」で開く</li><li><strong>中計目標（2027年6月期 売上100億円・EBITDA5億円）</strong><br>理由：2024年8月策定の計画で現状と乖離が大きい可能性<br>処置：不使用。最新の会社見通し（6.4倍）を優先</li><li><strong>関藤氏の商社名</strong><br>理由：手元の原文に社名の明記なし<br>処置：「商社」の一般名詞で扱う</li></ul><div class="ig-callout pre-line">・アンカー＝2026-08-13引け後の本決算発表（制作日当日）。台本では「今月十三日の決算発表」と日付で言う（「きょう」禁止・放送想定8/21）
+・density: balanced。数字5系統：①時期（十二年前・一九九五年・六年前・三年前・今月十三日）②三分の一 ③九十七パーセント引き
+④業績（六・四倍・六期ぶり・六千万円あまり・三十億円あまり）⑤予備（未使用）
+・固有名詞：クラダシ／阪神淡路大震災の2系統。中国・埼玉は地名。個人名は台本に出さない（創業した人・いまの会長）
+・『』はQ01（父の言葉）とQ02（100戦100敗）。Q03は記事のみ
+・MO3「もったいなかった」を添えの動機段落で立てる（未使用動機の消化）。主役はOP06「拾う」の構造
+・時期明示：創業「十二年前」・震災「一九九五年」・最高益「六年前」・上場「三年前」・KPIは台本不使用</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep013 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-13／対象：script_draft.md（約1,880字）／check.py 実行済み／<strong>OP06初主役・MO3初使用（未使用動機の消化）</strong></p>
+<h2>機械判定（check.py）</h2>
+<p>本文文字数・OP/ED定型・『』2箇所・口癖1回・並走句・取材話法・キメ台詞候補なし・三点リーダー0・「香月」0 — <strong>すべて OK（1周目通過）</strong>。NG は後工程の infographic / figures のみ。</p>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>数字系統：4系統 → PASS（balanced上限5・余裕1）</h3>
+<ol><li><strong>時期</strong>：十二年前（創業）／一九九五年（震災）／二十年近く／六年前／三年前は不使用に変更なし／今月十三日</li><li><strong>三分の一</strong>：三分の一ルール（三等分・最初の三分の一）</li><li><strong>割引</strong>：九十七パーセント引き</li><li><strong>業績</strong>：六・四倍／六期ぶり／六千万円あまり／三十億円あまり</li><li>対象外：三つ・ひとつ・一部（談話標識・不定量）。「一・五次流通」は市場区分の名称であり数値でない（規約：<strong>序数的な名称は数字系統に数えない</strong>）</li><li><strong>金額の不使用を確認</strong>：6.4倍の分母（2026年6月期実績）が未確定のため、今期・来期の金額は台本に無い</li></ol>
+<h3>固有名詞：2系統 → PASS（上限6）</h3>
+<p>クラダシ／阪神淡路大震災（歴史的事件名として計上）。中国・埼玉は地名で対象外。商社・NPO・現金問屋は一般名詞。個人名ゼロ（「創業した人（いまは会長）」「お父さん」）。</p>
+<h3>キメ台詞：なし → PASS（監視1件）</h3>
+<ul><li>「捨てられている物の値打ちは、物のせいで下がったんじゃなくて、ルールのせいで下がっています」＝構造の説明の平叙だが対句性あり。<strong>最も際どい一文</strong>として記録。人間レビューで気になる場合は「値打ちを下げているのは、物の状態ではなくルールのほうです」に差し替え可</li><li>「安さの理由を、訳あり、から、もったいない、に置き換えた」＝事実（寄付つき販売の設計）の言い直し</li></ul>
+<h3>例え話：1回 → PASS（上限2）</h3>
+<p>「投げ売りの棚／応援の棚」の対比（1回と数える）。三分の一ルール・コンテナは事実の描写。</p>
+<h3>動機の扱い（MO3・添え） → PASS</h3>
+<p>動機段落1つ（父の言葉『』・震災・中国の廃棄）。すべて原文到達済みの一次記録。個人名なし・美談で締めず「二十年近くかかっています」の事実で着地。<strong>MO3は初使用</strong>（動機7種のうち未使用は残りMO2・MO5・MO6・MO7）。</p>
+<h3>トリガ鮮度 → PASS</h3>
+<p>anchor＝2026-08-13（制作日当日・引け後発表）。台本は「今月十三日の決算発表」と日付で言い、「きょう」不使用（放送想定8/21）。過去参照はすべて時期明示（十二年前・一九九五年・六年前）。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（クラダシ）は過去回になし。<strong>手：OP06 初主役</strong>（ep008は味）。動機：MO3 初。業界：食品流通・ECは ep010（福利厚生・食品流通）と部分接触だが、主業界（1.5次流通・社会貢献EC）は新規で、手も動機も異なる</li><li>ホスト交互（ep012三崎→ep013戸倉）✓。数字CO はep011「単位は品目です」型と変え、質問形「何の分数だと思います？」に戻した</li><li>採点（selection.yaml）：Q1○・Q2は収集で一次動機到達（実質○）・C1〜C5○</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td><strong>経常6.4倍・6期ぶり最高益（2027年6月期見通し）</strong></td><td>株探・BigGo報道の2系統。<strong>短信原本（8/13開示）での金額確定が必須</strong></td></tr><tr><td>6年前の最高益6,070万円・売上系列</td><td>irbank。短信の過年度欄で突合可能</td></tr><tr><td>3分の1ルールの説明</td><td>対談原文。農水省・業界資料での補強を推奨</td></tr><tr><td>父の言葉・震災・中国の廃棄・100戦100敗</td><td>日立システムズ対談（原文到達）。台本使用可</td></tr><tr><td>蓄電所・補助金</td><td>会社公式ニュース（一次）✓</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>賞味期限</strong>（しょうみきげん） 2. <strong>与信</strong>（よしん） 3. <strong>現金問屋</strong>（げんきんどんや） 4. <strong>一・五次流通</strong>（いってんごじりゅうつう）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。</p>
+<hr>
+<h1>追記：全成果物の最終検査（2026-08-13）</h1>
+<p>check.py 最終実行：<strong>機械判定はすべて PASS</strong>（台本／TTS稿タグ5個／記事・表3列・「するまで」型タイトル／infographic 6セクション／figures 3枚・分数の円グラフ）。「選定の採点」ゲートも核あり・面白さ5/5で通過。</p>
+<h2>要判断4件の確認</h2>
+<ol><li><strong>トリガ公開日</strong>：2026-08-13（制作日当日・引け後）→ 窓内 PASS。台本は「今月十三日」で日付固定済み</li><li><strong>事実カード消化</strong>：F01〜F04・F07〜F10・F12・F13・F15〜F19＋Q01・Q02 の17枚 → balanced の7点以上 PASS</li><li><strong>数字系統</strong>：4系統（時期／三分の一／割引／業績）＋金額不使用の確認 PASS</li><li><strong>台帳照合</strong>：題材新規・OP06初主役・MO3初使用・ホスト交互・数字COの型もep011と変奏 PASS</li></ol>
+<h2>図版・記事の判断</h2>
+<ul><li>図版の数値は facts.yaml 対応（6.4倍=F02／97%=F08／6,070万=F03／30.8億=F04／1/3=F07／年表=F17〜F19・F12・F13）</li><li><strong>「見通し（報道）」ラベルを cover・stat・combo に明記</strong>（金額未確定のため）</li><li>記事は金額不記載の※注記あり。蓄電所の解釈は「〜とまで言うのは先回りかもしれないが」で開いた</li><li>タイトル型：名詞句→疑問形→<strong>するまで</strong>（ep009以来4本ぶり）PASS</li></ul>
+<h2>総合判定</h2>
+<p><strong>ep013 全成果物 PASS。</strong> 残るは人間の必須作業（<strong>短信原本での金額確定が最重要</strong>・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep013 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜商習慣が捨てる物を拾う</h2>
+<h3>ホスト：戸倉ハジメ／型1 一本深掘り型／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>まず、三分の一。これ、何の分数だと思います？　食品業界の商習慣です。製造した日から賞味期限までを三等分して、最初の三分の一を過ぎたら、小売の棚にはもう納品できない。三分の一ルールと呼ばれています。私、この決まりに名前が付いていること自体、知りませんでした。期限はまだ残っている。味も変わらない。それでも、行き場だけがなくなる食べものが、この線引きから毎日生まれています。きょうは、それを仕入れる会社の話です。</p>
+<p>クラダシという会社です。十二年前に始まって、行き場を失った食べものをメーカーから買い取り、自分のネットの店で、最大で九十七パーセント引きまで下げて売る。それだけだと安売り屋なんですが、ひとつ仕掛けがあって、売上の一部が環境や福祉の団体への寄付になる。新品なのに定価の売場に置けない品の通り道なので、新品の一次流通と、中古の二次流通の間、一・五次流通と呼んでいるそうです。この会社が、今月十三日の決算発表で、来年六月までの一年は経常利益が六・四倍、六期ぶりの最高益になる見通しを出しました。</p>
+<p>出すほうのメーカーには、得がはっきりしています。捨てれば廃棄のお金がかかるものが、現金に変わる。ただ、調べてみたら、最初から歓迎されたわけではないんです。創業のころは『百戦百敗のような状況。現金問屋と間違えられたり、与信が通らなかったりするのは当たり前』だったと、始めた本人が語っています。与信が通らないというのは、銀行にいた人間として耳の痛い話で、要するに、まともな取引先として口座を開いてもらえない。安売りはブランドを壊す、と警戒もされる。そこを開けたのが、さっきの寄付の仕掛けなんだと思います。買うことが応援になる棚なら、メーカーは、投げ売りではなく社会貢献として品物を出せる。安さの理由を、訳あり、から、もったいない、に置き換えたわけです。</p>
+<p>その、もったいないには、出どころがあります。創業した人は、いまは会長ですが、お父さんが戦争で両親を亡くした人で、『この世に生を受けたということは、その命をいかに社会で全うするかだぞ』と繰り返し言われて育ったそうです。一九九五年の阪神淡路大震災では、自分も被災しながら、リュックに救援物資を詰めて歩いて、個人の力の小ささを思い知った。その後、商社の駐在で中国にいたころ、世界の工場と呼ばれた現場で、コンテナ単位で捨てられていく食べものを見てしまう。もったいないを商売の形にするまでに、ここから二十年近くかかっています。</p>
+<p>会社は順風だったわけでもありません。売上が三十億円あまりまで伸びても、赤字の年が続きました。六年前に出した最高益も、経常で六千万円あまりという水準です。それが、今月の発表で、六・四倍。しかも同じ週に、蓄電池を備えた食品物流の拠点で国の補助金に採択されて、埼玉では蓄電所の工事まで始めています。食べもので磨いた「捨てられる手前で価値を拾う」やり方を、電気や物流にも広げにかかっている、ようにも見えるんですね。</p>
+<p>ここから、商売の解剖です。きょうの手は、商習慣が捨てる物を拾う。三つに分けます。</p>
+<p>一、業界の決まりや規格や期限が捨てている、まだ使える物を探す。誰かのルールの副産物は、仕入れ値が低い。しかも供給が、ルールがある限り続きます。</p>
+<p>二、安く売るときは、安さに理由の物語を付ける。同じ品でも、投げ売りの棚に置くか、応援の棚に置くかで、出し手の顔が変わる。出し手のブランドが守られると、仕入れが続きます。</p>
+<p>三、拾う対象を、食品に限らない。時間、電気、空いた設備。自分の業界の三分の一ルールにあたる決まりを探すと、その足元に落ちています。</p>
+<p>ここだけ持って帰ってください。捨てられている物の値打ちは、物のせいで下がったんじゃなくて、ルールのせいで下がっています。物はそのままで、ルールの外に通り道を作った人が、その差額を取る。</p>
+<p>今週の宿題です。自分の業界で、期限や規格や慣行のせいで捨てられている価値をひとつ、書き出してください。それが誰のルールで捨てられているのかまで、たどってみてください。</p>
+<p>きょうの手は、商習慣が捨てる物を拾う、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第13回｜商習慣が捨てる物を拾う</p>
+<p>製造日から賞味期限までを三等分し、最初の三分の一を過ぎたら納品できない——食品業界の「三分の一ルール」。まだ食べられるのに行き場を失う品を仕入れて、最大九十七パーセント引きで売り、売上の一部を寄付にする。そんなクラダシが、今月十三日の決算発表で、来期は経常利益六・四倍、六期ぶりの最高益の見通しを出しました。『百戦百敗』と言われた創業期から、安売りを「応援の棚」に変えるまで。もったいないが商売になる仕組みを解剖します。</p>
+<p>▼ きっかけになったニュース<br>・クラダシ（東証グロース5884）2026年6月期 本決算発表（2026/8/13）<br>・2027年6月期は経常利益6.4倍・6期ぶり最高益の見通し（報道ベース）</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・日立システムズ 対談記事（創業動機・3分の1ルール・1.5次流通・最大97%割引・『100戦100敗』）<br>・irbank 決算まとめ（2021年6月期 経常6,070万円＝過去最高益、以降の業績推移）<br>・クラダシ ニュースリリース：経産省「中小企業成長加速化補助金」採択（2026/8/5）／蓄電所2案件・埼玉滑川蓄電所着工（2026/8/12）<br>・クラダシ「代表取締役の異動及び新経営執行体制に関するお知らせ」（2024/6/7）</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第13回｜商習慣が捨てる物を拾う
+
+製造日から賞味期限までを三等分し、最初の三分の一を過ぎたら納品できない——食品業界の「三分の一ルール」。まだ食べられるのに行き場を失う品を仕入れて、最大九十七パーセント引きで売り、売上の一部を寄付にする。そんなクラダシが、今月十三日の決算発表で、来期は経常利益六・四倍、六期ぶりの最高益の見通しを出しました。『百戦百敗』と言われた創業期から、安売りを「応援の棚」に変えるまで。もったいないが商売になる仕組みを解剖します。
+
+▼ きっかけになったニュース
+・クラダシ（東証グロース5884）2026年6月期 本決算発表（2026/8/13）
+・2027年6月期は経常利益6.4倍・6期ぶり最高益の見通し（報道ベース）
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・日立システムズ 対談記事（創業動機・3分の1ルール・1.5次流通・最大97%割引・『100戦100敗』）
+・irbank 決算まとめ（2021年6月期 経常6,070万円＝過去最高益、以降の業績推移）
+・クラダシ ニュースリリース：経産省「中小企業成長加速化補助金」採択（2026/8/5）／蓄電所2案件・埼玉滑川蓄電所着工（2026/8/12）
+・クラダシ「代表取締役の異動及び新経営執行体制に関するお知らせ」（2024/6/7）
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
