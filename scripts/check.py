@@ -183,9 +183,16 @@ def check_article(ep: Path):
     end = next((i for i, l in enumerate(lines) if l.startswith("### きょうの手")), len(lines))
     body = "\n".join(lines[(seps[0] + 1 if seps else 0):end])
     n_body = len(re.sub(r"\s", "", body))
-    add(WARN if n_body > 1800 else OK, "本文の長さ",
-        f"{n_body}字 → 1,000〜1,500字が目安。削る順番は write-article を見る"
-        if n_body > 1800 else f"{n_body}字")
+    add(WARN if n_body > 2200 else OK, "本文の長さ",
+        f"{n_body}字 → 1,500〜2,000字が目安。削る順番は write-article を見る"
+        if n_body > 2200 else f"{n_body}字")
+
+    # 数値の一覧は末尾に並べても読まれない。出典があれば原典で確かめられる
+    add(NG if "### データ" in a else OK, "データ欄",
+        "残っている → 論を進める数字は本文へ、残りは落とす（出典が受け持つ）"
+        if "### データ" in a else "なし")
+    add(OK if "### 出典" in a else NG, "出典欄",
+        "あり（データ欄を置かない前提の拠りどころ）" if "### 出典" in a else "なし")
     n_h = sum(1 for l in lines if l.startswith("## "))
     add(WARN if n_h > 3 else OK, "章の数",
         f"{n_h}章 → 3章まで。note 側で見出しを設定する手間が増える" if n_h > 3 else f"{n_h}章")
@@ -232,7 +239,6 @@ def check_article(ep: Path):
     add(WARN if hits else OK, "断定調の候補",
         f"{hits} → 事実の断定は可。解釈の断定なら開く（〜と読める／〜だろう）" if hits else "なし")
     add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
-    add(OK if "出典" in a else NG, "出典欄", "あり" if "出典" in a else "なし")
     add(OK if "…" not in a else WARN, "三点リーダー", f"{a.count('…')} 個")
 
 
