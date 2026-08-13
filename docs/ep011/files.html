@@ -116,7 +116,16 @@ notes: |
 <h2>図版・記事の判断</h2>
 <ul><li>図版の数値はすべて facts.yaml 対応（4,531=F04／2,311・8割=F02／15%=F06／1万8,347=F07／2万609=F08／90.9〜27.8=F12〜F15／2,664=F03／2,720=F05／鏡餅=F11）。<strong>9月・10月は「見通し」ラベルを図内に明記</strong></li><li>記事の消費税言及はTDB分析の伝聞1行に留めた（賛否は書かない・ng.yml遵守）</li><li>タイトル型：疑問形→疑問形→するまで→結果提示→<strong>名詞句</strong>。5本連続で型が異なる状態 PASS</li><li>中東経路の記述（米・イスラエル・イラン）は記事のみ・TDB本文の転記範囲。台本は「中東で続く緊張」まで PASS</li></ul>
 <h2>総合判定</h2>
-<p><strong>ep011 全成果物 PASS。</strong> 残るは人間の必須作業（PDF目視突合・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep011 台本（人間レビュー用）</h1>
+<p><strong>ep011 全成果物 PASS。</strong> 残るは人間の必須作業（PDF目視突合・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p>
+<hr>
+<h1>追記：画像の書き出しと、記事1箇所の修正（2026-08-13・クラウド側）</h1>
+<h2>書き出した画像（docs/ep011/images/）</h2>
+<div class="table-scroll"><table><thead><tr><th>ファイル</th><th>用途</th><th>寸法</th></tr></thead><tbody><tr><td>ep011-cover.png</td><td>note の見出し画像</td><td>1280×670</td></tr><tr><td>ep011-combo.png</td><td>この回の見立て（いつもの理由 × 包みと運び賃 ＝ 年内最多の山）</td><td>1696×570</td></tr><tr><td>ep011-number.png</td><td>27.8%（中東情勢が要因の割合）のドーナツ図</td><td>1696×534</td></tr><tr><td>ep011-table-1.png</td><td>記事の表「理由の欄の内訳」を画像化（note は表に非対応）</td><td>1696×746</td></tr></tbody></table></div>
+<p>4枚とも実画像を目視。文字の欠け・はみ出しなし。表の画像は build_site.py が article.md の表から自動生成しており、記事本文側には差し込み位置の目印が入る。</p>
+<h2>記事の修正1件（数字の読み違いを招く書き方）</h2>
+<ul><li>修正前：「10月に2,720品目と単月3,000品目超が続く見通しで」</li><li>出典（F05）：<strong>10月の判明分が2,720品目</strong>で、<strong>前年10月に続き単月3千超の見通し</strong></li><li>2,720 と 3,000超 が同格に並んでいたため、読むと矛盾する。<strong>判明分（2,720）と見通し（3,000超）を分けて書き、差は今後の発表が積み上がる余地と読める</strong>、と補った</li><li>図版の combo も「10月も3千超」→「10月も3千超の見通し」に統一</li><li>本文 1,461字 → 1,524字（目標帯 1,500〜2,000 に収まった）</li></ul>
+<h2>台帳の補正</h2>
+<p><code>ledger/note_links.yaml</code> に ep010・ep011 の行が無く、記事末尾の「あわせて読む」が出ない状態だった。ep011 は ep009（食品小売の売場）・ep004（誰の財布で払うか）と関連づけた。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep011 台本（人間レビュー用）</h1>
 <h2>『その手があったか』｜理由の欄から読む</h2>
 <h3>ホスト：戸倉ハジメ／T4数字回（型1アレンジ）／5分／density: dense</h3>
 <hr>
