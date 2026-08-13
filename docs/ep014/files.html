@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>乗り換えの瞬間を待つ｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep013/files.html">← ep013</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep014</span><span class="dlabel">作成</span>2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>乗り換えの瞬間を待つ</h1>
+  <div class="chips"><span class="chip host">三崎アオイ</span><span class="chip hand">OP10 待つ</span><span class="chip hand">OP06 拾う（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep014</td></tr><tr><th>ホスト</th><td>misaki（三崎アオイ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> 味の素、1Q純利益が同期間で過去最高・通期上方修正。けん引は半導体向け絶縁材ABF<br><span class='k'>published</span> 2026-08-06<br><span class='k'>source_url</span> sources/collected.md（日経・会社公式ストーリー・研究開発ページ）</td></tr><tr><th>副トリガ</th><td>電子材料等の事業利益は通期2割増の655億円見込み。ABF新工場は2032年稼働予定（用地取得・要一次確認）</td></tr><tr><th>題材</th><td>味の素ABF（うま味調味料の副産物研究から生まれ、高性能半導体パッケージ基板の絶縁材で世界9割超と言われるフィルム）</td></tr><tr><th>手</th><td>OP10<br>OP06味</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW4</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>乗り換えの瞬間を待つ</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep012</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep014
+host: misaki                # 日替わり交互（前日ep013=戸倉）。元精密機器の生産技術＝基板・工程の言葉が本領
+episode_type: T1            # 事例回・一本深掘り
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced           # 数字5系統・固有名詞6・facts7点以上・例え話2・並走句3〜4
+anchor:                     # トリガ情報（制作日2026-08-14から8日前）
+  headline: &quot;味の素、1Q純利益が同期間で過去最高・通期上方修正。けん引は半導体向け絶縁材ABF&quot;
+  published: 2026-08-06
+  source_url: &quot;sources/collected.md（日経・会社公式ストーリー・研究開発ページ）&quot;
+sub_triggers:
+  - &quot;電子材料等の事業利益は通期2割増の655億円見込み。ABF新工場は2032年稼働予定（用地取得・要一次確認）&quot;
+case_name: &quot;味の素ABF（うま味調味料の副産物研究から生まれ、高性能半導体パッケージ基板の絶縁材で世界9割超と言われるフィルム）&quot;
+operation_tags: [OP10, OP06味]  # 待つ（主役化・これまで味のみ）×拾う（味）。副産物の樹脂技術を、市場の乗り換えの瞬間まで寝かせた
+motive_tag: none            # 開発者個人の場面・一次記録に未到達のためQ2は立てない（selection ep014行を✗に確定）
+tailwind_tag: TW4           # 技術（7回あき◎）：基板の絶縁が液状インク→フィルムへ移る方式転換に、蓄積技術を当てた
+hook: &quot;&quot;                    # write-outlineで起こす。三崎の場面CO（パソコンの基板の断面）
+lesson_draft: &quot;乗り換えの瞬間を待つ&quot;
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;
+prev_episode_ref: &quot;ep012&quot;   # 三崎の前回（JRC・産業BtoB構造回）。「地味な部材の独占」が2本続く形になるため、
+                            # 語りの芯を変える：ep012=交換需要の寡占／ep014=売れない技術を方式転換まで待たせた時間の話
+notes: |
+  ・採点（selection.yaml ep014）：Q1○ Q2✗（確定）・C1〜C5○・面白さ90前後・◎3軸（OP10主役化・TW4・畑技術研究）
+  ・数字は3系統運用（上限5・余裕2）：
+    ①時期（一九七〇年代・一九九八年・一九九九年・今月六日・二〇三二年）
+    ②シェアと広がり（九割超※伝聞・ほぼすべてのパソコン）
+    ③決算（売上四千百二十一億円+13%・純利益は同期間最高・事業利益二千二十億円へ上方修正・電子材料は二割増の六百五十五億円）
+    → 厚さは数値を使わず「髪の毛より細い」。グループ利益の三割・95%の生数字は記事側で※つき使用
+  ・固有名詞3系統：味の素／ABF（エービーエフ）／味の素ファインテクノ。採用先の半導体メーカー名は出さない
+  ・シェアは必ず伝聞（「九割超と言われる」）。公式ページにシェア記載が無いため断定しない
+  ・純利益の増減の扱いに注意：1Qは増益・同期間最高／通期純利益は売却益反動で減益予想（言うなら両方セットで、片方だけ言わない）
+  ・『』2回：Q01技術者の仮説／Q02「世界のほぼすべてのパソコンに」
+  ・ep012と「地味な部材」語りが連続する点は、つかみの絵（砕石場の屋外→パソコンの中）と芯（寡占→待つ）で分ける
+  ・「アミノサイエンス」はカタカナ社内語 → 台本では使わず「うま味の研究」「アミノ酸の研究」に言い換え（憲法§2-4の趣旨）
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>味の素</td><td>1Q決算発表</td><td class="fact-val">2026-08-06</td><td>2026-08-06</td><td class="src">日経（一次到達）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F02</span></td><td>味の素</td><td>1Qの業績</td><td class="fact-val">売上4,121億円・純利益364億円</td><td>2026-04〜06</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>味の素</td><td>通期の上方修正</td><td class="fact-val">事業利益2,020億円へ</td><td>2026-08-06</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>味の素</td><td>電子材料の見込み</td><td class="fact-val">事業利益2割増の655億円</td><td>2027-03期通期</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>味の素</td><td>通期純利益の性格</td><td class="fact-val">減益予想だが幅縮小</td><td>2027-03期</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F06</span></td><td>ABF</td><td>何であるか</td><td class="fact-val">半導体基板の絶縁フィルム</td><td>継続</td><td class="src">公式「ABFの世界」（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F07</span></td><td>ABF</td><td>厚さ</td><td class="fact-val">1層20〜30µm</td><td>継続</td><td class="src">公式「ABFの世界」（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>ABF</td><td>置き換えた物</td><td class="fact-val">液状インクの絶縁材</td><td>1990年代〜</td><td class="src">公式ストーリー（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F09</span></td><td>ABF</td><td>使われる範囲</td><td class="fact-val">世界のほぼすべてのPC</td><td>現在</td><td class="src">公式「ABFの世界」（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>ABF</td><td>シェアの通説</td><td class="fact-val">FC-BGA用で約95%とされる</td><td>2026時点</td><td class="src">The社史（準二次）／報道通例は9割超</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F11</span></td><td>味の素</td><td>技術の起源</td><td class="fact-val">うま味調味料の副産物活用</td><td>起源</td><td class="src">公式ストーリー（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F12</span></td><td>味の素</td><td>絶縁樹脂への着目</td><td class="fact-val">1970年代</td><td>1970年代</td><td class="src">The社史</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F13</span></td><td>味の素</td><td>転換の仮説</td><td class="fact-val">フィルム化で課題を解決</td><td>1990年代</td><td class="src">公式ストーリー（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F14</span></td><td>味の素</td><td>専門子会社の設立</td><td class="fact-val">味の素ファインテクノ・1998年9月</td><td>1998-09</td><td class="src">The社史／公式</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F15</span></td><td>味の素</td><td>発売</td><td class="fact-val">1999年・世界初のフィルム状</td><td>1999</td><td class="src">The社史／公式</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F16</span></td><td>味の素</td><td>利益への貢献の通説</td><td class="fact-val">グループ利益の約3割とされる</td><td>2026時点</td><td class="src">The社史（集計）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F17</span></td><td>味の素</td><td>新工場</td><td class="fact-val">2032年稼働予定</td><td>2032予定</td><td class="src">検索要約（ITmedia系）</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>技術者たち（公式ストーリー）</strong>「フィルム状にすれば、液状インクの課題をまとめて解決できるのではないか」<span class="src-note">公式ストーリー（趣旨再現）／『』候補①。転換の仮説</span></li><li><span class="fid">Q02</span> <strong>会社（公式ページ）</strong>「世界のほぼすべてのパソコンに使われている」<span class="src-note">公式「ABFの世界」／『』候補②</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>副産物の物質名（塩化パラフィン等）</strong><br>理由：The社史の記述に化学的疑義・公式は物質名を明示せず<br>処置：「副産物の有効活用」の公式水準でのみ語る</li><li><strong>開発者個人の氏名・人物譚</strong><br>理由：一次記録に未到達<br>処置：「技術者たち」の水準で扱う。動機（Q2）は立てない</li><li><strong>株価13%急騰</strong><br>理由：市況の話で番組の目的外<br>処置：台本・記事とも不使用</li><li><strong>純利益「8%減」「11%減」の見出し数字</strong><br>理由：日経の時期違い記事で紛らわしい<br>処置：「通期純利益は売却益の反動で減益予想・減益幅は縮小」の言葉で扱い、見出しの%は使わない</li></ul><div class="ig-callout pre-line">・アンカー＝2026-08-06（制作日の8日前）。台本では「今月六日の決算発表」
+・density: balanced。数字3系統運用（余裕2）：
+①時期（一九七〇年代・一九九八年・一九九九年・今月六日・二〇三二年）
+②シェアと広がり（九割超※伝聞）
+③決算（四千百二十一億円+13%・同期間最高・二千二十億円へ上方修正・二割増の六百五十五億円）
+・固有名詞3系統：味の素／ABF（エービーエフ）／味の素ファインテクノ
+・シェアと利益貢献は伝聞固定：「九割超と言われる」「三割ほどと言われる（使う場合）」
+・『』はQ01・Q02。口癖1回（液状→フィルムの工程短縮のくだり）・例え話2まで
+・「アミノサイエンス」等の社内語は使わず「うま味の研究」「アミノ酸の研究」に言い換え
+・1Q増益と通期減益予想は必ずセットで説明（F05）</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep014 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-14／対象：script_draft.md（1,725字）／check.py 実行済み／<strong>OP10初主役（残る味のみの手はOP02・OP08・OP14）・TW4は7回ぶり</strong></p>
+<h2>機械判定（check.py）</h2>
+<p>本文文字数1,725（初稿1,637→未消化のF16を伝聞で充当）・OP/ED定型・『』2箇所・口癖1回・並走句・取材話法・三点リーダー0・「香月」0 — <strong>すべて OK</strong>。NGは後工程の図版のみ。</p>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>数字系統：3系統 → PASS（balanced上限5・余裕2）</h3>
+<ol><li><strong>時期</strong>：一九七〇年代／一九九〇年代／一九九八年／一九九九年／二〇三二年／今月六日／三ヶ月／半世紀</li><li><strong>シェアと広がり</strong>：九割超（伝聞）／ほぼすべてのパソコン</li><li><strong>決算・利益貢献</strong>：四千百二十一億円／十三パーセント／同期間最高／二千二十億円／二割増の六百五十五億円／グループ利益の三割ほど（伝聞）——同一会社の業績・貢献の数値群として1系統</li><li>対象外：三つ・ひとつ・何層・何十本（場面の概数・談話標識）</li></ol>
+<h3>固有名詞：3系統 → PASS（上限6）</h3>
+<p>味の素／ABF（エービーエフ・味の素ビルドアップフィルム）／味の素ファインテクノ。採用先の半導体メーカー名は不使用。「アミノサイエンス」等の社内語も不使用（「うま味の研究」「アミノ酸の研究」に言い換え）。</p>
+<h3>キメ台詞候補：2件 → いずれも平叙 PASS</h3>
+<ul><li>「いちばん忙しい時期を迎えている」＝現況の平叙</li><li>「自分の業界の中からではなく、外の業界から来る」＝解剖の対比説明。警句化なし</li><li>監視：「捨てるものの研究から生まれた技術が、捨てられずに残って、ここまで来た、ということですよね」＝確認形で着地。対句性はあるが『ってことですよね』型の言い直しの範囲</li></ul>
+<h3>伝聞の固定 → PASS</h3>
+<p>シェア「九割超<strong>と言われています</strong>」・利益貢献「三割ほど<strong>とも言われています</strong>」——公式非開示の数値はすべて伝聞。1Q増益（同期間最高）と通期純利益の減益予想（売却益の反動）を<strong>セットで</strong>説明し「そこは差し引いて聞いてください」と添えた（F05の指示どおり）。</p>
+<h3>例え話：0〜1回 → PASS</h3>
+<p>「輪切りにしたと思ってください」は場面の指示。例え話の新規発明なし。</p>
+<h3>トリガ鮮度 → PASS</h3>
+<p>anchor＝2026-08-06（8日前）。「今月六日の決算発表」で日付固定。過去はすべて年代明示。「二〇三二年に動く新しい工場の<strong>計画</strong>」と未確定を明示（F17はpartialのため）。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（味の素・ABF）は過去回になし。plan.md編成表の在庫候補#2をようやく消化</li><li><strong>手：OP10 初主役</strong>・OP06味。<strong>TW4は7回ぶり・畑「技術研究」6回ぶり・技術度「中〜高」</strong>——◎3軸消化</li><li>三崎の直近回ep012（JRC・地味な部材）との分離：つかみの絵（屋外の砕石場→手元のパソコンの中）と芯（交換需要の寡占→売れない技術を待たせる）で変えた</li><li>ホスト交互✓・上場系トリガでない✓</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td>1Q数値・通期修正・655億</td><td>日経（一次到達）。<strong>会社短信・説明資料（8/6）での突合を推奨</strong></td></tr><tr><td>シェア「九割超／FC-BGA用約95%」</td><td>会社公式は非開示。The社史＋報道通例の2系統で伝聞使用。<strong>定義と時点の確認が必要</strong></td></tr><tr><td>グループ利益の約3割（F16）</td><td>The社史の集計・単独。<strong>セグメント開示での突合が必要</strong>（台本は伝聞・記事は※つき）</td></tr><tr><td>新工場2032年（F17）</td><td>検索要約経由。<strong>一次リリース確認が必要</strong></td></tr><tr><td>開発経緯（副産物→樹脂→1998子会社→1999発売）</td><td>公式ストーリー＋The社史の2系統 ✓</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>絶縁</strong>（ぜつえん） 2. <strong>基板</strong>（きばん）※基盤と混同されない読み 3. <strong>樹脂</strong>（じゅし） 4. <strong>多層</strong>（たそう）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。</p>
+<hr>
+<h1>追記：全成果物の最終検査（2026-08-14）</h1>
+<p>check.py 最終実行：<strong>機械判定はすべて PASS（59項目）</strong>。台本1,725字／TTS稿タグ5個／記事（結果提示型タイトル・4本連続で型違い）／infographic 6セクション／figures 3枚（棒2本の年数比較）。「選定の採点」ゲートも核あり通過。</p>
+<h2>要判断5件の確認</h2>
+<ol><li><strong>トリガ</strong>：2026-08-06（8日前）✓。「今月六日」で日付固定・「きょう」不使用</li><li><strong>facts消化</strong>：F01〜F17のうち16枚＋Q01・Q02 → 7点以上 PASS</li><li><strong>数字系統</strong>：3系統（時期／シェアと広がり／決算・利益貢献）・余裕2 PASS</li><li><strong>キメ候補2件</strong>：いずれも平叙（前段のとおり）PASS</li><li><strong>台帳照合</strong>：題材新規・OP10初主役・TW4は7回ぶり・技術研究6回ぶり PASS</li></ol>
+<h2>図版・記事の判断</h2>
+<ul><li>図版数値は facts 対応（95%=F10※注記つき／364億=F02／655億=F04／25年=F12→F15の年差／20µm=F7／年表=F11〜F15・F01・F17）</li><li><strong>シェア95%と利益3割は、図版・記事とも「〜とされる」＋出典注記</strong>（会社公式非開示のため）</li><li>新工場2032は「報道ベース」「計画」と明示</li><li>1Q増益と通期純利益減益予想（売却益反動）を記事でもセットで説明</li></ul>
+<h2>総合判定</h2>
+<p><strong>ep014 全成果物 PASS。</strong> 残るは人間の必須作業（会社短信・説明資料での数値突合／シェア定義の確認／TTS通し聴取／公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep014 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜乗り換えの瞬間を待つ</h2>
+<h3>ホスト：三崎アオイ／型1 一本深掘り型／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p>
+<p>まず、あるパソコンの中の話をさせてください。ふたを開けて、心臓部の半導体を載せている基板を、輪切りにしたと思ってください。銅の配線が、何層にも重なっています。その層と層の間に、髪の毛より細い、茶色い膜が挟まっている。電気が勝手に流れないように仕切る、絶縁のフィルムです。会社の説明では『世界のほぼすべてのパソコンに使われている』。この膜を作っているのは、味の素です。</p>
+<p>私、工場で基板は散々見てきたのに、この膜の出どころは知りませんでした。エービーエフ、味の素ビルドアップフィルムという製品です。今月六日の決算発表で、この会社の三ヶ月の売上は四千百二十一億円、十三パーセントの増収で、純利益はこの時期として過去最高。一年の事業利益の見通しも二千二十億円に引き上げました。引っ張ったのが、この半導体向けの絶縁材です。高性能な半導体の基板用では、世界の九割超と言われています。電子材料の利益は、一年で二割増の六百五十五億円の見込み。ただ、一年の純利益は、前の年にビルの売却益があった反動で減る予想です。そこは差し引いて聞いてください。</p>
+<p>で、なんで調味料の会社が、半導体なのか。調べてみたら、始まりは、うま味調味料を作る工程で出る副産物なんだそうです。捨てるものの使い道を探すうちに、樹脂の技術が社内に育っていった。一九七〇年代には、アミノ酸の研究を応用した、電気を通しにくいエポキシ樹脂に目をつけています。ただ、当時は、これといった売り先がない。ここでこの会社は、技術を捨てずに、寝かせました。</p>
+<p>目が覚めるのは、一九九〇年代です。パソコンが高性能になって、基板の配線が細かく、多層になっていく。層の間を絶縁する材料は、当時は液状のインクでした。塗っては乾かし、塗っては乾かし。工程は長いし、乾かすたびにガスも出る。そこで技術者たちが仮説を立てます。『フィルム状にすれば、液状インクの課題をまとめて解決できるのではないか』。貼るだけにする、ということです。これ、現場やった人ならわかると思うんですけど、乾燥の工程がひとつ消えるだけで、ラインの景色が変わるんです。時間も、場所も、不良の出どころも減る。会社は一九九八年に、味の素ファインテクノという専門の子会社を作って、この事業を食品とは別の物差しで育てる形にしました。そして一九九九年、世界で初めてフィルム状の絶縁材として世に出します。</p>
+<p>いまは、AI向けのサーバーの需要で販売数量が伸びていて、二〇三二年に動く新しい工場の計画もある。パソコンだけじゃなく、スマホ、車、人工衛星にまで入っているそうです。この膜を含む機能材料の事業は、いまやグループの利益の三割ほどを稼ぐとも言われています。調味料の隣で、半世紀かけて育った膜が、いちばん忙しい時期を迎えている。捨てるものの研究から生まれた技術が、捨てられずに残って、ここまで来た、ということですよね。</p>
+<p>ここから、商売の解剖です。きょうの手は、乗り換えの瞬間を待つ。三つに分けます。</p>
+<p>一、副産物から生まれた技術は、売れなくても捨てずに、台帳に載せておく。使い道は、自分の業界の中からではなく、外の業界から来ることがあります。</p>
+<p>二、待っている間の仕事は、よその業界の、方式の乗り換えを見張ること。液状からフィルムへ、のような転換の瞬間にだけ、外の会社にも扉が開きます。ふだんは実績のある取引先で固まっている業界でも、方式が変わる瞬間は、全員が新参者になるからです。</p>
+<p>三、扉が開いたら、本業と別の判断軸の器で育てる。食品の物差しで電子材料を測ったら、育つ前に摘まれていたはずです。</p>
+<p>今週の宿題です。自社に、売れないまま持っている技術やノウハウがないか、ひとつ書き出してください。そして、それが効きそうな、方式の乗り換えが起きつつある業界をひとつ選んで、見張る場所に決めてください。</p>
+<p>きょうの手は、乗り換えの瞬間を待つ、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第14回｜乗り換えの瞬間を待つ</p>
+<p>パソコンの基板の中で、銅の配線の層を仕切る、髪の毛より細い茶色いフィルム。作っているのは味の素です。うま味調味料の副産物の研究から生まれた樹脂技術は、一九七〇年代に絶縁材として目をつけられたあと、売り先のないまま寝かされました。目が覚めたのは九〇年代、基板の絶縁が液状インクからフィルムへ乗り換わる瞬間。今月六日の決算では、この電子材料が会社の四半期最高益を引っ張りました。売れない技術を、いつ、どこで出すか。待ち方の解剖です。</p>
+<p>▼ きっかけになったニュース<br>・味の素 2027年3月期 第1四半期決算（2026/8/6）売上4,121億円・純利益364億円はともに前年同期比13%増で同期間の過去最高。通期事業利益を2,020億円へ上方修正<br>・電子材料等の事業利益は通期2割増の655億円見込み（ABFの販売数量増）</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・味の素グループ公式ストーリー「アミノサイエンスから生まれた絶縁フィルムABF」（副産物の有効活用・液状インクからの転換・技術者の仮説）<br>・味の素グループ 研究開発ページ「ABFの世界」（1層20〜30µm・世界のほぼすべてのPCに）<br>・The社史（1998年 味の素ファインテクノ設立・1999年 世界初のフィルム状絶縁材発売・FC-BGA用シェア約95%とされる）<br>・日本経済新聞 決算記事（2026/8/6）</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第14回｜乗り換えの瞬間を待つ
+
+パソコンの基板の中で、銅の配線の層を仕切る、髪の毛より細い茶色いフィルム。作っているのは味の素です。うま味調味料の副産物の研究から生まれた樹脂技術は、一九七〇年代に絶縁材として目をつけられたあと、売り先のないまま寝かされました。目が覚めたのは九〇年代、基板の絶縁が液状インクからフィルムへ乗り換わる瞬間。今月六日の決算では、この電子材料が会社の四半期最高益を引っ張りました。売れない技術を、いつ、どこで出すか。待ち方の解剖です。
+
+▼ きっかけになったニュース
+・味の素 2027年3月期 第1四半期決算（2026/8/6）売上4,121億円・純利益364億円はともに前年同期比13%増で同期間の過去最高。通期事業利益を2,020億円へ上方修正
+・電子材料等の事業利益は通期2割増の655億円見込み（ABFの販売数量増）
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・味の素グループ公式ストーリー「アミノサイエンスから生まれた絶縁フィルムABF」（副産物の有効活用・液状インクからの転換・技術者の仮説）
+・味の素グループ 研究開発ページ「ABFの世界」（1層20〜30µm・世界のほぼすべてのPCに）
+・The社史（1998年 味の素ファインテクノ設立・1999年 世界初のフィルム状絶縁材発売・FC-BGA用シェア約95%とされる）
+・日本経済新聞 決算記事（2026/8/6）
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

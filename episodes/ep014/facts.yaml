@@ -1,0 +1,44 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  # --- アンカー ---
+  - {id: F01, who: 味の素, what: 1Q決算発表, value: 2026-08-06, when: 2026-08-06, source_url: "日経（一次到達）", confirmed_by: 2, anchor: true, verify: verified, note: "2027年3月期第1四半期。決算説明会同日"}
+  - {id: F02, who: 味の素, what: 1Qの業績, value: 売上4,121億円・純利益364億円, when: 2026-04〜06, source_url: "日経", confirmed_by: 1, verify: verified, note: "ともに前年同期比+13%。純利益は同期間で過去最高。会社短信での突合＝人間裏取り"}
+  - {id: F03, who: 味の素, what: 通期の上方修正, value: 事業利益2,020億円へ, when: 2026-08-06, source_url: "日経", confirmed_by: 1, verify: verified, note: "売上1兆7,230→1兆7,320億円／事業利益1,970→2,020億円／純利益1,200→1,235億円"}
+  - {id: F04, who: 味の素, what: 電子材料の見込み, value: 事業利益2割増の655億円, when: 2027-03期通期, source_url: "日経", confirmed_by: 1, verify: verified, note: "電子材料等。ABFは「販売数量が増えている」（会社説明）"}
+  - {id: F05, who: 味の素, what: 通期純利益の性格, value: 減益予想だが幅縮小, when: 2027-03期, source_url: "日経", confirmed_by: 1, verify: verified, note: "前期に本社ビル売却益406億円の反動。1Qの増益・同期間最高とセットで扱い、片方だけ言わない"}
+  # --- ABFの機能（公式・一次） ---
+  - {id: F06, who: ABF, what: 何であるか, value: 半導体基板の絶縁フィルム, when: 継続, source_url: "公式「ABFの世界」（一次）", confirmed_by: 2, verify: verified, note: "パッケージ基板内部の銅配線層を電気的に絶縁。味の素ビルドアップフィルム"}
+  - {id: F07, who: ABF, what: 厚さ, value: 1層20〜30µm, when: 継続, source_url: "公式「ABFの世界」（一次）", confirmed_by: 1, verify: verified, note: "髪の毛（約80µm）より細い。ストーリー記事には約10µmの層の記載も。台本は数値不使用で「髪の毛より細い」"}
+  - {id: F08, who: ABF, what: 置き換えた物, value: 液状インクの絶縁材, when: 1990年代〜, source_url: "公式ストーリー（一次）", confirmed_by: 2, verify: verified, note: "液状は乾燥工程の繰り返し・有害ガスの課題。フィルムは貼るだけで工程が縮む"}
+  - {id: F09, who: ABF, what: 使われる範囲, value: 世界のほぼすべてのPC, when: 現在, source_url: "公式「ABFの世界」（一次）", confirmed_by: 1, verify: verified, note: "公式表現。スマホ・ゲーム機・自動車・人工衛星にも。Q02参照"}
+  - {id: F10, who: ABF, what: シェアの通説, value: FC-BGA用で約95%とされる, when: 2026時点, source_url: "The社史（準二次）／報道通例は9割超", confirmed_by: 2, verify: partial, note: "会社公式ページにシェア記載なし。台本では「九割超と言われる」の伝聞。定義（FC-BGA用）の確認＝人間裏取り"}
+  # --- 来歴（公式＋社史） ---
+  - {id: F11, who: 味の素, what: 技術の起源, value: うま味調味料の副産物活用, when: 起源, source_url: "公式ストーリー（一次）", confirmed_by: 2, verify: verified, note: "「味の素®」製造工程の副産物の有効活用から樹脂技術へ。物質名は公式水準を超えるため出さない"}
+  - {id: F12, who: 味の素, what: 絶縁樹脂への着目, value: 1970年代, when: 1970年代, source_url: "The社史", confirmed_by: 1, verify: dated, note: "アミノ酸のノウハウを応用した絶縁性エポキシ樹脂。時期明示必須"}
+  - {id: F13, who: 味の素, what: 転換の仮説, value: フィルム化で課題を解決, when: 1990年代, source_url: "公式ストーリー（一次）", confirmed_by: 1, verify: verified, note: "Q01参照。PC高性能化で層間絶縁が液状→フィルムへ移る転換期に、技術者たちが仮説を立てた"}
+  - {id: F14, who: 味の素, what: 専門子会社の設立, value: 味の素ファインテクノ・1998年9月, when: 1998-09, source_url: "The社史／公式", confirmed_by: 2, verify: verified, note: "食品と異なる判断軸で育てる器。「技術立社」路線（当時の社長方針＝The社史）"}
+  - {id: F15, who: 味の素, what: 発売, value: 1999年・世界初のフィルム状, when: 1999, source_url: "The社史／公式", confirmed_by: 2, verify: verified}
+  # --- 貢献・将来（裏取り印つき） ---
+  - {id: F16, who: 味の素, what: 利益への貢献の通説, value: グループ利益の約3割とされる, when: 2026時点, source_url: "The社史（集計）", confirmed_by: 1, verify: partial, note: "ファンクショナルマテリアルズ事業 売上約1,007億・事業利益約546億の集計。セグメント開示での突合が必要。台本では不使用か伝聞、記事は※つき"}
+  - {id: F17, who: 味の素, what: 新工場, value: 2032年稼働予定, when: 2032予定, source_url: "検索要約（ITmedia系）", confirmed_by: 1, verify: partial, note: "ABF新工場用地取得。一次リリース確認＝人間裏取り。台本では「二〇三二年に新工場」の水準"}
+quotes:
+  - {id: Q01, speaker: 技術者たち（公式ストーリー）, gist: "フィルム状にすれば、液状インクの課題をまとめて解決できるのではないか", source_url: "公式ストーリー（趣旨再現）", note: "『』候補①。転換の仮説"}
+  - {id: Q02, speaker: 会社（公式ページ）, gist: "世界のほぼすべてのパソコンに使われている", source_url: "公式「ABFの世界」", note: "『』候補②"}
+rejected:
+  - {claim: 副産物の物質名（塩化パラフィン等）, reason: The社史の記述に化学的疑義・公式は物質名を明示せず, action: 「副産物の有効活用」の公式水準でのみ語る}
+  - {claim: 開発者個人の氏名・人物譚, reason: 一次記録に未到達, action: 「技術者たち」の水準で扱う。動機（Q2）は立てない}
+  - {claim: 株価13%急騰, reason: 市況の話で番組の目的外, action: 台本・記事とも不使用}
+  - {claim: 純利益「8%減」「11%減」の見出し数字, reason: 日経の時期違い記事で紛らわしい, action: 「通期純利益は売却益の反動で減益予想・減益幅は縮小」の言葉で扱い、見出しの%は使わない}
+notes: |
+  ・アンカー＝2026-08-06（制作日の8日前）。台本では「今月六日の決算発表」
+  ・density: balanced。数字3系統運用（余裕2）：
+    ①時期（一九七〇年代・一九九八年・一九九九年・今月六日・二〇三二年）
+    ②シェアと広がり（九割超※伝聞）
+    ③決算（四千百二十一億円+13%・同期間最高・二千二十億円へ上方修正・二割増の六百五十五億円）
+  ・固有名詞3系統：味の素／ABF（エービーエフ）／味の素ファインテクノ
+  ・シェアと利益貢献は伝聞固定：「九割超と言われる」「三割ほどと言われる（使う場合）」
+  ・『』はQ01・Q02。口癖1回（液状→フィルムの工程短縮のくだり）・例え話2まで
+  ・「アミノサイエンス」等の社内語は使わず「うま味の研究」「アミノ酸の研究」に言い換え
+  ・1Q増益と通期減益予想は必ずセットで説明（F05）
