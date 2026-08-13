@@ -239,6 +239,31 @@ def check_article(ep: Path):
     add(WARN if hits else OK, "断定調の候補",
         f"{hits} → 事実の断定は可。解釈の断定なら開く（〜と読める／〜だろう）" if hits else "なし")
     add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
+
+    # 教訓一行は「条件＋行動の1文」。形が揃って初めてシリーズの型になる
+    m = re.search(r"### きょうの手\n\n> \*\*(.+?)\*\*", a, re.S)
+    if m:
+        lesson = m.group(1).strip()
+        n_l, n_s = len(lesson), lesson.count("。")
+        cond = bool(re.search(r"(たら|なら|ときは)、", lesson))
+        bad = []
+        if n_l > 60:
+            bad.append(f"{n_l}字（60字まで）")
+        if n_s > 1:
+            bad.append(f"{n_s}文（1文に）")
+        if not cond:
+            bad.append("条件節なし（〜たら／〜なら で始める）")
+        add(WARN if bad else OK, "きょうの手の型",
+            "／".join(bad) if bad else f"条件＋行動の1文・{n_l}字")
+    else:
+        add(WARN, "きょうの手の型", "引用ブロックが見つからない")
+
+    # 伏せ字。note は独立媒体で出典も出すので、企業名・調査名は書く（§3は放送のルール）
+    masks = re.findall(r"ある[ァ-ヴ][ァ-ヴ一-龥]{1,8}(?:銘柄|企業|団体|アワード|賞|社|誌)"
+                       r"|大手[ァ-ヴ一-龥]{2,5}(?:が|は|の)"
+                       r"|公的機関|某[ァ-ヴ一-龥]{1,6}|創業者の一人", a)
+    add(WARN if masks else OK, "伏せ字",
+        f"{sorted(set(masks))} → 出典で確認できるなら実名で書く" if masks else "なし")
     add(OK if "…" not in a else WARN, "三点リーダー", f"{a.count('…')} 個")
 
 
