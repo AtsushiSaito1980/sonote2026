@@ -445,9 +445,22 @@ def check_ledger(ep: Path):
         bad.append("核（Q1/Q2）が両方 ✗")
     if n_o < 3:
         bad.append(f"面白さ {n_o}/5（○3つ以上）")
+    # 3つの点数（面白さ・応用・ばらつき）。合計しない
+    nums = ""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import score as sc
+        r = next((x for x in sc.score_all() if x["ep"] == ep_id), None)
+        if r:
+            f = lambda v: "—" if v is None else str(v)  # noqa: E731
+            nums = (f' ／ 面白さ{f(r["interest"])}・応用{f(r["transfer"])}'
+                    f'・ばらつき{f(r["variety"])}')
+    except Exception:
+        pass
+
     add(WARN if bad else OK, "選定の採点",
-        "／".join(bad) + " → 基準を割った回。理由を review.md に残す" if bad
-        else f"核あり・面白さ {n_o}/5")
+        "／".join(bad) + f"{nums} → 基準を割った回。理由を review.md に残す" if bad
+        else f"核あり・面白さ {n_o}/5{nums}")
 
 
 def main():

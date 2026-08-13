@@ -1,12 +1,12 @@
-episode,host,created_on,air_date,type,density,hands,motive,tailwind,industries,field,subject,case_names,trigger_date,title,status
-ep001,tokura,2026-08-08推定,2026-08-08,T1,balanced相当,OP04,none,TW1headwind,ゴルフ用品;オーラルケア;カラオケ,生活消費,会社,ミズノJPX ONE;ガム・プレミアム;VSING,2026-01〜03(旧基準),物差しを逆さに持て,archived_旧鮮度基準
-ep002,misaki,2026-08-08,2026-08-08,T1,dense,OP11,none,TW1,人事労務;対策サービス;保険,制度公共,制度,カスハラ対策義務化,2026-07-20,施行日は開店日,ready
-ep003,tokura,2026-08-09,2026-08-09,T1,balanced,OP05+OP14味,MO4,TW5,バイク用品;アパレル;調査,生活消費,会社,ナップス;三陽商会;電通×unerry,2026-07-14,時間をずらす,ready
-ep004,misaki,2026-08-09,2026-08-10想定,T1,balanced,OP03,none,none(向かい風=コスト高),イベント;地域;飲料,制度公共,会社,いたばし;八王子;鎌倉;キリン晴れ風,2026-08-07,払う人を変える,in_review
-ep005,tokura,2026-08-09,2026-08-11想定,T1,narrative,OP02味,MO1+MO2,none,アートライセンス;福祉;老舗百貨店,生活消費,人,ヘラルボニー;和光,2026-08-06,当事者だった,in_review
-ep006,misaki,2026-08-09推定,2026-08-12想定,T1,balanced,OP01+OP10味,none,TW4+TW1味,エネルギー;素材;化学,技術研究,会社,ペロブスカイト太陽電池;積水化学SOLAFIL,2026-07(GCL参入・出来事),断られた理由を引く,in_review
-ep007,tokura,2026-08-09,2026-08-13想定,T1,balanced,OP12+OP08,none,TW2,自動運転;ソフトウェア;自動車,技術研究,会社,ティアフォー;Autoware,2026-07-22,中核を開いて周りで稼ぐ,in_review
-ep008,misaki,2026-08-09,2026-08-14想定,T1,balanced(15分拡大版),OP07+OP06,none,TW5,家具;家電;物流,生活消費,会社,クラス;CIRCLE,2026-07-28,返ってくる前提で分けておく,in_review
-ep009,tokura,2026-08-12,2026-08-17想定,T1,balanced,OP13+OP14味,none,TW3,メディア;広告;食品小売,メディア金融,会社,エブリー;DELISH KITCHEN;retail HUB,2026-08-04,ネットの当たり前を売場に持ち込む,in_review
-ep010,misaki,2026-08-13,2026-08-18想定,T1,narrative,OP05,MO4,TW1,福利厚生;食品流通;オフィスサービス,産業BtoB,人,KOMPEITO;OFFICE DE YASAI,2026-08-12,商品より先に売り場を動かす,in_review
-ep011,tokura,2026-08-13,2026-08-19想定,T4,dense,—,none,none,食品;日用品;統計,生活消費,統計,帝国データバンク 食品主要195社 価格改定動向調査,2026-07-31,理由の欄から読む,in_review
+episode,host,created_on,air_date,type,density,hands,motive,tailwind,industries,field,subject,tech,case_names,trigger_date,title,status
+ep001,tokura,2026-08-08推定,2026-08-08,T1,balanced相当,OP04,none,TW1headwind,ゴルフ用品;オーラルケア;カラオケ,生活消費,会社,低,ミズノJPX ONE;ガム・プレミアム;VSING,2026-01〜03(旧基準),物差しを逆さに持て,archived_旧鮮度基準
+ep002,misaki,2026-08-08,2026-08-08,T1,dense,OP11,none,TW1,人事労務;対策サービス;保険,制度公共,制度,低,カスハラ対策義務化,2026-07-20,施行日は開店日,ready
+ep003,tokura,2026-08-09,2026-08-09,T1,balanced,OP05+OP14味,MO4,TW5,バイク用品;アパレル;調査,生活消費,会社,中,ナップス;三陽商会;電通×unerry,2026-07-14,時間をずらす,ready
+ep004,misaki,2026-08-09,2026-08-10想定,T1,balanced,OP03,none,none(向かい風=コスト高),イベント;地域;飲料,制度公共,会社,低,いたばし;八王子;鎌倉;キリン晴れ風,2026-08-07,払う人を変える,in_review
+ep005,tokura,2026-08-09,2026-08-11想定,T1,narrative,OP02味,MO1+MO2,none,アートライセンス;福祉;老舗百貨店,生活消費,人,低,ヘラルボニー;和光,2026-08-06,当事者だった,in_review
+ep006,misaki,2026-08-09推定,2026-08-12想定,T1,balanced,OP01+OP10味,none,TW4+TW1味,エネルギー;素材;化学,技術研究,会社,高,ペロブスカイト太陽電池;積水化学SOLAFIL,2026-07(GCL参入・出来事),断られた理由を引く,in_review
+ep007,tokura,2026-08-09,2026-08-13想定,T1,balanced,OP12+OP08,none,TW2,自動運転;ソフトウェア;自動車,技術研究,会社,高,ティアフォー;Autoware,2026-07-22,中核を開いて周りで稼ぐ,in_review
+ep008,misaki,2026-08-09,2026-08-14想定,T1,balanced(15分拡大版),OP07+OP06,none,TW5,家具;家電;物流,生活消費,会社,中,クラス;CIRCLE,2026-07-28,返ってくる前提で分けておく,in_review
+ep009,tokura,2026-08-12,2026-08-17想定,T1,balanced,OP13+OP14味,none,TW3,メディア;広告;食品小売,メディア金融,会社,中,エブリー;DELISH KITCHEN;retail HUB,2026-08-04,ネットの当たり前を売場に持ち込む,in_review
+ep010,misaki,2026-08-13,2026-08-18想定,T1,narrative,OP05,MO4,TW1,福利厚生;食品流通;オフィスサービス,産業BtoB,人,低,KOMPEITO;OFFICE DE YASAI,2026-08-12,商品より先に売り場を動かす,in_review
+ep011,tokura,2026-08-13,2026-08-19想定,T4,dense,—,none,none,食品;日用品;統計,生活消費,統計,低,帝国データバンク 食品主要195社 価格改定動向調査,2026-07-31,理由の欄から読む,in_review

@@ -22,34 +22,51 @@ LEDGER = ROOT / "ledger" / "episodes_log.csv"
 # 軸。ホストは日替わり交互で固定なので、ばらつきの対象にしない
 AXES = [
     ("hand", "手", "その回の主役の手。味付けの手（+OPnn味）は数えない"),
+    ("motive", "動機", "MO1〜7。裏の問い「なんで、その人が」の型"),
+    ("tailwind", "風", "TW1〜5。「なぜ今か」の説明変数"),
     ("type", "型", "T1事例／T2失敗／T3定点／T4数字／T5お題"),
     ("field", "畑", "生活消費／産業BtoB／制度公共／技術研究／メディア金融"),
     ("subject", "主役", "会社／人／制度／統計。何が主語の回か"),
+    ("tech", "技術度", "高＝研究・実証段階が主役／中＝既存技術の新しい組み合わせ／低＝技術が主役でない"),
 ]
 
-# 畑と主役の取りうる値。ここに無い値が台帳に出たら、増やしてよい合図
+# 取りうる値。ここに無い値が台帳に出たら、増やしてよい合図
 VOCAB = {
+    "hand": [f"OP{i:02d}" for i in range(1, 15)],
+    "motive": [f"MO{i}" for i in range(1, 8)],
+    "tailwind": [f"TW{i}" for i in range(1, 6)],
+    "type": ["T1", "T2", "T3", "T4", "T5"],
     "field": ["生活消費", "産業BtoB", "制度公共", "技術研究", "メディア金融"],
     "subject": ["会社", "人", "制度", "統計"],
-    "type": ["T1", "T2", "T3", "T4", "T5"],
-    "hand": [f"OP{i:02d}" for i in range(1, 15)],
+    "tech": ["高", "中", "低"],
 }
+
+# 「なし」は値ではない。冷えていても ◎ にしない（手なし・動機なしを優先する理由が無い）
+EMPTY = {"—", "なし", ""}
 
 RECENT_BLOCK = 3   # 直近この本数に同じ値があれば △
 RECENT_HOT = 5     # 直近この本数に2回以上あれば ✗
 COLD_GAP = 5       # 最後に出てからこの本数あいていれば ◎（優先して探す）
 
 
-def main_hand(cell: str) -> str:
-    """hands 欄から主役の手を取り出す。「OP13+OP14味」→ OP13、「OP02味」→ —"""
+def main_tag(cell: str, prefix: str) -> str:
+    """タグ欄から主役のタグを取り出す。
+
+    「OP13+OP14味」→ OP13／「OP02味」→ なし（味付けだけ）／
+    「TW1headwind」→ TW1（逆風も同じタグ）／「none(向かい風=…)」→ なし
+    """
     cell = (cell or "").strip()
-    if not cell or cell in {"—", "-", "none"}:
-        return "—"
+    if not cell or cell in {"—", "-"} or cell.startswith("none"):
+        return "なし"
     for token in cell.split("+"):
         token = token.strip()
-        if token and not token.endswith("味"):
-            return token
-    return "—"
+        if token.startswith(prefix) and not token.endswith("味"):
+            return token[:len(prefix) + 2].rstrip("h")  # TW1headwind → TW1
+    return "なし"
+
+
+def main_hand(cell: str) -> str:
+    return main_tag(cell, "OP")
 
 
 def all_hands(rows: list[dict]) -> set[str]:
@@ -61,6 +78,11 @@ def all_hands(rows: list[dict]) -> set[str]:
             if token.startswith("OP"):
                 seen.add(token)
     return seen
+
+
+def history_upto(rows: list[dict], n: int) -> dict:
+    """n本目を選んだ時点（＝それより前の回だけ）の履歴。過去回の採点に使う"""
+    return history(rows[:n])
 
 
 def load_rows() -> list[dict]:
@@ -75,10 +97,12 @@ def history(rows: list[dict]) -> dict[str, list[tuple[str, str]]]:
     out: dict[str, list[tuple[str, str]]] = {a: [] for a, _, _ in AXES}
     for r in rows:
         ep = r.get("episode", "")
-        out["hand"].append((ep, main_hand(r.get("hands", ""))))
+        out["hand"].append((ep, main_tag(r.get("hands", ""), "OP")))
+        out["motive"].append((ep, main_tag(r.get("motive", ""), "MO")))
+        out["tailwind"].append((ep, main_tag(r.get("tailwind", ""), "TW")))
         out["type"].append((ep, (r.get("type") or "").strip()))
-        out["field"].append((ep, (r.get("field") or "").strip() or "（未記入）"))
-        out["subject"].append((ep, (r.get("subject") or "").strip() or "（未記入）"))
+        for key in ("field", "subject", "tech"):
+            out[key].append((ep, (r.get(key) or "").strip() or "（未記入）"))
     return out
 
 
@@ -95,6 +119,8 @@ def verdict(axis: str, value: str, hist: dict) -> tuple[str, str]:
     seq = [v for _, v in hist[axis]]
     recent5 = seq[-RECENT_HOT:]
     gap = gap_of(value, seq)
+    if value in EMPTY:
+        return "✗", "タグが立っていない（冷えていても優先しない）"
     if recent5.count(value) >= 2:
         return "✗", f"直近{RECENT_HOT}回に{recent5.count(value)}回。原則見送り"
     if gap < RECENT_BLOCK:
@@ -109,8 +135,8 @@ def verdict(axis: str, value: str, hist: dict) -> tuple[str, str]:
 def cold_values(axis: str, hist: dict) -> list[tuple[str, int]]:
     """しばらく出ていない値を、あいた本数の多い順に返す"""
     seq = [v for _, v in hist[axis]]
-    known = VOCAB.get(axis, sorted({v for v in seq if v and v != "—"}))
-    scored = [(v, gap_of(v, seq)) for v in known]
+    known = VOCAB.get(axis, sorted({v for v in seq if v not in EMPTY}))
+    scored = [(v, gap_of(v, seq)) for v in known if v not in EMPTY]
     return sorted([x for x in scored if x[1] >= COLD_GAP],
                   key=lambda kv: -kv[1])
 

@@ -239,11 +239,33 @@ td { border-bottom: 1px solid var(--line); padding: 8px 10px; vertical-align: to
 .sec h2 { font-size: 17px; margin: 0 0 4px; }
 .score-table td, .score-table th { white-space: nowrap; }
 .score-table .sc-title { white-space: normal; min-width: 15em; }
-.sc { text-align: center; font-weight: 700; }
+.sc { font-weight: 700; }
 .sc-o { color: var(--good-text); }
 .sc-d { color: var(--warn); }
 .sc-x { color: var(--crit); }
 .sc-n { text-align: center; font-variant-numeric: tabular-nums; }
+.snum { position: relative; text-align: right; font-variant-numeric: tabular-nums;
+  min-width: 4.5em; padding-bottom: 10px !important; }
+.snum b { font-size: 15px; font-weight: 700; }
+.snum.lo b { color: var(--crit); }
+.snum.mid b { color: var(--ink-2); }
+.snum.hi b { color: var(--good-text); }
+.sbar { position: absolute; left: 8px; bottom: 6px; height: 3px; border-radius: 2px;
+  background: var(--baseline); }
+.snum.hi .sbar { background: var(--good); }
+.snum.lo .sbar { background: var(--crit); }
+.mkline { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 4px; }
+.mk { font-size: 11px; color: var(--ink-2); }
+.mk i { font-style: normal; color: var(--muted); margin-right: 3px; }
+.score-legend { display: grid; gap: 10px; margin: 12px 0;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.sl { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  background: var(--surface); }
+.sl-n { display: block; font-size: 30px; font-weight: 800; line-height: 1.1;
+  font-variant-numeric: tabular-nums; }
+.sl b { display: block; font-size: 14px; margin-top: 2px; }
+.sl span:not(.sl-n) { display: block; font-size: 12px; color: var(--ink-2); }
+.sl code { display: inline-block; margin-top: 6px; font-size: 10.5px; color: var(--muted); }
 .miss-row { background: color-mix(in srgb, var(--crit) 7%, transparent); }
 tr.sc-note td { font-size: 12px; color: var(--ink-2); white-space: normal;
   border-top: 0; padding-top: 0; }
