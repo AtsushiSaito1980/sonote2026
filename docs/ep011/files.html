@@ -14,6 +14,7 @@
 <header class="site">
   <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
   <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
     <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
     <a href="../ledger.html" class="nav-link">台帳</a>
     <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
@@ -125,7 +126,21 @@ notes: |
 <h2>記事の修正1件（数字の読み違いを招く書き方）</h2>
 <ul><li>修正前：「10月に2,720品目と単月3,000品目超が続く見通しで」</li><li>出典（F05）：<strong>10月の判明分が2,720品目</strong>で、<strong>前年10月に続き単月3千超の見通し</strong></li><li>2,720 と 3,000超 が同格に並んでいたため、読むと矛盾する。<strong>判明分（2,720）と見通し（3,000超）を分けて書き、差は今後の発表が積み上がる余地と読める</strong>、と補った</li><li>図版の combo も「10月も3千超」→「10月も3千超の見通し」に統一</li><li>本文 1,461字 → 1,524字（目標帯 1,500〜2,000 に収まった）</li></ul>
 <h2>台帳の補正</h2>
-<p><code>ledger/note_links.yaml</code> に ep010・ep011 の行が無く、記事末尾の「あわせて読む」が出ない状態だった。ep011 は ep009（食品小売の売場）・ep004（誰の財布で払うか）と関連づけた。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep011 台本（人間レビュー用）</h1>
+<p><code>ledger/note_links.yaml</code> に ep010・ep011 の行が無く、記事末尾の「あわせて読む」が出ない状態だった。ep011 は ep009（食品小売の売場）・ep004（誰の財布で払うか）と関連づけた。</p>
+<hr>
+<h1>追記：採点表の導入と、この回の位置づけ（2026-08-13）</h1>
+<p>この回をきっかけに、候補を出す段階で採点する仕組みを入れた（<code>ledger/selection.yaml</code>・サイトの「選び方」）。<br><strong>ep011 は作り直さず、基準の見本として残す。</strong></p>
+<h2>この回の採点</h2>
+<div class="table-scroll"><table><thead><tr><th>Q1 儲け手</th><th>Q2 動機の人</th><th>C1 意外</th><th>C2 数字</th><th>C3 転用</th><th>C4 一行</th><th>C5 絵</th><th>面白さ</th></tr></thead><tbody><tr><td>✗</td><td>✗</td><td>✗</td><td>△</td><td>△</td><td>○</td><td>✗</td><td>1/5</td></tr></tbody></table></div>
+<p><strong>核が両方 ✗。</strong>儲けている主体も、動機を持つ人も登場しない。主役が統計そのもので、<br>記事の見立て（材料より包みと運び賃）も出典自身の説明と同じだった。</p>
+<h2>なぜ通ってしまったか</h2>
+<ol><li>型の変化球が ep001〜ep010 で<strong>ゼロ</strong>。編成ルール④の督促だけが効いていた</li><li>T4 は編成表の先例で手が「—」＝<strong>手なしが仕様として正当化された</strong></li><li>棚に、まさに「T1では手が立たない」で落ちた候補（bl005）が残っていた</li><li>その日、主役として唯一未使用の手 OP09 を持つ候補（bl008・JRC）を押しのけた</li></ol>
+<p>＝ ルール⑧（未使用の手を優先）に反する判断</p>
+<h2>入れた手当て</h2>
+<ul><li><code>/patrol</code> が候補を1件ずつ採点し、<strong>核が両方 ✗ なら点数を見ずに落とす</strong></li><li><code>/episode</code> のゲート0で、採点が無い回・核が両方 ✗ の回は停止</li><li><code>scripts/spread.py</code> が手・型・畑・主役の4軸のばらつきを出し、</li></ul>
+<p><strong>しばらく出ていない値（◎）を持つ候補を最低1件入れる</strong>ことを必須にした</p>
+<ul><li><code>docs/plan.md</code> 3-5b/3-5c に記録。<strong>型の変化球にも核は要る</strong>、</li></ul>
+<p>T4は「統計の要約」ではなく「数字のカラクリ」であることを明記</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep011 台本（人間レビュー用）</h1>
 <h2>『その手があったか』｜理由の欄から読む</h2>
 <h3>ホスト：戸倉ハジメ／T4数字回（型1アレンジ）／5分／density: dense</h3>
 <hr>
