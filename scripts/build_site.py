@@ -1897,7 +1897,9 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
 .figviz { flex: 0 0 auto; }
 .figtxt { flex: 1 1 220px; min-width: 0; }
 .figtxt .fn { font-size: 52px; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
-.figtxt .fn small { font-size: 22px; font-weight: 700; color: var(--ink-2); margin-left: 2px; }
+/* 単位は letter-spacing を継承させない。「割超」「品目」など2文字の単位が重なるため */
+.figtxt .fn small { font-size: 22px; font-weight: 700; color: var(--ink-2); margin-left: 2px;
+  letter-spacing: normal; }
 .figtxt .fl { font-size: 15.5px; font-weight: 700; line-height: 1.8; margin-top: 8px; }
 .figtxt .fs { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
 .viz { display: block; }
