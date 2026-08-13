@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>交換される側を握る｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep011/files.html">← ep011</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep012</span><span class="dlabel">作成</span>2026-08-13（木）　<span class="badge review">レビュー中</span></div>
+  <h1>交換される側を握る</h1>
+  <div class="chips"><span class="chip host">三崎アオイ</span><span class="chip hand">OP09 極める</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep012</td></tr><tr><th>ホスト</th><td>misaki（三崎アオイ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> JRC、2027年2月期1Qは営業37%減益。ただし上期計画に対する進捗はほぼ5割で計画の線上<br><span class='k'>published</span> 2026-07-15<br><span class='k'>source_url</span> sources/collected.md（株探速報経由・短信原本の突合は人間裏取り）</td></tr><tr><th>副トリガ</th><td>通期は先行投資約2.2億円を織り込んだ利益横ばい計画（2026-04-23 IRセミナーで社長が説明・原文到達）</td></tr><tr><th>題材</th><td>JRC（屋外用ベルトコンベヤ部品＝ローラで国内シェア約52%。売上の8割以上が交換需要）</td></tr><tr><th>手</th><td>OP09</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>none</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>交換される側を握る</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep008</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep012
+host: misaki                # 日替わり交互（前日ep011=戸倉）。元生産技術＝現場・設備の言葉が刺さる題材
+episode_type: T1            # 事例回・一本深掘り
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced           # 既定（数字5系統・固有名詞6・facts7点以上・例え話2・並走句3〜4）
+anchor:                     # トリガ情報（制作日2026-08-13から29日前＝窓の実質最終日）
+  headline: &quot;JRC、2027年2月期1Qは営業37%減益。ただし上期計画に対する進捗はほぼ5割で計画の線上&quot;
+  published: 2026-07-15
+  source_url: &quot;sources/collected.md（株探速報経由・短信原本の突合は人間裏取り）&quot;
+sub_triggers:
+  - &quot;通期は先行投資約2.2億円を織り込んだ利益横ばい計画（2026-04-23 IRセミナーで社長が説明・原文到達）&quot;
+case_name: &quot;JRC（屋外用ベルトコンベヤ部品＝ローラで国内シェア約52%。売上の8割以上が交換需要）&quot;
+operation_tags: [OP09]      # 極める（全14手で最後の未使用）。超ニッチ＝屋外コンベヤ部品の専門特化
+motive_tag: none            # 浜口社長は創業家系とみられるが、承継の場面・動機の一次記録に未到達のため立てない
+                            # （selection.yaml ep012行の但し書きどおり。見つかれば収集を足してQ2を上げる）
+tailwind_tag: none
+hook: &quot;&quot;                    # write-outlineで起こす。三崎の場面コールドオープン（砕石場のベルトコンベヤ）
+lesson_draft: &quot;交換される側を握る&quot;   # 仮。write-outlineで確定
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;              # 動機回でないため必須ではない
+prev_episode_ref: &quot;ep008&quot;   # 三崎の直近の構造回。ep008「返ってくる前提」と同じ現場・設備の語りだが、
+                            # 芯は逆（ep008=商品を回す設計／ep012=交換される部品を握る寡占）。混同しない
+notes: |
+  ・採点（selection.yaml ep012）：Q1○ Q2✗／C1〜C5すべて○／面白さ80・応用60。
+    応用が低いのはタグがOP09の1本のため。台本は「手の解剖」を厚くして補う。
+  ・数字は5系統で設計：
+    ①時期（1961年・1991年・三年前に上場・先月なかば・ことし12月）
+    ②シェアと寡占（約52%・参入7〜8社）
+    ③交換需要（売上の8割以上・1〜2年で交換）
+    ④業績（Q1営業37%減・進捗ほぼ5割＝計画線・前期137億円+24%・35年連続営業黒字・5期連続最高益・今期利益横ばい計画）
+    ⑤粗利の二段（標準品30%未満・提案品50%程度）
+    → 100万本・顧客分散12%/10%・日本156億vsアジア1,400億・2.2億円は台本では言葉に落とすか記事へ
+  ・固有名詞はJRCのみ＋一般名詞（砕石場・ごみ処理施設等）。ベトナムは地名。東証グロースは言わず「三年前に上場」
+  ・Q1数値は株探経由の単独系統 → **短信原本での突合が人間裏取り**。混同注意：経常▲36.3%／営業▲37.0%
+  ・「トナー型」比喩は要約記事側の表現の可能性があるため使わない。交換の絵は「屋外で回り続けて1〜2年で傷む」で描く
+  ・減益の扱い：隠さず最初に置く。「37%減でも会社が慌てない」→ 8割が交換需要で読める＋先行投資は計画どおり、の順で解く
+  ・ep008（クラス）と同じ「地味な運用の強さ」系。芯の違い＝ep008は自社商品を回す設計、ep012は他社設備の消耗部品を握る寡占
+  ・『』候補：Q01『競合は地域ごとの小さな会社が中心。全国規模はうちくらい』（社長・セミナー原文）／
+    Q02『ことしは先行投資で、利益を伸ばさない計画』（会社説明の趣旨）
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>JRC</td><td>1Q決算発表</td><td class="fact-val">2026-07-15</td><td>2026-07-15</td><td class="src">株探速報（記事経由）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F02</span></td><td>JRC</td><td>1Qの業績</td><td class="fact-val">売上35.38億・営業4.39億</td><td>2026-03〜05</td><td class="src">株探速報</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>JRC</td><td>計画に対する進捗</td><td class="fact-val">上期経常計画の49.9%</td><td>2026-07-15</td><td class="src">株探速報</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>JRC</td><td>今期計画の性格</td><td class="fact-val">先行投資2.2億で利益横ばい</td><td>2026-04-23</td><td class="src">IRセミナー書き起こし（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>JRC</td><td>主力製品</td><td class="fact-val">屋外コンベヤ部品</td><td>継続</td><td class="src">IRセミナー（原文）／会社サイト</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>JRC</td><td>国内シェア</td><td class="fact-val">約52%</td><td>2026</td><td class="src">IRセミナー（社長説明・原文）／IPOナビ系記事（ep010巡回時確認）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F07</span></td><td>JRC</td><td>競合の数</td><td class="fact-val">参入企業は全国7〜8社</td><td>2026-04-23</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>JRC</td><td>交換需要の比率</td><td class="fact-val">売上の8割以上</td><td>2026-04-23</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>JRC</td><td>顧客の分散</td><td class="fact-val">最大業種でも約12%</td><td>2026-04-23</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>JRC</td><td>粗利の二段構え</td><td class="fact-val">標準品30%未満・提案品50%程度</td><td>2026-04-23</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F11</span></td><td>JRC</td><td>供給規模</td><td class="fact-val">年間100万本超</td><td>2026</td><td class="src">IRセミナー／日経記事タイトル関連</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F12</span></td><td>JRC</td><td>事業構成</td><td class="fact-val">コンベヤ74%・環エネ16%・ロボ10%</td><td>2026</td><td class="src">IRセミナー（原文）＋IPOナビ系（74%）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F13</span></td><td>JRC</td><td>前期業績</td><td class="fact-val">売上137.46億・営業19.64億</td><td>2026-02期</td><td class="src">IRセミナー（原文）／irbank</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F14</span></td><td>JRC</td><td>業績の系列</td><td class="fact-val">89.6→94.7→111→137億</td><td>2023-02期〜2026-02期</td><td class="src">irbank</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F15</span></td><td>JRC</td><td>連続黒字</td><td class="fact-val">35年間連続の営業黒字</td><td>1991〜</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F16</span></td><td>JRC</td><td>沿革</td><td class="fact-val">1961年創業・1991年現社名</td><td>1961〜</td><td class="src">会社概要（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F17</span></td><td>JRC</td><td>上場</td><td class="fact-val">2023年8月・東証グロース</td><td>2023-08</td><td class="src">IRセミナー／各記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F18</span></td><td>JRC</td><td>海外の市場規模差</td><td class="fact-val">日本156億・アジア1,400億</td><td>2026-04-23</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F19</span></td><td>JRC</td><td>海外工場</td><td class="fact-val">ベトナム工場2026年12月稼働</td><td>2026-12予定</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F20</span></td><td>JRC</td><td>M&amp;A実績</td><td class="fact-val">上場後7件</td><td>2023-08〜</td><td class="src">IRセミナー（原文）</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>社長（IRセミナー登壇）</strong>「競合は地域ごとの比較的小規模な企業が中心。全国規模で展開しているのは当社くらい」<span class="src-note">Kabu Berry書き起こし（2026-04-23・原文）／『』候補①。寡占の説明</span></li><li><span class="fid">Q02</span> <strong>会社（決算方針の説明）</strong>「ことしは先行投資にあて、利益を伸ばさない計画にしている」<span class="src-note">IRセミナー書き起こし（趣旨）／『』候補②。減益の読み解きに使う</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>「コピー機トナーのような定期交換モデル」という比喩</strong><br>理由：要約側の表現の可能性があり本人発言と確認できない<br>処置：台本・記事とも不使用。交換の絵は「屋外で回り続けて1〜2年で傷む」と自前の言葉で描く</li><li><strong>前身は「浜口商店」</strong><br>理由：検索結果経由で会社の正式な沿革表記と未突合<br>処置：不使用。「1961年創業」「1965年に浜口鉄工として設立」（会社概要）のみ使う</li><li><strong>浜口社長の承継の経緯・動機</strong><br>理由：一次記録に未到達<br>処置：動機（Q2）は立てない。人物は「社長」の役職扱いで、創業家の物語にしない</li><li><strong>Q1減益の主因は環境エネルギー事業</strong><br>理由：株探の記述のみで短信未突合。セミナー説明（先行投資）との切り分けが未確認<br>処置：台本では減益理由を「先行投資を織り込んだ計画」の線で扱い、セグメント別の断定はしない</li></ul><div class="ig-callout pre-line">・アンカー＝2026-07-15のQ1発表（制作日の29日前・窓の実質最終日）。台本では「先月なかばの発表」と時期明示
+・density: balanced（数字5系統・固有名詞6・facts7点以上・例え話2・並走句3〜4）
+・数字系統の設計（5系統）：
+①時期（1961年・1991年・三年前・先月なかば・ことし12月）
+②シェアと寡占（約52%・7〜8社）
+③交換需要（8割以上・1〜2年）
+④業績（営業37%減・進捗ほぼ5割・前期137億+24%・35年連続黒字・5期連続最高益・利益横ばい計画）
+⑤粗利の二段（30%未満・50%程度）
+→ 12%/10%・100万本・156億/1,400億・2.2億・構成比74/16/10は台本不使用（言葉化 or 記事）
+・固有名詞：JRCのみ（＋砕石場・ごみ処理施設などの一般名詞）。ベトナムは地名扱い
+・『』はQ01・Q02の2回。口癖1回・例え話2まで
+・Q1数値（F01〜F03）は株探経由の単独系統 → 短信原本での突合＝人間裏取り。営業▲37.0%と経常▲36.3%を混同しない
+・時期明示：1961年・1991年・2023年上場は「三年前」・ベトナムは「ことしの12月に稼働予定」（未来）</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep012 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-13／対象：script_draft.md（1,796字）／check.py 実行済み／<strong>OP09初主役＝これで14手すべてが主役として使用済み</strong></p>
+<h2>機械判定（check.py）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>結果</th></tr></thead><tbody><tr><td>本文文字数</td><td><strong>OK</strong> 1,796（規定 1,700〜2,000。1周目通過）</td></tr><tr><td>OP/ED定型・『』2箇所・口癖1回・三点リーダー0・「香月」0</td><td>すべて OK</td></tr><tr><td>並走句・自問自答</td><td>OK 2回（balanced上限4）</td></tr><tr><td>取材話法</td><td>OK 伝聞6回・調べる/聞く3回</td></tr><tr><td>キメ台詞候補</td><td>検出なし</td></tr><tr><td>infographic.html / figures.html</td><td>NG（後工程で作成）</td></tr></tbody></table></div>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>数字系統：5系統 → PASS（balanced上限5）</h3>
+<ol><li><strong>時期</strong>：三年前（上場）／先月なかば／三ヶ月／十二月／（一日じゅう・何十本は場面描写の概数で対象外）</li><li><strong>シェアと寡占</strong>：五十二パーセント／七社か八社</li><li><strong>交換需要</strong>：八割以上／一年か二年</li><li><strong>業績</strong>：三十七パーセント減／進捗ほぼ五割／百三十七億円／二十四パーセント増収／五期連続最高益／三十五年連続営業黒字</li><li><strong>粗利の二段</strong>：三割未満／五割ほど</li><li>対象外：三つ・ひとつ・一社（談話標識・不定の助数詞）</li><li>12%/10%（顧客分散）・100万本・156億/1,400億・2.2億円・構成比は台本不使用を確認（言葉化済み）</li></ol>
+<h3>固有名詞：1系統 → PASS（balanced上限6）</h3>
+<p>JRC（ジェイアールシーの読み添え含む）。大阪・ベトナムは地名で対象外。ローラ・砕石場・ごみ処理施設・エレベーター・プリンターは一般名詞。</p>
+<h3>キメ台詞：なし → PASS</h3>
+<ul><li>「標準品で入って、提案で稼ぐ形です」＝価格構造（F10）の要約の平叙。「形です」で説明に着地しており警句化していない</li><li>「あれの、屋外の産業版です」＝応用例の位置づけの平叙</li></ul>
+<h3>例え話：1回 → PASS（balanced上限2）</h3>
+<p>「エレベーターの保守・プリンターのインク」は解剖パートの<strong>他業界への応用例</strong>（規約により対象外）だが、保守的に1回と数えても上限内。</p>
+<h3>ep008（三崎・型1）との差別化 → PASS</h3>
+<p>同じ「地味な運用」系だが、芯を明示的に分離：ep008=自社商品を回収・再生して回す設計／ep012=<strong>他社設備の消耗部品を握る寡占</strong>。冒頭の場面も倉庫（屋内）→砕石場（屋外・雨ざらし）で変えた。</p>
+<h3>トリガ鮮度 → PASS（窓の端・要注意）</h3>
+<p>anchor＝2026-07-15のQ1発表。<strong>制作日（08-13）から29日＝窓内だが実質最終日</strong>。台本は「先月なかばの決算発表」と時期を明示済みのため、放送日（8/20想定）に窓を出ても§4の規定（時期明示）を満たす。<br>過去参照の時期明示：「三年前に上場」「ことしの十二月に稼働予定」（未来形）✓。制作日依存表現（きょう・きのう）なし ✓</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（JRC）は過去回に無し。bl008 は status: used 処理済み</li><li><strong>手：OP09 初主役。これで OP01〜OP14 の全14手が主役として使用済み</strong>（総集編T8の「手の地図」素材が揃った）</li><li>業界：機械部品・産業BtoB は直近5回（食品統計・福利厚生・メディア・家具物流・自動運転）と非連続</li><li>ホスト交互（ep011戸倉→ep012三崎）✓。トリガは決算で上場系でない ✓</li><li>採点（selection.yaml 記録済み）：Q1○ Q2✗・C1〜C5○・面白さ80・応用60</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td>Q1数値（売上35.38億+4.2%・営業4.39億▲37.0%・経常4.20億▲36.3%・進捗49.9%）</td><td><strong>株探記事経由の単独系統。決算短信原本（会社IR）での突合が必須</strong>。台本は営業▲37%のみ使用（経常と混同していないことを確認済み）</td></tr><tr><td>シェア約52%</td><td>IRセミナー（社長説明・原文）＋IPOナビ系の2系統。分母の定義は成長可能性資料で確認推奨</td></tr><tr><td>8割以上が交換需要・7〜8社・粗利30/50%・先行投資2.2億</td><td>IRセミナー書き起こし（原文到達）単独。数値は社長本人の説明</td></tr><tr><td>35年連続営業黒字</td><td>IRセミナー（本人）＋IPOナビ系「35期連続」と整合</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>砕石場</strong>（さいせきじょう） 2. <strong>粗利</strong>（あらり） 3. <strong>雨ざらし</strong> 4. <strong>鉄の筒</strong>（てつのつつ）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。<br>infographic.html / figures.html の NG は後工程で解消する。</p>
+<hr>
+<h1>追記：全成果物の最終検査（2026-08-13）</h1>
+<p>check.py 最終実行：<strong>機械判定はすべて PASS</strong>（台本1,796字／TTS稿タグ5個／記事・概要欄／infographic 6セクション／figures 3枚）。<strong>新設ゲート「選定の採点」も核あり・面白さ基準クリアで通過</strong>（selection.yaml ep012行）。</p>
+<h2>要判断4件の確認</h2>
+<ol><li><strong>トリガ公開日</strong>：2026-07-15 は制作日の29日前 → 窓内（実質最終日）。台本内「先月なかば」の時期明示で放送日ずれにも対応 PASS</li><li><strong>事実カード消化</strong>：F01〜F10・F13・F15・F17・F19＋Q01・Q02 の16枚 → balanced の「7点以上」PASS</li><li><strong>数字系統</strong>：5系統（時期／シェアと寡占／交換需要／業績／粗利の二段）。前段に規約記載 PASS</li><li><strong>台帳照合</strong>：題材新規・OP09初主役（<strong>全14手コンプリート</strong>）・業界非連続・ホスト交互・上場系トリガでない PASS</li></ol>
+<h2>図版・記事の判断</h2>
+<ul><li>図版の数値はすべて facts.yaml 対応（52%=F06／8割超=F08／35年=F15／▲37.0%・49.9%=F02F03／2.2億=F04／137.46億=F13／12%=F09／100万本=F11／156億・1,400億=F18／年表=F16F17F19）</li><li>記事タイトルは疑問形（するまで→結果提示→名詞句→<strong>疑問形</strong>。3本連続なし）</li><li>Q1数値の単独系統は記事※・review・collected の3箇所で明示。営業▲37.0%と経常▲36.3%の使い分けを記事でも維持</li><li>会社推計値（市場規模156億/1,400億）は「会社は推計しており」と帰属明示</li></ul>
+<h2>総合判定</h2>
+<p><strong>ep012 全成果物 PASS。</strong> 残るは人間の必須作業（短信原本の突合・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep012 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜交換される側を握る</h2>
+<h3>ホスト：三崎アオイ／型1 一本深掘り型／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p>
+<p>まず、ある砕石場の話をさせてください。山を削って、砕いた石をふるい分けて、トラックに積む。その間をつないでいるのが、ベルトコンベヤです。屋根のない屋外で、雨ざらしで、一日じゅう回っている。ベルトの下を覗くと、ベルトを支えて一緒に回る鉄の筒が、何十本も並んでいます。ローラといいます。きょうは、この地味な筒の話です。</p>
+<p>この筒を作っている会社が、大阪にあります。ジェイアールシー、JRCという名前で、三年前に上場しました。正直、この部品を専門にする上場企業がいること自体、私は今回初めて知りました。先月なかばの決算発表に、気になる数字がありまして。今期最初の三ヶ月、営業利益が三十七パーセントの減益だったんです。ふつうなら心配な数字ですよね。ところが、半年分の会社計画に対する進捗は、ほぼ五割。減った状態が、計画どおりなんです。減益を予定に組み込める会社って何なんだと思って調べてみたら、出てきたのが、屋外用のコンベヤ部品で国内シェアおよそ五十二パーセント、という数字でした。</p>
+<p>この業界、参入している会社は全国で七社か八社しかないそうです。社長さんが説明会でこう言っています。『競合は、地域ごとの比較的小さな会社が中心。全国規模でやっているのは、うちくらい』。なんで大手が来ないのか。聞いてみたところ、お客さんの散らばり方に理由がありそうなんです。砕石場、ごみ処理施設、港、発電所。全国のあちこちに少しずついて、業種もばらばらで、特定の業界に頼れない。一社ずつは小口の、散らばった膨大なお客さんを、配送と提案で回りきる体制がいる。それを作りきった会社が、一社だけだった、ということですよね。</p>
+<p>で、この商売の芯は、シェアより注文の中身にありました。売上の八割以上が、交換の注文だそうです。ローラは屋外で回りっぱなしですから、雨と砂ぼこりで、一年か二年で傷む。設備そのものは売って終わりですけど、部品は、使われている限り戻ってくる注文なんです。これ、現場やった人ならわかると思うんですけど、設備って、止まった時間が一番高くつくんですよ。ベルトが止まると、山の仕事がぜんぶ止まる。だから交換部品は、値段の安さより、ちゃんと届いて止めないことで選ばれる。この構造の上に載っているのが、三十五年連続の営業黒字です。値段の作り方も二段で、標準品の粗利は三割未満。そこから現場の困りごとを見て提案する特注になると、五割ほどだそうです。標準品で入って、提案で稼ぐ形です。</p>
+<p>ここで、冒頭の三十七パーセント減に戻ります。前の期は売上百三十七億円で二十四パーセントの増収、五期連続の最高益でした。今期はというと、『ことしは先行投資に使って、利益を伸ばさない計画にしている』という説明でした。ことしの十二月には、ベトナムに工場が動く予定で、海外には国内の何倍もの市場があるそうです。八割が交換の注文だから、来年の売上の土台が読める。読めるから、利益を我慢する年を、計画として作れる。減益の裏側は、そういう順番でした。</p>
+<p>ここから、商売の解剖です。きょうの手は、交換される側を握る。三つに分けます。</p>
+<p>一、主役の設備で勝てないなら、その設備で定期的に交換される消耗部品を探す。交換までの周期が短いほど、注文の読みやすい商売になります。</p>
+<p>二、大手が来ない理由を数える。市場が目立たない、客が散らばっている、提案に手間がかかる。そろっている場所は、全国で丁寧にやりきることが、あとから来る人の壁になります。</p>
+<p>三、標準品で入口を作って、現場の困りごとを見てから、提案品で粗利を上げる。最初から高く売ろうとしない。</p>
+<p>エレベーターの保守や、プリンターのインクみたいに、本体より替えのほうが商売になる例は身近にもありますよね。あれの、屋外の産業版です。</p>
+<p>今週の宿題です。自分の業界の主役の設備をひとつ選んで、その周りで定期的に交換されている物を書き出してください。それを全国規模で握っている会社がいるか、いないなら、なぜいないのかまで、調べてみてください。</p>
+<p>きょうの手は、交換される側を握る、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第12回｜交換される側を握る</p>
+<p>砕石場やごみ処理施設で、屋外のベルトコンベヤを支えて回る鉄の筒、ローラ。この地味な部品で国内シェアおよそ五十二パーセントを握る大阪の会社があります。参入企業は全国で七、八社。売上の八割以上は交換の注文で、営業黒字は三十五年連続。先月なかばの決算は三十七パーセントの減益なのに、会社は慌てない——減益を計画に組み込める商売の仕組みを、屋外の現場から解剖します。</p>
+<p>▼ きっかけになったニュース<br>・JRC（東証グロース6224）2027年2月期 第1四半期決算（2026/7/15発表）<br>・営業利益は前年同期比37.0%減ながら、上期計画に対する進捗はほぼ5割で計画の線上</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・Kabu Berry「JRC IRセミナー＆質疑応答 書き起こし」（2026/4/23・浜口稔社長登壇）シェア約52%・交換需要8割以上・参入7〜8社・粗利構造・先行投資の説明<br>・株式会社JRC 会社概要（1961年創業・1991年現社名・35年連続営業黒字）<br>・irbank 決算まとめ（売上89.6億→137.46億円の推移・今期計画）<br>・株探 決算速報（2026/7/15・1Q数値）</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第12回｜交換される側を握る
+
+砕石場やごみ処理施設で、屋外のベルトコンベヤを支えて回る鉄の筒、ローラ。この地味な部品で国内シェアおよそ五十二パーセントを握る大阪の会社があります。参入企業は全国で七、八社。売上の八割以上は交換の注文で、営業黒字は三十五年連続。先月なかばの決算は三十七パーセントの減益なのに、会社は慌てない——減益を計画に組み込める商売の仕組みを、屋外の現場から解剖します。
+
+▼ きっかけになったニュース
+・JRC（東証グロース6224）2027年2月期 第1四半期決算（2026/7/15発表）
+・営業利益は前年同期比37.0%減ながら、上期計画に対する進捗はほぼ5割で計画の線上
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・Kabu Berry「JRC IRセミナー＆質疑応答 書き起こし」（2026/4/23・浜口稔社長登壇）シェア約52%・交換需要8割以上・参入7〜8社・粗利構造・先行投資の説明
+・株式会社JRC 会社概要（1961年創業・1991年現社名・35年連続営業黒字）
+・irbank 決算まとめ（売上89.6億→137.46億円の推移・今期計画）
+・株探 決算速報（2026/7/15・1Q数値）
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

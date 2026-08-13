@@ -1,0 +1,50 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  # --- アンカー（トリガ） ---
+  - {id: F01, who: JRC, what: 1Q決算発表, value: 2026-07-15, when: 2026-07-15, source_url: "株探速報（記事経由）", confirmed_by: 1, anchor: true, verify: partial, note: "2027年2月期第1四半期（2026年3〜5月）。短信原本での突合＝人間裏取り"}
+  - {id: F02, who: JRC, what: 1Qの業績, value: 売上35.38億・営業4.39億, when: 2026-03〜05, source_url: "株探速報", confirmed_by: 1, verify: partial, note: "売上+4.2%・営業▲37.0%・経常4.20億（▲36.3%）。営業利益率20.6%→12.4%。経常と営業の減益幅を混同しない"}
+  - {id: F03, who: JRC, what: 計画に対する進捗, value: 上期経常計画の49.9%, when: 2026-07-15, source_url: "株探速報", confirmed_by: 1, verify: partial, note: "上期経常計画8.50億円。減益でもほぼ計画の線上"}
+  - {id: F04, who: JRC, what: 今期計画の性格, value: 先行投資2.2億で利益横ばい, when: 2026-04-23, source_url: "IRセミナー書き起こし（原文）", confirmed_by: 1, verify: verified, note: "売上151億（約+10%）・営業19.7億（ほぼ横ばい）。海外人員・賃上げ・採用の費用増を期初から織り込み"}
+  # --- 商売の構造 ---
+  - {id: F05, who: JRC, what: 主力製品, value: 屋外コンベヤ部品, when: 継続, source_url: "IRセミナー（原文）／会社サイト", confirmed_by: 2, verify: verified, note: "ローラ・アイドラ・プーリの製造販売。ベルトコンベヤの回る部分"}
+  - {id: F06, who: JRC, what: 国内シェア, value: 約52%, when: 2026, source_url: "IRセミナー（社長説明・原文）／IPOナビ系記事（ep010巡回時確認）", confirmed_by: 2, verify: verified, note: "コンベヤ部品売上ベース。分母の定義は成長可能性資料での確認を推奨"}
+  - {id: F07, who: JRC, what: 競合の数, value: 参入企業は全国7〜8社, when: 2026-04-23, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "Q01参照。他は地域ごとの小規模企業が中心"}
+  - {id: F08, who: JRC, what: 交換需要の比率, value: 売上の8割以上, when: 2026-04-23, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "リプレイス・更新需要。屋外使用で1〜2年で交換が発生。この回の構造の芯"}
+  - {id: F09, who: JRC, what: 顧客の分散, value: 最大業種でも約12%, when: 2026-04-23, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "最大は砕石・砂利関連約12%、官公庁関連約10%。特定業界に依存しない。台本では数字を使わず言葉で"}
+  - {id: F10, who: JRC, what: 粗利の二段構え, value: 標準品30%未満・提案品50%程度, when: 2026-04-23, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "ソリューション提案による付加価値品で粗利を上げる"}
+  - {id: F11, who: JRC, what: 供給規模, value: 年間100万本超, when: 2026, source_url: "IRセミナー／日経記事タイトル関連", confirmed_by: 1, verify: partial, note: "主にローラ。台本では使わず記事向き"}
+  - {id: F12, who: JRC, what: 事業構成, value: コンベヤ74%・環エネ16%・ロボ10%, when: 2026, source_url: "IRセミナー（原文）＋IPOナビ系（74%）", confirmed_by: 2, verify: verified, note: "環境エネルギー＝ごみ処理・水処理・発電プラント向け搬送。ロボットSI＝食品・医薬の自動化。台本では構成比の数字は使わない"}
+  # --- 業績・歴史 ---
+  - {id: F13, who: JRC, what: 前期業績, value: 売上137.46億・営業19.64億, when: 2026-02期, source_url: "IRセミナー（原文）／irbank", confirmed_by: 2, verify: verified, note: "前期比 売上+24.2%・営業+42.8%"}
+  - {id: F14, who: JRC, what: 業績の系列, value: 89.6→94.7→111→137億, when: 2023-02期〜2026-02期, source_url: "irbank", confirmed_by: 1, verify: verified, note: "売上高。営業利益は12.5→12.7→13.8→19.6億。記事データ向き"}
+  - {id: F15, who: JRC, what: 連続黒字, value: 35年間連続の営業黒字, when: 1991〜, source_url: "IRセミナー（原文）", confirmed_by: 2, verify: verified, note: "1991年の現社名化以降。直近5期連続で最高売上・最高益。IPOナビ系の「35期連続」と整合"}
+  - {id: F16, who: JRC, what: 沿革, value: 1961年創業・1991年現社名, when: 1961〜, source_url: "会社概要（一次）", confirmed_by: 1, verify: verified, note: "1965年に浜口鉄工株式会社として設立→1991年3月に株式会社JRCへ。前身「浜口商店」表記は要確認のため使わない"}
+  - {id: F17, who: JRC, what: 上場, value: 2023年8月・東証グロース, when: 2023-08, source_url: "IRセミナー／各記事", confirmed_by: 2, verify: verified, note: "台本では「三年前に上場」で市場名は言わない（固有名詞節約）"}
+  # --- 成長戦略 ---
+  - {id: F18, who: JRC, what: 海外の市場規模差, value: 日本156億・アジア1,400億, when: 2026-04-23, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "会社側の市場推計。台本では数字を使わず「桁の違う市場」等の言葉で。正確値は記事へ"}
+  - {id: F19, who: JRC, what: 海外工場, value: ベトナム工場2026年12月稼働, when: 2026-12予定, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "2028年2月期から売上計上予定。未来の予定として語る"}
+  - {id: F20, who: JRC, what: M&A実績, value: 上場後7件, when: 2023-08〜, source_url: "IRセミナー（原文）", confirmed_by: 1, verify: verified, note: "高橋汽罐工業→JRC E&E（150名規模）等。台本では詳細に踏み込まない"}
+quotes:
+  - {id: Q01, speaker: 社長（IRセミナー登壇）, gist: "競合は地域ごとの比較的小規模な企業が中心。全国規模で展開しているのは当社くらい", source_url: "Kabu Berry書き起こし（2026-04-23・原文）", note: "『』候補①。寡占の説明"}
+  - {id: Q02, speaker: 会社（決算方針の説明）, gist: "ことしは先行投資にあて、利益を伸ばさない計画にしている", source_url: "IRセミナー書き起こし（趣旨）", note: "『』候補②。減益の読み解きに使う"}
+rejected:
+  - {claim: 「コピー機トナーのような定期交換モデル」という比喩, reason: 要約側の表現の可能性があり本人発言と確認できない, action: 台本・記事とも不使用。交換の絵は「屋外で回り続けて1〜2年で傷む」と自前の言葉で描く}
+  - {claim: 前身は「浜口商店」, reason: 検索結果経由で会社の正式な沿革表記と未突合, action: 不使用。「1961年創業」「1965年に浜口鉄工として設立」（会社概要）のみ使う}
+  - {claim: 浜口社長の承継の経緯・動機, reason: 一次記録に未到達, action: 動機（Q2）は立てない。人物は「社長」の役職扱いで、創業家の物語にしない}
+  - {claim: Q1減益の主因は環境エネルギー事業, reason: 株探の記述のみで短信未突合。セミナー説明（先行投資）との切り分けが未確認, action: 台本では減益理由を「先行投資を織り込んだ計画」の線で扱い、セグメント別の断定はしない}
+notes: |
+  ・アンカー＝2026-07-15のQ1発表（制作日の29日前・窓の実質最終日）。台本では「先月なかばの発表」と時期明示
+  ・density: balanced（数字5系統・固有名詞6・facts7点以上・例え話2・並走句3〜4）
+  ・数字系統の設計（5系統）：
+    ①時期（1961年・1991年・三年前・先月なかば・ことし12月）
+    ②シェアと寡占（約52%・7〜8社）
+    ③交換需要（8割以上・1〜2年）
+    ④業績（営業37%減・進捗ほぼ5割・前期137億+24%・35年連続黒字・5期連続最高益・利益横ばい計画）
+    ⑤粗利の二段（30%未満・50%程度）
+    → 12%/10%・100万本・156億/1,400億・2.2億・構成比74/16/10は台本不使用（言葉化 or 記事）
+  ・固有名詞：JRCのみ（＋砕石場・ごみ処理施設などの一般名詞）。ベトナムは地名扱い
+  ・『』はQ01・Q02の2回。口癖1回・例え話2まで
+  ・Q1数値（F01〜F03）は株探経由の単独系統 → 短信原本での突合＝人間裏取り。営業▲37.0%と経常▲36.3%を混同しない
+  ・時期明示：1961年・1991年・2023年上場は「三年前」・ベトナムは「ことしの12月に稼働予定」（未来）
