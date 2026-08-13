@@ -254,10 +254,10 @@ def check_figures(ep: Path):
         return
     h = p.read_text(encoding="utf-8")
     names = re.findall(r'data-fig="([^"]+)"', h)
-    add(OK if len(names) >= 2 else WARN, "図版の数",
-        f"{len(names)}枚 {names} → 掛け合わせ図と数字図の2枚が基本" if len(names) < 2
+    add(OK if len(names) >= 3 else WARN, "図版の数",
+        f"{len(names)}枚 {names} → 見出し・掛け合わせ・数字の3枚が基本" if len(names) < 3
         else f"{len(names)}枚 {names}")
-    for key, label in (("combo", "掛け合わせ図"), ("number", "数字図")):
+    for key, label in (("cover", "見出し画像"), ("combo", "掛け合わせ図"), ("number", "数字図")):
         add(OK if key in names else WARN, label,
             "あり" if key in names else f'data-fig="{key}" が無い')
 
