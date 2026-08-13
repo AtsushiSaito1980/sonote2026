@@ -1,0 +1,77 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  # --- アンカー（トリガ） ---
+  - {id: F01, who: KOMPEITO, what: 上場承認, value: 東証グロース・618A, when: 2026-08-12, source_url: "IPOナビ／庶民のIPO", confirmed_by: 2, anchor: true, verify: verified}
+  - {id: F02, who: KOMPEITO, what: 上場予定日, value: 2026年9月11日, when: 2026-09-11, source_url: "IPOナビ／庶民のIPO", confirmed_by: 2, verify: verified, note: "仮条件8/26・BB 8/27〜9/2・価格決定9/3"}
+  - {id: F03, who: KOMPEITO, what: 上場の規模, value: 想定時価総額約154億円, when: 2026-08-12, source_url: "IPOナビ／庶民のIPO", confirmed_by: 2, verify: verified, note: "想定発行価格1,560円。吸収金額約75億円（OA含む）"}
+  - {id: F04, who: KOMPEITO, what: 売出中心の構成, value: 公募5万株・売出413.9万株, when: 2026-08-12, source_url: "IPOナビ（届出書ベース）", confirmed_by: 1, verify: verified, note: "公募比率約1.2%・会社手取り6,176万円。使途は地銀提携地域の広告費。台本不使用・記事データ向き"}
+  - {id: F05, who: KOMPEITO, what: 主幹事, value: SBI証券（単独）, when: 2026-08-12, source_url: "IPOナビ／庶民のIPO", confirmed_by: 2, verify: verified, note: "販売団に地銀系証券8社。地銀提携網と符合。台本不使用"}
+  # --- 事業の仕組み ---
+  - {id: F06, who: KOMPEITO, what: 主力サービス, value: 置き型社食, when: 継続, source_url: "届出書経由（IPOナビ）／公式サイト", confirmed_by: 2, verify: verified, note: "OFFICE DE YASAI。オフィスに冷蔵庫・冷凍庫を設置"}
+  - {id: F07, who: KOMPEITO, what: 課金の構造, value: 企業が月額・社員1品100円から, when: 継続, source_url: "届出書経由（IPOナビ）／役員note", confirmed_by: 2, verify: verified, note: "冷蔵やさいプラン・冷凍ごはんプランの2型。約160品目・自社PBあり"}
+  - {id: F08, who: KOMPEITO, what: 本契約社数, value: 6,644社, when: 2026-05末, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "EDINET原本での再確認を推奨（人間裏取り対象）"}
+  - {id: F09, who: KOMPEITO, what: 年間経常収益, value: ARR89.2億円, when: 2026-05末, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "ARPU年134万円・解約率月平均1.1%（直近12ヶ月）・月次サブスク69ヶ月連続増収。EDINET再確認推奨"}
+  - {id: F10, who: KOMPEITO, what: 地方比率, value: 62%, when: 2026, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "2020年19%→2024年8月52%→62%。台本では数字を使わず言葉で"}
+  - {id: F11, who: KOMPEITO, what: 営業の広げ方, value: 提携先約270社の代理店網, when: 2026-05末, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "地方銀行・事業会社の紹介営業。2025年8月期新規2,567社"}
+  - {id: F12, who: KOMPEITO, what: 配送の足場, value: 生鮮配送拠点が全国7箇所, when: 継続, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "生鮮の時限性・配送ノウハウを参入障壁と位置づけ（届出書）"}
+  # --- 業績 ---
+  - {id: F13, who: KOMPEITO, what: 2025年8月期業績, value: 売上57.4億・経常▲2.5億, when: 2025-08期, source_url: "IPOナビ／庶民のIPO", confirmed_by: 2, verify: verified, note: "前期比+85.0%。前期は売上31.0億・経常▲4.6億"}
+  - {id: F14, who: KOMPEITO, what: 直近9ヶ月の業績, value: 売上70.5億・経常＋6.6億, when: 2025-09〜2026-05, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "2026年8月期3Q累計で黒字転換。純利益＋5.5億。通期予想は届出書に記載なし。EDINET再確認推奨"}
+  - {id: F15, who: KOMPEITO, what: 黒字化までの年数, value: 創業から約13年半, when: 2026, source_url: "役員note＋届出書経由の合成", confirmed_by: 2, verify: verified, note: "2012年9月創業→2026年8月期3Qで経常黒字。台本では「十三年」等で"}
+  # --- 制度の風（TW1） ---
+  - {id: F16, who: 税制改正, what: 食事補助の非課税枠, value: 月3,500円→7,500円, when: 2026-04施行, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: partial, note: "42年ぶりの見直し・約2.1倍。国税庁・財務省一次資料での確認を人間裏取りとする。台本不使用・記事データ向き"}
+  - {id: F17, who: KOMPEITO, what: 制度リスクの開示, value: 枠の改廃で業績影響, when: 2026-08-12, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "制度の風は両刃と届出書自身が明記"}
+  # --- 市場 ---
+  - {id: F18, who: 業界統計, what: 集団給食市場, value: 約3.2兆円（2023年）, when: 2023, source_url: "届出書引用（日本フードサービス協会）", confirmed_by: 1, verify: dated, note: "うち企業・事業所向け約1.6兆円。時期明示必須。記事データ向き"}
+  - {id: F19, who: KOMPEITO, what: 想定市場と浸透率, value: SAM約9,000億円・約1%, when: 2026, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "会社側の想定値であることを明示して使う。台本不使用"}
+  # --- 株主・資本 ---
+  - {id: F20, who: KOMPEITO, what: 大株主, value: 創業者21.85%・ファンド計約60%, when: 2026-08-12, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "キユーピー3.88%・鈴与2.51%（360日ロック）。台本では社名を出さず「食品メーカー」等。記事は実名可"}
+  - {id: F21, who: KOMPEITO, what: 危機時の出資者, value: 食品メーカー5,000万円等, when: 2014〜2015, source_url: "役員note（本人筆）", confirmed_by: 1, verify: dated, note: "キユーピー5,000万＋VC1,500万で難局脱出。同社は現在も株主（F20）。時期明示必須"}
+  # --- 創業と失敗（動機素材・すべて原文到達） ---
+  - {id: F22, who: 創業者, what: 前職, value: コンサル会社で5年半, when: 〜2012, source_url: "社長名鑑／創業手帳", confirmed_by: 2, verify: verified, note: "サプライチェーン領域。農業向けサービス立案チームで販路課題に接した。個人名は台本に出さない"}
+  - {id: F23, who: KOMPEITO, what: 創業, value: 2012年9月3日・共同創業, when: 2012-09-03, source_url: "役員note（本人筆）／庶民のIPO", confirmed_by: 2, verify: verified, note: "同期と2人・資本金300万円（各150万円）"}
+  - {id: F24, who: KOMPEITO, what: 最初の事業の失敗, value: 産直EC・約2週間で注文停止, when: 2012〜2013, source_url: "役員note（本人筆）", confirmed_by: 1, verify: dated, note: "サイト制作200万円・創業融資600万円が早々に尽きる。一次（本人筆）。時期明示必須"}
+  - {id: F25, who: KOMPEITO, what: 八百屋の開業と実績, value: 麻布十番・日商1万円前後, when: 2013-02〜, source_url: "役員note（本人筆）／IPOナビ（届出書経由）", confirmed_by: 2, verify: dated, note: "酒屋の一角を間借り。時期明示必須"}
+  - {id: F26, who: 創業者, what: 生計の維持, value: 夜のアルバイト掛け持ち, when: 2013頃, source_url: "役員note（本人筆）／創業手帳", confirmed_by: 2, verify: dated, note: "納涼船のビール注ぎ・フットサル審判。売れ残りは夕方知人の会社へ売り歩く"}
+  - {id: F27, who: KOMPEITO, what: 転換のきっかけ, value: 知人経営者の助言, when: 2013秋頃, source_url: "創業手帳／役員note／社長名鑑", confirmed_by: 3, verify: verified, note: "Q01参照。2013年秋に原型着想（社長名鑑）"}
+  - {id: F28, who: KOMPEITO, what: 転換の発見, value: 100円は原価より安い, when: 2013〜2014, source_url: "役員note（本人筆）", confirmed_by: 1, verify: verified, note: "→企業が福利厚生で補助すれば成立、に到達。一次（本人筆）"}
+  - {id: F29, who: KOMPEITO, what: 新事業の開始, value: 2014年4月・企業補助モデル, when: 2014-04, source_url: "役員note（本人筆）／IPOナビ（届出書経由）", confirmed_by: 2, verify: verified, note: "当初は月12,000円の補助設計。創業から1年7ヶ月後"}
+  - {id: F30, who: KOMPEITO, what: 転換後の危機, value: 資金ショート危機2回, when: 2014〜2015, source_url: "役員note（本人筆）", confirmed_by: 1, verify: dated, note: "初外部資本500万円／2015年夏MRR250万円時に2度目。きゅうり腐敗クレームに3日3晩対応（2014年夏〜秋）。時期明示必須"}
+  # --- 現在の広がり（記事向き） ---
+  - {id: F31, who: KOMPEITO, what: 認定実績, value: 導入1,273社が健康経営認定, when: 2026-07-07, source_url: "公式リリース", confirmed_by: 1, verify: verified, note: "健康経営優良法人2026。F08（本契約6,644社）とは別指標。混ぜない"}
+  - {id: F32, who: KOMPEITO, what: 周辺への展開, value: 乳製品宅配3件譲受・優食子会社化, when: 2024-11〜2025-10, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: dated, note: "調達〜配送の内製化。優食は2025年10月1日付。時期明示必須。台本不使用"}
+  - {id: F33, who: KOMPEITO, what: 海外展開, value: 米国で1食約5ドル, when: 2024-05設立, source_url: "IPOナビ（業界紙引用経由）", confirmed_by: 1, verify: partial, note: "LA・Lumealブランド・設置型冷凍庫。引用経由のため台本不使用。記事は伝聞明示なら可"}
+quotes:
+  - {id: Q01, speaker: 知り合いの経営者（人材会社の社長）, gist: "野菜を持って帰るのは大変だから、その場で食べられるようにしたほうがいい", source_url: "創業手帳（原文）／役員note（原文）／社長名鑑（原文）", note: "3出典で相互裏付け。表現の揺れは趣旨で統一。台本使用可（『』再現の第一候補）。個人名は台本に出さない"}
+  - {id: Q02, speaker: 周囲の声, gist: "農業なんて絶対うまくいかない", source_url: "創業手帳（原文）", note: "台本使用可（反対・制約の記録）"}
+  - {id: Q03, speaker: 創業者, gist: "うまくいかなければ会社員に戻ろうと考えていた", source_url: "創業手帳（原文）", note: "台本使用可"}
+  - {id: Q04, speaker: 創業者（本人筆）, gist: "八百屋の粗利を時給に直したらアルバイトのほうがましだった", source_url: "役員note（本人筆・原文）", note: "台本使用可"}
+  - {id: Q05, speaker: 創業者（本人筆）, gist: "幼い娘2人を食わせていけるのか、眠れなかった", source_url: "役員note（本人筆・原文）", note: "家族の場面。本人が公開した記録の趣旨再現に限る。台本使用は1回まで"}
+  - {id: Q06, speaker: 創業者, gist: "売上目標を先に公言して、やらざるを得ない状況に自分を追い込む", source_url: "社長名鑑（原文）", note: "「5年後に売上1000億円」。MO6の芽。解剖パートの材料"}
+  - {id: Q07, speaker: 創業者, gist: "新しい流通をつくれば業界や地方の活性化につながる", source_url: "社長名鑑（原文）", note: "起業の確信。台本使用可"}
+  - {id: Q08, speaker: テスト先の経営者（文具メーカーの役員・当時）, gist: "これいいじゃん、と最初のテスト販売を後押しした", source_url: "創業手帳（原文）", note: "使うなら趣旨のみ。個人名は出さない"}
+rejected:
+  - {claim: コロナ禍に山陰の企業の相談で地方需要を発見しV字回復, reason: Wellulu記事のIPOナビ引用経由のみ・原文未到達, action: 台本・記事とも不使用。原文到達すれば次回以降のT3素材}
+  - {claim: 2017年の健康経営ブームで事業が軌道に, reason: 同上（引用経由）, action: 不使用}
+  - {claim: 自己資本比率0.3%, reason: 2期同値でサイト表の取り込み異常疑い・優先株控除の特殊要因もあり, action: 不使用}
+  - {claim: PER27.7倍・PSR2.7倍等のバリュエーション比較, reason: 投資判断向けの解釈で番組の目的外, action: 台本・記事とも不使用}
+  - {claim: 惣菜メーカー・スーパー買収構想, reason: 日経2024-08のIPOナビ引用経由, action: 不使用}
+  - {claim: IPO情報サイトの初値予想・総合評価, reason: 投資助言系の内容で番組の目的外, action: 不使用}
+notes: |
+  ・アンカー＝2026年8月12日の上場承認（制作日の前日）。上場日は9月11日予定＝未来の日付として扱う（「上場する」ではなく「上場が決まった」）
+  ・density: narrative（型3）。数字は3系統以内・固有名詞は4系統以内・facts消化4点前後：
+    ①時期（十三年・二〇一二年・二〇一四年・ことし九月十一日 等）
+    ②100円（1品の値段。「原価より安い」の発見とセットで、この回の構造の芯）
+    ③商売の規模の対比（八百屋の日商1万円 ↔ 本契約6,644社）
+    → ARR89.2億・+85%・154億円・75億円・3,500→7,500円・62%・270社・7拠点は台本では数字を使わず言葉で扱うか触れない。正確値はnoteのデータへ
+  ・固有名詞は4系統以内。使用：KOMPEITO（コンペイトウ）／オフィスでやさい／麻布十番／東証グロース
+    不使用（一般名詞化）：キユーピー・鈴与→「食品メーカー」「物流の会社」、サムライインキュベート・各VC→「投資家」、
+    Agrich→「産直の通販サイト」、ゼロワンブースター→「起業家の入る施設」、Lumeal・優食→台本では出さない
+  ・F24〜F26・F30 は2012〜2015年の出来事。**台本・記事とも時期を明示すること（§4）**。「十三年前」「一昨年」等
+  ・F08・F09・F14・F16 は届出書転載（IPOナビ）の単独系統。**EDINET原本・国税庁資料での再確認＝人間の裏取り対象**
+  ・個人名は台本・記事の地の文で扱い分け：台本は「八百屋を開いた人」「知り合いの経営者」。note記事は実名・出典列挙可（憲法§3の独立媒体ルール）
+  ・『』趣旨再現はQ01を第一候補、Q02を反対の記録として使用（最大2回の枠内）
+  ・MO4（主）：コンサルで農業の販路の詰まりを見た／八百屋の店先で「その場で食べたい」を見た。
+    MO6（副・解剖の材料）：Q06の「先に公言して追い込む」。動機の一般化は「見てしまった人は、見た場所を売場に変えた」方向で説教を避ける
