@@ -213,6 +213,13 @@ BACKLOG_STATUS = [
     ("hand_weak",     "手が立たない", "weak",    "現象ではあるが商売の手に落ちない"),
     ("used",          "別回で消化",   "used",    "他の回に組み込んだ"),
     ("dropped",       "見送り確定",   "dropped", "復活の見込みなし"),
+    ("idea",          "種のまま",     "wait",    "手も日付もまだ無い。育つのを待つ"),
+]
+
+BACKLOG_SORTS = [
+    ("new", "新しい順"),
+    ("old", "古い順"),
+    ("hope", "復活の見込み順"),
 ]
 
 
@@ -1135,90 +1142,137 @@ def build_selection_page(sel, ledger_rows, titles):
 
 
 def build_backlog_page(entries, tag_names):
+    labels = {k: (lab, cls, blurb) for k, lab, cls, blurb in BACKLOG_STATUS}
+    hope = {k: i for i, (k, _, _, _) in enumerate(BACKLOG_STATUS)}
+
+    def sort_key(e):
+        """新しい順が既定。found_on が同じなら id の新しいほうを上に"""
+        return (e.get("found_on", ""), e.get("id", ""))
+
+    ordered = sorted(entries, key=sort_key, reverse=True)
+
+    counts = []
     by_status = {}
     for e in entries:
         by_status.setdefault(e.get("status", "dropped"), []).append(e)
+    for key, label, cls, _ in BACKLOG_STATUS:
+        if by_status.get(key):
+            counts.append(f'<span class="bl-count {cls}">'
+                          f'<b>{len(by_status[key])}</b>{esc(label)}</span>')
 
-    counts = "".join(
-        f'<span class="bl-count {cls}"><b>{len(by_status[key])}</b>{esc(label)}</span>'
-        for key, label, cls, _ in BACKLOG_STATUS if by_status.get(key))
+    cards = []
+    for e in ordered:
+        st = e.get("status", "dropped")
+        label, cls, blurb = labels.get(st, ("未分類", "dropped", ""))
+        chips = (tag_chips(e.get("hand", ""), "hand", tag_names)
+                 + tag_chips(e.get("motive", ""), "motive", tag_names)
+                 + tag_chips(e.get("tailwind", ""), "tailwind", tag_names))
+        chip_html = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in chips)
+        # ばらつきの軸。冷えている軸から棚を引けるように、畳まず出す
+        ax = [(lab, e.get(k, "")) for k, lab in
+              (("field", "畑"), ("subject", "主役"), ("tech", "技術度"))]
+        ax_html = "".join(f'<span class="chip none">{esc(lab)} {esc(v)}</span>'
+                          for lab, v in ax if v)
 
-    sections = []
-    for key, label, cls, blurb in BACKLOG_STATUS:
-        group = by_status.get(key)
-        if not group:
-            continue
-        cards = []
-        for e in group:
-            chips = (tag_chips(e.get("hand", ""), "hand", tag_names)
-                     + tag_chips(e.get("motive", ""), "motive", tag_names)
-                     + tag_chips(e.get("tailwind", ""), "tailwind", tag_names))
-            chip_html = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in chips)
-            # gist（どんな話か）と復活の条件は畳まず、常に見える位置に置く
-            rows = []
-            if e.get("case_names"):
-                rows.append(("題材", esc(e["case_names"].replace(";", "／"))))
-            if e.get("industries"):
-                rows.append(("業界", esc(e["industries"].replace(";", "／"))))
-            if e.get("reason"):
-                rows.append(("見送った理由", esc(e["reason"])))
-            if e.get("sources"):
-                rows.append(("手がかり", f'<span class="src">{esc(e["sources"])}</span>'))
-            if e.get("note"):
-                rows.append(("メモ", esc(e["note"])))
-            kv = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows)
-            found = " ".join(x for x in (e.get("found_on", ""), e.get("found_in", "")) if x)
+        rows = []
+        if e.get("case_names"):
+            rows.append(("題材", esc(e["case_names"].replace(";", "／"))))
+        if e.get("industries"):
+            rows.append(("業界", esc(e["industries"].replace(";", "／"))))
+        if e.get("trigger_on"):
+            rows.append(("トリガの日付", esc(e["trigger_on"])))
+        if e.get("score"):
+            rows.append(("採点", esc(e["score"])))
+        if e.get("reason"):
+            rows.append(("見送った理由", esc(e["reason"])))
+        if e.get("sources"):
+            rows.append(("手がかり", f'<span class="src">{esc(e["sources"])}</span>'))
+        if e.get("note"):
+            rows.append(("メモ", esc(e["note"])))
+        kv = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows)
+        found = " ".join(x for x in (e.get("found_on", ""), e.get("found_in", "")) if x)
 
-            gist = e.get("gist", "")
-            gist_html = (f'<p class="bl-gist">{esc(gist)}</p>' if gist else
-                         '<p class="bl-gist none">ひとこと説明（gist）が未記入。'
-                         'backlog.yaml に追記すること</p>')
-            revive = e.get("revive_when", "")
-            revive_html = (f'<p class="bl-revive"><span>復活の条件</span>{esc(revive)}</p>'
-                           if revive else "")
-            more_html = (f"""
+        gist = e.get("gist", "")
+        gist_html = (f'<p class="bl-gist">{esc(gist)}</p>' if gist else
+                     '<p class="bl-gist none">ひとこと説明（gist）が未記入。'
+                     'backlog.yaml に追記すること</p>')
+        revive = e.get("revive_when", "")
+        revive_html = (f'<p class="bl-revive"><span>復活の条件</span>{esc(revive)}</p>'
+                       if revive else "")
+        more_html = (f"""
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
     <div class="table-scroll"><table class="kv bl-kv">{kv}</table></div>
   </details>""" if rows else "")
-            cards.append(f"""
-<article class="bl-card {cls}">
+        cards.append(f"""
+<article class="bl-card {cls}" data-found="{esc(e.get("found_on", ""))}"
+         data-id="{esc(e.get("id", ""))}" data-hope="{hope.get(st, 99)}">
   <div class="bl-head">
     <span class="bl-id">{esc(e.get("id", ""))}</span>
     <h3>{esc(e.get("title", ""))}</h3>
+    <span class="badge {cls}">{esc(label)}</span>
     <span class="bl-found">{esc(found)}</span>
   </div>
   {gist_html}
-  <div class="chips">{chip_html}</div>
+  <div class="chips">{chip_html}{ax_html}</div>
   {revive_html}{more_html}
 </article>""")
-        sections.append(f"""
-<section class="bl-sec">
-  <h2><span class="badge {cls}">{esc(label)}</span><span class="bl-blurb">{esc(blurb)}</span></h2>
-  {"".join(cards)}
-</section>""")
 
-    if not entries:
-        sections = ['<p class="empty">まだ寝かせているネタはありません。</p>']
+    listing = ("".join(cards) if cards
+               else '<p class="empty">まだ寝かせているネタはありません。</p>')
+    sort_btns = "".join(
+        f'<button class="sort-btn{" on" if k == "new" else ""}" data-sort="{k}" '
+        f'type="button">{esc(lab)}</button>' for k, lab in BACKLOG_SORTS)
 
     body = f"""
 <div class="ep-head">
   <h1>ボツネタ棚</h1>
-  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
-  <div class="bl-counts">{counts}</div>
-  <button class="btn bl-toggle" id="bl-toggle" type="button">詳細をすべて開く</button>
+  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>一覧に載せる前に落とした種（<span class="badge wait">種のまま</span>）も置いてあります。次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
+  <div class="bl-counts">{"".join(counts)}</div>
+  <div class="bl-bar">
+    <span class="bl-lab">並び</span>{sort_btns}
+    <button class="btn bl-toggle" id="bl-toggle" type="button">詳細をすべて開く</button>
+  </div>
 </div>
-{"".join(sections)}
+<div id="bl-list">{listing}</div>
 <script>
 (function () {{
   var btn = document.getElementById('bl-toggle');
-  if (!btn) return;
-  var open = false;
-  btn.addEventListener('click', function () {{
-    open = !open;
-    document.querySelectorAll('details.bl-more').forEach(function (d) {{ d.open = open; }});
-    btn.textContent = open ? '詳細をすべて閉じる' : '詳細をすべて開く';
+  if (btn) {{
+    var open = false;
+    btn.addEventListener('click', function () {{
+      open = !open;
+      document.querySelectorAll('details.bl-more').forEach(function (d) {{ d.open = open; }});
+      btn.textContent = open ? '詳細をすべて閉じる' : '詳細をすべて開く';
+    }});
+  }}
+  var list = document.getElementById('bl-list');
+  if (!list) return;
+  var cards = Array.prototype.slice.call(list.querySelectorAll('.bl-card'));
+  function key(el) {{ return (el.dataset.found || '') + '/' + (el.dataset.id || ''); }}
+  var sorts = {{
+    'new':  function (a, b) {{ return key(b).localeCompare(key(a)); }},
+    'old':  function (a, b) {{ return key(a).localeCompare(key(b)); }},
+    'hope': function (a, b) {{
+      var d = (+a.dataset.hope) - (+b.dataset.hope);
+      return d !== 0 ? d : key(b).localeCompare(key(a));
+    }}
+  }};
+  document.querySelectorAll('.sort-btn').forEach(function (b) {{
+    b.addEventListener('click', function () {{
+      document.querySelectorAll('.sort-btn').forEach(function (x) {{ x.classList.remove('on'); }});
+      b.classList.add('on');
+      cards.slice().sort(sorts[b.dataset.sort]).forEach(function (c) {{ list.appendChild(c); }});
+      try {{ localStorage.setItem('sonote-bl-sort', b.dataset.sort); }} catch (e) {{}}
+    }});
   }});
+  try {{
+    var saved = localStorage.getItem('sonote-bl-sort');
+    if (saved && saved !== 'new') {{
+      var el = document.querySelector('.sort-btn[data-sort="' + saved + '"]');
+      if (el) el.click();
+    }}
+  }} catch (e) {{}}
 }})();
 </script>
 """
@@ -1411,6 +1465,16 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .dlabel { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .06em;
   border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; margin-right: 7px;
   vertical-align: 1px; }
+.bl-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; }
+.bl-lab { font-size: 11px; font-weight: 700; color: var(--muted); margin-right: 2px; }
+.sort-btn { font: inherit; font-size: 12px; padding: 5px 12px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+  color: var(--ink-2); }
+.sort-btn:hover { border-color: var(--accent); color: var(--ink); }
+.sort-btn.on { background: var(--accent); border-color: var(--accent); color: #fff;
+  font-weight: 700; }
+.bl-bar .bl-toggle { margin-left: auto; }
+.bl-head .badge { margin-left: 2px; }
 .epid { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .04em;
   margin-right: 9px; font-variant-numeric: tabular-nums; }
 .ep-title { font-size: 20px; margin: 6px 0 2px; line-height: 1.5; }

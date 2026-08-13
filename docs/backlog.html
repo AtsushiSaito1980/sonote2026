@@ -23,265 +23,308 @@
 
 <div class="ep-head">
   <h1>ボツネタ棚</h1>
-  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
+  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>一覧に載せる前に落とした種（<span class="badge wait">種のまま</span>）も置いてあります。次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
   <div class="bl-counts"><span class="bl-count wait"><b>2</b>トリガ待ち</span><span class="bl-count stale"><b>3</b>鮮度切れ</span><span class="bl-count overlap"><b>7</b>直近と被る</span><span class="bl-count weak"><b>2</b>手が立たない</span><span class="bl-count used"><b>2</b>別回で消化</span></div>
-  <button class="btn bl-toggle" id="bl-toggle" type="button">詳細をすべて開く</button>
-</div>
-
-<section class="bl-sec">
-  <h2><span class="badge wait">トリガ待ち</span><span class="bl-blurb">手は立つ。窓内の発表がまだ無い</span></h2>
-  
-<article class="bl-card wait">
-  <div class="bl-head">
-    <span class="bl-id">bl001</span>
-    <h3>解体材の行き先</h3>
-    <span class="bl-found">2026-08-08 ep002巡回</span>
+  <div class="bl-bar">
+    <span class="bl-lab">並び</span><button class="sort-btn on" data-sort="new" type="button">新しい順</button><button class="sort-btn" data-sort="old" type="button">古い順</button><button class="sort-btn" data-sort="hope" type="button">復活の見込み順</button>
+    <button class="btn bl-toggle" id="bl-toggle" type="button">詳細をすべて開く</button>
   </div>
-  <p class="bl-gist">大阪・関西万博の大屋根リング（世界最大級の木造建築）を解体して出た大量の木材が、どこへ引き取られ、何に生まれ変わるのか。イベントの終わりに出る廃材が、値段のつく原料として次の商品へ回っていく話</p>
-  <div class="chips"><span class="chip hand">OP06 拾う</span><span class="chip motive">MO3 もったいなかった（想定）</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>実際の再利用先や加工品の販売開始が発表されたとき。跡地の再開発計画も同系統</p>
+</div>
+<div id="bl-list">
+<article class="bl-card weak" data-found="2026-08-13"
+         data-id="bl016" data-hope="4">
+  <div class="bl-head">
+    <span class="bl-id">bl016</span>
+    <h3>水素で鉄をつくる一トン</h3>
+    <span class="badge weak">手が立たない</span>
+    <span class="bl-found">2026-08-13 ep013巡回</span>
+  </div>
+  <p class="bl-gist">JFEスチールが7月31日、日本で初めてグリーン水素を使った還元鉄の試作に成功したと発表。山梨の水電解設備で作った水素を千葉の小型プラントに運び、3日間で約1トンの還元鉄を作った。鉄鋼業は日本のCO2排出の約14%を占める最大の排出産業で、その置き換えの最初の一トン</p>
+  <div class="chips"><span class="chip none">手＝なし</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span><span class="chip none">畑 技術研究</span><span class="chip none">主役 会社</span><span class="chip none">技術度 高</span></div>
+  <p class="bl-revive"><span>復活の条件</span>グリーン鋼材の価格プレミアム・受注・量産計画など、この技術で誰がいくら払うかが見える発表が出たとき</p>
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>万博大屋根リング木材リユース</td></tr><tr><th>業界</th><td>建築／木材／イベント跡地</td></tr><tr><th>見送った理由</th><td>引取先の発表が2026年1月で、以降に窓内の動きが無い</td></tr><tr><th>手がかり</th><td><span class="src">2026-01 引取先発表</span></td></tr><tr><th>メモ</th><td>OP06拾うの本命候補として温存。ep008でOP06を味として使ったため、主役で使うなら間を空ける</td></tr></table></div>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>JFEスチール／グリーン水素還元鉄</td></tr><tr><th>業界</th><td>鉄鋼／水素／エネルギー</td></tr><tr><th>トリガの日付</th><td>2026-07-31</td></tr><tr><th>見送った理由</th><td>採点で足切り：Q1△（試作段階で儲けの構造が無い）・Q2✗・C3✗。技術度高◎・畑技術研究◎の探索で見つけたが、ep011の教訓（技術そのものが主役の回は核が立たない）を適用</td></tr><tr><th>手がかり</th><td><span class="src">JFEスチール公式リリース 2026-07-31（一次・数値到達済み：1.5MW水電解・15kg/h・約1トン・CO2の約14%）</span></td></tr><tr><th>メモ</th><td>リリースの数値は収集済みで、復活時は裏取りが軽い。「最初の1トンの値段」という切り口が立てば強い</td></tr></table></div>
   </details>
 </article>
-<article class="bl-card wait">
+<article class="bl-card overlap" data-found="2026-08-13"
+         data-id="bl015" data-hope="2">
+  <div class="bl-head">
+    <span class="bl-id">bl015</span>
+    <h3>競合の看板で自分の商品を売る</h3>
+    <span class="badge overlap">直近と被る</span>
+    <span class="bl-found">2026-08-13 ep011巡回</span>
+  </div>
+  <p class="bl-gist">請求書SaaSのROBOT PAYMENTが8月12日、競合系のラクスと資本業務提携。自社の「請求管理ロボ」をベースにしたOEM製品「楽楽債権管理（仮称）」を作り、開発・保守は自分が持ったまま、営業・販売はラクスの楽楽ブランドに任せて収益を分け合う。作る力と売る力を会社ごとに分担する話</p>
+  <div class="chips"><span class="chip hand">OP12 開く（想定）</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>bl010と同時には立てない。OEM製品の販売開始（2026年中目標）や実績数字が出たとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>ROBOT PAYMENT／ラクス／楽楽債権管理</td></tr><tr><th>業界</th><td>SaaS／請求管理／フィンテック</td></tr><tr><th>トリガの日付</th><td>2026-08-12</td></tr><tr><th>見送った理由</th><td>「借りた営業網で売る」型がbl010（ナレッジワーク×リコー）と同型で、B2B SaaSの題材が続く。ep013巡回の採点では面白さ○2（Q1・C1のみ）で足切り2</td></tr><tr><th>手がかり</th><td><span class="src">財経新聞 2026-08-13（提携発表8/12・第三者割当12万株・総額2.79億円・提携開始8/28予定）</span></td></tr><tr><th>メモ</th><td>競合にOEM供給する珍しい形。立てるなら「競合と提携する線引き」を主題に。bl007（サッポロ×キリン共配）と同じ協調領域の話としても組める</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card overlap" data-found="2026-08-13"
+         data-id="bl014" data-hope="2">
+  <div class="bl-head">
+    <span class="bl-id">bl014</span>
+    <h3>電話を測定器に変える</h3>
+    <span class="badge overlap">直近と被る</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">電話営業の通話をAIで解析して話し方を数値化するMiiTelのレブコムが、7月22日にシリーズBの一次締めで33.5億円を調達（累計86億円）。電話を、かける道具から営業データを取る測定器へ読み替えた話</p>
+  <div class="chips"><span class="chip hand">OP14 名前を変える（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 中</span></div>
+  <p class="bl-revive"><span>復活の条件</span>bl010と同時には立てない。数回あけたあと、上場承認など次の節目が出たとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>レブコム／MiiTel</td></tr><tr><th>業界</th><td>SaaS／営業支援／音声AI</td></tr><tr><th>トリガの日付</th><td>2026-07-22</td></tr><tr><th>見送った理由</th><td>同週のナレッジワーク（bl010）と営業×AI×調達の題材が同型のため1本に絞った。OP14もep009の味で使用済み</td></tr><tr><th>手がかり</th><td><span class="src">レブコム公式リリース 2026-07-22</span></td></tr><tr><th>メモ</th><td>創業者の経歴（商社出身とされる）は要裏取り</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card overlap" data-found="2026-08-13"
+         data-id="bl013" data-hope="2">
+  <div class="bl-head">
+    <span class="bl-id">bl013</span>
+    <h3>別荘を泊数に分けて売る</h3>
+    <span class="badge overlap">直近と被る</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">高額の別荘を泊数単位の持ち分に分けて販売し、オーナーが使わない日はホテルとして貸し出すNOT A HOTELが、8月上旬にシリーズDで100億円を調達。買う側は別荘が使う分だけの値段になり、売る側は空いている資産が宿泊業に変わる話</p>
+  <div class="chips"><span class="chip hand">OP07 分ける</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 生活消費</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>数回あけたあと、次の調達・海外展開・販売実績などの日付イベントが出たとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>NOT A HOTEL</td></tr><tr><th>業界</th><td>不動産／ホテル／会員権</td></tr><tr><th>トリガの日付</th><td>2026-08</td></tr><tr><th>見送った理由</th><td>OP07「分ける」がep008の主役の手と重複</td></tr><tr><th>手がかり</th><td><span class="src">STARTUP DB Media 資金調達まとめ 8/3-7；日経 スタートアップ資金調達まとめ読み 8/3〜7</span></td></tr><tr><th>メモ</th><td>所有と利用の分割はep008の家具サブスクと語り口が被る。立てるなら不動産・会員権側の構造に寄せる。持ち分の単位（泊数・分割数）は要裏取り</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card overlap" data-found="2026-08-13"
+         data-id="bl012" data-hope="2">
+  <div class="bl-head">
+    <span class="bl-id">bl012</span>
+    <h3>毎月の請求に保証を相乗りさせる</h3>
+    <span class="badge overlap">直近と被る</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">楽天モバイルが8月27日から、スマホの交換保証に家電の補償を組み合わせたサービスを始めるとされる。通信の毎月の請求関係と店舗網を、家電の延長保証という別商品の販路に転用する話</p>
+  <div class="chips"><span class="chip hand">OP02 足す（味）</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 生活消費</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>提供開始（8/27）後の実績や他社追随など広がりが出たとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>楽天モバイル／スマホ交換保証プラス&amp;家電補償</td></tr><tr><th>業界</th><td>通信／保険・保証</td></tr><tr><th>トリガの日付</th><td>2026-08-27</td></tr><tr><th>見送った理由</th><td>OP02はep005で使用済みのうえ、単発の販路転用で1回を支える厚みが不足。候補段階で一次リリース未確認</td></tr><tr><th>手がかり</th><td><span class="src">検索結果の言及のみ（2026-08発表・8/27開始とされる）※公式リリース未確認</span></td></tr><tr><th>メモ</th><td>使うなら最初に公式リリースを突合する。2026-08-13午後のep011巡回で再提示（OP02は窓から抜けた）が、一次未確認・厚み不足で見送り継続</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card weak" data-found="2026-08-13"
+         data-id="bl011" data-hope="4">
+  <div class="bl-head">
+    <span class="bl-id">bl011</span>
+    <h3>本業が消える前に次を試す</h3>
+    <span class="badge weak">手が立たない</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">スパークプラグ大手の日本特殊陶業が、岐阜の自社工場の一角に燃料電池・太陽光・蓄電池を組み合わせた実証施設N-Terraceを新設し、工場のエネルギー管理をまるごと試し始めた。EV化で本業が縮む前に、自分の工場を実験台にして次の商売の種をまく話</p>
+  <div class="chips"><span class="chip hand">OP06 拾う（想定）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span><span class="chip none">畑 技術研究</span><span class="chip none">主役 会社</span><span class="chip none">技術度 高</span></div>
+  <p class="bl-revive"><span>復活の条件</span>実証したエネルギー管理の外販・商品化など、売り物になる形が発表されたとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>日本特殊陶業／N-Terrace</td></tr><tr><th>業界</th><td>自動車部品／エネルギー／セラミックス</td></tr><tr><th>トリガの日付</th><td>2026-08-05</td></tr><tr><th>見送った理由</th><td>実証開始は現象で、誰に何を売って儲かるかの構造がまだ見えない</td></tr><tr><th>手がかり</th><td><span class="src">レスポンス 2026-08-05（実証開始）</span></td></tr><tr><th>メモ</th><td>本業消失を見越した転換は語り口として強いが、手が立つのは商品化のタイミング</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card overlap" data-found="2026-08-13"
+         data-id="bl010" data-hope="2">
+  <div class="bl-head">
+    <span class="bl-id">bl010</span>
+    <h3>借りた営業網で一気に広げる</h3>
+    <span class="badge overlap">直近と被る</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">営業支援SaaSのナレッジワークが8月4日に35億円を調達し、リコージャパンと資本業務提携。自前の営業では届かない全国の中堅中小へ、複合機で入り込んでいるリコーの販売網に載せて広げ、AI商談記録を2030年度までに3000社へという計画。営業網を貸す側と借りる側、両方から見える提携の話</p>
+  <div class="chips"><span class="chip hand">OP12 開く</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 中</span></div>
+  <p class="bl-revive"><span>復活の条件</span>OP12・OP02が直近5回から抜けたあと、導入社数などの実績イベントが出たとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>ナレッジワーク／リコージャパン</td></tr><tr><th>業界</th><td>SaaS／営業支援／事務機</td></tr><tr><th>トリガの日付</th><td>2026-08-04</td></tr><tr><th>見送った理由</th><td>OP12はep007の主役、OP02もep005の味と、立てられる手が直近5回と重なる</td></tr><tr><th>手がかり</th><td><span class="src">日経 8/4；PR TIMES ナレッジワーク 8/4；マイナビ 8/6（リコージャパン提携・3000社目標）</span></td></tr><tr><th>メモ</th><td>手の回として立てるならリコー側（営業網の外販）視点が本命。動機は薄い</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card overlap" data-found="2026-08-13"
+         data-id="bl009" data-hope="2">
+  <div class="bl-head">
+    <span class="bl-id">bl009</span>
+    <h3>海賊版の需要を公式で取りに行く</h3>
+    <span class="badge overlap">直近と被る</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">集英社が創業100年の8月8日に合わせ、約400作品・100万ページのマンガを100超の言語に翻訳して配信するMANGA MILLIONを8月6日に公開。ONE PIECEは96言語。「小さい言語圏は商売にならない」という当たり前を翻訳コストの変化で崩し、海賊版へ流れていた読者を公式の客に変えにいく話</p>
+  <div class="chips"><span class="chip hand">OP04 逆にする</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術（想定）</span><span class="chip none">畑 メディア金融</span><span class="chip none">主役 会社</span><span class="chip none">技術度 中</span></div>
+  <p class="bl-revive"><span>復活の条件</span>窓は9/6まで。◎軸（OP04・TW4）は依然有効で、C1・C5を上げる素材（読者数・言語別実績・現地の反応など続報）が出れば面白さが上がり最有力</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>集英社／MANGA MILLION</td></tr><tr><th>業界</th><td>出版／コンテンツ配信</td></tr><tr><th>トリガの日付</th><td>2026-08-06</td></tr><tr><th>見送った理由</th><td>ep013巡回でも次点（面白さ60はクラダシの80に及ばず）。ep012巡回に続き2度、より鮮度・核の強い候補に譲った</td></tr><tr><th>手がかり</th><td><span class="src">公式リリース；事業構想オンライン 2026年8月記事</span></td></tr><tr><th>メモ</th><td>100万ページ・96言語などの数字は公式一次資料で要裏取り。海賊版対策の文脈は感情論に寄せず構造（未充足需要）で扱う</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card used" data-found="2026-08-13"
+         data-id="bl008" data-hope="5">
+  <div class="bl-head">
+    <span class="bl-id">bl008</span>
+    <h3>交換部品で稼ぎ続ける</h3>
+    <span class="badge used">別回で消化</span>
+    <span class="bl-found">2026-08-13 ep010巡回</span>
+  </div>
+  <p class="bl-gist">屋外用ベルトコンベヤの部品（ローラ）で国内シェア約52%を握るJRC。7月中旬の四半期開示は経常36%減益だったが、対上期計画の進捗はほぼ5割で計画の線上。据え付けたあとの交換需要＝リペア部品を握っているから業績が読める、という地味な独占の話</p>
+  <div class="chips"><span class="chip hand">OP09 極める</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>復活しない（記録のみ）。Q2開示（10月中旬）以降の続報はT3定点観測の候補</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>JRC／ベルトコンベヤ部品</td></tr><tr><th>業界</th><td>機械部品／鉱山・砕石／物流設備</td></tr><tr><th>トリガの日付</th><td>2026-07-15</td></tr><tr><th>見送った理由</th><td>ep012で消化（採点：面白さ80・応用60・核Q1○）。2度見送った末、窓の最終日に唯一の未使用手OP09として採用</td></tr><tr><th>手がかり</th><td><span class="src">株探 決算速報 k202607150066；会社決算短信（2027年2月期1Q）</span></td></tr><tr><th>メモ</th><td>ep012（2026-08-13制作）で使用。選定遅れの経緯はledger/selection.yamlのep011の記録を参照</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card wait" data-found="2026-08-12"
+         data-id="bl002" data-hope="0">
   <div class="bl-head">
     <span class="bl-id">bl002</span>
     <h3>排出枠という商品</h3>
+    <span class="badge wait">トリガ待ち</span>
     <span class="bl-found">2026-08-12 ep009巡回</span>
   </div>
   <p class="bl-gist">2026年度から大企業に義務化される排出量取引で、CO2を出す権利そのものが売り買いできる商品になる。減らせた会社が余った枠を売り、減らせない会社が買う——義務が新しい市場と値段を生む話</p>
-  <div class="chips"><span class="chip hand">OP14 名前を変える（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW1 制度</span></div>
+  <div class="chips"><span class="chip hand">OP14 名前を変える（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW1 制度</span><span class="chip none">畑 制度公共</span><span class="chip none">主役 制度</span><span class="chip none">技術度 低</span></div>
   <p class="bl-revive"><span>復活の条件</span>9/30期限の前に、受付開始・説明会・様式公表など窓内の公開物が出たとき（8月末〜9月に出る可能性が高い）。畑=制度公共・主役=制度の◎2軸に合致するため、出たら最優先</p>
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
     <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>GX-ETS排出量取引2026年度義務化</td></tr><tr><th>業界</th><td>エネルギー／製造／金融</td></tr><tr><th>見送った理由</th><td>初年度の届出・移行計画の期限が2026-09-30と確定（ep013巡回で確認）。ただし窓内の公開物がまだ無くP1✗</td></tr><tr><th>手がかり</th><td><span class="src">制度資料；経産省リーフレット（届出期限2026-09-30・移行計画提出）；産構審詳細設計とりまとめ（2025-12・基準価格1トン1700円）</span></td></tr><tr><th>メモ</th><td>ep002「施行日は開店日」の続編にあたる。同じ手の再演にならないよう、排出枠が商品として売買される側面に寄せる。儲け手は算定・検証・取引仲介サービス</td></tr></table></div>
   </details>
 </article>
-</section>
-<section class="bl-sec">
-  <h2><span class="badge stale">鮮度切れ</span><span class="bl-blurb">トリガはあったが31日の窓を外れた</span></h2>
-  
-<article class="bl-card stale">
-  <div class="bl-head">
-    <span class="bl-id">bl003</span>
-    <h3>配送設置網を束ねる</h3>
-    <span class="bl-found">2026-08-09 ep007巡回</span>
-  </div>
-  <p class="bl-gist">店では競争しているヤマダやエディオンなどの家電量販とメーカーが、配送と設置だけを共同でやる会社を作る構想。冷蔵庫や洗濯機の配達は、時間指定・再訪問・設置工事・古い機械の引き取りが重なる難所で、1社では効率が上がらない</p>
-  <div class="chips"><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>最終契約・新会社設立・共同物流会社の始動など、次の日付イベントが出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>ヤマダHD／エディオン／家電製販の共同物流</td></tr><tr><th>業界</th><td>家電／物流／小売</td></tr><tr><th>見送った理由</th><td>統合合意の発表が2026年6月5日で、31日の窓を外れていた</td></tr><tr><th>手がかり</th><td><span class="src">logi-today 960951／960654；日経（ヤマダHD・パナソニックHDら10社超の共同物流会社構想）</span></td></tr><tr><th>メモ</th><td>売上高合算で2.5兆円規模。配送設置のラストワンマイルは時間指定・再訪問・工事待ち・旧品回収が重なる難所で、束ねる価値が説明しやすい。ep007でOP08を味として使ったため、主役なら間を空ける</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card stale">
-  <div class="bl-head">
-    <span class="bl-id">bl004</span>
-    <h3>消費財サプライチェーンの標準化</h3>
-    <span class="bl-found">2026-08-09 ep007巡回</span>
-  </div>
-  <p class="bl-gist">洗剤や食品などを作る・卸す・売る43社が集まり、バラバラだった商品コードや段ボール・パレットの規格を揃えて、一緒に運ぶことを目指す協議会。各社が自社仕様を通してきたぶんのコストが、誰の財布から出ていたのかという話</p>
-  <div class="chips"><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>標準コードの適用開始、共同物流の実運用開始など、協議会の成果が出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>消費財サプライチェーン標準化協議会／製配販43社</td></tr><tr><th>業界</th><td>消費財／卸／物流</td></tr><tr><th>見送った理由</th><td>協議会の設立が2026年5月27日で窓外</td></tr><tr><th>手がかり</th><td><span class="src">logi-today 956823</span></td></tr><tr><th>メモ</th><td>商品・事業所コードの標準化、物流資材の標準化、共同物流の実現を掲げる。bl003と同じOP08なので、どちらかを選ぶ形になる</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card stale">
+<article class="bl-card stale" data-found="2026-08-09"
+         data-id="bl007" data-hope="1">
   <div class="bl-head">
     <span class="bl-id">bl007</span>
     <h3>異業種の共同配送</h3>
+    <span class="badge stale">鮮度切れ</span>
     <span class="bl-found">2026-08-09 ep007巡回</span>
   </div>
   <p class="bl-gist">棚の上では奪い合っているサッポロとキリンが、神奈川で同じトラックにビールを積んで運び始めた。花王と三菱食品の取り組みも同じ形。どこまでを一緒にやり、どこからは競争するのか——その線引きが主題になる</p>
-  <div class="chips"><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
+  <div class="chips"><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
   <p class="bl-revive"><span>復活の条件</span>対象エリアの拡大、他社の参加、削減量の実績公表などが出たとき</p>
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>サッポロ×キリンの共同配送／花王×三菱食品のCODE</td></tr><tr><th>業界</th><td>飲料／日用品／物流</td></tr><tr><th>見送った理由</th><td>神奈川エリアでの共同配送開始が2026年6月で窓外</td></tr><tr><th>手がかり</th><td><span class="src">logi-today 956420</span></td></tr><tr><th>メモ</th><td>競合同士が物流だけ組む形。協調領域と競争領域の線引きが主題になりうる</td></tr></table></div>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>サッポロ×キリンの共同配送／花王×三菱食品のCODE</td></tr><tr><th>業界</th><td>飲料／日用品／物流</td></tr><tr><th>トリガの日付</th><td>2026-06</td></tr><tr><th>見送った理由</th><td>神奈川エリアでの共同配送開始が2026年6月で窓外</td></tr><tr><th>手がかり</th><td><span class="src">logi-today 956420</span></td></tr><tr><th>メモ</th><td>競合同士が物流だけ組む形。協調領域と競争領域の線引きが主題になりうる</td></tr></table></div>
   </details>
 </article>
-</section>
-<section class="bl-sec">
-  <h2><span class="badge overlap">直近と被る</span><span class="bl-blurb">手・業界が直近5回と重なる</span></h2>
-  
-<article class="bl-card overlap">
+<article class="bl-card overlap" data-found="2026-08-09"
+         data-id="bl006" data-hope="2">
   <div class="bl-head">
     <span class="bl-id">bl006</span>
     <h3>障害者雇用率2.7%への引き上げ</h3>
+    <span class="badge overlap">直近と被る</span>
     <span class="bl-found">2026-08-09 ep007巡回</span>
   </div>
   <p class="bl-gist">企業が守るべき障害者の法定雇用率が2.7%へ上がった。注目したいのは制度そのものではなく、その受け皿として育っている商売のほう——仕事ごと請け負う特例子会社や、貸農園型のサービスなど、雇用率を満たしたい会社に売る事業が伸びている</p>
-  <div class="chips"><span class="chip hand">OP11 乗る（想定）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW1 制度</span></div>
+  <div class="chips"><span class="chip hand">OP11 乗る（想定）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW1 制度</span><span class="chip none">畑 制度公共</span><span class="chip none">主役 制度</span><span class="chip none">技術度 低</span></div>
   <p class="bl-revive"><span>復活の条件</span>ep002から数回あけたあと。または雇用率対応が生んだ具体的な商売（特例子会社の受託事業など）が見つかったとき</p>
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>改正障害者雇用促進法</td></tr><tr><th>業界</th><td>人事労務／特例子会社／人材</td></tr><tr><th>見送った理由</th><td>ep002「施行日は開店日」と同じ制度回・TW1で、手も乗るになり重複感が強い</td></tr><tr><th>手がかり</th><td><span class="src">2026年7月施行</span></td></tr><tr><th>メモ</th><td>制度そのものではなく、義務化で生まれた受け皿側の商売に寄せれば別の回になる</td></tr></table></div>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>改正障害者雇用促進法</td></tr><tr><th>業界</th><td>人事労務／特例子会社／人材</td></tr><tr><th>トリガの日付</th><td>2026-07</td></tr><tr><th>見送った理由</th><td>ep002「施行日は開店日」と同じ制度回・TW1で、手も乗るになり重複感が強い</td></tr><tr><th>手がかり</th><td><span class="src">2026年7月施行</span></td></tr><tr><th>メモ</th><td>制度そのものではなく、義務化で生まれた受け皿側の商売に寄せれば別の回になる</td></tr></table></div>
   </details>
 </article>
-<article class="bl-card overlap">
-  <div class="bl-head">
-    <span class="bl-id">bl009</span>
-    <h3>海賊版の需要を公式で取りに行く</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
-  </div>
-  <p class="bl-gist">集英社が創業100年の8月8日に合わせ、約400作品・100万ページのマンガを100超の言語に翻訳して配信するMANGA MILLIONを8月6日に公開。ONE PIECEは96言語。「小さい言語圏は商売にならない」という当たり前を翻訳コストの変化で崩し、海賊版へ流れていた読者を公式の客に変えにいく話</p>
-  <div class="chips"><span class="chip hand">OP04 逆にする</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術（想定）</span></div>
-  <p class="bl-revive"><span>復活の条件</span>窓は9/6まで。◎軸（OP04・TW4）は依然有効で、C1・C5を上げる素材（読者数・言語別実績・現地の反応など続報）が出れば面白さが上がり最有力</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>集英社／MANGA MILLION</td></tr><tr><th>業界</th><td>出版／コンテンツ配信</td></tr><tr><th>見送った理由</th><td>ep013巡回でも次点（面白さ60はクラダシの80に及ばず）。ep012巡回に続き2度、より鮮度・核の強い候補に譲った</td></tr><tr><th>手がかり</th><td><span class="src">公式リリース；事業構想オンライン 2026年8月記事</span></td></tr><tr><th>メモ</th><td>100万ページ・96言語などの数字は公式一次資料で要裏取り。海賊版対策の文脈は感情論に寄せず構造（未充足需要）で扱う</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card overlap">
-  <div class="bl-head">
-    <span class="bl-id">bl010</span>
-    <h3>借りた営業網で一気に広げる</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
-  </div>
-  <p class="bl-gist">営業支援SaaSのナレッジワークが8月4日に35億円を調達し、リコージャパンと資本業務提携。自前の営業では届かない全国の中堅中小へ、複合機で入り込んでいるリコーの販売網に載せて広げ、AI商談記録を2030年度までに3000社へという計画。営業網を貸す側と借りる側、両方から見える提携の話</p>
-  <div class="chips"><span class="chip hand">OP12 開く</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span></div>
-  <p class="bl-revive"><span>復活の条件</span>OP12・OP02が直近5回から抜けたあと、導入社数などの実績イベントが出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>ナレッジワーク／リコージャパン</td></tr><tr><th>業界</th><td>SaaS／営業支援／事務機</td></tr><tr><th>見送った理由</th><td>OP12はep007の主役、OP02もep005の味と、立てられる手が直近5回と重なる</td></tr><tr><th>手がかり</th><td><span class="src">日経 8/4；PR TIMES ナレッジワーク 8/4；マイナビ 8/6（リコージャパン提携・3000社目標）</span></td></tr><tr><th>メモ</th><td>手の回として立てるならリコー側（営業網の外販）視点が本命。動機は薄い</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card overlap">
-  <div class="bl-head">
-    <span class="bl-id">bl012</span>
-    <h3>毎月の請求に保証を相乗りさせる</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
-  </div>
-  <p class="bl-gist">楽天モバイルが8月27日から、スマホの交換保証に家電の補償を組み合わせたサービスを始めるとされる。通信の毎月の請求関係と店舗網を、家電の延長保証という別商品の販路に転用する話</p>
-  <div class="chips"><span class="chip hand">OP02 足す（味）</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>提供開始（8/27）後の実績や他社追随など広がりが出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>楽天モバイル／スマホ交換保証プラス&amp;家電補償</td></tr><tr><th>業界</th><td>通信／保険・保証</td></tr><tr><th>見送った理由</th><td>OP02はep005で使用済みのうえ、単発の販路転用で1回を支える厚みが不足。候補段階で一次リリース未確認</td></tr><tr><th>手がかり</th><td><span class="src">検索結果の言及のみ（2026-08発表・8/27開始とされる）※公式リリース未確認</span></td></tr><tr><th>メモ</th><td>使うなら最初に公式リリースを突合する。2026-08-13午後のep011巡回で再提示（OP02は窓から抜けた）が、一次未確認・厚み不足で見送り継続</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card overlap">
-  <div class="bl-head">
-    <span class="bl-id">bl013</span>
-    <h3>別荘を泊数に分けて売る</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
-  </div>
-  <p class="bl-gist">高額の別荘を泊数単位の持ち分に分けて販売し、オーナーが使わない日はホテルとして貸し出すNOT A HOTELが、8月上旬にシリーズDで100億円を調達。買う側は別荘が使う分だけの値段になり、売る側は空いている資産が宿泊業に変わる話</p>
-  <div class="chips"><span class="chip hand">OP07 分ける</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>数回あけたあと、次の調達・海外展開・販売実績などの日付イベントが出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>NOT A HOTEL</td></tr><tr><th>業界</th><td>不動産／ホテル／会員権</td></tr><tr><th>見送った理由</th><td>OP07「分ける」がep008の主役の手と重複</td></tr><tr><th>手がかり</th><td><span class="src">STARTUP DB Media 資金調達まとめ 8/3-7；日経 スタートアップ資金調達まとめ読み 8/3〜7</span></td></tr><tr><th>メモ</th><td>所有と利用の分割はep008の家具サブスクと語り口が被る。立てるなら不動産・会員権側の構造に寄せる。持ち分の単位（泊数・分割数）は要裏取り</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card overlap">
-  <div class="bl-head">
-    <span class="bl-id">bl014</span>
-    <h3>電話を測定器に変える</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
-  </div>
-  <p class="bl-gist">電話営業の通話をAIで解析して話し方を数値化するMiiTelのレブコムが、7月22日にシリーズBの一次締めで33.5億円を調達（累計86億円）。電話を、かける道具から営業データを取る測定器へ読み替えた話</p>
-  <div class="chips"><span class="chip hand">OP14 名前を変える（味）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span></div>
-  <p class="bl-revive"><span>復活の条件</span>bl010と同時には立てない。数回あけたあと、上場承認など次の節目が出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>レブコム／MiiTel</td></tr><tr><th>業界</th><td>SaaS／営業支援／音声AI</td></tr><tr><th>見送った理由</th><td>同週のナレッジワーク（bl010）と営業×AI×調達の題材が同型のため1本に絞った。OP14もep009の味で使用済み</td></tr><tr><th>手がかり</th><td><span class="src">レブコム公式リリース 2026-07-22</span></td></tr><tr><th>メモ</th><td>創業者の経歴（商社出身とされる）は要裏取り</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card overlap">
-  <div class="bl-head">
-    <span class="bl-id">bl015</span>
-    <h3>競合の看板で自分の商品を売る</h3>
-    <span class="bl-found">2026-08-13 ep011巡回</span>
-  </div>
-  <p class="bl-gist">請求書SaaSのROBOT PAYMENTが8月12日、競合系のラクスと資本業務提携。自社の「請求管理ロボ」をベースにしたOEM製品「楽楽債権管理（仮称）」を作り、開発・保守は自分が持ったまま、営業・販売はラクスの楽楽ブランドに任せて収益を分け合う。作る力と売る力を会社ごとに分担する話</p>
-  <div class="chips"><span class="chip hand">OP12 開く（想定）</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>bl010と同時には立てない。OEM製品の販売開始（2026年中目標）や実績数字が出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>ROBOT PAYMENT／ラクス／楽楽債権管理</td></tr><tr><th>業界</th><td>SaaS／請求管理／フィンテック</td></tr><tr><th>見送った理由</th><td>「借りた営業網で売る」型がbl010（ナレッジワーク×リコー）と同型で、B2B SaaSの題材が続く。ep013巡回の採点では面白さ○2（Q1・C1のみ）で足切り2</td></tr><tr><th>手がかり</th><td><span class="src">財経新聞 2026-08-13（提携発表8/12・第三者割当12万株・総額2.79億円・提携開始8/28予定）</span></td></tr><tr><th>メモ</th><td>競合にOEM供給する珍しい形。立てるなら「競合と提携する線引き」を主題に。bl007（サッポロ×キリン共配）と同じ協調領域の話としても組める</td></tr></table></div>
-  </details>
-</article>
-</section>
-<section class="bl-sec">
-  <h2><span class="badge weak">手が立たない</span><span class="bl-blurb">現象ではあるが商売の手に落ちない</span></h2>
-  
-<article class="bl-card weak">
-  <div class="bl-head">
-    <span class="bl-id">bl011</span>
-    <h3>本業が消える前に次を試す</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
-  </div>
-  <p class="bl-gist">スパークプラグ大手の日本特殊陶業が、岐阜の自社工場の一角に燃料電池・太陽光・蓄電池を組み合わせた実証施設N-Terraceを新設し、工場のエネルギー管理をまるごと試し始めた。EV化で本業が縮む前に、自分の工場を実験台にして次の商売の種をまく話</p>
-  <div class="chips"><span class="chip hand">OP06 拾う（想定）</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span></div>
-  <p class="bl-revive"><span>復活の条件</span>実証したエネルギー管理の外販・商品化など、売り物になる形が発表されたとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>日本特殊陶業／N-Terrace</td></tr><tr><th>業界</th><td>自動車部品／エネルギー／セラミックス</td></tr><tr><th>見送った理由</th><td>実証開始は現象で、誰に何を売って儲かるかの構造がまだ見えない</td></tr><tr><th>手がかり</th><td><span class="src">レスポンス 2026-08-05（実証開始）</span></td></tr><tr><th>メモ</th><td>本業消失を見越した転換は語り口として強いが、手が立つのは商品化のタイミング</td></tr></table></div>
-  </details>
-</article>
-<article class="bl-card weak">
-  <div class="bl-head">
-    <span class="bl-id">bl016</span>
-    <h3>水素で鉄をつくる一トン</h3>
-    <span class="bl-found">2026-08-13 ep013巡回</span>
-  </div>
-  <p class="bl-gist">JFEスチールが7月31日、日本で初めてグリーン水素を使った還元鉄の試作に成功したと発表。山梨の水電解設備で作った水素を千葉の小型プラントに運び、3日間で約1トンの還元鉄を作った。鉄鋼業は日本のCO2排出の約14%を占める最大の排出産業で、その置き換えの最初の一トン</p>
-  <div class="chips"><span class="chip none">手＝なし</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span></div>
-  <p class="bl-revive"><span>復活の条件</span>グリーン鋼材の価格プレミアム・受注・量産計画など、この技術で誰がいくら払うかが見える発表が出たとき</p>
-  <details class="bl-more">
-    <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>JFEスチール／グリーン水素還元鉄</td></tr><tr><th>業界</th><td>鉄鋼／水素／エネルギー</td></tr><tr><th>見送った理由</th><td>採点で足切り：Q1△（試作段階で儲けの構造が無い）・Q2✗・C3✗。技術度高◎・畑技術研究◎の探索で見つけたが、ep011の教訓（技術そのものが主役の回は核が立たない）を適用</td></tr><tr><th>手がかり</th><td><span class="src">JFEスチール公式リリース 2026-07-31（一次・数値到達済み：1.5MW水電解・15kg/h・約1トン・CO2の約14%）</span></td></tr><tr><th>メモ</th><td>リリースの数値は収集済みで、復活時は裏取りが軽い。「最初の1トンの値段」という切り口が立てば強い</td></tr></table></div>
-  </details>
-</article>
-</section>
-<section class="bl-sec">
-  <h2><span class="badge used">別回で消化</span><span class="bl-blurb">他の回に組み込んだ</span></h2>
-  
-<article class="bl-card used">
+<article class="bl-card used" data-found="2026-08-09"
+         data-id="bl005" data-hope="5">
   <div class="bl-head">
     <span class="bl-id">bl005</span>
     <h3>8月の値上げ849品目</h3>
+    <span class="badge used">別回で消化</span>
     <span class="bl-found">2026-08-09 ep007巡回</span>
   </div>
   <p class="bl-gist">2026年8月だけで食品849品目が値上げ。中身を見ると、上がっているのは原材料そのものより、包装・物流・人件費のほう。値上げの理由が「材料が高い」から「運ぶ人・作る人が足りない」へ移りつつある</p>
-  <div class="chips"><span class="chip none">手＝なし</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
+  <div class="chips"><span class="chip none">手＝なし</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 生活消費</span><span class="chip none">主役 統計</span><span class="chip none">技術度 低</span></div>
   <p class="bl-revive"><span>復活の条件</span>復活しない（記録のみ）。個社の値上げ以外の打ち手が見つかったら、それは別件として新規に起こす</p>
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>帝国データバンク 食品主要195社 価格改定動向調査</td></tr><tr><th>業界</th><td>食品／日用品</td></tr><tr><th>見送った理由</th><td>T1の事例回としては手が立たなかったが、ep011でT4数字回（統計の中の物語）として消化</td></tr><tr><th>手がかり</th><td><span class="src">帝国データバンク調査（TDB 2026-07-31公表の8月版で全面更新：8月2,311品目・9月4,531品目）</span></td></tr><tr><th>メモ</th><td>ep011（2026-08-13制作）で使用。9月4,531品目は年内最多・単月2023年10月以来。要因の主役が包装・資材と中東情勢に移った点が物語の芯</td></tr></table></div>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>帝国データバンク 食品主要195社 価格改定動向調査</td></tr><tr><th>業界</th><td>食品／日用品</td></tr><tr><th>トリガの日付</th><td>2026-07-31</td></tr><tr><th>見送った理由</th><td>T1の事例回としては手が立たなかったが、ep011でT4数字回（統計の中の物語）として消化</td></tr><tr><th>手がかり</th><td><span class="src">帝国データバンク調査（TDB 2026-07-31公表の8月版で全面更新：8月2,311品目・9月4,531品目）</span></td></tr><tr><th>メモ</th><td>ep011（2026-08-13制作）で使用。9月4,531品目は年内最多・単月2023年10月以来。要因の主役が包装・資材と中東情勢に移った点が物語の芯</td></tr></table></div>
   </details>
 </article>
-<article class="bl-card used">
+<article class="bl-card stale" data-found="2026-08-09"
+         data-id="bl004" data-hope="1">
   <div class="bl-head">
-    <span class="bl-id">bl008</span>
-    <h3>交換部品で稼ぎ続ける</h3>
-    <span class="bl-found">2026-08-13 ep010巡回</span>
+    <span class="bl-id">bl004</span>
+    <h3>消費財サプライチェーンの標準化</h3>
+    <span class="badge stale">鮮度切れ</span>
+    <span class="bl-found">2026-08-09 ep007巡回</span>
   </div>
-  <p class="bl-gist">屋外用ベルトコンベヤの部品（ローラ）で国内シェア約52%を握るJRC。7月中旬の四半期開示は経常36%減益だったが、対上期計画の進捗はほぼ5割で計画の線上。据え付けたあとの交換需要＝リペア部品を握っているから業績が読める、という地味な独占の話</p>
-  <div class="chips"><span class="chip hand">OP09 極める</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
-  <p class="bl-revive"><span>復活の条件</span>復活しない（記録のみ）。Q2開示（10月中旬）以降の続報はT3定点観測の候補</p>
+  <p class="bl-gist">洗剤や食品などを作る・卸す・売る43社が集まり、バラバラだった商品コードや段ボール・パレットの規格を揃えて、一緒に運ぶことを目指す協議会。各社が自社仕様を通してきたぶんのコストが、誰の財布から出ていたのかという話</p>
+  <div class="chips"><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>標準コードの適用開始、共同物流の実運用開始など、協議会の成果が出たとき</p>
   <details class="bl-more">
     <summary>題材・見送った理由・メモ</summary>
-    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>JRC／ベルトコンベヤ部品</td></tr><tr><th>業界</th><td>機械部品／鉱山・砕石／物流設備</td></tr><tr><th>見送った理由</th><td>ep012で消化（採点：面白さ80・応用60・核Q1○）。2度見送った末、窓の最終日に唯一の未使用手OP09として採用</td></tr><tr><th>手がかり</th><td><span class="src">株探 決算速報 k202607150066；会社決算短信（2027年2月期1Q）</span></td></tr><tr><th>メモ</th><td>ep012（2026-08-13制作）で使用。選定遅れの経緯はledger/selection.yamlのep011の記録を参照</td></tr></table></div>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>消費財サプライチェーン標準化協議会／製配販43社</td></tr><tr><th>業界</th><td>消費財／卸／物流</td></tr><tr><th>トリガの日付</th><td>2026-05-27</td></tr><tr><th>見送った理由</th><td>協議会の設立が2026年5月27日で窓外</td></tr><tr><th>手がかり</th><td><span class="src">logi-today 956823</span></td></tr><tr><th>メモ</th><td>商品・事業所コードの標準化、物流資材の標準化、共同物流の実現を掲げる。bl003と同じOP08なので、どちらかを選ぶ形になる</td></tr></table></div>
   </details>
 </article>
-</section>
+<article class="bl-card stale" data-found="2026-08-09"
+         data-id="bl003" data-hope="1">
+  <div class="bl-head">
+    <span class="bl-id">bl003</span>
+    <h3>配送設置網を束ねる</h3>
+    <span class="badge stale">鮮度切れ</span>
+    <span class="bl-found">2026-08-09 ep007巡回</span>
+  </div>
+  <p class="bl-gist">店では競争しているヤマダやエディオンなどの家電量販とメーカーが、配送と設置だけを共同でやる会社を作る構想。冷蔵庫や洗濯機の配達は、時間指定・再訪問・設置工事・古い機械の引き取りが重なる難所で、1社では効率が上がらない</p>
+  <div class="chips"><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>最終契約・新会社設立・共同物流会社の始動など、次の日付イベントが出たとき</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>ヤマダHD／エディオン／家電製販の共同物流</td></tr><tr><th>業界</th><td>家電／物流／小売</td></tr><tr><th>トリガの日付</th><td>2026-06-05</td></tr><tr><th>見送った理由</th><td>統合合意の発表が2026年6月5日で、31日の窓を外れていた</td></tr><tr><th>手がかり</th><td><span class="src">logi-today 960951／960654；日経（ヤマダHD・パナソニックHDら10社超の共同物流会社構想）</span></td></tr><tr><th>メモ</th><td>売上高合算で2.5兆円規模。配送設置のラストワンマイルは時間指定・再訪問・工事待ち・旧品回収が重なる難所で、束ねる価値が説明しやすい。ep007でOP08を味として使ったため、主役なら間を空ける</td></tr></table></div>
+  </details>
+</article>
+<article class="bl-card wait" data-found="2026-08-08"
+         data-id="bl001" data-hope="0">
+  <div class="bl-head">
+    <span class="bl-id">bl001</span>
+    <h3>解体材の行き先</h3>
+    <span class="badge wait">トリガ待ち</span>
+    <span class="bl-found">2026-08-08 ep002巡回</span>
+  </div>
+  <p class="bl-gist">大阪・関西万博の大屋根リング（世界最大級の木造建築）を解体して出た大量の木材が、どこへ引き取られ、何に生まれ変わるのか。イベントの終わりに出る廃材が、値段のつく原料として次の商品へ回っていく話</p>
+  <div class="chips"><span class="chip hand">OP06 拾う</span><span class="chip motive">MO3 もったいなかった（想定）</span><span class="chip none">風＝なし</span><span class="chip none">畑 産業BtoB</span><span class="chip none">主役 会社</span><span class="chip none">技術度 低</span></div>
+  <p class="bl-revive"><span>復活の条件</span>実際の再利用先や加工品の販売開始が発表されたとき。跡地の再開発計画も同系統</p>
+  <details class="bl-more">
+    <summary>題材・見送った理由・メモ</summary>
+    <div class="table-scroll"><table class="kv bl-kv"><tr><th>題材</th><td>万博大屋根リング木材リユース</td></tr><tr><th>業界</th><td>建築／木材／イベント跡地</td></tr><tr><th>トリガの日付</th><td>2026-01</td></tr><tr><th>見送った理由</th><td>引取先の発表が2026年1月で、以降に窓内の動きが無い</td></tr><tr><th>手がかり</th><td><span class="src">2026-01 引取先発表</span></td></tr><tr><th>メモ</th><td>OP06拾うの本命候補として温存。ep008でOP06を味として使ったため、主役で使うなら間を空ける</td></tr></table></div>
+  </details>
+</article></div>
 <script>
 (function () {
   var btn = document.getElementById('bl-toggle');
-  if (!btn) return;
-  var open = false;
-  btn.addEventListener('click', function () {
-    open = !open;
-    document.querySelectorAll('details.bl-more').forEach(function (d) { d.open = open; });
-    btn.textContent = open ? '詳細をすべて閉じる' : '詳細をすべて開く';
+  if (btn) {
+    var open = false;
+    btn.addEventListener('click', function () {
+      open = !open;
+      document.querySelectorAll('details.bl-more').forEach(function (d) { d.open = open; });
+      btn.textContent = open ? '詳細をすべて閉じる' : '詳細をすべて開く';
+    });
+  }
+  var list = document.getElementById('bl-list');
+  if (!list) return;
+  var cards = Array.prototype.slice.call(list.querySelectorAll('.bl-card'));
+  function key(el) { return (el.dataset.found || '') + '/' + (el.dataset.id || ''); }
+  var sorts = {
+    'new':  function (a, b) { return key(b).localeCompare(key(a)); },
+    'old':  function (a, b) { return key(a).localeCompare(key(b)); },
+    'hope': function (a, b) {
+      var d = (+a.dataset.hope) - (+b.dataset.hope);
+      return d !== 0 ? d : key(b).localeCompare(key(a));
+    }
+  };
+  document.querySelectorAll('.sort-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.sort-btn').forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      cards.slice().sort(sorts[b.dataset.sort]).forEach(function (c) { list.appendChild(c); });
+      try { localStorage.setItem('sonote-bl-sort', b.dataset.sort); } catch (e) {}
+    });
   });
+  try {
+    var saved = localStorage.getItem('sonote-bl-sort');
+    if (saved && saved !== 'new') {
+      var el = document.querySelector('.sort-btn[data-sort="' + saved + '"]');
+      if (el) el.click();
+    }
+  } catch (e) {}
 })();
 </script>
 
