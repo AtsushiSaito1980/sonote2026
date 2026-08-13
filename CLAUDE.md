@@ -44,6 +44,8 @@
 
 出典に触れるときは**主語なしの取材話法**のみ：`調べてみたら` `聞いてみたところ` `あとで確かめたら` ＋ 伝聞の `〜だそうです` `〜とのことでした`。発表主体・役職名は言ってよい。個人名・媒体名・スタッフ名は出さない。
 
+**この取材話法は放送だけのルール。note には持ち込まない。** 記事は独立媒体で出典も列挙するので、企業名・調査名・賞の名前・公表された人物名は書く。伏せると「書けない事情があるのか」と読まれ、実名より信頼が下がる。
+
 詳細 → `personas/tokura.md` `personas/misaki.md` `personas/kazuki.md`
 
 ## 4. 鮮度（絶対条件）
@@ -71,7 +73,9 @@
   5. tts-format      draft+dictionary → script_tts.txt
   6. write-article   brief+facts → article.md + shownotes.md → 再レビュー
   7. write-infographic facts+article → infographic.html（省略不可）
-  8. build_site.py   docs/ を再生成（出力が「自動」なら7が漏れている）
+  8. write-figures   article → figures.html（省略不可。note に貼る図版3枚）
+  9. build_site.py   docs/ を再生成（出力が「自動」なら7が漏れている）
+ 10. export_figures.py → docs/<id>/images/ に PNG。そのあと build_site.py を再実行
 （人間が選ばなかった候補は ledger/backlog.yaml へ書き戻す）
 ```
 
@@ -119,5 +123,7 @@ python3 scripts/check.py episodes/<id>
 | 巡回棚・リスク語 | `config/sources.yml` `config/ng.yml` |
 | 放送済み台帳（重複回避） | `ledger/episodes_log.csv` |
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
+| note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
+| note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |
 | **文体の教師データ** | `episodes/ep001〜006`（台本を書く前に直近2〜3本を読む） |

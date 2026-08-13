@@ -21,11 +21,18 @@ argument-hint: <episode_id>
    - FAIL → 3へ差し戻し（最大2周、それで通らなければ人間へ）
 5. **tts-format** → `script_tts.txt`
 6. **write-article** → `article.md` ＋ `shownotes.md` → 再度 review
+   - 書く前に `episodes/` の直近3本の**タイトルの語尾**を見る（同じ型を3本続けない）
 7. **write-infographic** → `infographic.html`（**省略不可**）
    - 書かないとサイトが `facts.yaml` からの簡易ビューに落ちる
    - 数値は事実カードにあるものだけ。図の種類は内容で選ぶ
-8. **サイト再生成** → `python3 scripts/build_site.py`
+8. **write-figures** → `figures.html`（**省略不可**）
+   - note に貼る図版3枚（`cover` / `combo` / `number`）
+   - これが無いと、note へ持っていく画像が1枚も無い状態になる
+9. **サイト再生成** → `python3 scripts/build_site.py`
    - 出力の `[インフォグラフィック: 手作り]` を確認する。`自動` なら7が漏れている
+10. **画像の書き出し** → `python3 scripts/export_figures.py $1`
+   - `docs/$1/images/` に PNG が出る。見出し画像は 1280×670
+   - 書き出したら **もう一度 `build_site.py`** を実行する（ダウンロード欄が出る）
 
 ## 完了後の報告
 - 検算結果のサマリ（PASSした項目数・要判断の判断根拠）
