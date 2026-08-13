@@ -205,6 +205,12 @@ def check_article(ep: Path):
     hits = {w: a.count(w) for w in NOTE_FORBIDDEN if a.count(w)}
     add(OK if not hits else NG, "note の禁止語", f"{hits}" if hits else "なし（独立媒体として成立）")
 
+    # 憲法§2-10：「香月」は note にも出さない。署名が抜け穴になっていた。
+    # 投稿者は人間本人の名前なので、編集部という書き手も立てない
+    writer = {w: a.count(w) for w in ("香月", "編集部") if a.count(w)}
+    add(OK if not writer else NG, "書き手の名義",
+        f"{writer} → 署名は置かない（投稿者本人の名前で出る）" if writer else "なし")
+
     # 制作手順・選定基準の露出（note と概要欄は外部公開）
     leaks = sorted(set(METHOD_LEAK.findall(a)))
     sn = ep / "shownotes.md"
