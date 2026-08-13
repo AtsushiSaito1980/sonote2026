@@ -1,0 +1,41 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+# 扱いの線引き：会社と構造のみ。個人（逮捕・経営者名）不使用。粉飾指摘はTDB帰属の伝聞のみ（rejected参照）
+facts:
+  # --- アンカー（統計） ---
+  - {id: F01, who: 帝国データバンク, what: 7月報の公表, value: 2026-08-10, when: 2026-08-10, source_url: "TDB倒産集計7月報（一次）", confirmed_by: 2, anchor: true, verify: verified, note: "TSRも同日に7月全国倒産を公表（2系統）"}
+  - {id: F02, who: 全国企業倒産, what: 7月の件数, value: 1,037件, when: 2026-07, source_url: "TDB（一次）", confirmed_by: 1, verify: verified, note: "前年同月比+8.5%。TSR基準では1,028件（+6.9%）。台本はTDBの1,037件で統一"}
+  - {id: F03, who: 全国企業倒産, what: 水準の位置づけ, value: 17年ぶり2ヶ月連続1,000件超, when: 2026-07, source_url: "TDB（一次）", confirmed_by: 2, verify: verified, note: "リーマン・ショック後の2009年11〜12月以来。Q01参照"}
+  - {id: F04, who: 全国企業倒産, what: 7月の負債総額, value: 2,341億円, when: 2026-07, source_url: "TDB（一次）", confirmed_by: 2, verify: verified, note: "+40.6%。**うち約半分が全東信1社**（TDB記載）"}
+  - {id: F05, who: 全国企業倒産, what: 業種別の山, value: 小売234件が2000年以降最多, when: 2026-07, source_url: "TDB（一次）", confirmed_by: 1, verify: verified, note: "+27.2%。サービス261・建設207・飲食店74→93。物価高倒産121件は過去最多。台本では言葉中心・記事にデータ"}
+  # --- 全東信（会社と構造） ---
+  - {id: F06, who: 全東信, what: 破産手続開始, value: 2026-07-06・大阪地裁, when: 2026-07-06, source_url: "日経／TDB／解説記事", confirmed_by: 3, verify: verified, note: "自己破産申請・同日開始決定"}
+  - {id: F07, who: 全東信, what: 負債額, value: 1,151億6,400万円, when: 2026-07申請時, source_url: "TDB／日経", confirmed_by: 2, verify: verified, note: "今年最大。2025年3月期末時点では約1,259億円（日経）。台本は申請時1,151億円で統一"}
+  - {id: F08, who: 全東信, what: 事業の中身, value: カード売上の早期決済代行, when: 継続〜破産, source_url: "解説記事／日経", confirmed_by: 2, verify: verified, note: "カード会社からの入金（数週間後）より先に、加盟店へ売上を立て替えて前渡しし、手数料を得る"}
+  - {id: F09, who: 全東信, what: 売りの型, value: 週2回・月6回の早期入金, when: 事業期間, source_url: "解説記事", confirmed_by: 1, verify: partial, note: "「業界初」を謳う。Q02参照。破産管財人発表等での確認を推奨"}
+  - {id: F10, who: 全東信, what: 顧客基盤, value: 加盟店20万店超, when: 2018時点, source_url: "解説記事", confirmed_by: 1, verify: dated, note: "飲食店・小規模店中心。**2018年時点**の数値＝時期明示必須"}
+  - {id: F11, who: 全東信, what: 来歴, value: 1987年創業・組合が前身, when: 1987-05, source_url: "解説記事", confirmed_by: 1, verify: verified, note: "前身は大阪の飲食店の事業協同組合（固有名は一般化）。2006年9月に株式会社化。資本金45億円"}
+  - {id: F12, who: 全東信, what: 立替の原資, value: 金融機関からの借入が中心, when: 事業期間, source_url: "解説記事", confirmed_by: 1, verify: verified, note: "商流：加盟店→（立替前渡し・手数料）全東信→（数週間後入金）カード会社。**他人の売上を、借りた金で先払いする構造**"}
+  - {id: F13, who: 全東信, what: 売上の急減, value: 82億円→約50億円, when: 2020-03期→2021-03期, source_url: "解説記事", confirmed_by: 1, verify: dated, note: "コロナの時短・休業で飲食店のカード売上が細った。時期明示必須。信用調査系記事での突合を推奨"}
+  - {id: F14, who: 全東信, what: 信用の問題, value: 粉飾決算の指摘, when: 破産前, source_url: "TDB7月報の記載", confirmed_by: 1, verify: partial, note: "**TDB公表資料への帰属明示の伝聞のみで使用**：「粉飾決算が指摘され、金融機関からの融資調査にも発展」。詮索・断定はしない"}
+  - {id: F15, who: 加盟店, what: 破産の影響, value: 売上金の未収・端末停止, when: 2026-07〜, source_url: "解説記事／報道", confirmed_by: 2, verify: verified, note: "立て替え済み売上の未払い分が破産債権に。入金が通常サイクルに戻り資金繰りが締まる。煽らず事実の水準で"}
+quotes:
+  - {id: Q01, speaker: 調査（帝国データバンク）, gist: "2ヶ月続けて1,000件を超えるのは、リーマン・ショックのあと以来、およそ17年ぶり", source_url: "TDB7月報（一次）", note: "『』候補①"}
+  - {id: Q02, speaker: 全東信の売り（趣旨）, gist: "カード会社の入金を待たずに、週2回、先にお支払いします", source_url: "解説記事の「業界初・週2回・月6回の早期決済」の趣旨再現", note: "『』候補②。謳い文句の再構成であることをreviewに明記"}
+rejected:
+  - {claim: 2024年1月の役職者3名逮捕・書類送検, reason: 個人の失敗（憲法§2-6）, action: 台本・記事とも不使用。経緯は「信用の問題」（F14のTDB帰属）までで止める}
+  - {claim: 経営者個人名・人物評, reason: 同上, action: 不使用}
+  - {claim: 東和銀行の約80億円回収不能リスク, reason: 特定金融機関の実名×リスク語。本筋（構造）に不要, action: 台本不使用。記事でも銀行名は書かない（「金融機関に大口の貸し倒れリスク」まで）}
+  - {claim: 前身組合の固有名（大阪南飲食事業協同組合）, reason: 本筋に不要な固有名詞, action: 「大阪の飲食店の組合」と一般化}
+  - {claim: 加盟店の個別被害談・自衛策リスト, reason: 番組の目的外（構造の持ち帰りが目的）・煽りになる, action: 影響はF15の水準まで}
+notes: |
+  ・アンカー＝TDB7月報（8/10・4日前）。副トリガ＝破産開始（7/6・39日前→**台本で「先月六日」と時期明示**。7/6は窓外だが、アンカーは8/10の統計公表で窓内）
+  ・density: balanced。数字3系統（余裕2）：
+    ①時期（先月六日・今月十日・十七年ぶり・二〇〇九年・一九八七年・コロナの年）
+    ②倒産統計（1,037件・2ヶ月連続1,000件超・負債の約半分）
+    ③全東信（1,151億円・20万店超※2018年時点・週2回月6回・82億→50億）
+  ・固有名詞2系統：全東信／帝国データバンク
+  ・『』はQ01・Q02。口癖1回・例え話2まで
+  ・T2の構成：前半で儲かる構造を正面から立てる（Q1）→同じ構造が死因になる後半→解剖は「急所の地図」
+  ・トーン：進行中の破産手続。嗤わない・煽らない・悲観で締めない。ED前の持ち帰りは「読み方」で着地

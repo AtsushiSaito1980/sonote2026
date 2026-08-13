@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>止まる日を先に描く｜インフォグラフィック — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep014/infographic.html">← ep014</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep015</span><span class="dlabel">作成</span>2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>止まる日を先に描く</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP08 束ねる</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html" aria-current="page">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
+
+<div class="ig">
+<!-- ep015 インフォグラフィック（手作り・数値は facts.yaml 準拠）。docs/ は build_site.py が包んで出力する -->
+<div class="ig-hero">
+  <div class="kicker">きょうの手</div>
+  <div class="lesson">止まる日を、先に描く。</div>
+  <div class="lead">飲食店のカード売上を「週2回」先に払った決済代行が、負債<strong>1,151億円</strong>で破産。束ねて立て替える商売の急所の地図。</div>
+</div>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19V5m0 14h16"/><path d="M8 16V9m4 7V6m4 10v-4"/></svg></span>数字で見る</h2>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="label">7月の全国倒産</div>
+      <div class="value mid">1,037件</div>
+      <div class="note">2ヶ月連続1,000件超は約17年ぶり（TDB）</div>
+    </div>
+    <div class="stat">
+      <div class="label">全東信の負債（申請時）</div>
+      <div class="value mid">1,151億円</div>
+      <div class="note">今年最大。7月の負債総額の約半分を1社で占めた</div>
+    </div>
+    <div class="stat">
+      <div class="label">加盟店</div>
+      <div class="value mid">20万店超</div>
+      <div class="note">2018年時点。飲食店・小規模店が中心</div>
+    </div>
+    <div class="stat">
+      <div class="label">売りの型</div>
+      <div class="value mid">週2回入金</div>
+      <div class="note">カード会社の入金（数週間後）を待たず立て替え</div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h13"/><path d="m12 8 4 4-4 4"/><path d="M21 5v14"/></svg></span>お金は、こう流れていた</h2>
+  <p class="sec-note">立替の原資は<strong>金融機関からの借入</strong>が中心。他人の売上を、借りた金で先に払う構造。</p>
+  <ol class="seq">
+    <li class="seq-step">
+      <div class="seq-pair"><span class="seq-a">全東信</span><span class="seq-ar">→</span><span class="seq-a">加盟店</span></div>
+      <div class="seq-do">カード売上を<strong>週2回、先に前渡し</strong>（手数料を差し引き）</div>
+    </li>
+    <li class="seq-step">
+      <div class="seq-pair"><span class="seq-a">カード会社</span><span class="seq-ar">→</span><span class="seq-a">全東信</span></div>
+      <div class="seq-do">数週間後に、売上が実入金</div>
+      <div class="seq-note">この時間差を埋めるのが商売。埋めるための現金は借入</div>
+    </li>
+    <li class="seq-step back">
+      <div class="seq-pair"><span class="seq-a">金融機関</span><span class="seq-ar">→</span><span class="seq-a">全東信</span></div>
+      <div class="seq-do">立替原資の融資。<strong>信用が締まると、回転が止まる</strong></div>
+    </li>
+  </ol>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>構造に埋まっていた急所・3つ</h2>
+  <div class="point-cards">
+    <div class="point">
+      <span class="pno">1</span>
+      <h3>伸びるほど現金が要る</h3>
+      <p>他人の売上を自分が先に払う。加盟店が増えるほど、先に出ていく現金が増える。</p>
+    </div>
+    <div class="point">
+      <span class="pno">2</span>
+      <h3>原資は借入＝信用が燃料</h3>
+      <p>立替の元手は金融機関からの借入が中心。自社の信用が締まった日に、商売の燃料が切れる。</p>
+    </div>
+    <div class="point">
+      <span class="pno">3</span>
+      <h3>川上が細っても、返済は細らない</h3>
+      <p>手数料収入は飲食店のカード売上に比例。収入は減らせても、借金の返済は減らない。</p>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4m8-4v4"/></svg></span>止まるまで — 39年の時間</h2>
+  <div class="vtl">
+    <div class="vtl-item dim"><span class="vt">1987年</span>大阪の飲食店の組合として創業（2006年に株式会社化）</div>
+    <div class="vtl-item"><span class="vt">2018年</span>加盟店20万店超に。「業界初の週2回・月6回」の早期決済で拡大</div>
+    <div class="vtl-item"><span class="vt">2020〜21年</span>コロナの時短・休業で飲食店が止まり、収入高は82億円→約50億円に急減</div>
+    <div class="vtl-item dim"><span class="vt">破産前</span>粉飾決算が指摘され、金融機関からの融資調査に発展（TDB7月報の記載）</div>
+    <div class="vtl-item major"><span class="vt">2026年7月6日</span>大阪地裁で破産手続開始決定。負債1,151億円＝今年最大</div>
+    <div class="vtl-item"><span class="vt">2026年8月10日</span>TDB7月報で「7月の負債総額の約半分」と判明</div>
+  </div>
+  <div class="ig-callout">止まった日、<strong>20万店の売上金の通り道も一緒に止まった</strong>。立替済みの売上は破産債権に、入金は数週間サイクルへ逆戻り。</div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span>この急所を、自分の商売で見るなら</h2>
+  <div class="point-cards">
+    <div class="point">
+      <span class="pno">1</span>
+      <h3>止まる日の絵を先に描く</h3>
+      <p>他人のお金が自分を通過する商売は、誰からの入りが止まり、誰への支払いが残るかを図にする。</p>
+    </div>
+    <div class="point">
+      <span class="pno">2</span>
+      <h3>伸び率でなく「何日もつか」</h3>
+      <p>立替・前受で伸びる売上は、借入で伸びる売上と同じ顔。回転が止まった時の日数で測る。</p>
+    </div>
+    <div class="point">
+      <span class="pno">3</span>
+      <h3>通り道の1社を、リスクとして数える</h3>
+      <p>決済や入金を1社に束ねる便利さは、その1社の資金繰りを抱え込むこと（払う側の教訓）。</p>
+    </div>
+  </div>
+</section>
+
+<div class="ig-quote">
+  <div class="q">立替・前受・預り金など、他人のお金が自分を通過する商売をしているなら、それが止まった日に誰への支払いが残るかを図に描く。</div>
+  <div class="steps">
+    <strong>使いどころ</strong>：立替・前受・預り金・代引きを含む商売の設計時。取引先1社に決済を束ねるとき<br>
+    <strong>最初の一歩</strong>：自社の商流で「他人のお金の通り道」をひとつ選び、止まった日の入りと出を一枚の図に描く
+  </div>
+</div>
+
+</div>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
