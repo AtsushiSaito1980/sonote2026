@@ -557,8 +557,8 @@ def ep_header(meta: dict, current: str) -> str:
     return f"""
 <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
 <div class="ep-head">
-  <div class="ep-date"><span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
-  <h1>{esc(meta["ep"])}｜{esc(meta["title"])}</h1>
+  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span><span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <h1>{esc(meta["title"])}</h1>
   <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>
 </div>
 {ep_tabs(meta["ep"], current)}
@@ -576,7 +576,7 @@ def build_script_page(meta, ep_dir):
     shownotes = read(ep_dir / "shownotes.md")
     if not tts:
         body_main = '<p class="empty">script_tts.txt がまだありません。</p>'
-        return page("../", f'{meta["ep"]} 台本 — その手があったか',
+        return page("../", f'{meta["title"]}｜台本 — その手があったか',
                     ep_header(meta, "script") + body_main)
 
     tags = re.findall(r"\[([a-z]+)\]", tts)
@@ -607,7 +607,7 @@ def build_script_page(meta, ep_dir):
 {sn_src}
 <p class="hint">読み上げない元原稿（見出し・演出メモ付き）は <a href="files.html#draft">制作ファイル → 台本ドラフト</a> にあります。</p>
 """
-    return page("../", f'{meta["ep"]} 台本 — その手があったか', body)
+    return page("../", f'{meta["title"]}｜台本 — その手があったか', body)
 
 
 def build_article_page(meta, ep_dir, links=None, titles=None):
@@ -628,7 +628,8 @@ def build_article_page(meta, ep_dir, links=None, titles=None):
                + copy_source("src-title", title)
                + copy_source("src-plain", md_to_plain(body_md))
                + copy_source("src-html", md_to_note_html(body_md)))
-        n_fig = read(ep_dir / "figures.html").count('class="fig"') + n_tbl
+        # 1枚＝1つの data-fig。cover は class="fig cover" なので class 名では数えられない
+        n_fig = read(ep_dir / "figures.html").count('data-fig="') + n_tbl
         fig_link = (f'<a class="copy-btn secondary" href="figures.html">note用の画像（{n_fig}枚）→</a>'
                     if n_fig else "")
         note = ("note のタイトル欄・本文欄にそれぞれ貼る。"
@@ -649,7 +650,7 @@ def build_article_page(meta, ep_dir, links=None, titles=None):
 </article>
 {src}
 """
-    return page("../", f'{meta["ep"]} note記事 — その手があったか', body)
+    return page("../", f'{meta["title"]}｜note記事 — その手があったか', body)
 
 
 def build_figures_page(meta, ep_dir):
@@ -706,7 +707,7 @@ def build_figures_page(meta, ep_dir):
 </div>
 {inner}
 """
-    return page("../", f'{meta["ep"]} note用の画像 — その手があったか', body)
+    return page("../", f'{meta["title"]}｜note用の画像 — その手があったか', body)
 
 
 def facts_section(facts: dict) -> str:
@@ -826,7 +827,7 @@ def build_files_page(meta, ep_dir):
 <nav class="toc">{"".join(toc)}</nav>
 {"".join(sections)}
 """
-    return page("../", f'{meta["ep"]} 制作ファイル — その手があったか', body)
+    return page("../", f'{meta["title"]}｜制作ファイル — その手があったか', body)
 
 
 def auto_infographic(meta, facts: dict) -> str:
@@ -865,7 +866,7 @@ def build_infographic_page(meta, ep_dir):
 {fragment}
 </div>
 """
-    return page("../", f'{meta["ep"]} {meta["title"]} — インフォグラフィック', body)
+    return page("../", f'{meta["title"]}｜インフォグラフィック — その手があったか', body)
 
 
 # ---------------------------------------------------------------- 一覧・台帳
@@ -878,8 +879,8 @@ def build_index(metas, waits):
         assumed = "・推定" if m["assumed"] else ""
         cards.append(f"""
 <article class="ep-card">
-  <div class="ep-date"><span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
-  <h2 class="ep-title"><a href="{m["ep"]}/infographic.html">{esc(m["ep"])}｜{esc(m["title"])}</a></h2>
+  <div class="ep-date"><span class="epid">{esc(m["ep"])}</span><span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <h2 class="ep-title"><a href="{m["ep"]}/infographic.html">{esc(m["title"])}</a></h2>
   <p class="ep-hook">{esc(m.get("hook", ""))}</p>
   <div class="chips">{f'<span class="chip host">{esc(m["host"])}</span>' if m["host"] else ''}{chips}</div>
   <div class="ep-actions">
@@ -1217,6 +1218,8 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .dlabel { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .06em;
   border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; margin-right: 7px;
   vertical-align: 1px; }
+.epid { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .04em;
+  margin-right: 9px; font-variant-numeric: tabular-nums; }
 .ep-title { font-size: 20px; margin: 6px 0 2px; line-height: 1.5; }
 .ep-title a { color: inherit; text-decoration: none; }
 .ep-title a:hover { color: var(--accent); }

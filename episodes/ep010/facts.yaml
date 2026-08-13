@@ -29,10 +29,10 @@ facts:
   # --- 株主・資本 ---
   - {id: F20, who: KOMPEITO, what: 大株主, value: 創業者21.85%・ファンド計約60%, when: 2026-08-12, source_url: "届出書経由（IPOナビ）", confirmed_by: 1, verify: verified, note: "キユーピー3.88%・鈴与2.51%（360日ロック）。台本では社名を出さず「食品メーカー」等。記事は実名可"}
   - {id: F21, who: KOMPEITO, what: 危機時の出資者, value: 食品メーカー5,000万円等, when: 2014〜2015, source_url: "役員note（本人筆）", confirmed_by: 1, verify: dated, note: "キユーピー5,000万＋VC1,500万で難局脱出。同社は現在も株主（F20）。時期明示必須"}
-  # --- 創業と失敗（動機素材・すべて原文到達） ---
+  # --- 創業と初期の事業（動機素材・すべて原文到達） ---
   - {id: F22, who: 創業者, what: 前職, value: コンサル会社で5年半, when: 〜2012, source_url: "社長名鑑／創業手帳", confirmed_by: 2, verify: verified, note: "サプライチェーン領域。農業向けサービス立案チームで販路課題に接した。個人名は台本に出さない"}
   - {id: F23, who: KOMPEITO, what: 創業, value: 2012年9月3日・共同創業, when: 2012-09-03, source_url: "役員note（本人筆）／庶民のIPO", confirmed_by: 2, verify: verified, note: "同期と2人・資本金300万円（各150万円）"}
-  - {id: F24, who: KOMPEITO, what: 最初の事業の失敗, value: 産直EC・約2週間で注文停止, when: 2012〜2013, source_url: "役員note（本人筆）", confirmed_by: 1, verify: dated, note: "サイト制作200万円・創業融資600万円が早々に尽きる。一次（本人筆）。時期明示必須"}
+  - {id: F24, who: KOMPEITO, what: 最初の事業の経過, value: 産直EC・約2週間で注文停止, when: 2012〜2013, source_url: "役員note（本人筆）", confirmed_by: 1, verify: dated, note: "サイト制作200万円・創業融資600万円が早々に尽きる。一次（本人筆）。時期明示必須"}
   - {id: F25, who: KOMPEITO, what: 八百屋の開業と実績, value: 麻布十番・日商1万円前後, when: 2013-02〜, source_url: "役員note（本人筆）／IPOナビ（届出書経由）", confirmed_by: 2, verify: dated, note: "酒屋の一角を間借り。時期明示必須"}
   - {id: F26, who: 創業者, what: 生計の維持, value: 夜のアルバイト掛け持ち, when: 2013頃, source_url: "役員note（本人筆）／創業手帳", confirmed_by: 2, verify: dated, note: "納涼船のビール注ぎ・フットサル審判。売れ残りは夕方知人の会社へ売り歩く"}
   - {id: F27, who: KOMPEITO, what: 転換のきっかけ, value: 知人経営者の助言, when: 2013秋頃, source_url: "創業手帳／役員note／社長名鑑", confirmed_by: 3, verify: verified, note: "Q01参照。2013年秋に原型着想（社長名鑑）"}
