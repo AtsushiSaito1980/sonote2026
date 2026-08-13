@@ -973,16 +973,25 @@ def load_selection() -> dict:
     return out
 
 
-MARK_CLS = {"○": "sc-o", "△": "sc-d", "✗": "sc-x"}
+MARK_CLS = {"○": "sc-o", "△": "sc-d", "✗": "sc-x", "◎": "sc-o"}
 
 
-def score_cell(v: str) -> str:
-    return f'<td class="sc {MARK_CLS.get(v, "")}">{esc(v or "—")}</td>'
+def mark(v: str) -> str:
+    return f'<span class="sc {MARK_CLS.get(v, "")}">{esc(v or "—")}</span>'
+
+
+def num_cell(v) -> str:
+    if v is None:
+        return '<td class="snum">—</td>'
+    cls = "lo" if v < 50 else ("mid" if v < 75 else "hi")
+    return (f'<td class="snum {cls}"><span class="sbar" style="width:{v}%"></span>'
+            f'<b>{v}</b></td>')
 
 
 def build_selection_page(sel, ledger_rows, titles):
-    """選び方のページ。採点表・これまでの採点・いまのばらつきを1枚にまとめる"""
+    """選び方のページ。3つの点数・採点の中身・いまのばらつきを1枚にまとめる"""
     import spread as sp
+    import score as sc
 
     def crit_rows(items):
         rows = []
@@ -998,30 +1007,38 @@ def build_selection_page(sel, ledger_rows, titles):
     intr_tbl = crit_rows(sel["interest"])
     prem = "・".join(esc(p.get("label", "")) for p in sel["premise"])
 
-    ids = [c["id"] for c in sel["interest"]]
-    head = "".join(f"<th>{esc(i)}</th>" for i in ids)
+    scored = sc.score_all()
+    ids = ["Q1", "Q2"] + [c["id"] for c in sel["interest"]]
     body_rows = []
-    for r in ledger_rows:
-        ep = r.get("episode", "")
-        e = sel["entries"].get(ep)
-        if not e:
+    for r in scored:
+        m = r["marks"]
+        if not m:
             continue
-        marks = [e.get(i, "") for i in ids]
-        n_o = marks.count("○")
-        q1, q2 = e.get("Q1", ""), e.get("Q2", "")
-        core_ok = "○" in (q1, q2)
+        ep = r["ep"]
+        n_o = sum(1 for c in sel["interest"] if m.get(c["id"]) == "○")
+        core_ok = "○" in (m.get("Q1"), m.get("Q2"))
         pass_ok = core_ok and n_o >= 3
-        verdict = ('<span class="badge ready">採用の線</span>' if pass_ok
-                   else '<span class="badge stale">基準を割る</span>')
         cls = "" if pass_ok else ' class="miss-row"'
-        cells = "".join(score_cell(m) for m in marks)
+        marks_html = "".join(
+            f'<span class="mk"><i>{esc(k)}</i>{mark(m.get(k, ""))}</span>' for k in ids)
+        tags = "".join(
+            f'<span class="mk"><i>{esc(lab)}</i>{esc(v)}{mark(mk)}</span>'
+            for lab, v, mk in r["variety_detail"])
         body_rows.append(f"""<tr{cls}>
   <td><a href="{esc(ep)}/article.html">{esc(ep)}</a></td>
-  <td class="sc-title">{esc(titles.get(ep) or r.get("title", ""))}</td>
-  {score_cell(q1)}{score_cell(q2)}{cells}
-  <td class="sc-n">{n_o}/5</td><td>{verdict}</td>
+  <td class="sc-title">{esc(titles.get(ep) or r["row"].get("title", ""))}</td>
+  {num_cell(r["interest"])}{num_cell(r["transfer"])}{num_cell(r["variety"])}
+  <td class="sc-n">{esc(r["likes"] or "—")}</td><td class="sc-n">{mark(r["gut"])}</td>
 </tr>
-<tr class="sc-note{'' if pass_ok else ' miss-row'}"><td></td><td colspan="10">{inline(e.get("note",""))}</td></tr>""")
+<tr class="sc-note{'' if pass_ok else ' miss-row'}"><td></td><td colspan="6">
+  <div class="mkline">{marks_html}</div>
+  <div class="mkline">{tags}</div>
+  <div>{inline(r["note"])}</div></td></tr>""")
+
+    avg = {}
+    for key in ("interest", "transfer", "variety"):
+        vals = [r[key] for r in scored if r[key] is not None]
+        avg[key] = round(sum(vals) / len(vals)) if vals else 0
 
     hist = sp.history(ledger_rows)
     seen_hands = sp.all_hands(ledger_rows)
@@ -1036,7 +1053,7 @@ def build_selection_page(sel, ledger_rows, titles):
         recent = [v for _, v in seq[-sp.RECENT_HOT:]]
         chips = []
         for v, n in sorted(counts.items(), key=lambda kv: -kv[1]):
-            cls = "hot" if recent.count(v) >= 2 else ""
+            cls = "hot" if recent.count(v) >= 2 and v not in sp.EMPTY else ""
             chips.append(f'<span class="ax-chip {cls}">{esc(v)}<b>{n}</b></span>')
         cold = sp.cold_values(axis, hist)
         cold_html = ""
@@ -1062,9 +1079,35 @@ def build_selection_page(sel, ledger_rows, titles):
 
     body = f"""
 <div class="ep-head"><h1>ネタの選び方</h1>
-<p class="hint">候補を出すときに、1件ずつここで採点します（<code>ledger/selection.yaml</code>）。
-<strong>核が両方 ✗ なら、点数を見るまでもなく不採用。</strong>面白さは5つのうち ○ 3つ以上で採用。
-ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
+<p class="hint">候補を出すときに1件ずつ採点します（<code>ledger/selection.yaml</code>）。
+<strong>核（Q1・Q2）が両方 ✗ なら、点数を見るまでもなく不採用。</strong>
+点数は <code>scripts/score.py</code>、ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
+
+<section class="sec">
+  <h2>3つの点数</h2>
+  <p class="hint"><strong>足しません。</strong>合計すると、何が良くて何が悪いのかが消えます。低いものがどれかを見ます。</p>
+  <div class="score-legend">
+    <div class="sl"><span class="sl-n">{avg["interest"]}</span><b>面白さ</b>
+      <span>聞きたくなるか</span><code>Q1 Q2 C1 C2 C5</code></div>
+    <div class="sl"><span class="sl-n">{avg["transfer"]}</span><b>応用</b>
+      <span>持ち帰って使えるか</span><code>C3 C4 ＋ 手OP・動機MO・風TW</code></div>
+    <div class="sl"><span class="sl-n">{avg["variety"]}</span><b>ばらつき</b>
+      <span>前と違う回になるか</span><code>7軸の冷え具合</code></div>
+  </div>
+  <p class="hint">数字は平均です。<strong>応用に手・動機・風を入れているのは、この企画の芯が
+  「手と動機と風の組み合わせで、新規事業に移せる形に抽象化すること」だからです。</strong>
+  タグが立たない回はここで点が落ちます。ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
+</section>
+
+<section class="sec">
+  <h2>回ごとの点数</h2>
+  <p class="hint">公開したら <code>selection.yaml</code> に <code>likes</code>（note のいいね数）と
+  <code>gut</code>（自分の手応え）を書き足せます。<strong>点数といいねと手応えがずれていたら、直すのは基準のほうです。</strong></p>
+  <div class="table-scroll"><table class="score-table">
+  <thead><tr><th>回</th><th>タイトル</th><th>面白さ</th><th>応用</th><th>ばらつき</th>
+  <th>いいね</th><th>手応え</th></tr></thead>
+  <tbody>{"".join(body_rows)}</tbody></table></div>
+</section>
 
 <section class="sec">
   <h2>核 — どちらか一方は必ず立つこと</h2>
@@ -1081,17 +1124,10 @@ def build_selection_page(sel, ledger_rows, titles):
 </section>
 
 <section class="sec">
-  <h2>これまでの回の採点</h2>
-  <p class="hint">後から付けた自己採点です。<strong>ここを見て「この基準は甘い／辛い」と言ってもらえると、基準のほうを直せます。</strong></p>
-  <div class="table-scroll"><table class="score-table">
-  <thead><tr><th>回</th><th>タイトル</th><th>Q1</th><th>Q2</th>{head}<th>面白さ</th><th>判定</th></tr></thead>
-  <tbody>{"".join(body_rows)}</tbody></table></div>
-</section>
-
-<section class="sec">
   <h2>いまのばらつき</h2>
   <p class="hint">左から古い順。<span class="ax-chip hot">赤</span>は直近{sp.RECENT_HOT}回に2回以上出ていて避けたい値、
-  <span class="ax-chip cold">青</span>はしばらく出ていない値です。<strong>候補には ◎ を持つネタを最低1件入れます。</strong></p>
+  <span class="ax-chip cold">青</span>はしばらく出ていない値です。<strong>候補には ◎ を持つネタを最低1件入れます。</strong>
+  技術度は、技術に寄せるためではなく<strong>たまに技術の回を入れる</strong>ための軸です。</p>
   {"".join(axis_blocks)}
 </section>
 """
@@ -1542,11 +1578,33 @@ td { border-bottom: 1px solid var(--line); padding: 8px 10px; vertical-align: to
 .sec h2 { font-size: 17px; margin: 0 0 4px; }
 .score-table td, .score-table th { white-space: nowrap; }
 .score-table .sc-title { white-space: normal; min-width: 15em; }
-.sc { text-align: center; font-weight: 700; }
+.sc { font-weight: 700; }
 .sc-o { color: var(--good-text); }
 .sc-d { color: var(--warn); }
 .sc-x { color: var(--crit); }
 .sc-n { text-align: center; font-variant-numeric: tabular-nums; }
+.snum { position: relative; text-align: right; font-variant-numeric: tabular-nums;
+  min-width: 4.5em; padding-bottom: 10px !important; }
+.snum b { font-size: 15px; font-weight: 700; }
+.snum.lo b { color: var(--crit); }
+.snum.mid b { color: var(--ink-2); }
+.snum.hi b { color: var(--good-text); }
+.sbar { position: absolute; left: 8px; bottom: 6px; height: 3px; border-radius: 2px;
+  background: var(--baseline); }
+.snum.hi .sbar { background: var(--good); }
+.snum.lo .sbar { background: var(--crit); }
+.mkline { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 4px; }
+.mk { font-size: 11px; color: var(--ink-2); }
+.mk i { font-style: normal; color: var(--muted); margin-right: 3px; }
+.score-legend { display: grid; gap: 10px; margin: 12px 0;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.sl { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  background: var(--surface); }
+.sl-n { display: block; font-size: 30px; font-weight: 800; line-height: 1.1;
+  font-variant-numeric: tabular-nums; }
+.sl b { display: block; font-size: 14px; margin-top: 2px; }
+.sl span:not(.sl-n) { display: block; font-size: 12px; color: var(--ink-2); }
+.sl code { display: inline-block; margin-top: 6px; font-size: 10.5px; color: var(--muted); }
 .miss-row { background: color-mix(in srgb, var(--crit) 7%, transparent); }
 tr.sc-note td { font-size: 12px; color: var(--ink-2); white-space: normal;
   border-top: 0; padding-top: 0; }
