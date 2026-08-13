@@ -69,6 +69,10 @@ NOTE_FORBIDDEN = ["ラジオ", "放送", "番組", "音声", "リスナー", "�
 METHOD_LEAK = re.compile(r"OP\d{2}|MO\d\b|TW\d\b|トリガ|事実カード|density|巡回棚|"
                          r"ボツネタ|検査レポート|数字の系統|並走句|取材話法|掛け味")
 
+# 他人の事業を値踏みする語。本人・当事者・信頼できる媒体がそう書いていない限り使わない
+VERDICT_WORDS = ["失敗", "破綻", "惨敗", "迷走", "凋落", "落ち目", "失速",
+                 "判断ミス", "見誤", "二番煎じ", "後手に回"]
+
 OK, NG, WARN = "PASS", "FAIL", "確認"
 results = []
 
@@ -266,6 +270,13 @@ def check_article(ep: Path):
     hits = {w: a.count(w) for w in assertive if w in a}
     add(WARN if hits else OK, "断定調の候補",
         f"{hits} → 事実の断定は可。解釈の断定なら開く（〜と読める／〜だろう）" if hits else "なし")
+
+    # 他人の事業への評価の断定。本人・当事者・信頼できる媒体がそう書いていない限り、
+    # こちらの値踏みを事実のように置かない。数字と出来事に置き換えれば済むことが多い
+    vhits = sorted({w for w in VERDICT_WORDS if w in a})
+    add(WARN if vhits else OK, "事業への評価の断定",
+        f"{vhits} → 出典に無い評価なら、事実（数字・出来事）に置き換える" if vhits else "なし")
+
     add(OK if "きょうの手" in a else NG, "きょうの手カード", "あり" if "きょうの手" in a else "なし")
 
     # 教訓一行は「条件＋行動の1文」。形が揃って初めてシリーズの型になる
@@ -340,7 +351,7 @@ def check_figures(ep: Path):
         add(OK if key in names else WARN, label,
             "あり" if key in names else f'data-fig="{key}" が無い')
 
-    n_fig = h.count('class="fig"')
+    n_fig = len(names)  # cover は class="fig cover" なので、数えるのは data-fig の側
     add(OK if h.count("fig-foot") >= n_fig else NG, "誌名フッタ",
         f'{h.count("fig-foot")}/{n_fig} → 単体で流れるので全figに入れる'
         if h.count("fig-foot") < n_fig else "全図にあり")
@@ -353,6 +364,11 @@ def check_figures(ep: Path):
     leaks = sorted(set(METHOD_LEAK.findall(h)))
     add(OK if not leaks else NG, "図版の内部用語",
         f"{leaks} → その回の中身の言葉に言い換える" if leaks else "なし")
+
+    # 図版は1枚で流通する。前後の文脈が付かないぶん、評価の断定はより残りやすい
+    vhits = sorted({w for w in VERDICT_WORDS if w in h})
+    add(WARN if vhits else OK, "図版の評価の断定",
+        f"{vhits} → 出典に無い評価なら、事実（数字・出来事）に置き換える" if vhits else "なし")
 
     bad = [t for t in ("<html", "<head", "<body", "<!DOCTYPE") if t.lower() in h.lower()]
     add(OK if not bad else NG, "図版のフラグメント形式", f"{bad} が混入" if bad else "土台のタグなし")
