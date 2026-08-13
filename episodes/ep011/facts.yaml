@@ -1,0 +1,49 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+# 本回は全カードが帝国データバンク公表ページ本文（一次）に基づく。単独系統だが調査主体の一次発表そのもの
+facts:
+  # --- アンカー ---
+  - {id: F01, who: 帝国データバンク, what: 調査の公表, value: 2026-07-31, when: 2026-07-31, source_url: "TDB公表ページ（一次）", confirmed_by: 1, anchor: true, verify: verified, note: "「食品主要195社」価格改定動向調査―2026年8月。見出しは「飲食料品値上げ 8月は2311品目 前年比8割増に」"}
+  # --- 月別の品目数 ---
+  - {id: F02, who: 食品主要195社, what: 8月の値上げ, value: 2,311品目, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "前年同月1,262品目から8割増。8月単月として集計開始（2022年）に次ぐ過去2番目"}
+  - {id: F03, who: 食品主要195社, what: 7月の値上げ, value: 2,664品目, when: 2026-07, source_url: "同上", confirmed_by: 1, verify: verified, note: "単月2千超は7月・8月で2ヶ月連続。台本では数字を使わず「先月も2千品目超え」の水準感のみ"}
+  - {id: F04, who: 食品主要195社, what: 9月の値上げ見通し, value: 4,531品目, when: 2026-09, source_url: "同上", confirmed_by: 1, verify: verified, note: "単月4千超・2026年内最多。単月として2023年10月（4,758品目）以来の水準。放送日の約2週間後に店頭へ"}
+  - {id: F05, who: 食品主要195社, what: 10月の値上げ見通し, value: 2,720品目, when: 2026-10, source_url: "同上", confirmed_by: 1, verify: verified, note: "前年10月に続き単月3千超の見通し"}
+  - {id: F06, who: 食品主要195社, what: 平均値上げ率, value: 月平均15%, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "1回あたり。値上げ率は発表時の最大値を採用（F19）"}
+  # --- 通年 ---
+  - {id: F07, who: 食品主要195社, what: 通年累計, value: 18,347品目, when: 2026-01〜11判明分, source_url: "同上", confirmed_by: 1, verify: verified}
+  - {id: F08, who: 食品主要195社, what: 前年との比較, value: 前年20,609品目, when: 2025通年, source_url: "同上", confirmed_by: 1, verify: verified, note: "2022年の調査開始以降5年連続で年間1万品目超え見込み。2026年は「前年並みの2万品目台」の見込みで前年超えの可能性"}
+  # --- 分野別 ---
+  - {id: F09, who: 食品主要195社, what: 8月の分野別内訳, value: 加工食品1,419ほか, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "加工食品1,419（ハム・ソーセージ、カップ麺、缶詰、鏡餅製品。前年同月188の約7倍）／調味料589（だし製品）／原材料276（ゴマ・小麦粉・砂糖）。台本は生数字を使わず品名で"}
+  - {id: F10, who: 食品主要195社, what: 通年の分野別内訳, value: 加工食品6,667ほか, when: 2026通年, source_url: "同上", confirmed_by: 1, verify: verified, note: "加工食品6,667（冷凍食品・パック米飯。前年4,791の約4割増）／調味料5,197／酒類・飲料3,274／菓子1,219（包装コスト高が背景）。記事データ向き"}
+  - {id: F11, who: 食品主要195社, what: 鏡餅の値上げ時期, value: 8月に値上げ対象, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "正月商品の値段が夏に動く。具体の芯として台本で使用"}
+  # --- 要因 ---
+  - {id: F12, who: TDB調査, what: 要因・原材料高, value: 90.9%, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "全要因で最多。ただし3月以降は低下傾向で推移"}
+  - {id: F13, who: TDB調査, what: 要因・物流費, value: 65.8%, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "中東情勢の悪化による原油高などの影響"}
+  - {id: F14, who: TDB調査, what: 要因・包装資材, value: 64.0%, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "トレー・容器などナフサ由来の資材価格高騰。高水準の推移が続く"}
+  - {id: F15, who: TDB調査, what: 要因・中東情勢, value: 27.8%, when: 2026-08, source_url: "同上", confirmed_by: 1, verify: verified, note: "中東発の国際情勢の混乱が要因の値上げ。「全体の約3割」とTDBが表現"}
+  # --- 背景・見通し ---
+  - {id: F16, who: TDB調査, what: 波及の経路, value: 原油ナフサ→包材・物流, when: 2026, source_url: "同上", confirmed_by: 1, verify: verified, note: "ホルムズ海峡の混乱→国内の石油製品の供給不安→インク・食品フィルム・トレー類の値上げ・品薄"}
+  - {id: F17, who: TDB調査, what: 為替の記述, value: 1ドル160円超, when: 2026, source_url: "同上", confirmed_by: 1, verify: verified, note: "「歴史的な円安」で輸入コスト上昇が再び影響する兆し、とTDB。台本では系統節約のため「歴史的な円安」と言葉で"}
+  - {id: F18, who: TDB調査, what: 今後の見通し, value: 今秋ピーク, when: 2026後半, source_url: "同上", confirmed_by: 1, verify: verified, note: "「中東発」値上げラッシュは今秋にピーク。2026年後半も断続的な値上げが継続の見込み。異常気象による不作・生育不良の懸念も"}
+  # --- 数え方 ---
+  - {id: F19, who: TDB調査, what: 品目数の数え方, value: 複数回は別カウント等, when: 定義, source_url: "同上", confirmed_by: 1, verify: verified, note: "①年内に複数回値上げした品目は別品目としてカウント ②値上げ率は発表時の最大値 ③価格据え置き・内容量減の「実質値上げ」も含む。数字回はこの数え方を必ず言う"}
+quotes:
+  - {id: Q01, speaker: 調査（帝国データバンク）, gist: "中東発の値上げラッシュは、ことしの秋にピークを迎える見通し", source_url: "TDB公表ページ本文", note: "見通し文の趣旨再現。『』候補"}
+  - {id: Q02, speaker: 調査の注記, gist: "値段を据え置いて中身を減らす実質値上げも、数に含めている", source_url: "同上", note: "数え方の透明性。『』候補"}
+rejected:
+  - {claim: 食品の消費税率8%→1%引き下げ方針とその効果, reason: 政治的な賛否が主題になる（config/ng.yml）, action: 台本不使用。noteで扱う場合もTDB分析の伝聞1行まで（「主因が粘着質なコストのため抑制効果は限定的の可能性」）}
+  - {claim: 値上げ要因としての「人件費」の比率, reason: 本調査の本文に%の記載がない（「粘着質なコスト」の列挙に登場するのみ）, action: 要因の数字としては使わない}
+  - {claim: 民間まとめサイトの品目数（8月2,311・9月4,531ほか）, reason: TDB一次で全て代替済み, action: 出典はTDBに一本化}
+notes: |
+  ・アンカー＝2026-07-31公表（制作日の13日前・窓内）。9月実施分は放送想定日の約2週間後＝「これから来る山」として語れる
+  ・density: dense（数字6系統・固有名詞7・facts8点以上・例え話1・並走句2まで・同義の言い直し禁止）
+  ・数字系統の設計（5系統で設計・余裕1）：
+    ①月別の品目数（4,531／2,311／1,262→8割増／4,758／2,720）②通年（18,347／20,609／5年連続・2万品目台）
+    ③要因%（90.9／65.8／64.0／27.8）④平均値上げ率15% ⑤時期（先月末・九月・三年前の十月 等）
+    → 7月2,664・分野別生数字・約7倍・2022年比較は言葉に落とすか記事へ
+  ・固有名詞：帝国データバンク（調査名込み1系統）のみ。中東・ホルムズ海峡は地名扱いだが台本では「中東で続く緊張」の水準に留め、国名は列挙しない
+  ・時期明示：2023年10月＝「三年前の十月」、2025年通年＝「去年」、公表＝「先月末」
+  ・『』はQ01・Q02から最大2。口癖1回・教訓一行・宿題は共通ルールどおり必須
+  ・「原材料高90.9%が最多」を必ず言った上で、「押し上げの主役」が包材・物流・中東由来という因果をTDBの記述どおりに運ぶ（言い過ぎない）

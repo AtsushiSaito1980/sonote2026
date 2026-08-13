@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>理由の欄から読む｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep010/files.html">← ep010</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep011</span><span class="dlabel">作成</span>2026-08-13（木）　<span class="badge review">レビュー中</span></div>
+  <h1>理由の欄から読む</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip none">動機＝なし</span><span class="chip none">風＝なし</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep011</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T4</td></tr><tr><th>型</th><td>型1 一本深掘り型（T4数字回アレンジ）</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>dense</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> 帝国データバンク「飲食料品値上げ 8月は2311品目 前年比8割増に」を公表。9月は4,531品目で年内最多の見通し<br><span class='k'>published</span> 2026-07-31<br><span class='k'>source_url</span> sources/collected.md（TDB公表ページ本文・一次資料）</td></tr><tr><th>副トリガ</th><td>9月実施分4,531品目は、放送想定日（8/19頃）の約2週間後に店頭へ来る山。単月として2023年10月（4,758品目）以来</td></tr><tr><th>題材</th><td>帝国データバンク「食品主要195社」価格改定動向調査（2026年8月版）</td></tr><tr><th>手</th><td><span class="muted">—</span></td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>none</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>値上げ通知は、理由の欄で、中身と包みと運び賃に分けて読む</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep009</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep011
+host: tokura                # 日替わり交互（前日ep010=三崎）
+episode_type: T4            # 数字回（シリーズ初）。統計の中の物語
+format: 型1 一本深掘り型（T4数字回アレンジ）
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: dense              # §4-7「情報主体。速報・数字回向け」＝数字6系統・固有名詞7・facts8点以上・例え話1・並走句2まで（同義の言い直し禁止）
+anchor:                     # トリガ情報（制作日2026-08-13から13日前）
+  headline: &quot;帝国データバンク「飲食料品値上げ 8月は2311品目 前年比8割増に」を公表。9月は4,531品目で年内最多の見通し&quot;
+  published: 2026-07-31
+  source_url: &quot;sources/collected.md（TDB公表ページ本文・一次資料）&quot;
+sub_triggers:
+  - &quot;9月実施分4,531品目は、放送想定日（8/19頃）の約2週間後に店頭へ来る山。単月として2023年10月（4,758品目）以来&quot;
+case_name: &quot;帝国データバンク「食品主要195社」価格改定動向調査（2026年8月版）&quot;
+operation_tags: []          # T4は手を名指ししない（docs/plan.md 編成表の先例で T4 の手は「—」）。
+                            # 教訓は統計の読み方（理由の欄の分解）で立てる。14手の地図は温存
+motive_tag: none
+tailwind_tag: none          # 中東情勢・円安・異常気象は風5タグの外。TDBの記述の範囲で事実として扱い、国際政治の評価はしない
+hook: &quot;&quot;                    # write-outlineで起こす。冒頭数字は4,531（ep009の「95.5%」と入りが同型にならないよう変化をつける）
+lesson_draft: &quot;値上げ通知は、理由の欄で、中身と包みと運び賃に分けて読む&quot;   # 仮。write-outlineで確定
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;              # T4のため不要（動機回でない）
+prev_episode_ref: &quot;ep009&quot;   # 戸倉の前回。「まず、数字。これ、何だと思います？」の入りを2回連続にしない工夫を台本で
+notes: |
+  ・数値はすべてTDB一次（公表ページ本文）。単独ソースだが調査主体の一次発表そのもの。
+    ページ末尾PDF（グラフ版）の目視突合を人間裏取りとする。
+  ・数え方の注記（複数回値上げは別品目カウント／値上げ率は発表時の最大値／実質値上げ含む）を
+    台本か記事のどちらかで必ず言う。数字回は数字の作られ方まで見せる。
+  ・消費税8%→1%方針は台本不使用（政治的賛否が主題・config/ng.yml）。noteはTDB分析の伝聞1行まで。
+  ・数字系統の設計（denseの上限6に対し5で設計し余裕1を残す）：
+    ①月別の品目数（4,531／2,311／前年同月1,262＝8割増／2023年10月の4,758／10月2,720）
+    ②通年（18,347／前年20,609／5年連続1万超／2万品目台）
+    ③要因の内訳%（90.9／65.8／64.0／27.8）
+    ④平均値上げ率15%
+    ⑤時期（先月末の公表・九月・ことし 等）
+    → 7月2,664・分野別の生数字（1,419等）・約7倍・2022年比較は台本では言葉に落とすか捨てる。正確値はnoteへ
+  ・固有名詞：帝国データバンク（調査名込みで1系統）。中東・ホルムズ海峡・イラン等は地名扱いで系統外だが、
+    台本では「中東で続く緊張」の水準に留め、国名の列挙はしない
+  ・具体の芯：**鏡餅製品が8月に値上げ**（正月の棚の値段は夏に決まる＝値上げは半年先の棚から始まる）。
+    トレー・フィルム・インク（包み）と物流費（運び賃）が品目数を押し上げた、というTDB自身の説明が物語の背骨
+  ・聞き手（新規事業担当）への転換：値上げは「業界のコスト構造が公開される瞬間」。
+    自社に届く値上げ通知の理由欄を、材料／包み・運び賃／人件費に分けて読むと、どのコストが動いているかが見える
+  ・「原材料高90.9%が最多」を隠さない。押し上げの「増分」が包材・物流・中東由来という因果はTDBの記述に忠実に
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>帝国データバンク</td><td>調査の公表</td><td class="fact-val">2026-07-31</td><td>2026-07-31</td><td class="src">TDB公表ページ（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F02</span></td><td>食品主要195社</td><td>8月の値上げ</td><td class="fact-val">2,311品目</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>食品主要195社</td><td>7月の値上げ</td><td class="fact-val">2,664品目</td><td>2026-07</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>食品主要195社</td><td>9月の値上げ見通し</td><td class="fact-val">4,531品目</td><td>2026-09</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>食品主要195社</td><td>10月の値上げ見通し</td><td class="fact-val">2,720品目</td><td>2026-10</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F06</span></td><td>食品主要195社</td><td>平均値上げ率</td><td class="fact-val">月平均15%</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>食品主要195社</td><td>通年累計</td><td class="fact-val">18,347品目</td><td>2026-01〜11判明分</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>食品主要195社</td><td>前年との比較</td><td class="fact-val">前年20,609品目</td><td>2025通年</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>食品主要195社</td><td>8月の分野別内訳</td><td class="fact-val">加工食品1,419ほか</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>食品主要195社</td><td>通年の分野別内訳</td><td class="fact-val">加工食品6,667ほか</td><td>2026通年</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F11</span></td><td>食品主要195社</td><td>鏡餅の値上げ時期</td><td class="fact-val">8月に値上げ対象</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F12</span></td><td>TDB調査</td><td>要因・原材料高</td><td class="fact-val">90.9%</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F13</span></td><td>TDB調査</td><td>要因・物流費</td><td class="fact-val">65.8%</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F14</span></td><td>TDB調査</td><td>要因・包装資材</td><td class="fact-val">64.0%</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F15</span></td><td>TDB調査</td><td>要因・中東情勢</td><td class="fact-val">27.8%</td><td>2026-08</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F16</span></td><td>TDB調査</td><td>波及の経路</td><td class="fact-val">原油ナフサ→包材・物流</td><td>2026</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F17</span></td><td>TDB調査</td><td>為替の記述</td><td class="fact-val">1ドル160円超</td><td>2026</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F18</span></td><td>TDB調査</td><td>今後の見通し</td><td class="fact-val">今秋ピーク</td><td>2026後半</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F19</span></td><td>TDB調査</td><td>品目数の数え方</td><td class="fact-val">複数回は別カウント等</td><td>定義</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>調査（帝国データバンク）</strong>「中東発の値上げラッシュは、ことしの秋にピークを迎える見通し」<span class="src-note">TDB公表ページ本文／見通し文の趣旨再現。『』候補</span></li><li><span class="fid">Q02</span> <strong>調査の注記</strong>「値段を据え置いて中身を減らす実質値上げも、数に含めている」<span class="src-note">同上／数え方の透明性。『』候補</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>食品の消費税率8%→1%引き下げ方針とその効果</strong><br>理由：政治的な賛否が主題になる（config/ng.yml）<br>処置：台本不使用。noteで扱う場合もTDB分析の伝聞1行まで（「主因が粘着質なコストのため抑制効果は限定的の可能性」）</li><li><strong>値上げ要因としての「人件費」の比率</strong><br>理由：本調査の本文に%の記載がない（「粘着質なコスト」の列挙に登場するのみ）<br>処置：要因の数字としては使わない</li><li><strong>民間まとめサイトの品目数（8月2,311・9月4,531ほか）</strong><br>理由：TDB一次で全て代替済み<br>処置：出典はTDBに一本化</li></ul><div class="ig-callout pre-line">・アンカー＝2026-07-31公表（制作日の13日前・窓内）。9月実施分は放送想定日の約2週間後＝「これから来る山」として語れる
+・density: dense（数字6系統・固有名詞7・facts8点以上・例え話1・並走句2まで・同義の言い直し禁止）
+・数字系統の設計（5系統で設計・余裕1）：
+①月別の品目数（4,531／2,311／1,262→8割増／4,758／2,720）②通年（18,347／20,609／5年連続・2万品目台）
+③要因%（90.9／65.8／64.0／27.8）④平均値上げ率15% ⑤時期（先月末・九月・三年前の十月 等）
+→ 7月2,664・分野別生数字・約7倍・2022年比較は言葉に落とすか記事へ
+・固有名詞：帝国データバンク（調査名込み1系統）のみ。中東・ホルムズ海峡は地名扱いだが台本では「中東で続く緊張」の水準に留め、国名は列挙しない
+・時期明示：2023年10月＝「三年前の十月」、2025年通年＝「去年」、公表＝「先月末」
+・『』はQ01・Q02から最大2。口癖1回・教訓一行・宿題は共通ルールどおり必須
+・「原材料高90.9%が最多」を必ず言った上で、「押し上げの主役」が包材・物流・中東由来という因果をTDBの記述どおりに運ぶ（言い過ぎない）</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep011 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-13／対象：script_draft.md（1,704字）／check.py 実行済み／<strong>シリーズ初のT4数字回・初のdense运用は ep002 以来2本目</strong></p>
+<h2>機械判定（check.py）</h2>
+<div class="table-scroll"><table><thead><tr><th>項目</th><th>結果</th></tr></thead><tbody><tr><td>本文文字数</td><td><strong>OK</strong> 1,704（規定 1,700〜2,000。初稿1,548→未消化facts（F10・F18）充当で回復。水増し句は不使用）</td></tr><tr><td>OP/ED定型・『』2箇所・口癖1回・三点リーダー0・「香月」0</td><td>すべて OK</td></tr><tr><td>並走句・自問自答</td><td>OK 0回（dense上限2）</td></tr><tr><td>取材話法</td><td>OK 伝聞8回・調べる/聞く1回</td></tr><tr><td>キメ台詞候補</td><td>「いちばん」1件検出 → 分野別最多の事実の平叙。キメでない（下記）</td></tr><tr><td>infographic.html / figures.html</td><td>NG（後工程で作成）</td></tr></tbody></table></div>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>数字系統：5系統 → PASS（dense上限6・余裕1）</h3>
+<ol><li><strong>月別の品目数</strong>：四千五百三十一／四千（超）／二千三百十一／八割（増）／三千（超・10月）<ul><li>定義部として同系統に含める：「二回上がれば二品目」「量を減らすのも一品目」（数え方の説明に用いる数）</li></ul></li><li><strong>通年</strong>：一万八千あまり／二万（超）／一万（品目超え）／十一（月までの判明分）</li><li><strong>要因の比率</strong>：ほぼ九割／六割五分／六割四分／約三割</li><li><strong>平均値上げ率</strong>：十五パーセント</li><li><strong>時期</strong>：先月末／八月・九月・十月／三年前の十月／去年</li><li>対象外：三つ・一本・ひとつ（列挙の談話標識）</li><li><strong>規約（新設）</strong>：統計の「数え方の定義」を説明するための数（二回・二品目・一品目）は、その統計の系統の定義部として扱い、独立系統に数えない</li></ol>
+<h3>固有名詞：1系統 → PASS（dense上限7）</h3>
+<p>帝国データバンク（調査名込み）。中東は地名で対象外、国名は台本に出さない方針を遵守（「中東で続く緊張」の水準）。ナフサ・トレー・フィルム・インク・鏡餅・カップ麺・パック米飯等は一般名詞。</p>
+<h3>キメ台詞：なし → PASS</h3>
+<ul><li>「いちばん多いのは加工食品で〜」＝順位の事実の平叙</li><li>「中身の値段の話だと思って聞いていると、実は、包みと運び賃の話をしている」＝要因データの言い直し（解説）。対句の警句化はしていないが、<strong>もっとも際どい一文</strong>として記録。人間レビューで削る場合は「動いているのは、材料の行より資材と運賃の行、ということです」に差し替え可</li><li>「ここにも、包みなんです」＝直前の調査記述（菓子の包装コスト）の指示。平叙</li></ul>
+<h3>例え話：1回 → PASS（dense上限1）</h3>
+<p>「天気予報みたいなものです」（統計の先行公表性の翻訳）のみ。</p>
+<h3>T4数字回としての要件（初適用・規約を残す）</h3>
+<ul><li><strong>数字の作られ方を見せる</strong>：数え方の注記（複数回カウント・実質値上げ含む・率は発表時最大値のうち前2者）を展開1で開示 ✓</li><li><strong>手を名指ししない</strong>：編成表の先例（T4の手は「—」）どおり。ED「きょうの手は、理由の欄から読む」は統計の読み方であり14手の地図の外 ✓</li><li>見通し（9月4,531・10月2,720・秋ピーク）は「調査の見立て」として帰属を明示 ✓</li></ul>
+<h3>トリガ鮮度 → PASS</h3>
+<p>anchor＝2026-07-31公表（制作日の13日前）。過去参照は「三年前の十月」「去年」で時期明示。<br><strong>注意（air_date依存）</strong>：台本の「今月、八月の」「来月、九月に」は<strong>8月中の放送を前提</strong>。放送が9月にずれる場合はこの2箇所の差し替えが必要（review指示として記録）。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（値上げ統計・帝国データバンク調査）は過去回に無し。bl005由来だが status: used 処理済み</li><li>T4は初のため型の重複なし。手のタグなしはT4仕様。業界（食品・日用品の統計）は直近5回の主要業界と非連続</li><li>ホスト交互（ep010三崎→ep011戸倉）✓。<strong>上場系トリガ回避の勧告を遵守</strong> ✓</li><li>ep009（戸倉・数字コールドオープン）との入りの同型化 → 「これ、何の数字だと思います？」を使わず断定置き（「単位は、品目です」）に変奏済み ✓</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td>全数値（4,531・2,311・8割増・18,347・20,609・15%・90.9/65.8/64.0/27.8 ほか）</td><td>TDB公表ページ本文（一次）そのもの。<strong>ページ末尾PDF（グラフ版）との目視突合を推奨</strong></td></tr><tr><td>「2023年10月：4,758品目」「2025年通年：20,609品目」</td><td>TDB本文内の記載。過去リリースとの突合は任意</td></tr><tr><td>消費税8%→1%方針</td><td><strong>台本不使用を確認</strong>（config/ng.yml「政治的な賛否が主題」回避）。noteでもTDB分析の伝聞1行まで</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>鏡餅</strong>（かがみもち） 2. <strong>ナフサ</strong> 3. <strong>延べ</strong>（のべ） 4. <strong>農水産</strong>（のうすいさん）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。<br>infographic.html / figures.html の NG は後工程で解消する。</p>
+<hr>
+<h1>追記：全成果物の最終検査（2026-08-13）</h1>
+<p>check.py 最終実行：<strong>機械判定はすべて PASS</strong>（台本1,704字／TTS稿タグ5個／記事1,461字・3章・表3列以内／infographic 6セクション・図7種・1,064字／figures 3枚）。</p>
+<h2>要判断5件の確認</h2>
+<ol><li><strong>トリガ公開日</strong>：2026-07-31 は制作日（08-13）の13日前 → 窓内 PASS</li><li><strong>事実カード消化</strong>：台本で F01〜F19 のうち18枚＋Q01・Q02 を消化 → dense の「8点以上」を満たす PASS</li><li><strong>数字系統</strong>：前段のとおり5系統（月別品目数／通年／要因%／値上げ率／時期）。定義部・談話標識の規約も前段に記載 PASS</li><li><strong>キメ台詞候補「いちばん」</strong>：分野別最多の事実の平叙 → キメでない PASS</li><li><strong>台帳照合</strong>：題材・型・業界の重複なし。上場系トリガ回避の勧告を遵守。ホスト交互 ✓ PASS</li></ol>
+<h2>図版・記事の判断</h2>
+<ul><li>図版の数値はすべて facts.yaml 対応（4,531=F04／2,311・8割=F02／15%=F06／1万8,347=F07／2万609=F08／90.9〜27.8=F12〜F15／2,664=F03／2,720=F05／鏡餅=F11）。<strong>9月・10月は「見通し」ラベルを図内に明記</strong></li><li>記事の消費税言及はTDB分析の伝聞1行に留めた（賛否は書かない・ng.yml遵守）</li><li>タイトル型：疑問形→疑問形→するまで→結果提示→<strong>名詞句</strong>。5本連続で型が異なる状態 PASS</li><li>中東経路の記述（米・イスラエル・イラン）は記事のみ・TDB本文の転記範囲。台本は「中東で続く緊張」まで PASS</li></ul>
+<h2>総合判定</h2>
+<p><strong>ep011 全成果物 PASS。</strong> 残るは人間の必須作業（PDF目視突合・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep011 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜理由の欄から読む</h2>
+<h3>ホスト：戸倉ハジメ／T4数字回（型1アレンジ）／5分／density: dense</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>四千五百三十一。単位は、品目です。来月、九月に値上げされる食べものと飲みものの数。先月末に、信用調査会社の帝国データバンクが出した調査にありました。単月で四千を超えるのはことし最多、三年前の十月以来の水準だそうです。値上げのニュース自体は、毎月聞きますよね。きょうは品目の数じゃなくて、その隣の、理由の欄を読みます。読むと、景色が少し変わるんです。</p>
+<p>先に、数字の重さを確かめておきます。今月、八月の値上げも二千三百十一品目で、去年の同じ月から八割増えました。ことしは十一月までの判明分で一万八千品目あまり。去年は一年で二万品目を超えていて、調査が始まってから五年連続で、一万品目を超え続けているそうです。ただ、この数字には数え方の注意書きがあります。同じ商品が年に二回上がれば、二品目と数える。それから、『値段を据え置いて、中身を減らす。そういう実質値上げも、数に含めている』とのことでした。つまり、棚の値段が動いた延べの回数です。一回あたりの上げ幅は、平均で十五パーセントだそうです。</p>
+<p>で、本題の理由の欄です。調べてみたら、要因の一番手はやっぱり原材料の高さで、値上げした品目のほぼ九割に付いています。ただ、これはいつもの理由で、しかも春から少しずつ下がり気味だそうです。代わりに高止まりしているのが、物流費の六割五分と、包装・資材の六割四分。中東で続く緊張で原油とナフサが上がり、トレー、フィルム、インク。食べものを包んで運ぶ側の値段が上がって、品薄まで起きている。中東の情勢が要因に入った値上げは、全体の約三割にのぼるそうです。歴史的な円安も、輸入の値段を押し上げている。銀行にいたころの言い方に直すと、こうです。仕入れの明細で動いているのは、材料の行というより、その下の、資材と運賃の行。中身の値段の話だと思って聞いていると、実は、包みと運び賃の話をしている。</p>
+<p>八月のリストの中身も見ました。多いのは、ハムやソーセージ、カップ麺、缶詰。それと、鏡餅です。真夏に、正月の鏡餅の値段が動く。私、正月の商品の値段が夏のうちから動き始めるとは、知りませんでした。年末の棚の準備は、もう始まっているんですね。年間の番付で見ると、いちばん多いのは加工食品で、冷凍食品やパック米飯。ビール系や焼酎などの酒に、コーヒーも並びます。お菓子も入っていて、こちらは材料に加えて、包みのコストの高さが背景だと、調査がわざわざ書いています。ここにも、包みなんです。そして九月の山のあとも、十月が三千品目を超える見通し。調査は『中東発の値上げの山は、ことしの秋がピーク』という見立てを出していて、異常気象による農水産や畜産の不作も、心配ごとに挙がっていました。</p>
+<p>ここから、商売の解剖です。きょうは手というより、数字の読み方を三つ。</p>
+<p>一、品目数を見たら、先に数え方を確かめる。二回目の値上げも一品目、量を減らすのも一品目。数字の作られ方を知ってから、驚くかどうかを決める。</p>
+<p>二、理由の欄を、中身と、包みと運び賃に分けて読む。材料が理由なら、産地や配合の話になる。包みと運び賃が理由なら、容器や運び方の話になる。困りごとが違えば、売り込みに行く相手も変わります。</p>
+<p>三、山には日付がある。九月の山も、十月の続きも、規模と時期が先に公表されている。天気予報みたいなものです。自分の業界の来月が載っている統計を、一本でいいので持っておく。</p>
+<p>ここだけ持って帰ってください。取引先から届く値上げの通知は、ふだん見えない相手のコスト構造が、外から見える数少ない書類です。金額だけ見て畳まずに、理由の欄まで読む。</p>
+<p>今週の宿題です。この半年で受け取った、あるいは自分が出した値上げの通知をひとつ選んで、理由を、材料、包みと運び賃、それ以外に、仕分けしてみてください。</p>
+<p>きょうの手は、理由の欄から読む、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第11回｜理由の欄から読む</p>
+<p>九月に値上げされる食べものと飲みものは、四千五百三十一品目。ことし最多の山です。先月末に出た調査で、品目数の隣にある「理由の欄」を読むと、動いているのは材料費というより、トレーやフィルムといった包みと、運び賃のほうでした。真夏に鏡餅の値段が動く理由、数字の数え方の注意書きまで含めて、値上げの統計を一枚ずつ割っていきます。</p>
+<p>▼ きっかけになったニュース<br>・帝国データバンク「食品主要195社」価格改定動向調査 ― 2026年8月（2026/7/31公表）<br>・8月の値上げ2,311品目（前年同月比8割増）、9月は4,531品目で年内最多の見通し</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・同調査の値上げ要因集計：原材料高90.9%・物流費65.8%・包装資材64.0%・中東情勢27.8%<br>・同調査の通年集計：2026年1〜11月判明分1万8,347品目・2025年通年2万609品目<br>・数え方の注記：複数回値上げは別品目カウント／価格据え置き・内容量減の「実質値上げ」を含む</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第11回｜理由の欄から読む
+
+九月に値上げされる食べものと飲みものは、四千五百三十一品目。ことし最多の山です。先月末に出た調査で、品目数の隣にある「理由の欄」を読むと、動いているのは材料費というより、トレーやフィルムといった包みと、運び賃のほうでした。真夏に鏡餅の値段が動く理由、数字の数え方の注意書きまで含めて、値上げの統計を一枚ずつ割っていきます。
+
+▼ きっかけになったニュース
+・帝国データバンク「食品主要195社」価格改定動向調査 ― 2026年8月（2026/7/31公表）
+・8月の値上げ2,311品目（前年同月比8割増）、9月は4,531品目で年内最多の見通し
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・同調査の値上げ要因集計：原材料高90.9%・物流費65.8%・包装資材64.0%・中東情勢27.8%
+・同調査の通年集計：2026年1〜11月判明分1万8,347品目・2025年通年2万609品目
+・数え方の注記：複数回値上げは別品目カウント／価格据え置き・内容量減の「実質値上げ」を含む
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
