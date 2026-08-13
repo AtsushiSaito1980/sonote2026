@@ -177,6 +177,34 @@ def check_article(ep: Path):
     add(WARN if len(h1) > 45 else OK, "タイトルの長さ",
         f"{len(h1)}字 → 一覧で切れる。45字以内を目安に" if len(h1) > 45 else f"{len(h1)}字")
 
+    # AIの断りは、読み始める前に伝わる位置（署名跡＝きっかけ欄の前）に置く
+    ai_ok = "本稿は生成AIを活用して制作しています" in a
+    head = a.split("---", 1)[0]
+    add(NG if not ai_ok else (OK if "生成AI" in head else WARN), "AIの断り",
+        "なし → 冒頭に置く" if not ai_ok
+        else ("冒頭にあり" if "生成AI" in head else "本文中にある → 冒頭へ移す"))
+    add(OK if "各社の商標です" in a else WARN, "奥付",
+        "あり" if "各社の商標です" in a else "なし → 固定文言を置く")
+
+    # タイトルの型。マガジンに並ぶので、同じ語尾が3本続いたら変える
+    m_t = re.search(r"^#\s+(.+?)\s*$", a, re.M)
+    if m_t:
+        eps = sorted(d for d in ep.parent.glob("ep*") if (d / "article.md").exists())
+        names = [d.name for d in eps]
+        if ep.name in names:
+            i = names.index(ep.name)
+            prev = []
+            for d in eps[max(0, i - 2):i]:
+                mm = re.search(r"^#\s+(.+?)\s*$",
+                               (d / "article.md").read_text(encoding="utf-8"), re.M)
+                if mm:
+                    prev.append(mm.group(1).strip())
+            tail = m_t.group(1).strip()[-4:]
+            same = [t for t in prev if t.endswith(tail)]
+            add(WARN if len(same) >= 2 else OK, "タイトルの型",
+                f"語尾「{tail}」が3本続く → 疑問形・結果提示・名詞句に振る"
+                if len(same) >= 2 else f"語尾「{tail}」（直近2本との重複 {len(same)}）")
+
     # 長さと章数。note は通勤の片手間に読まれるので、伸びたら削る合図にする
     lines = a.splitlines()
     seps = [i for i, l in enumerate(lines) if l.strip() == "---"]
@@ -300,7 +328,8 @@ def check_figures(ep: Path):
     """note に貼る図版。1枚が単体で流通するので、出典と誌名まで入っているかを見る"""
     p = ep / "figures.html"
     if not p.exists():
-        add(WARN, "figures.html", "未作成（note に貼る画像が無い状態）")
+        add(NG, "figures.html",
+            "未作成 → note へ持っていく画像が1枚も無い状態。write-figures で作る")
         return
     h = p.read_text(encoding="utf-8")
     names = re.findall(r'data-fig="([^"]+)"', h)
