@@ -522,6 +522,7 @@ def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
 <header class="site">
   <div class="brand"><a href="{rel}index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
   <div class="site-nav">
+    <a href="{rel}selection.html" class="nav-link{' on' if active_nav == 'selection' else ''}">選び方</a>
     <a href="{rel}backlog.html" class="nav-link{' on' if active_nav == 'backlog' else ''}">ボツネタ棚</a>
     <a href="{rel}ledger.html" class="nav-link{' on' if active_nav == 'ledger' else ''}">台帳</a>
     <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
@@ -943,6 +944,160 @@ def build_ledger_page(rows, header):
     return page("", "台帳 — その手があったか", body, active_nav="ledger")
 
 
+def load_selection() -> dict:
+    """ledger/selection.yaml → {'core':[…], 'interest':[…], 'premise':[…], 'entries':{ep:…}}"""
+    text = read(ROOT / "ledger" / "selection.yaml")
+    out = {"core": [], "interest": [], "premise": [], "entries": {}}
+    section = None
+    item = None
+    for raw in text.splitlines():
+        if re.match(r"^[a-z_]+:\s*(#.*)?$", raw):
+            section = raw.split(":")[0]
+            item = None
+            continue
+        if section in ("core", "interest", "premise"):
+            m = re.match(r"^\s*-\s+(\w+):\s*(.*)$", raw)
+            if m:
+                item = {m.group(1): m.group(2).strip()}
+                out[section].append(item)
+                continue
+            m = re.match(r"^\s+(\w+):\s*(.*)$", raw)
+            if m and item is not None:
+                item[m.group(1)] = m.group(2).strip()
+        elif section == "entries":
+            m = re.match(r"^\s*-\s*(\{.*\})\s*$", raw)
+            if m:
+                d = parse_flow_map(m.group(1))
+                if d.get("ep"):
+                    out["entries"][d["ep"]] = d
+    return out
+
+
+MARK_CLS = {"○": "sc-o", "△": "sc-d", "✗": "sc-x"}
+
+
+def score_cell(v: str) -> str:
+    return f'<td class="sc {MARK_CLS.get(v, "")}">{esc(v or "—")}</td>'
+
+
+def build_selection_page(sel, ledger_rows, titles):
+    """選び方のページ。採点表・これまでの採点・いまのばらつきを1枚にまとめる"""
+    import spread as sp
+
+    def crit_rows(items):
+        rows = []
+        for c in items:
+            name = f'<strong>{esc(c.get("label", ""))}</strong>'
+            if c.get("ask"):
+                name += f'<br><span class="ax-help">{esc(c["ask"])}</span>'
+            rows.append(f'<tr><td><code>{esc(c.get("id",""))}</code></td>'
+                        f'<td>{name}</td><td>{esc(c.get("test", ""))}</td></tr>')
+        return "".join(rows)
+
+    core_tbl = crit_rows(sel["core"])
+    intr_tbl = crit_rows(sel["interest"])
+    prem = "・".join(esc(p.get("label", "")) for p in sel["premise"])
+
+    ids = [c["id"] for c in sel["interest"]]
+    head = "".join(f"<th>{esc(i)}</th>" for i in ids)
+    body_rows = []
+    for r in ledger_rows:
+        ep = r.get("episode", "")
+        e = sel["entries"].get(ep)
+        if not e:
+            continue
+        marks = [e.get(i, "") for i in ids]
+        n_o = marks.count("○")
+        q1, q2 = e.get("Q1", ""), e.get("Q2", "")
+        core_ok = "○" in (q1, q2)
+        pass_ok = core_ok and n_o >= 3
+        verdict = ('<span class="badge ready">採用の線</span>' if pass_ok
+                   else '<span class="badge stale">基準を割る</span>')
+        cls = "" if pass_ok else ' class="miss-row"'
+        cells = "".join(score_cell(m) for m in marks)
+        body_rows.append(f"""<tr{cls}>
+  <td><a href="{esc(ep)}/article.html">{esc(ep)}</a></td>
+  <td class="sc-title">{esc(titles.get(ep) or r.get("title", ""))}</td>
+  {score_cell(q1)}{score_cell(q2)}{cells}
+  <td class="sc-n">{n_o}/5</td><td>{verdict}</td>
+</tr>
+<tr class="sc-note{'' if pass_ok else ' miss-row'}"><td></td><td colspan="10">{inline(e.get("note",""))}</td></tr>""")
+
+    hist = sp.history(ledger_rows)
+    seen_hands = sp.all_hands(ledger_rows)
+    axis_blocks = []
+    for axis, label, help_ in sp.AXES:
+        seq = hist[axis]
+        strip = "".join(
+            f'<span class="ax-cell" title="{esc(ep)}">{esc(v)}</span>' for ep, v in seq)
+        counts = {}
+        for _, v in seq:
+            counts[v] = counts.get(v, 0) + 1
+        recent = [v for _, v in seq[-sp.RECENT_HOT:]]
+        chips = []
+        for v, n in sorted(counts.items(), key=lambda kv: -kv[1]):
+            cls = "hot" if recent.count(v) >= 2 else ""
+            chips.append(f'<span class="ax-chip {cls}">{esc(v)}<b>{n}</b></span>')
+        cold = sp.cold_values(axis, hist)
+        cold_html = ""
+        if cold:
+            parts = []
+            for v, g in cold[:8]:
+                if g <= len(seq):
+                    tag = f"{g}回あき"
+                elif axis == "hand" and v in seen_hands:
+                    tag = "味だけ"
+                else:
+                    tag = "未使用"
+                parts.append(f'<span class="ax-chip cold">{esc(v)}<b>{tag}</b></span>')
+            cold_html = ('<div class="ax-cold"><span class="ax-lab">◎ 次はここから探す</span>'
+                         + "".join(parts) + "</div>")
+        axis_blocks.append(f"""
+<div class="axis">
+  <h3>{esc(label)}<span class="ax-help">{esc(help_)}</span></h3>
+  <div class="ax-strip">{strip}</div>
+  <div class="ax-chips">{"".join(chips)}</div>
+  {cold_html}
+</div>""")
+
+    body = f"""
+<div class="ep-head"><h1>ネタの選び方</h1>
+<p class="hint">候補を出すときに、1件ずつここで採点します（<code>ledger/selection.yaml</code>）。
+<strong>核が両方 ✗ なら、点数を見るまでもなく不採用。</strong>面白さは5つのうち ○ 3つ以上で採用。
+ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
+
+<section class="sec">
+  <h2>核 — どちらか一方は必ず立つこと</h2>
+  <p class="hint">番組の2つの問い。両方とも ✗ の回は、商売の話でも人の話でもなくなります。</p>
+  <div class="table-scroll"><table><thead><tr><th>ID</th><th>問い</th><th>見るところ</th></tr></thead>
+  <tbody>{core_tbl}</tbody></table></div>
+</section>
+
+<section class="sec">
+  <h2>面白さ — 5つのうち ○ 3つ以上</h2>
+  <div class="table-scroll"><table><thead><tr><th>ID</th><th>基準</th><th>見るところ</th></tr></thead>
+  <tbody>{intr_tbl}</tbody></table></div>
+  <p class="hint">前提（ひとつでも欠ければ点数以前に見送り）：{prem}</p>
+</section>
+
+<section class="sec">
+  <h2>これまでの回の採点</h2>
+  <p class="hint">後から付けた自己採点です。<strong>ここを見て「この基準は甘い／辛い」と言ってもらえると、基準のほうを直せます。</strong></p>
+  <div class="table-scroll"><table class="score-table">
+  <thead><tr><th>回</th><th>タイトル</th><th>Q1</th><th>Q2</th>{head}<th>面白さ</th><th>判定</th></tr></thead>
+  <tbody>{"".join(body_rows)}</tbody></table></div>
+</section>
+
+<section class="sec">
+  <h2>いまのばらつき</h2>
+  <p class="hint">左から古い順。<span class="ax-chip hot">赤</span>は直近{sp.RECENT_HOT}回に2回以上出ていて避けたい値、
+  <span class="ax-chip cold">青</span>はしばらく出ていない値です。<strong>候補には ◎ を持つネタを最低1件入れます。</strong></p>
+  {"".join(axis_blocks)}
+</section>
+"""
+    return page("", "ネタの選び方 — その手があったか", body, active_nav="selection")
+
+
 def build_backlog_page(entries, tag_names):
     by_status = {}
     for e in entries:
@@ -1134,8 +1289,10 @@ def main():
     (OUT / "index.html").write_text(build_index(metas, backlog), encoding="utf-8")
     (OUT / "ledger.html").write_text(build_ledger_page(ledger_rows, header), encoding="utf-8")
     (OUT / "backlog.html").write_text(build_backlog_page(backlog, tag_names), encoding="utf-8")
+    (OUT / "selection.html").write_text(
+        build_selection_page(load_selection(), ledger_rows, note_titles), encoding="utf-8")
 
-    n_pages = 3 + 4 * len(metas)
+    n_pages = 4 + 4 * len(metas)
     print(f"生成完了: docs/ に {n_pages} ページ（エピソード {len(metas)} 本・ボツネタ {len(backlog)} 件）")
     for meta in metas:
         has_ig = "手作り" if (meta["dir"] / "infographic.html").exists() else "自動"
@@ -1379,6 +1536,38 @@ td { border-bottom: 1px solid var(--line); padding: 8px 10px; vertical-align: to
 .st.fail { color: var(--crit); }
 .st.warn { color: var(--ink-2); }
 .wait-row { background: color-mix(in srgb, var(--serious) 7%, transparent); }
+
+/* 選び方のページ */
+.sec { margin: 26px 0; }
+.sec h2 { font-size: 17px; margin: 0 0 4px; }
+.score-table td, .score-table th { white-space: nowrap; }
+.score-table .sc-title { white-space: normal; min-width: 15em; }
+.sc { text-align: center; font-weight: 700; }
+.sc-o { color: var(--good-text); }
+.sc-d { color: var(--warn); }
+.sc-x { color: var(--crit); }
+.sc-n { text-align: center; font-variant-numeric: tabular-nums; }
+.miss-row { background: color-mix(in srgb, var(--crit) 7%, transparent); }
+tr.sc-note td { font-size: 12px; color: var(--ink-2); white-space: normal;
+  border-top: 0; padding-top: 0; }
+.axis { margin: 16px 0 20px; }
+.axis h3 { font-size: 14px; margin: 0 0 6px; }
+.ax-help { font-weight: 400; font-size: 11.5px; color: var(--muted); margin-left: 8px; }
+.ax-strip { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.ax-cell { font-size: 11px; padding: 3px 7px; border-radius: 5px;
+  background: color-mix(in srgb, var(--ink) 5%, transparent); color: var(--ink-2); }
+.ax-cell:last-child { background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--ink); font-weight: 700; }
+.ax-chips, .ax-cold { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.ax-cold { margin-top: 7px; }
+.ax-lab { font-size: 11px; font-weight: 700; color: var(--accent); margin-right: 3px; }
+.ax-chip { font-size: 11px; padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--ink-2); }
+.ax-chip b { margin-left: 5px; color: var(--muted); font-weight: 700; }
+.ax-chip.hot { border-color: color-mix(in srgb, var(--crit) 45%, transparent);
+  background: color-mix(in srgb, var(--crit) 9%, transparent); color: var(--ink); }
+.ax-chip.cold { border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent); color: var(--ink); }
 
 /* 制作ファイル */
 .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 6px; }

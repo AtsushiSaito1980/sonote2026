@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ネタの選び方 — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="selection.html" class="nav-link on">選び方</a>
+    <a href="backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="ep-head"><h1>ネタの選び方</h1>
+<p class="hint">候補を出すときに、1件ずつここで採点します（<code>ledger/selection.yaml</code>）。
+<strong>核が両方 ✗ なら、点数を見るまでもなく不採用。</strong>面白さは5つのうち ○ 3つ以上で採用。
+ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
+
+<section class="sec">
+  <h2>核 — どちらか一方は必ず立つこと</h2>
+  <p class="hint">番組の2つの問い。両方とも ✗ の回は、商売の話でも人の話でもなくなります。</p>
+  <div class="table-scroll"><table><thead><tr><th>ID</th><th>問い</th><th>見るところ</th></tr></thead>
+  <tbody><tr><td><code>Q1</code></td><td><strong>表の問い</strong><br><span class="ax-help">なんで、それで儲かるんですか？</span></td><td>儲けている主体（会社・店・事業）が登場するか</td></tr><tr><td><code>Q2</code></td><td><strong>裏の問い</strong><br><span class="ax-help">なんで、その人がやったんですか？</span></td><td>動機を持った人が主役に立つか</td></tr></tbody></table></div>
+</section>
+
+<section class="sec">
+  <h2>面白さ — 5つのうち ○ 3つ以上</h2>
+  <div class="table-scroll"><table><thead><tr><th>ID</th><th>基準</th><th>見るところ</th></tr></thead>
+  <tbody><tr><td><code>C1</code></td><td><strong>主役が意外</strong></td><td>「その業種がそれを？」がある。毎月ニュースになる定番題材は ✗</td></tr><tr><td><code>C2</code></td><td><strong>立つ数字がひとつ</strong></td><td>それ一つで景色が変わる数字か。月次で更新される流量の数字は △</td></tr><tr><td><code>C3</code></td><td><strong>構造が転用できる</strong></td><td>聞き手が自分の業界に置き換えられる。読み方の話は △（手の地図が増えない）</td></tr><tr><td><code>C4</code></td><td><strong>教訓が一行になる</strong></td><td>条件＋行動の1文に落ちるか</td></tr><tr><td><code>C5</code></td><td><strong>耳だけで絵が浮かぶ</strong></td><td>図解なしで場面が見えるか。割合の列挙は ✗</td></tr></tbody></table></div>
+  <p class="hint">前提（ひとつでも欠ければ点数以前に見送り）：トリガが1ヶ月以内・出典が一次、または2系統・題材が過去回と重複しない</p>
+</section>
+
+<section class="sec">
+  <h2>これまでの回の採点</h2>
+  <p class="hint">後から付けた自己採点です。<strong>ここを見て「この基準は甘い／辛い」と言ってもらえると、基準のほうを直せます。</strong></p>
+  <div class="table-scroll"><table class="score-table">
+  <thead><tr><th>回</th><th>タイトル</th><th>Q1</th><th>Q2</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>C5</th><th>面白さ</th><th>判定</th></tr></thead>
+  <tbody><tr>
+  <td><a href="ep001/article.html">ep001</a></td>
+  <td class="sc-title">業界が磨いてきた物差しを、逆さに持った3つの商品</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-d">△</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">4/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">業界の物差しを反転させた3商品。小ネタ束ねの形で、数字は個々に散った</td></tr><tr>
+  <td><a href="ep002/article.html">ep002</a></td>
+  <td class="sc-title">カスハラ対策義務化の2ヶ月前に、もう開いていた四つの売り場</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-d">△</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">4/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">施行前にもう売り場が開いていた、が意外の芯。立つ数字より日付が主役</td></tr><tr>
+  <td><a href="ep003/article.html">ep003</a></td>
+  <td class="sc-title">夜24時まで店を開けたら、来店が7倍になった</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-d">△</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">4/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">「時間をずらす」自体は既知寄り。来店7倍の数字で持たせた</td></tr><tr>
+  <td><a href="ep004/article.html">ep004</a></td>
+  <td class="sc-title">無料の花火大会は、いま誰の財布で上がっているのか</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">5/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">無料の花火を誰が払っているか。警備費の割合が効いた</td></tr><tr>
+  <td><a href="ep005/article.html">ep005</a></td>
+  <td class="sc-title">兄への偏見を、事業の設計図に変えた双子</td>
+  <td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">5/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">核が両方立った回。動機回の基準値</td></tr><tr>
+  <td><a href="ep006/article.html">ep006</a></td>
+  <td class="sc-title">17年無視された技術が、パネルの載らない屋根を市場にした</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">5/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">17年寝かせた技術。最初の効率4%が立つ数字</td></tr><tr>
+  <td><a href="ep007/article.html">ep007</a></td>
+  <td class="sc-title">ソフトを10年タダで配った会社は、何を売っているのか</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-d">△</td>
+  <td class="sc-n">4/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">ソフトウェアの話は耳で絵になりにくい。赤字48億で場面を作った</td></tr><tr>
+  <td><a href="ep008/article.html">ep008</a></td>
+  <td class="sc-title">35万点を貸して33万回まわす商売の、採算はどこで合うのか</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">5/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">戻ってくる倉庫の場面が強い。耐用年数5倍が立つ</td></tr><tr>
+  <td><a href="ep009/article.html">ep009</a></td>
+  <td class="sc-title">無料レシピ動画の会社が、スーパーの棚の上で黒字化するまで</td>
+  <td class="sc sc-o">○</td><td class="sc sc-x">✗</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">5/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">95.5%が場面ごと立った。売場の画面という絵もある</td></tr><tr>
+  <td><a href="ep010/article.html">ep010</a></td>
+  <td class="sc-title">1日1万円の八百屋を開いた会社が、オフィスに冷蔵庫を置いて6,644社と契約した</td>
+  <td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td><td class="sc sc-o">○</td>
+  <td class="sc-n">5/5</td><td><span class="badge ready">採用の線</span></td>
+</tr>
+<tr class="sc-note"><td></td><td colspan="10">1日1万円と6,644社の対比。核が両方立った2本目</td></tr><tr class="miss-row">
+  <td><a href="ep011/article.html">ep011</a></td>
+  <td class="sc-title">9月に値上げされる4,531品目の、理由の欄</td>
+  <td class="sc sc-x">✗</td><td class="sc sc-x">✗</td><td class="sc sc-x">✗</td><td class="sc sc-d">△</td><td class="sc sc-d">△</td><td class="sc sc-o">○</td><td class="sc sc-x">✗</td>
+  <td class="sc-n">1/5</td><td><span class="badge stale">基準を割る</span></td>
+</tr>
+<tr class="sc-note miss-row"><td></td><td colspan="10"><strong>この表を作るきっかけになった回。</strong>儲けている主体も、動機を持つ人も出てこない。主役が統計そのもので、見立ても出典自身の見立てと同じだった。型の変化球（T4）が10本ゼロだったことと、棚に「手が立たない」で落ちた候補が残っていたことが重なって通った。作り直さず、基準の見本として残す</td></tr></tbody></table></div>
+</section>
+
+<section class="sec">
+  <h2>いまのばらつき</h2>
+  <p class="hint">左から古い順。<span class="ax-chip hot">赤</span>は直近5回に2回以上出ていて避けたい値、
+  <span class="ax-chip cold">青</span>はしばらく出ていない値です。<strong>候補には ◎ を持つネタを最低1件入れます。</strong></p>
+  
+<div class="axis">
+  <h3>手<span class="ax-help">その回の主役の手。味付けの手（+OPnn味）は数えない</span></h3>
+  <div class="ax-strip"><span class="ax-cell" title="ep001">OP04</span><span class="ax-cell" title="ep002">OP11</span><span class="ax-cell" title="ep003">OP05</span><span class="ax-cell" title="ep004">OP03</span><span class="ax-cell" title="ep005">—</span><span class="ax-cell" title="ep006">OP01</span><span class="ax-cell" title="ep007">OP12</span><span class="ax-cell" title="ep008">OP07</span><span class="ax-cell" title="ep009">OP13</span><span class="ax-cell" title="ep010">OP05</span><span class="ax-cell" title="ep011">—</span></div>
+  <div class="ax-chips"><span class="ax-chip ">OP05<b>2</b></span><span class="ax-chip ">—<b>2</b></span><span class="ax-chip ">OP04<b>1</b></span><span class="ax-chip ">OP11<b>1</b></span><span class="ax-chip ">OP03<b>1</b></span><span class="ax-chip ">OP01<b>1</b></span><span class="ax-chip ">OP12<b>1</b></span><span class="ax-chip ">OP07<b>1</b></span><span class="ax-chip ">OP13<b>1</b></span></div>
+  <div class="ax-cold"><span class="ax-lab">◎ 次はここから探す</span><span class="ax-chip cold">OP02<b>味だけ</b></span><span class="ax-chip cold">OP06<b>味だけ</b></span><span class="ax-chip cold">OP08<b>味だけ</b></span><span class="ax-chip cold">OP09<b>未使用</b></span><span class="ax-chip cold">OP10<b>味だけ</b></span><span class="ax-chip cold">OP14<b>味だけ</b></span><span class="ax-chip cold">OP04<b>10回あき</b></span><span class="ax-chip cold">OP11<b>9回あき</b></span></div>
+</div>
+<div class="axis">
+  <h3>型<span class="ax-help">T1事例／T2失敗／T3定点／T4数字／T5お題</span></h3>
+  <div class="ax-strip"><span class="ax-cell" title="ep001">T1</span><span class="ax-cell" title="ep002">T1</span><span class="ax-cell" title="ep003">T1</span><span class="ax-cell" title="ep004">T1</span><span class="ax-cell" title="ep005">T1</span><span class="ax-cell" title="ep006">T1</span><span class="ax-cell" title="ep007">T1</span><span class="ax-cell" title="ep008">T1</span><span class="ax-cell" title="ep009">T1</span><span class="ax-cell" title="ep010">T1</span><span class="ax-cell" title="ep011">T4</span></div>
+  <div class="ax-chips"><span class="ax-chip hot">T1<b>10</b></span><span class="ax-chip ">T4<b>1</b></span></div>
+  <div class="ax-cold"><span class="ax-lab">◎ 次はここから探す</span><span class="ax-chip cold">T2<b>未使用</b></span><span class="ax-chip cold">T3<b>未使用</b></span><span class="ax-chip cold">T5<b>未使用</b></span></div>
+</div>
+<div class="axis">
+  <h3>畑<span class="ax-help">生活消費／産業BtoB／制度公共／技術研究／メディア金融</span></h3>
+  <div class="ax-strip"><span class="ax-cell" title="ep001">生活消費</span><span class="ax-cell" title="ep002">制度公共</span><span class="ax-cell" title="ep003">生活消費</span><span class="ax-cell" title="ep004">制度公共</span><span class="ax-cell" title="ep005">生活消費</span><span class="ax-cell" title="ep006">技術研究</span><span class="ax-cell" title="ep007">技術研究</span><span class="ax-cell" title="ep008">生活消費</span><span class="ax-cell" title="ep009">メディア金融</span><span class="ax-cell" title="ep010">産業BtoB</span><span class="ax-cell" title="ep011">生活消費</span></div>
+  <div class="ax-chips"><span class="ax-chip hot">生活消費<b>5</b></span><span class="ax-chip ">制度公共<b>2</b></span><span class="ax-chip ">技術研究<b>2</b></span><span class="ax-chip ">メディア金融<b>1</b></span><span class="ax-chip ">産業BtoB<b>1</b></span></div>
+  <div class="ax-cold"><span class="ax-lab">◎ 次はここから探す</span><span class="ax-chip cold">制度公共<b>7回あき</b></span></div>
+</div>
+<div class="axis">
+  <h3>主役<span class="ax-help">会社／人／制度／統計。何が主語の回か</span></h3>
+  <div class="ax-strip"><span class="ax-cell" title="ep001">会社</span><span class="ax-cell" title="ep002">制度</span><span class="ax-cell" title="ep003">会社</span><span class="ax-cell" title="ep004">会社</span><span class="ax-cell" title="ep005">人</span><span class="ax-cell" title="ep006">会社</span><span class="ax-cell" title="ep007">会社</span><span class="ax-cell" title="ep008">会社</span><span class="ax-cell" title="ep009">会社</span><span class="ax-cell" title="ep010">人</span><span class="ax-cell" title="ep011">統計</span></div>
+  <div class="ax-chips"><span class="ax-chip hot">会社<b>7</b></span><span class="ax-chip ">人<b>2</b></span><span class="ax-chip ">制度<b>1</b></span><span class="ax-chip ">統計<b>1</b></span></div>
+  <div class="ax-cold"><span class="ax-lab">◎ 次はここから探す</span><span class="ax-chip cold">制度<b>9回あき</b></span></div>
+</div>
+</section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

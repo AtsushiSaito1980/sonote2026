@@ -63,8 +63,9 @@
 ## 5. ワークフロー
 
 ```
-/patrol            → 6つの巡回棚をスキャン、ledger照合、候補を提示
-（人間が1本選ぶ）
+/patrol            → spread.py でばらつきを見る → 6つの巡回棚をスキャン
+                   → ledger照合 → 候補を1件ずつ採点して提示
+（人間が1本選ぶ。選んだ回を ledger/selection.yaml に記録）
 /episode <id>      → 以下を順に実行
   1. extract-facts   sources/ → facts.yaml（★以降 原文は渡さない）
   2. write-outline   brief+facts → outline.md
@@ -123,6 +124,8 @@ python3 scripts/check.py episodes/<id>
 | 巡回棚・リスク語 | `config/sources.yml` `config/ng.yml` |
 | 放送済み台帳（重複回避） | `ledger/episodes_log.csv` |
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
+| **ネタの採点表（核2・面白さ5）** | `ledger/selection.yaml` → サイトの「選び方」 |
+| 選定のばらつき（手・型・畑・主役） | `scripts/spread.py`（`episodes_log.csv` から計算） |
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |

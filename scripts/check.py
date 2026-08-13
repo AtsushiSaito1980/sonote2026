@@ -425,6 +425,30 @@ def check_ledger(ep: Path):
     rows = [r for r in led.read_text(encoding="utf-8").splitlines()[1:] if r.strip()]
     add(WARN, "台帳の照合", f"{len(rows)} 行 → 題材の重複・直近5回との手/業界の連続を目視確認")
 
+    # 選定の採点（ledger/selection.yaml）。核が両方 ✗ の回は、そもそも作らない
+    sel = Path("ledger/selection.yaml")
+    if not sel.exists():
+        add(WARN, "選定の採点", "selection.yaml が無い")
+        return
+    ep_id = ep.name
+    line = next((l for l in sel.read_text(encoding="utf-8").splitlines()
+                 if re.search(rf"\{{ep:\s*{re.escape(ep_id)}\s*,", l)), None)
+    if not line:
+        add(NG, "選定の採点",
+            f"{ep_id} の行が selection.yaml に無い → /patrol の採点を記録してから作る")
+        return
+    marks = dict(re.findall(r"(Q[12]|C[1-5]):\s*([○△✗])", line))
+    n_o = sum(1 for k, v in marks.items() if k.startswith("C") and v == "○")
+    core = "○" in (marks.get("Q1"), marks.get("Q2"))
+    bad = []
+    if not core:
+        bad.append("核（Q1/Q2）が両方 ✗")
+    if n_o < 3:
+        bad.append(f"面白さ {n_o}/5（○3つ以上）")
+    add(WARN if bad else OK, "選定の採点",
+        "／".join(bad) + " → 基準を割った回。理由を review.md に残す" if bad
+        else f"核あり・面白さ {n_o}/5")
+
 
 def main():
     if len(sys.argv) < 2:
