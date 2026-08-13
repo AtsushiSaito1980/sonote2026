@@ -14,15 +14,16 @@
   }
   // note のエディタは書式付きの貼り付けを受け取れるので、HTML も一緒にクリップボードへ置く。
   // 見出し・太字・引用・箇条書きがそのまま入る（失敗したらプレーンに落とす）
+  // 戻り値は 'rich'（書式つきで入った）／'plain'（書式なしに落ちた）／false（失敗）
   async function copyRich(html, text) {
     try {
       await navigator.clipboard.write([new ClipboardItem({
         'text/html': new Blob([html], { type: 'text/html' }),
         'text/plain': new Blob([text], { type: 'text/plain' }),
       })]);
-      return true;
+      return 'rich';
     } catch (e) {}
-    return copyText(text);
+    return (await copyText(text)) ? 'plain' : false;
   }
   function srcText(id) {
     var el = document.getElementById(id);
@@ -39,9 +40,12 @@
     var run = htmlId ? copyRich(srcText(htmlId), text) : copyText(text);
     run.then(function (ok) {
       var orig = btn.textContent;
-      btn.textContent = ok ? 'コピーしました ✓' : 'コピーできませんでした';
+      // 書式つきで入ったのか、素のテキストに落ちたのかを隠さずに出す
+      btn.textContent = ok === 'rich' ? '書式つきでコピーしました ✓'
+                      : ok === 'plain' ? '書式なしでコピーしました（見出しは手で設定）'
+                      : ok ? 'コピーしました ✓' : 'コピーできませんでした';
       btn.classList.add('copied');
-      setTimeout(function () { btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
+      setTimeout(function () { btn.textContent = orig; btn.classList.remove('copied'); }, 2600);
     });
   });
 

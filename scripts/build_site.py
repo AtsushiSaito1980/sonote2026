@@ -348,6 +348,58 @@ def md_to_plain(md: str) -> str:
     return "\n".join(out)
 
 
+def md_to_note_html(md: str) -> str:
+    """note のエディタに貼るためのHTML。
+
+    サイト用の `md_to_html` は class や入れ子の div を持つので、貼り付け先の
+    エディタが解釈しきれない。ここでは note が扱える素のタグだけを出す：
+    h2 / h3 / p / strong / em / a / blockquote / ul / ol / li / hr
+    """
+    lines, out, i, n = md.splitlines(), [], 0, len(md.splitlines())
+    while i < n:
+        s = lines[i].strip()
+        if not s:
+            i += 1
+            continue
+        if s == "---":
+            out.append("<hr>")
+            i += 1
+            continue
+        m = re.match(r"^(#{2,3})\s+(.+)$", s)
+        if m:
+            tag = "h2" if len(m.group(1)) == 2 else "h3"
+            out.append(f"<{tag}>{inline(m.group(2))}</{tag}>")
+            i += 1
+            continue
+        if s.startswith(">"):
+            buf = []
+            while i < n and lines[i].strip().startswith(">"):
+                buf.append(inline(lines[i].strip().lstrip(">").strip()))
+                i += 1
+            out.append("<blockquote><p>" + "<br>".join(buf) + "</p></blockquote>")
+            continue
+        m = re.match(r"^([-*]|\d+\.)\s+(.+)$", s)
+        if m:
+            tag = "ul" if m.group(1) in "-*" else "ol"
+            items = []
+            while i < n:
+                mm = re.match(r"^([-*]|\d+\.)\s+(.+)$", lines[i].strip())
+                if not mm:
+                    break
+                items.append(f"<li>{inline(mm.group(2))}</li>")
+                i += 1
+            out.append(f"<{tag}>" + "".join(items) + f"</{tag}>")
+            continue
+        buf = [inline(s)]
+        i += 1
+        while i < n and lines[i].strip() and not re.match(
+                r"^(#{1,6}\s|>|[-*]\s|\d+\.\s|\|)", lines[i].strip()) and lines[i].strip() != "---":
+            buf.append(inline(lines[i].strip()))
+            i += 1
+        out.append("<p>" + "<br>".join(buf) + "</p>")
+    return "\n".join(out)
+
+
 def md_to_html(text: str) -> str:
     lines = text.splitlines()
     out, i, n = [], 0, len(lines)
@@ -575,7 +627,7 @@ def build_article_page(meta, ep_dir, links=None, titles=None):
         src = (copy_source("src-article", body_md)
                + copy_source("src-title", title)
                + copy_source("src-plain", md_to_plain(body_md))
-               + copy_source("src-html", md_to_html(body_md)))
+               + copy_source("src-html", md_to_note_html(body_md)))
         n_fig = read(ep_dir / "figures.html").count('class="fig"') + n_tbl
         fig_link = (f'<a class="copy-btn secondary" href="figures.html">note用の画像（{n_fig}枚）→</a>'
                     if n_fig else "")
@@ -1640,15 +1692,16 @@ SITE_JS = """// その手があったか — 制作アーカイブ（build_site.
   }
   // note のエディタは書式付きの貼り付けを受け取れるので、HTML も一緒にクリップボードへ置く。
   // 見出し・太字・引用・箇条書きがそのまま入る（失敗したらプレーンに落とす）
+  // 戻り値は 'rich'（書式つきで入った）／'plain'（書式なしに落ちた）／false（失敗）
   async function copyRich(html, text) {
     try {
       await navigator.clipboard.write([new ClipboardItem({
         'text/html': new Blob([html], { type: 'text/html' }),
         'text/plain': new Blob([text], { type: 'text/plain' }),
       })]);
-      return true;
+      return 'rich';
     } catch (e) {}
-    return copyText(text);
+    return (await copyText(text)) ? 'plain' : false;
   }
   function srcText(id) {
     var el = document.getElementById(id);
@@ -1665,9 +1718,12 @@ SITE_JS = """// その手があったか — 制作アーカイブ（build_site.
     var run = htmlId ? copyRich(srcText(htmlId), text) : copyText(text);
     run.then(function (ok) {
       var orig = btn.textContent;
-      btn.textContent = ok ? 'コピーしました ✓' : 'コピーできませんでした';
+      // 書式つきで入ったのか、素のテキストに落ちたのかを隠さずに出す
+      btn.textContent = ok === 'rich' ? '書式つきでコピーしました ✓'
+                      : ok === 'plain' ? '書式なしでコピーしました（見出しは手で設定）'
+                      : ok ? 'コピーしました ✓' : 'コピーできませんでした';
       btn.classList.add('copied');
-      setTimeout(function () { btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
+      setTimeout(function () { btn.textContent = orig; btn.classList.remove('copied'); }, 2600);
     });
   });
 
