@@ -177,6 +177,19 @@ def check_article(ep: Path):
     add(WARN if len(h1) > 45 else OK, "タイトルの長さ",
         f"{len(h1)}字 → 一覧で切れる。45字以内を目安に" if len(h1) > 45 else f"{len(h1)}字")
 
+    # 長さと章数。note は通勤の片手間に読まれるので、伸びたら削る合図にする
+    lines = a.splitlines()
+    seps = [i for i, l in enumerate(lines) if l.strip() == "---"]
+    end = next((i for i, l in enumerate(lines) if l.startswith("### きょうの手")), len(lines))
+    body = "\n".join(lines[(seps[0] + 1 if seps else 0):end])
+    n_body = len(re.sub(r"\s", "", body))
+    add(WARN if n_body > 1800 else OK, "本文の長さ",
+        f"{n_body}字 → 1,000〜1,500字が目安。削る順番は write-article を見る"
+        if n_body > 1800 else f"{n_body}字")
+    n_h = sum(1 for l in lines if l.startswith("## "))
+    add(WARN if n_h > 3 else OK, "章の数",
+        f"{n_h}章 → 3章まで。note 側で見出しを設定する手間が増える" if n_h > 3 else f"{n_h}章")
+
     # 表は画像になる。列が多いと画像で潰れるので、書く段階で止める
     wide = []
     for ln in a.splitlines():
