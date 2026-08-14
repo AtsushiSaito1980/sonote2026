@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>値差を埋める人から売る｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep015/files.html">← ep015</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep016</span><span class="dlabel">作成</span>2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>値差を埋める人から売る</h1>
+  <div class="chips"><span class="chip host">三崎アオイ</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW1 制度</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep016</td></tr><tr><th>ホスト</th><td>misaki（三崎アオイ）</td></tr><tr><th>型番号</th><td>T5</td></tr><tr><th>型</th><td>型1 一本深掘り型（T5アレンジ：お題→仮説3つ→答え合わせ→解剖）</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> JFEスチール、日本初のグリーン水素還元鉄の試作に成功（3日間で約1トン）<br><span class='k'>published</span> 2026-07-31<br><span class='k'>source_url</span> sources/collected.md（公式リリース一次）</td></tr><tr><th>副トリガ</th><td>需要側の制度：EV補助金にグリーン鋼材採用計画で最大5万円加算（2025年4月〜適用）。JFEは電炉3,294億円投資で供給6倍計画</td></tr><tr><th>題材</th><td>JFEの水素の鉄（試作1トン）と、先に開いていた売り場JGreeX（削減量を鋼材に割り当てて認証つきで売る）</td></tr><tr><th>手</th><td><span class="muted">—</span></td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW1</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>値差を埋める人から売る</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep014</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep016
+host: misaki                # 日替わり交互（前日ep015=戸倉）。元生産技術＝プラント・工程・認証の言葉
+episode_type: T5            # お題回（シリーズ初）。「この技術、どこに売る？」の公開思考
+format: 型1 一本深掘り型（T5アレンジ：お題→仮説3つ→答え合わせ→解剖）
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced
+anchor:                     # トリガ情報（制作日2026-08-14から14日前）
+  headline: &quot;JFEスチール、日本初のグリーン水素還元鉄の試作に成功（3日間で約1トン）&quot;
+  published: 2026-07-31
+  source_url: &quot;sources/collected.md（公式リリース一次）&quot;
+sub_triggers:
+  - &quot;需要側の制度：EV補助金にグリーン鋼材採用計画で最大5万円加算（2025年4月〜適用）。JFEは電炉3,294億円投資で供給6倍計画&quot;
+case_name: &quot;JFEの水素の鉄（試作1トン）と、先に開いていた売り場JGreeX（削減量を鋼材に割り当てて認証つきで売る）&quot;
+operation_tags: []          # T5は手を名指ししない（T4先例）。教訓は「高い物を最初に買う人の見つけ方」
+motive_tag: none
+tailwind_tag: TW1           # 制度（5回あき◎）：補助金の加算・調達比率計画・海外規制が「高い鉄の買い手」を作る
+hook: &quot;&quot;
+lesson_draft: &quot;値差を埋める人から売る&quot;
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;
+prev_episode_ref: &quot;ep014&quot;   # 三崎の前回（味の素・技術研究）。技術系が2本続くため、型を変える（T1構造回→T5公開思考）ことと、
+                            # 絵を変える（パソコンの中→山の上の水素と製鉄所）ことで分離
+notes: |
+  ・採点（selection.yaml ep016）：Q1○ Q2✗・C1〜C5○・面白さ80・T5◎・技術度高◎（8回あき）・TW1◎
+  ・T5の核ガード（ep011の教訓の適用）：技術を主役にしない。背骨は「高い鉄の値差を、誰がなぜ埋めるか」（Q1）。
+    試作（未来の作り方）と JGreeX（いま売っている商品）を分けて説明し、混同しない
+  ・構成：お題の宣言（きょうは一緒に考える回）→ 前提（なぜ高い・CO2の14%）→ 仮説1 自動車（補助金5万円）→
+    仮説2 公共工事（横浜の橋の前例）→ 仮説3 輸出（海外の規制）→ 答え合わせ（JGreeXは2023年から売っていた・
+    採用実績・『販売数量には限りがある』）→ 解剖（高い物を最初に買う人の見つけ方3箇条）
+  ・数字3系統（余裕2）：
+    ①時期（先月末・六月末から三日間・二〇二三年・二〇三〇年・ことし＝補助適用）
+    ②試作の規模（約1トン・CO2の約14%）
+    ③商売側（最大5万円・三千三百億円規模・六倍・五百万トン目標）
+  ・固有名詞2系統：JFEスチール／JGreeX（ジェイグリークス）。日本海事協会は「第三者機関」・横浜市は地名扱いで「横浜の橋」
+  ・『』2回：Q01（日本初の試作成功・リリース趣旨）／Q02（『販売数量には、限りがあります』・公式ページ）
+  ・補助金は「メーカーの採用計画に応じた加算」と正確に言う（鋼材への直接補助ではない）
+  ・プレミアム金額は非公開 →「高い」とだけ。値差の話は埋める側（制度・調達）で語る
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>JFEスチール</td><td>試作成功の発表</td><td class="fact-val">2026-07-31</td><td>2026-07-31</td><td class="src">公式リリース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F02</span></td><td>JFEスチール</td><td>試作の中身</td><td class="fact-val">3日間で約1トン</td><td>2026-06-29〜07-01</td><td class="src">公式リリース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>鉄鋼業</td><td>排出の位置づけ</td><td class="fact-val">日本のCO2の約14%</td><td>現在</td><td class="src">公式リリース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>JFEスチール</td><td>時間軸</td><td class="fact-val">2035年頃に技術確立</td><td>計画</td><td class="src">公式リリース（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>JGreeX</td><td>何であるか</td><td class="fact-val">削減量を鋼材に割り当てた製品</td><td>継続</td><td class="src">JGreeX公式ページ（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F06</span></td><td>JGreeX</td><td>供給の制約</td><td class="fact-val">販売数量に限りがある</td><td>現在</td><td class="src">JGreeX公式ページ（一次）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>JGreeX</td><td>発売時期</td><td class="fact-val">2023年度上期</td><td>2023</td><td class="src">業界紙（日本金属新聞）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>JGreeX</td><td>採用実績</td><td class="fact-val">橋・ボルト・クレーン・変圧器</td><td>2024〜2025</td><td class="src">公式リリース群</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F09</span></td><td>JFEスチール</td><td>供給拡大投資</td><td class="fact-val">電炉に3,294億円</td><td>2026-02報道</td><td class="src">日経ビジネス（2026-02-16）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>経産省</td><td>EV補助金の加算</td><td class="fact-val">グリーン鋼材で最大5万円</td><td>2025-04適用〜</td><td class="src">日経＋日本自動車会議所（2系統）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F11</span></td><td>海外市場</td><td>規制の流れ</td><td class="fact-val">製造時CO2で測る規制</td><td>2026〜</td><td class="src">検索要約（記事水準）</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>JFEスチール（リリース表題の趣旨）</strong>「日本で初めて、グリーン水素を使った還元鉄の試作に成功した」<span class="src-note">公式リリース（一次）／『』候補①</span></li><li><span class="fid">Q02</span> <strong>JGreeX公式ページ</strong>「販売数量には、限りがあります」<span class="src-note">JGreeX公式ページ（一次）／『』候補②。答え合わせの山で使う</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>グリーン鋼材の価格プレミアムの金額</strong><br>理由：非公開<br>処置：「ふつうの鉄より高い」の水準まで。値差は「埋める制度」の側で語る</li><li><strong>電炉の建設場所・稼働時期</strong><br>理由：記事の非公開部分<br>処置：「三千三百億円規模の投資・供給六倍の計画」の水準まで</li><li><strong>水素還元鉄=JGreeXの原料という直結</strong><br>理由：現時点は別物（試作段階の製法と、削減量割当方式の商品）<br>処置：「未来の作り方の試作」と「いま売っている商品」を分け、後者が前者の売り場を先に耕している構図で語る</li></ul><div class="ig-callout pre-line">・アンカー＝2026-07-31（14日前・窓内）。台本では「先月末の発表」
+・density: balanced。数字3系統（余裕2）：
+①時期（先月末・六月末から三日間・二〇二三年・二〇三〇年・ことしの四月＝加算適用）
+②試作の規模（約1トン・CO2の約14%）
+③商売側（最大5万円・三千三百億円規模・六倍・五百万トン目標）
+・固有名詞2系統：JFEスチール／JGreeX。日本海事協会→「第三者機関」・横浜市→「横浜の橋」・米倉山→「山梨の山あいの施設」
+・『』はQ01・Q02。口癖1回・例え話2まで
+・T5の核ガード：背骨は「高い鉄の値差を誰がなぜ埋めるか」。技術の凄さの話にしない
+・混同ガード：試作（水素還元鉄）とJGreeX（割当方式）は別物と必ず言う</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep016 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-14／対象：script_draft.md（1,713字）／check.py 実行済み／<strong>シリーズ初のT5お題回</strong></p>
+<h2>機械判定（check.py）</h2>
+<p>本文文字数1,713（初稿1,665→F10軽EV加算の充当と表現補強）・OP/ED定型・『』2箇所・口癖1回・<strong>取材話法 伝聞4回</strong>（初稿0回→伝聞マーカー付与で修正）・三点リーダー0・「香月」0 — <strong>すべてOK</strong>。NGは後工程の図版のみ。</p>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>数字系統：3系統 → PASS（balanced上限5・余裕2）</h3>
+<ol><li><strong>時期</strong>：先月末／六月末からの三日間／二〇二三年／二〇三〇年／二〇三五年ごろ／ことしの四月／去年</li><li><strong>試作の規模</strong>：約1トン／CO2のおよそ14パーセント</li><li><strong>商売側</strong>：最大5万円／最大3万円（軽）／三千三百億円規模／六倍／五百万トン</li><li>対象外：ひとつ・三つ・一個（談話標識）</li></ol>
+<h3>固有名詞：2系統 → PASS（上限6）</h3>
+<p>JFEスチール／JGreeX（ジェイグリークス）。日本海事協会→「第三者機関」、米倉山→「山梨の山あいの施設」、横浜市→「横浜の橋」で一般化・地名化。</p>
+<h3>T5お題回の初適用（規約を残す）</h3>
+<ul><li><strong>お題の宣言</strong>：「答えを持ち帰るんじゃなくて、一緒に考えてみたい」を冒頭に置き、型の違いを聴取者に明示</li><li><strong>進行の掛け声</strong>：「仮説、いきます」「答え合わせです」で公開思考の構造を聴かせる</li><li><strong>核ガード（ep011の教訓）</strong>：技術の凄さを主役にせず、背骨は「値差を誰がなぜ埋めるか」（Q1）。答え合わせでJGreeX（実在の商品・採用実績・品薄）に着地させ、儲かる構造で締める</li><li><strong>混同ガード</strong>：試作（水素還元鉄＝未来の作り方）とJGreeX（削減量の割当方式＝いま売っている商品）を「これは水素の鉄そのものではなくて」と明示的に分離</li></ul>
+<h3>キメ台詞候補：「いちばん」→ PASS</h3>
+<p>「いちばん大きな排出源」＝事実の平叙（F03）。「いちばん安い物を選ぶだけじゃなく」＝調達の説明。</p>
+<h3>事実の精度 → PASS</h3>
+<ul><li>補助金は「メーカーがグリーン鋼材を使う<strong>計画に応じて</strong>」「鉄に直接お金が出るんじゃなくて」と正確に表現（F10の注意どおり）</li><li>プレミアム金額は不使用（「ふつうの鉄よりだいぶ高い」まで）</li><li>海外規制は「〜と言われます」の伝聞水準（F11がpartialのため）</li><li>商用化時期は「技術として仕上がるのは二〇三五年ごろが目標」（断定回避）</li></ul>
+<h3>トリガ鮮度 → PASS</h3>
+<p>anchor＝2026-07-31（14日前）。「先月末」で時期明示。採用実績は「去年」「去年からことしにかけて」で明示。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（JFE・グリーン鋼材）は過去回になし。<strong>bl016をT1でなくT5の型で核を立て直して復活させた初の例</strong>（棚の申し送りどおり）</li><li><strong>型：T5初使用</strong>（シーズン1本枠）。技術度「高」8回ぶり。TW1は5回ぶり。手は名指しなし（T4先例に倣う規約）</li><li>三崎の技術系2連続（ep014味の素→ep016）は、型（T1→T5）と絵（パソコンの中→山と製鉄所）で分離</li><li>ホスト交互✓</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td>試作の数値（1トン・3日間・1.5MW・15kg/h・14%）</td><td>公式リリース（一次）✓</td></tr><tr><td>JGreeXの定義・第三者認証・「販売数量に限り」</td><td>公式ページ（一次）✓</td></tr><tr><td><strong>補助金加算（最大5万円・軽3万円・2025年4月適用）</strong></td><td>日経＋自動車会議所の2系統。<strong>経産省の一次資料での確認を推奨</strong></td></tr><tr><td>電炉3,294億円・50万→300万トン</td><td>日経ビジネス単独。<strong>会社発表での確認を推奨</strong></td></tr><tr><td>発売2023年度上期・500万トン目標</td><td>業界紙。一次確認推奨</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>還元鉄</strong>（かんげんてつ） 2. <strong>鉄鉱石</strong>（てっこうせき） 3. <strong>電炉</strong>（でんろ） 4. <strong>JGreeX</strong>（ジェイグリークス）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。</p>
+<hr>
+<h1>追記：全成果物の最終検査（2026-08-14）</h1>
+<p>check.py 最終実行：<strong>機械判定はすべて PASS（59項目）</strong>。台本1,713字／TTS稿タグ5個（英字はジェイエフイースチール・シーオーツー等に展開）／記事（疑問形タイトル）／infographic 6セクション／figures 3枚。</p>
+<h2>要判断5件の確認</h2>
+<ol><li><strong>トリガ</strong>：2026-07-31（14日前）✓「先月末」で明示</li><li><strong>facts消化</strong>：F01〜F11＋Q01・Q02の13枚 → 7点以上 PASS</li><li><strong>数字系統</strong>：3系統（時期／試作の規模／商売側）・余裕2 PASS</li><li><strong>キメ候補「いちばん」</strong>：排出源の事実の平叙 PASS</li><li><strong>台帳照合</strong>：T5初使用・技術度高8回ぶり・TW1 5回ぶり・題材新規・ホスト交互 PASS</li></ol>
+<h2>図版・記事の判断</h2>
+<ul><li>図版数値は facts 対応（1トン=F02／14%=F03／5万円・3万円=F10／6倍・3,294億=F09／年表=F04〜F09）。<strong>報道ベースの数値に「（報道）」ラベル</strong></li><li>試作とJGreeXの区別を図版でも flip の1行目で明示（「未来の作り方」vs「今の商品」）</li><li>記事は※注記で経産省一次確認・会社発表確認を推奨。混同ガードも明記</li></ul>
+<h2>総合判定</h2>
+<p><strong>ep016 全成果物 PASS。</strong> 残るは人間の必須作業（補助金加算の経産省一次確認・電炉投資の会社発表確認・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep016 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜値差を埋める人から売る</h2>
+<h3>ホスト：三崎アオイ／T5お題回（型1アレンジ）／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p>
+<p>まず、ある山の上の話をさせてください。山梨の山あいの施設で、水を電気で分解して、水素を作る。その水素をタンクで千葉の製鉄所まで運んで、鉄鉱石から酸素を引きはがす。石炭の代わりに、水素で鉄を作る試験です。六月末からの三日間で、できた鉄はおよそ1トン。先月末、JFEスチールが『日本で初めて、グリーン水素を使った還元鉄の試作に成功した』と発表しました。ただ、この作り方の鉄は、いまはまだ、ふつうの鉄よりだいぶ高い。そこできょうは、いつもと違う回です。答えを持ち帰るんじゃなくて、一緒に考えてみたいんです。この高い鉄、最初の1トンは、誰に売るのか。</p>
+<p>前提をひとつだけ。なんでそこまでして作り方を変えるかというと、鉄作りは、日本のCO2のおよそ14パーセントを占める、いちばん大きな排出源だからです。ただ、技術として仕上がるのは二〇三五年ごろが目標だそうで、それまでは「良い物なのに高い」が続く。高いものを、誰が買うのか。仮説、いきます。</p>
+<p>仮説その一、車です。理由は、値差を埋める制度がもうあるから。ことしの四月からは、電気自動車の購入補助に、メーカーがグリーン鋼材を使う計画に応じて、最大5万円の上乗せが付くようになりました。軽の電気自動車なら最大3万円だそうです。鉄に直接お金が出るんじゃなくて、その鉄を使う車の買い手の補助が増える。国が、値差の一部を持つ設計です。</p>
+<p>仮説その二、役所の工事です。実はもう、横浜の橋の工事で、CO2を減らした鋼材が採用された例が、去年発表されています。公共の調達は、いちばん安い物を選ぶだけじゃなく、別の物差しを持てる場所なんですよね。</p>
+<p>仮説その三、輸出です。海外では、作るときのCO2で車や建物を測る決まりが始まりつつあると言われます。規制が強い場所ほど、高い鉄の値差は、相対的に小さく見える。</p>
+<p>で、答え合わせです。調べてみたら、売り場は、もう開いていました。ジェイグリークス、JGreeXという商品です。これは水素の鉄そのものではなくて、いまの設備で削減できたCO2の分を、特定の鋼材に割り当てて、第三者機関の認証を付けて売る仕組み。二〇二三年から売られています。私、この売り方は今回初めて知りました。採用先を見ると、さっきの横浜の橋のほかに、建築用のボルト、工場の天井クレーン、それに大きな変圧器と、地味で確実な場所が並びます。去年からことしにかけて、商社が在庫で持って小口販売まで始めています。そして公式ページには、こう書いてあるんです。『販売数量には、限りがあります』。削減できた分しか割り当てられないから、品薄なんです。会社は三千三百億円規模の電炉投資で、この供給を六倍にする計画で、二〇三〇年には五百万トンの目標を掲げているとのことでした。試作の1トンは、この先に開いた売り場に、つながっていくわけです。</p>
+<p>ここから、商売の解剖です。きょうは、高い物を最初に買う人の見つけ方を三つ。</p>
+<p>一、値差を埋める制度がある場所から売る。補助金、調達の基準、規制。値段の勝負を、値段以外の土俵に移してくれる場所が、最初の売り場になります。</p>
+<p>二、値段以外の物差しで買う人を探す。役所の調達や、環境で選ばれたいブランド。「安いから買う」ではない買い手は、どの業界にも必ずいます。</p>
+<p>三、製品の値段に占める、その材料の割合が小さい商品から入る。これ、現場やった人ならわかると思うんですけど、部品一個の材料費って、製品の値段のほんの一部なんです。ボルトやクレーンなら、鉄が多少高くても、製品の値段はほぼ動かない。高い材料は、目立たない場所から入っていく。</p>
+<p>今週の宿題です。自社の「良い物なのに、高くて売れない」をひとつ選んでください。そして、その値差を埋めてくれる制度や調達基準や規制が、どこかに無いか、探してみてください。</p>
+<p>きょうの手は、値差を埋める人から売る、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第16回｜値差を埋める人から売る</p>
+<p>山梨の山あいで水から作った水素を千葉の製鉄所へ運び、三日間で鉄をおよそ一トン。先月末に発表された、日本初のグリーン水素還元鉄の試作です。ただ、この鉄はふつうの鉄よりだいぶ高い。きょうはいつもと違って、答えを持ち帰る回ではなく、一緒に考える回——高い鉄の最初の一トンは、誰に売るのか。車の補助金、役所の工事、輸出、と仮説を立てて答え合わせに行くと、売り場はもう開いていました。「削減した分を鋼材に割り当てて、認証つきで売る」。高い物を最初に買う人の見つけ方を、三つ持ち帰ります。</p>
+<p>▼ きっかけになったニュース<br>・JFEスチール「日本初、グリーン水素を使用した還元鉄試作に成功」（2026/7/31）3日間で約1トン・鉄鋼業は日本のCO2の約14%</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・JFEスチール「GXスチール JGreeX」公式ページ（削減量の割当方式・第三者認証・「販売数量には限りがある」）<br>・日本経済新聞「EV補助金、グリーン鉄採用で最大5万円加算 経産省」（軽EVは最大3万円・2025年4月以降登録車に適用）<br>・日経ビジネス「グリーン鉄供給能力6倍へ 大型電炉に3300億円投資」（2026/2/16）<br>・JFEスチール・JFE商事 採用リリース（横浜市発注の橋梁・建築用高力ボルト・天井クレーン・産業用大型変圧器・鋼管在庫販売）</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第16回｜値差を埋める人から売る
+
+山梨の山あいで水から作った水素を千葉の製鉄所へ運び、三日間で鉄をおよそ一トン。先月末に発表された、日本初のグリーン水素還元鉄の試作です。ただ、この鉄はふつうの鉄よりだいぶ高い。きょうはいつもと違って、答えを持ち帰る回ではなく、一緒に考える回——高い鉄の最初の一トンは、誰に売るのか。車の補助金、役所の工事、輸出、と仮説を立てて答え合わせに行くと、売り場はもう開いていました。「削減した分を鋼材に割り当てて、認証つきで売る」。高い物を最初に買う人の見つけ方を、三つ持ち帰ります。
+
+▼ きっかけになったニュース
+・JFEスチール「日本初、グリーン水素を使用した還元鉄試作に成功」（2026/7/31）3日間で約1トン・鉄鋼業は日本のCO2の約14%
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・JFEスチール「GXスチール JGreeX」公式ページ（削減量の割当方式・第三者認証・「販売数量には限りがある」）
+・日本経済新聞「EV補助金、グリーン鉄採用で最大5万円加算 経産省」（軽EVは最大3万円・2025年4月以降登録車に適用）
+・日経ビジネス「グリーン鉄供給能力6倍へ 大型電炉に3300億円投資」（2026/2/16）
+・JFEスチール・JFE商事 採用リリース（横浜市発注の橋梁・建築用高力ボルト・天井クレーン・産業用大型変圧器・鋼管在庫販売）
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
