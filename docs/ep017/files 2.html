@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>一回ごとに薄く値札を貼る｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep016/files.html">← ep016</a><a class="pn" href="../ep018/files.html">ep018 →</a></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep017</span><span class="dlabel">作成</span>2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>一回ごとに薄く値札を貼る</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP03 入れ替える</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW5 人口動態・環境</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep017</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> 宿泊税、新たに7市町で導入へ。導入自治体は17→約50へ急増、7月には熊本市・宮崎市が徴収開始<br><span class='k'>published</span> 2026-08-04<br><span class='k'>source_url</span> sources/collected.md（BB宿泊ラボ 公開7/13・更新8/4／訪日ラボ6/1／日経1月総論）</td></tr><tr><th>副トリガ</th><td>2026-10-01に那須町・盛岡市・北広島市が徴収開始予定（放送の約1ヶ月半後の山）。総務省の新設同意は2026年上半期だけで19件</td></tr><tr><th>題材</th><td>宿泊税ラッシュ（自治体が条例で作る「来た人への薄い課金」。定率3%免税点なし・定額200円・上限つき定率と設計は三様）</td></tr><tr><th>手</th><td>OP03</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW5</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>一回ごとに、薄く値札を貼る</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep002</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep017
+host: tokura                # 日替わり交互（前日ep016=三崎）。制度回はep002以来＝数字と設計を淡々と割る芸
+episode_type: T1            # 事例回。ただし主役は「制度」（spread軸で14回あきの初解凍）
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced
+anchor:                     # トリガ情報。※公開7/13の記事の「最終更新2026-08-04」を採用（reviewに明記）
+  headline: &quot;宿泊税、新たに7市町で導入へ。導入自治体は17→約50へ急増、7月には熊本市・宮崎市が徴収開始&quot;
+  published: 2026-08-04
+  source_url: &quot;sources/collected.md（BB宿泊ラボ 公開7/13・更新8/4／訪日ラボ6/1／日経1月総論）&quot;
+sub_triggers:
+  - &quot;2026-10-01に那須町・盛岡市・北広島市が徴収開始予定（放送の約1ヶ月半後の山）。総務省の新設同意は2026年上半期だけで19件&quot;
+case_name: &quot;宿泊税ラッシュ（自治体が条例で作る「来た人への薄い課金」。定率3%免税点なし・定額200円・上限つき定率と設計は三様）&quot;
+operation_tags: [OP03]      # 入れ替える（12回あき）：費用の払い手を、住民から来訪者へ入れ替えた
+motive_tag: none
+tailwind_tag: TW5           # 人口動態・環境（8回あき）：インバウンド急増とオーバーツーリズム
+hook: &quot;&quot;
+lesson_draft: &quot;一回ごとに、薄く値札を貼る&quot;
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;
+prev_episode_ref: &quot;ep002&quot;   # 同じ制度回の先例（カスハラ義務化＝事業者側の受け皿商売）。今回は**制度そのものを商品として解剖**する初の回。
+                            # ep002の「施行日は開店日」の言い回しは再演しない
+notes: |
+  ・採点（selection.yaml ep017）：Q1○ Q2✗・C1〜C5○・面白さ90・**4◎軸**（制度公共12あき・主役「制度」14あき・OP03 12あき・TW5 8あき）
+  ・**アンカーの注意**：BB宿泊ラボ記事は公開7/13（32日前）・最終更新8/4（窓内）。更新日採用の判断をreviewに明記。
+    7/1の熊本・宮崎開始（44日前）は「先月一日」と時期明示で使う
+  ・数字は3系統設計（余裕2）：
+    ①時期（先月一日・十月一日・二〇二七年・二〇〇二年※東京・上半期）
+    ②広がり（17→約50・ことし約30自治体・上半期の同意19件）
+    ③税額の設計（200円・3%・1.2%で上限1,200円・免税点なし）
+  ・固有名詞：自治体名はすべて純粋な地名で系統外。系統は**総務省**（同意の主体）の1つのみ。東芝テック等ベンダー名は不使用
+  ・『』2回：Q01（特別徴収の仕組み）／Q02（熊本『予約した時期を問わず…』）
+  ・主役「制度」回の核ガード：儲け手を具体に置く——①自治体（新財源） ②対応する事務・システムの特需 ③費用側＝徴収を担う宿。
+    「税の解説」で終わらせず、**課金設計の教科書**として聞かせる（定率/定額/免税点/免除の思想）
+  ・政治的賛否の回避（ng.yml）：増税の是非・観光公害の善悪には立ち入らない。設計の違いを事実で並べる
+  ・宮崎（修学旅行課税）と那須（免除）の対比は、**どちらが正しいかを言わない**。設計思想の違いとして提示
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>業界メディア</td><td>新規7市町の報道</td><td class="fact-val">公開7/13・更新8/4</td><td>2026-08-04</td><td class="src">BB宿泊ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F02</span></td><td>全国</td><td>導入自治体数の急増</td><td class="fact-val">17→約50</td><td>2025末→2026</td><td class="src">日経（2026-01・検索要約）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>総務省</td><td>新設同意の件数</td><td class="fact-val">上半期だけで19件</td><td>2026上半期</td><td class="src">BB宿泊ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>熊本市・宮崎市</td><td>徴収開始</td><td class="fact-val">2026-07-01・1人1泊200円</td><td>2026-07-01</td><td class="src">BB宿泊ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>那須町・盛岡市・北広島市</td><td>徴収開始予定</td><td class="fact-val">2026-10-01</td><td>2026-10-01予定</td><td class="src">BB宿泊ラボ／検索確認</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>山形市・苫小牧市・北広島市</td><td>定率方式</td><td class="fact-val">宿泊料金の3%</td><td>2026-10〜2027-04</td><td class="src">BB宿泊ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>稚内市・富士吉田市・富士河口湖町</td><td>定額方式</td><td class="fact-val">1人1泊200円</td><td>2027-03〜04予定</td><td class="src">BB宿泊ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>名護市</td><td>折衷方式</td><td class="fact-val">定率1.2%・上限1,200円</td><td>2027-02予定</td><td class="src">BB宿泊ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>制度</td><td>徴収の仕組み</td><td class="fact-val">特別徴収</td><td>共通</td><td class="src">訪日ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F10</span></td><td>制度</td><td>税の性格</td><td class="fact-val">法定外目的税</td><td>共通</td><td class="src">訪日ラボ／各自治体</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F11</span></td><td>先行自治体</td><td>先例</td><td class="fact-val">東京都2002年〜ほか</td><td>2002〜</td><td class="src">訪日ラボ／東京都主税局</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F12</span></td><td>今後</td><td>2027年の予定</td><td class="fact-val">沖縄県2027-02ほか</td><td>2027予定</td><td class="src">訪日ラボ</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F13</span></td><td>周辺</td><td>対応特需の存在</td><td class="fact-val">レジ・システムの対応商品</td><td>継続</td><td class="src">東芝テック コラム</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>制度の説明（訪日ラボ）</strong>「宿泊施設が、宿泊料金と一緒に集めて、自治体に納める」<span class="src-note">訪日ラボ／『』候補①。特別徴収＝宿がレジになる</span></li><li><span class="fid">Q02</span> <strong>熊本市の告知（趣旨）</strong>「予約した時期を問わず、七月一日以降のチェックイン分から課税します」<span class="src-note">BB宿泊ラボ／『』候補②。実務の細部に設計が出る</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>増税の是非・観光公害の善悪</strong><br>理由：政治的賛否が主題になる（config/ng.yml）<br>処置：立ち入らない。設計の違いを事実で並べる</li><li><strong>京都市の上限1万円などの個別高額事例</strong><br>理由：手元の出典で確認できていない<br>処置：不使用。確認できた自治体のみ使う</li><li><strong>宮崎と那須の免除設計の優劣</strong><br>理由：評価の断定になる<br>処置：「思想の違い」として並べるだけ</li><li><strong>税収額の見込み（○億円）</strong><br>理由：自治体ごとに未収集<br>処置：台本では使わない。記事も同様</li></ul><div class="ig-callout pre-line">・アンカー＝BB宿泊ラボの最終更新2026-08-04（10日前）。公開7/13は32日前で窓を1日外れるため、更新日採用をreviewで開示
+・density: balanced。数字3系統（余裕2）：
+①時期（先月一日・十月一日・二〇二七年・二〇〇二年・上半期）
+②広がり（17→約50・約30自治体・同意19件）
+③税額の設計（200円・3%・1.2%と上限1,200円）
+・固有名詞1系統：総務省のみ。自治体名は純粋な地名として系統外（熊本・宮崎・那須・盛岡・山形・苫小牧・北広島・稚内・富士吉田・富士河口湖・名護・東京・北海道・松江・沖縄・長崎）——ただし読み上げの負荷を考え、台本で並べるのは6地名程度まで
+・『』はQ01・Q02。口癖1回・例え話2まで
+・核ガード：「税の解説」でなく「課金設計の教科書」。儲け手（自治体の新財源・対応特需）と費用側（宿の事務）を必ず置く
+・評価の断定をしない：設計の違い（定率/定額・免税点・免除）は思想の違いとして並べる</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep017 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-14／対象：script_draft.md（1,707字）／check.py 実行済み／<strong>主役「制度」の初解凍（14回あき）・完全新規ネタ限定巡回（ユーザー指示）での選定</strong></p>
+<h2>機械判定（check.py）</h2>
+<p>本文文字数1,707（初稿1,592→F11先行組の充当）・OP/ED定型・『』2箇所・口癖1回・取材話法（伝聞6・調べる1＝初稿0回を修正）・三点リーダー0・「香月」0 — <strong>すべてOK</strong>。NGは後工程の図版のみ。</p>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>アンカーの判断（今回の要注意点）</h3>
+<p><strong>BB宿泊ラボ記事：公開2026-07-13（制作日から32日＝窓を1日超過）・最終更新2026-08-04（10日・窓内）。</strong><br>anchor.published には更新日を採用した。根拠：①更新も媒体の公開行為であり日付が確認できる ②記事内容（7市町の同意・7/1開始）は更新時点の最新情報を含む ③実施イベント（10/1開始群）は未来に控え鮮度の実態がある。<br><strong>ただし保守的に見れば窓外との判定もあり得るため、人間の最終判断を仰ぐ</strong>。代替アンカー候補：那須町・盛岡市の8月の公式告知（一次・目視確認が必要）。</p>
+<h3>数字系統：3系統 → PASS（balanced上限5・余裕2）</h3>
+<ol><li><strong>時期</strong>：先月一日／十月一日／ことしの四月／去年の十二月／来年の二月／二〇〇二年／上半期</li><li><strong>広がり</strong>：およそ三十／十七から五十ほど／同意十九件</li><li><strong>税額の設計</strong>：二百円／三パーセント（免税点なし）／一・二パーセント・上限千二百円</li><li>対象外：一つ目・二つ目・三様・ひとつ（談話標識）</li></ol>
+<h3>固有名詞：1系統 → PASS（上限6）</h3>
+<p>総務省のみ。自治体名（熊本・宮崎・山形・名護・那須・盛岡・北海道・松江・沖縄・東京）は純粋な地名で系統外。<strong>読み上げは10地名</strong>——規約上は無制限だが、聴取負荷の観点で人間レビューの確認対象として記録。</p>
+<h3>キメ台詞候補：2件 → PASS</h3>
+<ul><li>「商品の正体は、法定外目的税といいます」＝定義の導入の平叙</li><li>「単価で取らずに、人数と泊数の掛け算で集める設計です」＝設計の説明</li><li>監視：「税金の設計書は、読み手を選ばない、公開された料金設計の教科書です」＝比喩だが「ここだけ持って帰って」の持ち帰りの中身であり、例え話1回分として計上（上限2以内）</li></ul>
+<h3>政治的中立（ng.yml） → PASS</h3>
+<p>増税の是非・観光公害の善悪に立ち入っていない。冒頭で「増税のニュースとして聞くと憂鬱ですが、きょうは見方を変えます」と視点の変更を明示し、以降は設計の事実のみ。宮崎（修学旅行課税）と那須（免除）は「どこを無料にするかに、その町の考え方が出る」と<strong>思想の違い</strong>で止めた。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（宿泊税）は過去回になし。<strong>ユーザー指示「一度も出たことのないネタのみ」を遵守した巡回</strong>（アイスタイル・FC東京・CLOも全て初出→棚入れ済み）</li><li><strong>主役「制度」は14回ぶり・畑「制度公共」12回ぶり・OP03は12回ぶり・TW5は8回ぶりの4◎軸</strong></li><li>ep002（制度回・事業者側の受け皿）との違い：今回は<strong>制度そのものを商品として解剖</strong>。「施行日は開店日」の言い回しは不使用</li><li>ホスト交互✓・T1は✗熱だが4◎軸を理由に通す（採点表に記録済み）</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td><strong>アンカー（更新日8/4採用）</strong></td><td>上記のとおり人間の最終判断を推奨。代替＝那須町・盛岡市の公式告知（一次）の目視</td></tr><tr><td>17→約50・ことし約30自治体</td><td>日経（2026-01）の検索要約。<strong>原文または総務省の法定外税一覧での確認が必要</strong></td></tr><tr><td>7市町の税額・方式・開始日</td><td>BB宿泊ラボ単独。<strong>各自治体の条例・公式ページでの抽出確認を推奨</strong></td></tr><tr><td>熊本7/1・チェックイン基準／宮崎の修学旅行課税</td><td>同上</td></tr><tr><td>北海道2026-04・松江2025-12・東京2002〜見直し中</td><td>訪日ラボ＋都主税局の2系統 ✓</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>法定外目的税</strong>（ほうていがいもくてきぜい） 2. <strong>免税点</strong>（めんぜいてん） 3. <strong>徴収</strong>（ちょうしゅう） 4. <strong>名護</strong>（なご）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。アンカー判断のみ人間の確認を仰ぐ。</p>
+<hr>
+<h1>追記：全成果物の最終検査（2026-08-14）</h1>
+<p>check.py 最終実行：<strong>機械判定はすべて PASS（59項目）</strong>。台本1,707字／TTS稿タグ6個（法定外は「ほうていがい」に部分開き）／記事（結果提示型・7市町の表つき）／infographic 6セクション（シーケンス図でお金の流れ）／figures 3枚（17→約50の棒2本）。</p>
+<h2>要判断5件の確認</h2>
+<ol><li><strong>トリガ</strong>：anchor=8/4（記事の最終更新日）— 採用判断と代替案は前段のとおり。<strong>人間の最終確認を推奨</strong></li><li><strong>facts消化</strong>：F01〜F13＋Q01・Q02の15枚 → 7点以上 PASS</li><li><strong>数字系統</strong>：3系統（時期／広がり／税額の設計）・余裕2。「十二」の検出は「一・二パーセント」の部分一致で系統③ PASS</li><li><strong>キメ候補</strong>：「の正体」＝定義導入の平叙 PASS</li><li><strong>台帳照合</strong>：4◎軸（制度公共12あき・主役「制度」14あき・OP03・TW5）・題材新規・T1✗熱は◎軸を理由に通過 PASS</li></ol>
+<h2>図版・記事の判断</h2>
+<ul><li>図版数値は facts 対応（17→約50=F02※報道ラベル／19件=F03／200円=F04・F07／3%=F06／1.2%上限=F08／年表=F04・F05・F11・F12）</li><li>「（予定）」「（報道）」ラベルを未確定値に付与</li><li>記事は※で「総務省一覧での確認推奨」「各自治体の条例での確認推奨」「是非に立ち入らない」を明記</li></ul>
+<h2>総合判定</h2>
+<p><strong>ep017 全成果物 PASS。</strong> 残るは人間の必須作業（<strong>アンカー採否の最終判断</strong>・那須町/盛岡市の公式告知の目視・17→約50の原典確認・TTS通し聴取・公開承認）と画像書き出し（クラウド）。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep017 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜一回ごとに、薄く値札を貼る</h2>
+<h3>ホスト：戸倉ハジメ／型1 一本深掘り型／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>二百円。これ、何の値段だと思います？　ホテルのフロントで、宿代と一緒に払う税金です。宿泊税。先月一日から、熊本と宮崎で徴収が始まりました。この税、いま全国で一気に増えていまして、ことし始める自治体はおよそ三十。導入済みは、去年の末の十七から、五十ほどへ跳ね上がる見込みだそうです。増税のニュースとして聞くと憂鬱ですが、きょうは見方を変えます。自治体が、新商品を出した。そう読むと、これは商売の設計の話になるんです。</p>
+<p>商品の正体は、法定外目的税といいます。国の法律の外で、自治体が条例で独自に作れる税金。私、条例だけで作れるのかと思っていたら、総務省、総務大臣の同意が要るんだそうです。ことしの上半期だけで、新設の同意が十九件。使いみちは観光の振興に限られていて、集め方は『宿が、宿泊料金と一緒に集めて、自治体に納める』。つまり、町じゅうのホテルと旅館が、この商品のレジになる仕組みです。</p>
+<p>なんで今、これが売れるのか。観光客が増えると、道路も、トイレも、ごみ処理も、案内の人手も要る。ところがその費用の財布は、これまで住民税でした。使う人と払う人が、ずれていたんです。宿泊税は、その費用を生んでいる「来た人」に、払う人を入れ替えた。しかも一泊二百円という薄さです。この額で旅行をやめる人は、まずいない。単価で取らずに、人数と泊数の掛け算で集める設計です。</p>
+<p>面白いのは、同じ宿泊税でも、設計が三様に分かれていることです。一つ目は、いまの定額二百円組。二つ目は定率組で、山形などは宿泊料金の三パーセント。しかも安い宿を除外する線、免税点を設けない。高い宿に泊まる人ほど多く払う形です。三つ目は折衷で、名護は一・二パーセント、ただし上限千二百円。さらに細部を見ると、同じ二百円でも、宮崎は修学旅行も課税、十月から始める那須は子どもや修学旅行を免除と、逆の線を引いている。どこを無料にするかに、その町の考え方が出るんですね。熊本の案内には『予約した時期を問わず、七月一日以降のチェックイン分から課税します』とありました。予約時点で税を知らなかった客への説明も、レジの改修も、宿の仕事になる。実際、レジや宿泊システムの会社が対応の商品を出していて、新しい決まりが生まれる場所には、受け皿の商売も一緒に立ち上がるんですね。</p>
+<p>調べてみたら、先行組もそれぞれ動いています。北海道はことしの四月から道全体で始め、松江は去年の十二月、中国地方で初めて導入しました。この先も、十月一日には那須と盛岡が始めて、来年の二月には沖縄が控え、改定を検討している町もある。二〇〇二年から先行してきた東京は、いま制度の見直し中だそうです。ラッシュは、まだ続きます。</p>
+<p>ここから、商売の解剖です。きょうは、課金設計の教科書として三つ。</p>
+<p>一、費用を生んでいる人が、いまの客の外にいるなら、払う人を入れ替えられないか考える。誰が使って、誰が払っているか。受益と負担の地図を先に描くと、ずれが見えます。</p>
+<p>二、薄く、その場で、出口で集める。単価を上げるのではなく、回数と人数の掛け算で取る。払う痛みがいちばん小さい瞬間を選ぶのが、この設計の芯です。</p>
+<p>三、定率か定額か、誰を免除するかは、思想の表明です。自社の料金表も同じで、何を無料にしているかに、会社の考えが出ます。無料の線を引き直すだけでも、料金表は新商品になります。</p>
+<p>ここだけ持って帰ってください。税金の設計書は、読み手を選ばない、公開された料金設計の教科書です。しかもいま、全国で五十近い設計例が出そろいつつあります。</p>
+<p>今週の宿題です。自社のサービスで、費用を生んでいるのに誰にも請求していない行為を、ひとつ書き出してください。特急対応、キャンセル、重い問い合わせ。そこに薄い値札を貼れないか、考えてみてください。</p>
+<p>きょうの手は、一回ごとに、薄く値札を貼る、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第17回｜一回ごとに、薄く値札を貼る</p>
+<p>ホテルのフロントで宿代と一緒に払う、一泊二百円。宿泊税を始める自治体が今年およそ三十、全国で十七から五十ほどへ増える見込みです。増税のニュースとして聞くと憂鬱ですが、見方を変えると、これは「自治体の新商品」。定率三パーセントで免税点なし、定額二百円、上限つきの折衷と、設計は三様。修学旅行から取る町と、免除する町。どこを無料にするかに、その町の考えが出ます。全国で五十近く出そろいつつある「課金設計の公開教科書」を、商売の目で読みます。</p>
+<p>▼ きっかけになったニュース<br>・宿泊税、新たに7市町で導入へ（総務大臣同意 2026/6/30・BB宿泊ラボ 7/13報道・8/4更新）<br>・熊本市・宮崎市が2026/7/1に徴収開始（1人1泊200円）。導入自治体は17→約50へ急増見込み</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・訪日ラボ「2025〜2026年に宿泊税を導入・改定した自治体まとめ」（特別徴収の仕組み・先行自治体）<br>・日本経済新聞「宿泊税ラッシュ、26年に30自治体導入」（2026/1）<br>・東京都主税局「宿泊税の見直し」（2002年〜の先行例）<br>・各自治体の告知（熊本市のチェックイン基準・宮崎市と那須町の免除設計の違い）<br>※本編は課税の是非には立ち入らず、制度の設計を扱っています。</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第17回｜一回ごとに、薄く値札を貼る
+
+ホテルのフロントで宿代と一緒に払う、一泊二百円。宿泊税を始める自治体が今年およそ三十、全国で十七から五十ほどへ増える見込みです。増税のニュースとして聞くと憂鬱ですが、見方を変えると、これは「自治体の新商品」。定率三パーセントで免税点なし、定額二百円、上限つきの折衷と、設計は三様。修学旅行から取る町と、免除する町。どこを無料にするかに、その町の考えが出ます。全国で五十近く出そろいつつある「課金設計の公開教科書」を、商売の目で読みます。
+
+▼ きっかけになったニュース
+・宿泊税、新たに7市町で導入へ（総務大臣同意 2026/6/30・BB宿泊ラボ 7/13報道・8/4更新）
+・熊本市・宮崎市が2026/7/1に徴収開始（1人1泊200円）。導入自治体は17→約50へ急増見込み
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・訪日ラボ「2025〜2026年に宿泊税を導入・改定した自治体まとめ」（特別徴収の仕組み・先行自治体）
+・日本経済新聞「宿泊税ラッシュ、26年に30自治体導入」（2026/1）
+・東京都主税局「宿泊税の見直し」（2002年〜の先行例）
+・各自治体の告知（熊本市のチェックイン基準・宮崎市と那須町の免除設計の違い）
+※本編は課税の是非には立ち入らず、制度の設計を扱っています。
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

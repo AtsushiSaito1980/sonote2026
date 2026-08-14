@@ -1,0 +1,36 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  # --- アンカー ---
+  - {id: F01, who: NOT A HOTEL, what: シリーズD発表, value: 2026-08-06・165億円, when: 2026-08-06, source_url: "PR TIMES（一次）／日経", confirmed_by: 2, anchor: true, verify: verified, note: "第三者割当100億円＋既存株主セカンダリー65億円"}
+  - {id: F02, who: NOT A HOTEL, what: 引受先, value: トヨタ系TIP・SBI・Gライオンほか, when: 2026-08-06, source_url: "PR TIMES（一次）／日経", confirmed_by: 2, verify: verified, note: "TIP＝トヨタの戦略子会社。Gライオン＝神戸の自動車ディーラー。台本では「トヨタの投資部門」「金融グループ」「神戸の自動車ディーラー」"}
+  - {id: F03, who: NOT A HOTEL, what: 資金使途, value: NOT A GARAGE, when: 2026-08〜, source_url: "PR TIMES（一次）", confirmed_by: 2, verify: verified, note: "ヘリコプター・ヨット・スーパーカーの共同所有×ホスピタリティ。『目的地へ向かう時間から到着後の滞在までを一つの体験として設計』（リリース原文・地の文で使用）"}
+  - {id: F04, who: NOT A HOTEL, what: 調達の系譜, value: シリーズC101億円・累計332億円, when: 2026-02時点, source_url: "The Bridge", confirmed_by: 1, verify: dated, note: "2026年2月時点。今回で累計約500億円規模。台本では使わず記事へ"}
+  # --- 事業の構造 ---
+  - {id: F05, who: NOT A HOTEL, what: 事業の仕組み, value: 分割販売×ホテル運用, when: 継続, source_url: "Forbes対談／各記事", confirmed_by: 2, verify: verified, note: "別荘を持ち分に分けて販売。オーナーが使わない日はホテルとして貸し出し収益化。シェア購入の単位は未確認＝「持ち分を分けて買える」水準"}
+  - {id: F06, who: NOT A HOTEL, what: 受注型の戦略, value: 売れなかったら建てない, when: 継続, source_url: "Forbes対談（原文）", confirmed_by: 1, verify: verified, note: "先に売ってから建てる。在庫リスクを持たない。この回の構造の芯"}
+  - {id: F07, who: NOT A HOTEL, what: 規模, value: 29棟44室・8箇所, when: 2025-02時点, source_url: "Forbes対談", confirmed_by: 1, verify: dated, note: "販売中含む。那須・青島・福岡・北軽井沢・水上・石垣島・瀬戸内・東京。**2025年2月時点＝時期明示必須**"}
+  - {id: F08, who: NOT A HOTEL, what: 完売の実績, value: 石垣島1棟45億円が1日完売, when: 〜2025-02, source_url: "Forbes対談（原文）", confirmed_by: 1, verify: dated, note: "1期・2期とも売り出すたび1日完売。「去年の対談の時点で」と時期明示"}
+  # --- 人・着想 ---
+  - {id: F09, who: 創業者, what: 経歴, value: 元ZOZOの役員, when: 2015〜2020, source_url: "Forbes・高専機構ほか", confirmed_by: 2, verify: verified, note: "高専卒→宮崎でアラタナ創業（EC支援）→2015年ZOZOグループ入り・ZOZOテクノロジーズ取締役。台本は「元ZOZOの役員だった人」"}
+  - {id: F10, who: NOT A HOTEL, what: 創業, value: 2020年4月1日, when: 2020-04-01, source_url: "各記事", confirmed_by: 2, verify: verified, note: "日本初のロックダウン期に設立"}
+  - {id: F11, who: 創業者, what: 着想, value: ZOZOの仕入れないモデル, when: 創業時, source_url: "Forbes対談（原文）", confirmed_by: 1, verify: verified, note: "Q01参照。『洋服は仕入れず、ブランドから貸与してもらい、撮影して、売れたら送る。そのモデルを不動産やホテルで』。MO4の場面（ZOZOの中で見た）"}
+quotes:
+  - {id: Q01, speaker: 創業者（対談原文）, gist: "ZOZOは洋服を仕入れない。ブランドから預かって、撮影して、売れたら送る。そのモデルを、不動産でできたらなと", source_url: "Forbes対談（2025-02・原文）", note: "『』候補①。着想＝MO4の場面"}
+  - {id: Q02, speaker: 創業者（対談原文）, gist: "理想のホテルをつくるだけではダメだと思って、ヤケクソでつけた名前です", source_url: "Forbes対談（2025-02・原文）", note: "『』候補②。NOT A HOTELの命名"}
+rejected:
+  - {claim: 自宅・別荘の原体験の場面, reason: 一次記録に未到達, action: 語らない。着想はQ01（ZOZOモデル）の範囲で。型3にしない根拠}
+  - {claim: シェア購入の分割単位（12分の1・30日等）, reason: 手元出典で未確認, action: 「持ち分を分けて買える」の水準まで}
+  - {claim: ヘリ・ヨットの価格や分割単位, reason: 未発表, action: 「同じ売り方を乗り物でやる」の水準まで。想像で言わない}
+  - {claim: 高専・アラタナの詳細な来歴, reason: 台本の尺で扱いきれない, action: 「元ZOZOの役員」まで。記事で経歴に触れる}
+notes: |
+  ・アンカー＝2026-08-06（8日前）。台本では「今月六日の発表」
+  ・density: balanced。数字4系統（余裕1）：
+    ①時期（今月六日・二〇二〇年四月・二〇一五年・去年の対談）
+    ②調達（165億円＝100億＋65億）
+    ③事業（29棟44室※時期明示・八つの土地・45億円が1日完売）
+  ・固有名詞3系統：NOT A HOTEL（GARAGE含む）／ZOZO／トヨタ。石垣島・那須等は地名
+  ・『』はQ01・Q02。口癖1回・例え話2まで
+  ・ep008（クラス・OP07）との対比を台本で明示：回す設計（在庫を持って再生して回す）vs 分けて先に売る設計（在庫を持たない）
+  ・個人名は台本に出さない。「創業した人」「元ZOZOの役員だった人」

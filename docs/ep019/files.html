@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>売ってから建てる｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep018/files.html">← ep018</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep019</span><span class="dlabel">作成</span>2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>売ってから建てる</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP07 分ける</span><span class="chip hand">OP13 翻訳する（味）</span><span class="chip motive">MO4 見てしまった</span><span class="chip tailwind">TW3 時流</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep019</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> NOT A HOTEL、シリーズDで165億円調達。トヨタ系TIPらが引受、ヘリ・ヨットの共同所有「NOT A GARAGE」へ<br><span class='k'>published</span> 2026-08-06<br><span class='k'>source_url</span> sources/collected.md（PR TIMES一次＋日経＋Forbes対談原文）</td></tr><tr><th>副トリガ</th><td>使途はNOT A GARAGE（ヘリ・ヨット・スーパーカーの共同所有×ホスピタリティ）。自動車ディーラーのGライオンも参加＝乗り物側が別荘屋に乗った</td></tr><tr><th>題材</th><td>NOT A HOTEL（売れなかったら建てない別荘を、持ち分に分けて売り、使わない日はホテルで回す。次はヘリを分ける）</td></tr><tr><th>手</th><td>OP07<br>OP13味</td></tr><tr><th>動機</th><td>MO4</td></tr><tr><th>風</th><td>TW3</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>売ってから、建てる</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep008</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep019
+host: tokura                # 日替わり交互（前日ep018=三崎）
+episode_type: T1            # 事例回（動機段落を厚く）。型3は原体験・反対の一次記録未到達のため見送り
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced
+anchor:                     # トリガ情報（制作日2026-08-14から8日前）
+  headline: &quot;NOT A HOTEL、シリーズDで165億円調達。トヨタ系TIPらが引受、ヘリ・ヨットの共同所有「NOT A GARAGE」へ&quot;
+  published: 2026-08-06
+  source_url: &quot;sources/collected.md（PR TIMES一次＋日経＋Forbes対談原文）&quot;
+sub_triggers:
+  - &quot;使途はNOT A GARAGE（ヘリ・ヨット・スーパーカーの共同所有×ホスピタリティ）。自動車ディーラーのGライオンも参加＝乗り物側が別荘屋に乗った&quot;
+case_name: &quot;NOT A HOTEL（売れなかったら建てない別荘を、持ち分に分けて売り、使わない日はホテルで回す。次はヘリを分ける）&quot;
+operation_tags: [OP07, OP13味]  # 分ける（6本ぶり主役）×ZOZOの型の持ち込み（味）
+motive_tag: MO4             # 添え（8回あき）：ZOZOの中で「仕入れない小売」を見てしまった人が、不動産に持ち込んだ
+tailwind_tag: TW3           # 時流：共同所有・シェア消費の広がり（軽め）
+hook: &quot;&quot;
+lesson_draft: &quot;売ってから、建てる&quot;
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;              # 反対・制約の一次記録なし＝動機回にしない根拠
+prev_episode_ref: &quot;ep008&quot;   # 同じOP07（クラス・家具サブスク）。違い＝ep008は自社在庫を回す設計／ep019は在庫を持たない受注分割。
+                            # 「回す」と「分けて先に売る」の対比を台本で混同しない
+notes: |
+  ・採点（selection.yaml ep019）：Q1○ Q2△・C1◎（ZOZOの型×別荘、別荘屋×トヨタ）・C4○（OP07主役）・面白さ95
+  ・数字は4系統設計（余裕1）：
+    ①時期（今月六日・二〇二〇年四月・二〇一五年・去年の対談時点）
+    ②調達（165億円＝100億＋65億）
+    ③事業（29棟44室※2025年2月時点・全国八つの土地・45億円が1日完売）
+    ④（予備）
+  ・固有名詞3系統：NOT A HOTEL（NOT A GARAGE含む）／ZOZO／トヨタ。SBIは「金融グループ」・Gライオンは「神戸の自動車ディーラー」
+  ・『』2回：Q01（ZOZOの仕入れないモデルの着想・原文）／Q02（ヤケクソの命名・原文）
+  ・個人名は台本に出さない：「創業した人（元ZOZOの役員だった人）」。記事は濵渦伸次氏と実名可
+  ・「売れなかったら建てない」＝先に売って建てる受注型が構造の芯。ep008（回す）との対比を明確に
+  ・45億円1日完売・29棟44室は2025年2月対談時点 → 台本で「去年の対談の時点で」と時期明示
+  ・ヘリの分割単位・価格は未発表 → 想像で言わない。「同じ売り方を、乗り物でやる」の水準
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>NOT A HOTEL</td><td>シリーズD発表</td><td class="fact-val">2026-08-06・165億円</td><td>2026-08-06</td><td class="src">PR TIMES（一次）／日経</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F02</span></td><td>NOT A HOTEL</td><td>引受先</td><td class="fact-val">トヨタ系TIP・SBI・Gライオンほか</td><td>2026-08-06</td><td class="src">PR TIMES（一次）／日経</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F03</span></td><td>NOT A HOTEL</td><td>資金使途</td><td class="fact-val">NOT A GARAGE</td><td>2026-08〜</td><td class="src">PR TIMES（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F04</span></td><td>NOT A HOTEL</td><td>調達の系譜</td><td class="fact-val">シリーズC101億円・累計332億円</td><td>2026-02時点</td><td class="src">The Bridge</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>NOT A HOTEL</td><td>事業の仕組み</td><td class="fact-val">分割販売×ホテル運用</td><td>継続</td><td class="src">Forbes対談／各記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F06</span></td><td>NOT A HOTEL</td><td>受注型の戦略</td><td class="fact-val">売れなかったら建てない</td><td>継続</td><td class="src">Forbes対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>NOT A HOTEL</td><td>規模</td><td class="fact-val">29棟44室・8箇所</td><td>2025-02時点</td><td class="src">Forbes対談</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>NOT A HOTEL</td><td>完売の実績</td><td class="fact-val">石垣島1棟45億円が1日完売</td><td>〜2025-02</td><td class="src">Forbes対談（原文）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F09</span></td><td>創業者</td><td>経歴</td><td class="fact-val">元ZOZOの役員</td><td>2015〜2020</td><td class="src">Forbes・高専機構ほか</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F10</span></td><td>NOT A HOTEL</td><td>創業</td><td class="fact-val">2020年4月1日</td><td>2020-04-01</td><td class="src">各記事</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F11</span></td><td>創業者</td><td>着想</td><td class="fact-val">ZOZOの仕入れないモデル</td><td>創業時</td><td class="src">Forbes対談（原文）</td><td><span class="cb">×1</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>創業者（対談原文）</strong>「ZOZOは洋服を仕入れない。ブランドから預かって、撮影して、売れたら送る。そのモデルを、不動産でできたらなと」<span class="src-note">Forbes対談（2025-02・原文）／『』候補①。着想＝MO4の場面</span></li><li><span class="fid">Q02</span> <strong>創業者（対談原文）</strong>「理想のホテルをつくるだけではダメだと思って、ヤケクソでつけた名前です」<span class="src-note">Forbes対談（2025-02・原文）／『』候補②。NOT A HOTELの命名</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>自宅・別荘の原体験の場面</strong><br>理由：一次記録に未到達<br>処置：語らない。着想はQ01（ZOZOモデル）の範囲で。型3にしない根拠</li><li><strong>シェア購入の分割単位（12分の1・30日等）</strong><br>理由：手元出典で未確認<br>処置：「持ち分を分けて買える」の水準まで</li><li><strong>ヘリ・ヨットの価格や分割単位</strong><br>理由：未発表<br>処置：「同じ売り方を乗り物でやる」の水準まで。想像で言わない</li><li><strong>高専・アラタナの詳細な来歴</strong><br>理由：台本の尺で扱いきれない<br>処置：「元ZOZOの役員」まで。記事で経歴に触れる</li></ul><div class="ig-callout pre-line">・アンカー＝2026-08-06（8日前）。台本では「今月六日の発表」
+・density: balanced。数字4系統（余裕1）：
+①時期（今月六日・二〇二〇年四月・二〇一五年・去年の対談）
+②調達（165億円＝100億＋65億）
+③事業（29棟44室※時期明示・八つの土地・45億円が1日完売）
+・固有名詞3系統：NOT A HOTEL（GARAGE含む）／ZOZO／トヨタ。石垣島・那須等は地名
+・『』はQ01・Q02。口癖1回・例え話2まで
+・ep008（クラス・OP07）との対比を台本で明示：回す設計（在庫を持って再生して回す）vs 分けて先に売る設計（在庫を持たない）
+・個人名は台本に出さない。「創業した人」「元ZOZOの役員だった人」</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep019 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-14／対象：script_draft.md（1,709字）／check.py 実行済み／<strong>新採点基準（C1=掛け合わせの距離・C4=手が立つか）適用後の初制作</strong></p>
+<h2>機械判定（check.py）</h2>
+<p>本文文字数1,709（初稿1,674→「調べてみたら」付与と拠点の地名充当）・OP/ED定型・『』2箇所・口癖1回・取材話法（伝聞3・調べる1）・三点リーダー0・「香月」0 — <strong>すべてOK</strong>。NGは後工程の図版のみ。</p>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>新基準C1・C4の判定</h3>
+<ul><li><strong>C1＝◎</strong>：掛け合わせが2段で遠い。①アパレルEC（ZOZOの仕入れない型）×別荘（最も在庫が重い商売） ②別荘屋×トヨタ・自動車ディーラー（乗り物の共同所有へ）。「別の世界の2つ」の定義例に合致</li><li><strong>C4＝○</strong>：主役の手OP07「分ける」が6本ぶりに主役として立つ（＋OP13味＝型の持ち込み）。lesson「売ってから、建てる」は受注型の芯で、手の内容を一言化したもの</li></ul>
+<h3>数字系統：3系統 → PASS（balanced上限5・余裕2）</h3>
+<ol><li><strong>時期</strong>：今月六日／二〇一五年／二〇二〇年四月／去年（の対談・の時点）</li><li><strong>調達</strong>：百六十五億円（＝百億円＋六十五億円）</li><li><strong>事業</strong>：四十五億円（3回・つかみと解剖の呼応）／二十九棟四十四室／八つの土地</li><li>対象外：一段目・二段目・三段目・三つ・ひとつ（談話標識）</li></ol>
+<h3>固有名詞：3系統 → PASS（上限6）</h3>
+<p>NOT A HOTEL（ノットアホテル・ノットアガレージ含む＝同一ブランド系統）／ZOZO／トヨタ。SBIは「金融グループ」に一般化（台本では言及自体を省略）、Gライオンは「神戸の自動車ディーラー」。石垣島・那須・瀬戸内・東京は地名。</p>
+<h3>キメ台詞候補：2件 → PASS（監視1件）</h3>
+<ul><li>「いちばん在庫の重い不動産に」＝性質の平叙</li><li>「掛け合わせの距離が遠いほど、競合はいなくなります」＝<strong>やや法則調</strong>。解剖ではなく展開2の締めにあり、C1の言語化として置いたが、人間レビューで気になる場合は「ここまで離れた組み合わせは、真似する側も追いにくい」に差し替え可</li><li>「売っているのは、別荘というモノではなくて、『高い資産の買いやすい形』です」＝持ち帰りの要約。ってことですよね型ではないが、事実（3段の仕組み）の直後の言い直しとして許容</li></ul>
+<h3>ep008（同じOP07）との分離 → PASS</h3>
+<p>台本内で対比を明示：「前に、家具を回して貸す会社の話をしましたが——あれは在庫を持つ側の設計。きょうは持たない側」※軽い過去回参照1回（初出の運用。乱発しないことをここに記録）<br>——実際の台本では明示的な過去回参照は入れず、「在庫と借入を外している」の構造対比のみに留めた（参照ゼロ）。</p>
+<h3>トリガ鮮度 → PASS</h3>
+<p>anchor＝2026-08-06（8日前・一次）。45億円1日完売・29棟44室は「去年の対談記事によれば」「去年の時点で」と時期明示（2025年2月時点のdated情報）。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（NOT A HOTEL）は過去回になし。bl013をused処理</li><li><strong>主役「人」8回ぶり・MO4添え8回ぶり・OP07主役6本ぶり</strong>。畑「生活消費」は直近5回に1回で許容</li><li>ホスト交互✓・戸倉の数字CO「四十五億円。」</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td>165億円（100億＋65億）・TIP/SBI/Gライオン</td><td>PR TIMES一次＋日経の2系統 ✓（引受先の正式名一覧はリリース原文で確認推奨）</td></tr><tr><td>NOT A GARAGE（ヘリ・ヨット・スーパーカー）</td><td>一次 ✓</td></tr><tr><td><strong>45億円1日完売・29棟44室・8箇所</strong></td><td>Forbes対談（2025年2月）単独。<strong>最新の会社資料での更新確認を推奨</strong></td></tr><tr><td>ZOZOモデルの着想・ヤケクソの命名</td><td>Forbes対談原文 ✓（台本使用可）</td></tr><tr><td>シェアの分割単位</td><td>未確認 →「持ち分に分けて売る」の水準で使用（規約遵守）</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>持ち分</strong>（もちぶん） 2. <strong>即日完売</strong>（そくじつかんばい） 3. <strong>受注</strong>（じゅちゅう） 4. <strong>NOT A GARAGE</strong>（ノットアガレージ）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep019 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜売ってから、建てる</h2>
+<h3>ホスト：戸倉ハジメ／型1 一本深掘り型／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>四十五億円。これ、何の値段だと思います？　石垣島に建つ、一棟の別荘です。しかもこの物件、去年の対談記事によれば、売り出すたびに一日で完売したそうです。四十五億円の家が、一日で。私、銀行にいたころ、別荘は「売れない資産」の代表として教わりました。景気が傾くと真っ先に手放され、買い手がつかない。その別荘が、なんで即日完売するのか。きょうは、この売り方の解剖です。</p>
+<p>会社の名前は、ノットアホテル、NOT A HOTELといいます。今月六日、百六十五億円の調達を発表しました。内訳は、新しい出資が百億円、既存の株主からの株の買い取りが六十五億円。調べてみたら、出資の顔ぶれが面白くて、トヨタの投資部門や、神戸の自動車ディーラーまで並んでいます。別荘の会社に、なぜ車側の人たちが乗るのか。使いみちを見ると、ノットアガレージという新事業で、ヘリコプターやヨット、スーパーカーの共同所有をやるとのことでした。答えは、この会社の売り方そのものにあります。</p>
+<p>仕組みは三段です。一段目、別荘を丸ごとではなく、持ち分に分けて売る。一棟を買えなくても、一部なら買える人は一気に増えます。二段目、オーナーが使わない日は、ホテルとして貸し出して収益にする。高い買い物の「使い切れない」という罪悪感を、仕組みで消してある。そして三段目が芯で、この会社、売れなかったら建てないんです。先に売って、売れた分だけ建てる。銀行の目で言い直すと、不動産の二大リスクは在庫と借入ですが、その両方を設計の段階で外している。だから四十五億円という値段でも、勝負が早いんです。</p>
+<p>で、裏の問いです。なんで、この売り方を思いついたのか。創業した人は、元ZOZOの役員です。二〇一五年からあの会社の中で見ていたのは、こういう商売でした。『ZOZOは洋服を仕入れない。ブランドから預かって、撮影して、売れたら送る。そのモデルを、不動産でできたらなと』。仕入れない小売を、いちばん在庫の重い不動産に持ち込んだわけです。創業は二〇二〇年四月、最初のロックダウンのさなか。社名も『理想のホテルをつくるだけではダメだと思って、ヤケクソでつけた』と本人が語っています。見てしまった型を、別の業界へ運んだ人です。</p>
+<p>そして今回の一手が、乗り物です。ヘリコプターもヨットも、別荘とそっくりの資産なんですね。高い、使う日が少ない、維持費が重い。だから同じ売り方が効く、という読みで、移動と滞在をひとつの体験として設計するそうです。拠点は去年の時点で二十九棟四十四室、全国八つの土地。石垣島のほか那須や瀬戸内、東京にも広がっています。家で証明した売り方を持って、乗り物側のトヨタたちと組む。掛け合わせの距離が遠いほど、競合はいなくなります。</p>
+<p>ここから、商売の解剖です。きょうの手は、売ってから建てる。三つに分けます。</p>
+<p>一、高くて、使う日が少ない資産は、丸ごと売らずに持ち分に分ける。買える人の母集団が桁で増えて、高額品でも即日完売の勝負ができます。</p>
+<p>二、売ってから作る。受注が集まるまで建てなければ、在庫のリスクは設計段階で消えます。値引きで在庫を処分する日も来ません。</p>
+<p>三、遊ばせない受け皿を最初から付ける。使わない日をホテルにする仕組みがあるから、買う側は「使い切れないから」と断れなくなる。売れない理由を、先に設計で潰しておくんです。</p>
+<p>ここだけ持って帰ってください。この会社が売っているのは、別荘というモノではなくて、「高い資産の買いやすい形」です。形を変えれば、家にもヘリにも、同じ手が効く。</p>
+<p>今週の宿題です。自社の商品で、高くて、使用頻度が低くて、維持が重いせいで売れていないものをひとつ選んでください。持ち分で分けるか、時間で分けるか、機能で分けるか。どれなら買える人が増えるか、書き出してみてください。</p>
+<p>きょうの手は、売ってから建てる、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第19回｜売ってから、建てる</p>
+<p>石垣島の一棟四十五億円の別荘が、売り出すたびに一日で完売する——去年の対談で語られた実績です。持ち分に分けて売る、使わない日はホテルで貸す、そして「売れなかったら建てない」。在庫と借入という不動産の二大リスクを設計で外したこの売り方は、元ZOZOの役員が「仕入れない小売」の型を不動産に持ち込んだものでした。今月六日、トヨタの投資部門などから百六十五億円を調達し、次はヘリコプターとヨットを同じ手で分けにいきます。高い・使う日が少ない・維持が重い商品の売り方を、持ち帰ります。</p>
+<p>▼ きっかけになったニュース<br>・NOT A HOTEL、シリーズDラウンドで165億円を調達（2026/8/6・第三者割当100億円＋セカンダリー65億円）<br>・引受：トヨタ・インベンション・パートナーズ（TIP）、SBIグループ、Gライオングループほか。使途は乗り物の共同所有「NOT A GARAGE」</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・Forbes JAPAN「NOT A HOTEL誕生秘話」対談（2025/2）石垣島45億円の即日完売・29棟44室・「売れなかったら建てない」・ZOZOモデルの着想・社名の由来<br>・The Bridge（2026/2）シリーズC 101億円・累計332億円<br>※拠点数・完売実績は2025年2月時点の数字です。ヘリ等の分割単位・価格は未発表です。</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第19回｜売ってから、建てる
+
+石垣島の一棟四十五億円の別荘が、売り出すたびに一日で完売する——去年の対談で語られた実績です。持ち分に分けて売る、使わない日はホテルで貸す、そして「売れなかったら建てない」。在庫と借入という不動産の二大リスクを設計で外したこの売り方は、元ZOZOの役員が「仕入れない小売」の型を不動産に持ち込んだものでした。今月六日、トヨタの投資部門などから百六十五億円を調達し、次はヘリコプターとヨットを同じ手で分けにいきます。高い・使う日が少ない・維持が重い商品の売り方を、持ち帰ります。
+
+▼ きっかけになったニュース
+・NOT A HOTEL、シリーズDラウンドで165億円を調達（2026/8/6・第三者割当100億円＋セカンダリー65億円）
+・引受：トヨタ・インベンション・パートナーズ（TIP）、SBIグループ、Gライオングループほか。使途は乗り物の共同所有「NOT A GARAGE」
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・Forbes JAPAN「NOT A HOTEL誕生秘話」対談（2025/2）石垣島45億円の即日完売・29棟44室・「売れなかったら建てない」・ZOZOモデルの着想・社名の由来
+・The Bridge（2026/2）シリーズC 101億円・累計332億円
+※拠点数・完売実績は2025年2月時点の数字です。ヘリ等の分割単位・価格は未発表です。
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

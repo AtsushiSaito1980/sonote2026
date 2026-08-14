@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>一回ごとに薄く値札を貼る｜インフォグラフィック — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep016/infographic.html">← ep016</a><a class="pn" href="../ep018/infographic.html">ep018 →</a></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep017</span><span class="dlabel">作成</span>2026-08-14（金）　<span class="badge review">レビュー中</span></div>
+  <h1>一回ごとに薄く値札を貼る</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP03 入れ替える</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW5 人口動態・環境</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html" aria-current="page">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html">制作ファイル</a></nav>
+
+<div class="ig">
+<!-- ep017 インフォグラフィック（手作り・数値は facts.yaml 準拠）。docs/ は build_site.py が包んで出力する -->
+<div class="ig-hero">
+  <div class="kicker">きょうの手</div>
+  <div class="lesson">一回ごとに、薄く値札を貼る。</div>
+  <div class="lead">宿泊税を始める自治体は今年約30、全国で<strong>17→約50</strong>へ。「自治体の新商品」として設計を読む。</div>
+</div>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19V5m0 14h16"/><path d="M8 16V9m4 7V6m4 10v-4"/></svg></span>数字で見る</h2>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="label">導入自治体数</div>
+      <div class="value mid">17→約50</div>
+      <div class="note">2025年末→2026年中の見込み（日経報道）</div>
+    </div>
+    <div class="stat">
+      <div class="label">2026年上半期の新設同意</div>
+      <div class="value mid">19件</div>
+      <div class="note">総務大臣の同意。変更も2件</div>
+    </div>
+    <div class="stat">
+      <div class="label">最も多い設計</div>
+      <div class="value mid">1泊200円</div>
+      <div class="note">旅行をやめさせない薄さ。人数×泊数で集める</div>
+    </div>
+    <div class="stat">
+      <div class="label">徴収開始の直近</div>
+      <div class="value mid">7/1と10/1</div>
+      <div class="note">7/1熊本・宮崎開始済み。10/1に那須・盛岡・北広島（予定）</div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h13"/><path d="m12 8 4 4-4 4"/><path d="M21 5v14"/></svg></span>お金は、こう流れる</h2>
+  <ol class="seq">
+    <li class="seq-step">
+      <div class="seq-pair"><span class="seq-a">宿泊客</span><span class="seq-ar">→</span><span class="seq-a">宿</span></div>
+      <div class="seq-do">宿代と一緒に<strong>1泊200円など</strong>を支払う（出口で・薄く）</div>
+    </li>
+    <li class="seq-step">
+      <div class="seq-pair"><span class="seq-a">宿</span><span class="seq-ar">→</span><span class="seq-a">自治体</span></div>
+      <div class="seq-do">特別徴収：<strong>宿が集めて納める</strong>＝町じゅうの宿がレジになる</div>
+      <div class="seq-note">レジ・宿泊システムの改修は宿の仕事。ベンダーに対応特需</div>
+    </li>
+    <li class="seq-step">
+      <div class="seq-pair"><span class="seq-a">自治体</span><span class="seq-ar">→</span><span class="seq-a">観光インフラ</span></div>
+      <div class="seq-do">使途は観光振興に限定（法定外<strong>目的</strong>税）。住民税から payer を入れ替えた</div>
+    </li>
+  </ol>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg></span>設計は三様 — 2026年7月同意の7市町</h2>
+  <div class="point-cards">
+    <div class="point">
+      <span class="pno">A</span>
+      <h3>定率3%・免税点なし</h3>
+      <p>山形市・苫小牧市・北広島市。高い宿ほど多く払う。安い宿の除外線を引かない設計。</p>
+    </div>
+    <div class="point">
+      <span class="pno">B</span>
+      <h3>定額200円</h3>
+      <p>稚内市・富士吉田市・富士河口湖町。金額が読みやすく、宿の事務も軽い。</p>
+    </div>
+    <div class="point">
+      <span class="pno">C</span>
+      <h3>定率1.2%・上限1,200円</h3>
+      <p>名護市。定率の公平さと、上限の安心感の折衷。</p>
+    </div>
+  </div>
+  <div class="ig-callout">同じ200円でも、<strong>宮崎市は修学旅行も課税・那須町は免除</strong>。どこを無料にするかに、その町の思想が出る。</div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4m8-4v4"/></svg></span>ラッシュの時間割</h2>
+  <div class="vtl">
+    <div class="vtl-item dim"><span class="vt">2002年</span>東京都が先行導入（現在は見直し中）</div>
+    <div class="vtl-item dim"><span class="vt">2025年12月</span>松江市が中国地方初の導入</div>
+    <div class="vtl-item"><span class="vt">2026年4月</span>北海道が道全体で開始</div>
+    <div class="vtl-item"><span class="vt">2026年6月30日</span>総務省が新規7市町に同意（上半期の新設同意は計19件）</div>
+    <div class="vtl-item major"><span class="vt">2026年7月1日</span>熊本市・宮崎市が徴収開始（1人1泊200円）</div>
+    <div class="vtl-item"><span class="vt">2026年10月1日</span>那須町・盛岡市・北広島市が開始予定</div>
+    <div class="vtl-item dim"><span class="vt">2027年</span>沖縄県（2月予定）・山形市ほか。長崎市は改定検討</div>
+  </div>
+</section>
+
+<section class="ig-section">
+  <h2><span class="ico"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg></span>この課金設計を、自社で使うなら</h2>
+  <div class="point-cards">
+    <div class="point">
+      <span class="pno">1</span>
+      <h3>受益と負担の地図を描く</h3>
+      <p>費用を生む人が客の外にいるなら、払う人を入れ替えられないか。ずれは図にすると見える。</p>
+    </div>
+    <div class="point">
+      <span class="pno">2</span>
+      <h3>薄く・その場で・出口で</h3>
+      <p>単価を上げず、回数×人数で集める。払う痛みが最小の瞬間を選ぶ。</p>
+    </div>
+    <div class="point">
+      <span class="pno">3</span>
+      <h3>無料の線に思想を込める</h3>
+      <p>定率か定額か、誰を免除するか。料金表の無料の線を引き直すだけでも新商品になる。</p>
+    </div>
+  </div>
+</section>
+
+<div class="ig-quote">
+  <div class="q">費用を生んでいるのに誰にも請求していない行為があるなら、痛みの小さい瞬間を選んで、薄い値札を貼れないか設計する。</div>
+  <div class="steps">
+    <strong>使いどころ</strong>：特急対応・キャンセル・重い問い合わせなど「見えない費用」が膨らんでいるとき<br>
+    <strong>最初の一歩</strong>：費用を生んでいる無料の行為をひとつ書き出し、定率・定額・免除の3案で値札を試作する
+  </div>
+</div>
+
+</div>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
