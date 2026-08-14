@@ -8,8 +8,8 @@
 
 【見立ての3つ】選ぶときの判断（`ledger/selection.yaml` の ○△✗ から）
 
-  ① 面白さ   … 聞きたくなるか      Q1 Q2 C1 C2 C5
-  ② 応用     … 持ち帰って使えるか   C3 C4 ＋ 手・動機・風が立っているか
+  ① 面白さ   … 聞きたくなるか      Q1 Q2 C1 C2 C5（C1は◎=3）
+  ② 応用     … 持ち帰って使えるか   C3 C4（手）＋ 動機・風が立っているか
   ③ ばらつき … 前と違う回になるか   7軸それぞれの冷え具合
 
 【実測の3つ】出来上がったものを数えた値（`facts.yaml`・`article.md`・台本から）
@@ -38,10 +38,15 @@ import spread  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 SELECTION = ROOT / "ledger" / "selection.yaml"
 
-MARK_PTS = {"✗": 0, "△": 1, "○": 2}
+MARK_PTS = {"✗": 0, "△": 1, "○": 2, "◎": 3}
+
+# 満点。C1（掛け合わせた2つの距離）だけ ◎=3 があるので上限が違う
+MAX_PTS = {"C1": 3}
 
 INTEREST = ["Q1", "Q2", "C1", "C2", "C5"]   # 面白さ（聞きたくなるか）
-TRANSFER = ["C3", "C4"]                     # 応用のうち、採点表から取るぶん
+# 応用は C3・C4 と、動機・風のタグ。C4 が「手が立つか」になったので
+# 手（OP）はここで二重に数えない
+TRANSFER = ["C3", "C4"]
 SPREAD_MARK_PTS = {"✗": 0, "△": 1, "○": 2, "◎": 3}
 
 
@@ -58,7 +63,7 @@ def load_entries() -> dict[str, dict]:
         ep = re.search(r"ep:\s*(ep\d+)", body)
         if not ep:
             continue
-        d = dict(re.findall(r"(\w+):\s*([○△✗0-9]+)", body))
+        d = dict(re.findall(r"(\w+):\s*([○△✗◎0-9]+)", body))
         note = re.search(r'note:\s*"(.*)"\s*$', body)
         d["ep"] = ep.group(1)
         d["note"] = note.group(1) if note else ""
@@ -77,15 +82,15 @@ def interest(marks: dict) -> int | None:
     got = [MARK_PTS.get(marks.get(k, ""), None) for k in INTEREST]
     if any(g is None for g in got):
         return None
-    return round(sum(got) / (2 * len(INTEREST)) * 100)
+    top = sum(MAX_PTS.get(k, 2) for k in INTEREST)
+    return round(sum(got) / top * 100)
 
 
 def transfer(marks: dict, row: dict) -> int | None:
     got = [MARK_PTS.get(marks.get(k, ""), None) for k in TRANSFER]
     if any(g is None for g in got):
         return None
-    got += [tag_points(row.get("hands", ""), "OP"),
-            tag_points(row.get("motive", ""), "MO"),
+    got += [tag_points(row.get("motive", ""), "MO"),
             tag_points(row.get("tailwind", ""), "TW")]
     return round(sum(got) / (2 * len(got)) * 100)
 

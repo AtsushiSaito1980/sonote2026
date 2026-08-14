@@ -1016,8 +1016,8 @@ def build_selection_page(sel, ledger_rows, titles):
 
     scored = sc.score_all()
     ids = ["Q1", "Q2"] + [c["id"] for c in sel["interest"]]
-    NUMS = [("interest", "面白さ", "聞きたくなるか", "Q1 Q2 C1 C2 C5", 0),
-            ("transfer", "応用", "持ち帰って使えるか", "C3 C4 ＋ 手OP・動機MO・風TW", 0),
+    NUMS = [("interest", "面白さ", "聞きたくなるか", "Q1 Q2 C1 C2 C5（C1は◎=3）", 0),
+            ("transfer", "応用", "持ち帰って使えるか", "C3 C4（手）＋ 動機MO・風TW", 0),
             ("variety", "ばらつき", "前と違う回になるか", "7軸の冷え具合", 0),
             ("freshness", "鮮度", "何日前のニュースか", "トリガから制作までの日数", 1),
             ("evidence", "裏取り", "出典がどれだけ厚いか", "複数出典率と一次確認率", 1),
@@ -1028,7 +1028,7 @@ def build_selection_page(sel, ledger_rows, titles):
         if not m:
             continue
         ep = r["ep"]
-        n_o = sum(1 for c in sel["interest"] if m.get(c["id"]) == "○")
+        n_o = sum(1 for c in sel["interest"] if m.get(c["id"]) in ("○", "◎"))
         core_ok = "○" in (m.get("Q1"), m.get("Q2"))
         pass_ok = core_ok and n_o >= 3
         cls = "" if pass_ok else ' class="miss-row"'
@@ -1115,8 +1115,9 @@ def build_selection_page(sel, ledger_rows, titles):
   </div>
   <p class="hint"><strong>見立ての3つは ○△✗ の足し算なので10点刻みになりやすく、差が出にくい。
   実測の3つは数えた値なので細かく散ります。</strong>弱いところを見つけるにはこちらが効きます。
-  応用に手・動機・風を入れているのは、この企画の芯が「手と動機と風の組み合わせで、
-  新規事業に移せる形に抽象化すること」だからです。ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
+  <strong>C1「掛け合わせた2つの距離」だけ ◎（3点）があります。</strong>アイデアは既存の2つの組み合わせで、
+  その2つが遠いほど他に無い——調味料会社と半導体材料、メディアと売場、自治体と商品設計。
+  ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
 </section>
 
 <section class="sec">
