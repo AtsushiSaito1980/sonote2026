@@ -437,8 +437,9 @@ def check_ledger(ep: Path):
         add(NG, "選定の採点",
             f"{ep_id} の行が selection.yaml に無い → /patrol の採点を記録してから作る")
         return
-    marks = dict(re.findall(r"(Q[12]|C[1-5]):\s*([○△✗])", line))
-    n_o = sum(1 for k, v in marks.items() if k.startswith("C") and v == "○")
+    marks = dict(re.findall(r"(Q[12]|C[1-5]):\s*([○△✗◎])", line))
+    # ◎（掛け合わせた2つが遠い）は ○ より強いので、○ 3つ以上の数え上げに含める
+    n_o = sum(1 for k, v in marks.items() if k.startswith("C") and v in ("○", "◎"))
     core = "○" in (marks.get("Q1"), marks.get("Q2"))
     bad = []
     if not core:
