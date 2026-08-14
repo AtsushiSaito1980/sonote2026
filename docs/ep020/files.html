@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>古い技術に新しい市場を足す｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep019/files.html">← ep019</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep020</span><span class="dlabel">作成</span>2026-08-15（土）　<span class="badge review">レビュー中</span></div>
+  <h1>古い技術に新しい市場を足す</h1>
+  <div class="chips"><span class="chip host">三崎アオイ</span><span class="chip hand">OP02 足す</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW4 技術</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#review">検査レポート</a><a href="#draft">台本ドラフト（人間レビュー用）</a><a href="#shownotes">配信概要欄</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>ep020</td></tr><tr><th>ホスト</th><td>misaki（三崎アオイ）</td></tr><tr><th>型番号</th><td>T1</td></tr><tr><th>型</th><td>型1 一本深掘り型</td></tr><tr><th>シリーズ</th><td><span class="muted">—</span></td></tr><tr><th>尺（分）</th><td>5</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> 荏原製作所、上期純利益335億円で同期間最高・通期を上方修正。精密・電子の営業利益+39%、AI半導体需要がけん引<br><span class='k'>published</span> 2026-08-14<br><span class='k'>source_url</span> sources/collected.md（日経＋株式新聞の2系統・会社創業ページ一次）</td></tr><tr><th>副トリガ</th><td>CMP装置・ドライ真空ポンプは世界2位級（2025年時点）。CMP通期売上予想2,670億円・+25.6%（2026年5月時点）</td></tr><tr><th>題材</th><td>荏原製作所（1912年創業のポンプの会社。流体技術の直系＝真空と研磨で、生成AI半導体の心臓部を支える）</td></tr><tr><th>手</th><td>OP02</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW4</td></tr><tr><th>つかみ</th><td><span class="muted">—</span></td></tr><tr><th>きょうの手（案）</th><td>古い技術に、新しい市場を足す</td></tr><tr><th>宿題（案）</th><td><span class="muted">—</span></td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep014</td></tr><tr><th>備考</th><td>|</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: ep020
+host: misaki                # 日替わり交互（前日ep019=戸倉）。ポンプ・工場・装置は生産技術の本領
+episode_type: T1
+format: 型1 一本深掘り型
+series: &quot;&quot;
+duration_min: 5
+mode: real
+density: balanced
+anchor:                     # トリガ情報（制作日2026-08-15の前日）
+  headline: &quot;荏原製作所、上期純利益335億円で同期間最高・通期を上方修正。精密・電子の営業利益+39%、AI半導体需要がけん引&quot;
+  published: 2026-08-14
+  source_url: &quot;sources/collected.md（日経＋株式新聞の2系統・会社創業ページ一次）&quot;
+sub_triggers:
+  - &quot;CMP装置・ドライ真空ポンプは世界2位級（2025年時点）。CMP通期売上予想2,670億円・+25.6%（2026年5月時点）&quot;
+case_name: &quot;荏原製作所（1912年創業のポンプの会社。流体技術の直系＝真空と研磨で、生成AI半導体の心臓部を支える）&quot;
+operation_tags: [OP02]      # 足す（味のみ→主役化）：創業技術（流体）×最先端市場（半導体）の掛け合わせ
+motive_tag: none            # 井口×畠山の創業は語るが、動機の場面記録はなし＝添えの来歴まで
+tailwind_tag: TW4           # 技術（5回あき）：コア技術の転用・成熟技術が最先端に効く
+hook: &quot;&quot;
+lesson_draft: &quot;古い技術に、新しい市場を足す&quot;
+homework_draft: &quot;&quot;
+opposition: &quot;&quot;
+prev_episode_ref: &quot;ep014&quot;   # 同じ「異業種×半導体」の聞き味。書き分け＝味の素は「寝かせた技術が方式転換で目覚めた」／
+                            # 荏原は「創業技術の直系が、そのまま最先端の心臓部に届いた」。台本でこの対比を1回だけ明示的に置く
+notes: |
+  ・採点（selection.yaml ep020）：Q1○ Q2✗・C1◎（ポンプ×半導体※ep014と聞き味近接の注記つき）・C4○（OP02主役化）・面白さ85
+  ・**年度の混同に注意**：2026年上期＝純利益335億+7%・通期営業1,250億へ修正。2025年の数字（1,025億）と混ぜない
+  ・数字は3系統設計（余裕2）：
+    ①時期（今月十四日・一九一二年・一九一四年・去年の説明会・ことし五月）
+    ②決算（335億円+7%・4,907億円+9%・1兆530億円・1,250億円+10%・精密電子+39%）
+    ③位置（世界2位※時期明示・海外66%※同・CMP予想2,670億円+25.6%※同）
+  ・固有名詞2系統：荏原製作所／東京帝国大学（歴史文脈）。ゐのくち式・CMPは荏原の文脈内で処理（CMPは「ウェハーを磨く装置」と言い換え主体）
+  ・『』2回：Q01（AI需要が業績を支える・決算説明の趣旨）／Q02（「熱と誠」の意味・公式）
+  ・個人名の扱い：井口在屋・畠山一清は**歴史上の人物（故人・創業者）**として台本でも名前可と判断（憲法§3の趣旨は
+    現存の個人のプライバシー・人格。ただしreviewで判断を記録）→ 保守的に台本は「大学の先生と、その教え子」とし、記事で実名
+  ・「きのう」と言わない（放送9/1想定）→「今月十四日の発表」
+  ・ep014との対比を1回だけ置く：「寝かせて当てた話は前にやりましたが、きょうは寝かせていません。創業からずっと同じ技術の直系です」水準
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2><div class="table-scroll"><table class="facts"><thead><tr><th>ID</th><th>誰が</th><th>何を</th><th>値</th><th>時期</th><th>出典</th><th>裏取り</th></tr></thead><tbody><tr class="anchor-row"><td><span class="fid">F01</span><span class="anchor-chip">アンカー</span></td><td>荏原製作所</td><td>上期決算発表</td><td class="fact-val">2026-08-14</td><td>2026-08-14</td><td class="src">日経＋株式新聞（2系統）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F02</span></td><td>荏原製作所</td><td>上期の業績</td><td class="fact-val">純利益335億円・+7%</td><td>2026上期</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F03</span></td><td>荏原製作所</td><td>通期の上方修正</td><td class="fact-val">営業1,250億円へ</td><td>2026-08-14</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F04</span></td><td>荏原製作所</td><td>けん引セグメント</td><td class="fact-val">精密・電子の営業+39%</td><td>2026上期</td><td class="src">日経</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F05</span></td><td>荏原製作所</td><td>CMPの規模感</td><td class="fact-val">通期売上予想2,670億円</td><td>2026-05時点</td><td class="src">1Q書き起こし（ログミー）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F06</span></td><td>荏原製作所</td><td>半導体向けの2本柱</td><td class="fact-val">CMP装置とドライ真空ポンプ</td><td>継続</td><td class="src">説明会資料ベース（2025-08）</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F07</span></td><td>荏原製作所</td><td>海外比率</td><td class="fact-val">66%</td><td>2025-08時点</td><td class="src">同上</td><td><span class="cb">×1</span></td></tr><tr><td><span class="fid">F08</span></td><td>荏原製作所</td><td>コア技術の系譜</td><td class="fact-val">流体解析・制御と振動制御</td><td>継続</td><td class="src">説明会・会社資料</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F09</span></td><td>荏原製作所</td><td>創業</td><td class="fact-val">1912年11月・ゐのくち式機械事務所</td><td>1912-11</td><td class="src">公式「創業の物語」（一次）</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F10</span></td><td>荏原製作所</td><td>実用化と評価</td><td class="fact-val">1914年特許・機械遺産</td><td>1914〜2007</td><td class="src">機械学会・Wikipedia</td><td><span class="cb">×2</span></td></tr><tr><td><span class="fid">F11</span></td><td>創業者</td><td>座右の銘</td><td class="fact-val">熱と誠</td><td>創業期〜</td><td class="src">公式（一次）</td><td><span class="cb">×2</span></td></tr></tbody></table></div><h3>引用（趣旨再現）</h3><ul class="quote-list"><li><span class="fid">Q01</span> <strong>決算説明（報道の趣旨）</strong>「生成AI向けの半導体需要が、業績を支えている」<span class="src-note">日経・書き起こし／『』候補①</span></li><li><span class="fid">Q02</span> <strong>創業者の座右の銘（公式）</strong>「自ら創意工夫する熱意と、誠心誠意やり遂げる心」<span class="src-note">公式「熱と誠」／『』候補②</span></li></ul><h3>不採用・降格</h3><ul class="rejected-list"><li><strong>2025年の決算数値（四半期最高・営業1,025億円等）</strong><br>理由：前年の数字。年度混同のリスク<br>処置：不使用。構造情報（シェア2位・海外66%）のみ時期明示で使う</li><li><strong>株価の反応（新高値・+326円）</strong><br>理由：市況は番組の目的外<br>処置：台本・記事とも不使用</li><li><strong>自社株買いの詳細</strong><br>理由：本筋（技術×市場）に不要<br>処置：記事で1行触れる程度まで</li></ul><div class="ig-callout pre-line">・アンカー＝2026-08-14（前日）。台本は「今月十四日の発表」（放送9/1想定のため「きのう」禁止）
+・density: balanced。数字3系統（余裕2）：
+①時期（今月十四日・一九一二年・一九一四年・去年の説明会・ことし五月）
+②決算（335億+7%・4,907億+9%・1兆530億・1,250億+10%・+39%）
+③位置（世界2位※・海外66%※・2,670億+25.6%※——すべて時期明示）
+・固有名詞2系統：荏原製作所／東京帝国大学。CMPは「ウェハーを磨く装置」と言い換え主体（初出のみシーエムピー）
+・『』はQ01・Q02。口癖1回・例え話2まで
+・ep014との書き分けを1回だけ明示：「寝かせて当てた」vs「創業技術の直系がそのまま届いた」
+・年度の混同禁止：2026年上期＝335億・通期営業1,250億。2025年の1,025億は出さない</div></section><section class="file-sec" id="review"><h2>検査レポート<span class="file-name">review.md</span></h2><div class="prose compact"><h1>ep020 検査レポート（review-episode／台本第1回）</h1>
+<p>検査日：2026-08-15／対象：script_draft.md（1,702字）／check.py 実行済み／<strong>OP02「足す」味のみ→初主役（残る味のみの手はOP14のみ）</strong></p>
+<h2>機械判定（check.py）</h2>
+<p>本文文字数1,702（初稿1,568→来歴の厚み・海外比率・伝聞マーカーを充当）・OP/ED定型・『』2箇所・口癖1回・取材話法（伝聞3・調べる1）・三点リーダー0・「香月」0 — <strong>すべてOK</strong>。NGは後工程の図版のみ。</p>
+<h2>モデル判断（数え方の規約と根拠）</h2>
+<h3>年度混同ガード（この回の最重要チェック） → PASS</h3>
+<ul><li>使用した数値はすべて<strong>2026年</strong>：上期純利益335億円（+7%・同期間最高）／売上4,907億円（+9%）／通期1兆530億円・営業1,250億円（+10%）／精密・電子+39%</li><li><strong>2025年の数値（四半期最高・営業1,025億円）は不使用</strong>（rejected遵守）</li><li>dated情報は時期明示：「去年の説明会の時点で」（世界2位・海外3分の2）「ことし五月の会社予想で」（CMP 2,670億円）</li></ul>
+<h3>数字系統：3系統 → PASS（balanced上限5・余裕2）</h3>
+<ol><li><strong>時期</strong>：今月十四日／一九一二年／一九一四年／百年後・百年あまり／去年・ことし五月</li><li><strong>決算</strong>：三百三十五億円・七パーセント／四千九百七億円・九パーセント／一兆五百三十億円／一千二百五十億円・一割増／三十九パーセント</li><li><strong>位置</strong>：世界シェア二位／二千六百七十億円・二割五分増／売上の三分の二が海外</li><li>対象外：ふたつ・ひとつ・三つ・二人組（談話標識・場面描写）</li></ol>
+<h3>固有名詞：2系統 → PASS（上限6）</h3>
+<p>荏原製作所／東京帝国大学（歴史文脈）。シーエムピー（CMP）は装置カテゴリ名として初出1回・以降「磨く装置」に言い換え。井口在屋・畠山一清の実名は台本では不使用（「先生と教え子」「理論の人と、売る人の二人組」）＝<strong>故人・歴史上の人物だが保守側の判断</strong>。記事では実名を使用（reviewの判断記録）。</p>
+<h3>C1◎とep014の書き分け → PASS</h3>
+<p>台本内で対比を1回だけ明示：「調味料の会社が寝かせていた樹脂を当てた話をやりました。荏原は逆です。寝かせていない」。過去回参照はこの1回のみ（乱発しない運用を維持）。</p>
+<h3>キメ台詞候補：「いちばん」 → PASS</h3>
+<p>「流体の制御がいちばんむずかしくて、いちばん差がつく」＝三崎の現場実感の平叙。<br>監視：「大学の理論から始まった会社が、いままた大学の隣の最先端、半導体に戻ってきたとも言えます」＝「とも言えます」で開いた解釈。許容。</p>
+<h3>トリガ鮮度 → PASS</h3>
+<p>anchor＝2026-08-14（前日・報道2系統）。「今月十四日の発表」で日付固定（放送9/1想定のため「きのう」不使用）。</p>
+<h3>台帳照合 → PASS</h3>
+<ul><li>題材（荏原）は過去回になし。<strong>OP02初主役・TW4 5回ぶり・産業BtoB 7回ぶりの3◎軸</strong></li><li>ep014（味の素・技術研究×半導体）との聞き味近接は selection note と台本内対比で処理。畑は産業BtoB（装置）で区別</li><li>ホスト交互✓・三崎の場面CO（クリーンルーム＝製造側。ep014のパソコンの中＝製品側と対）</li></ul>
+<h2>事実面（人間の裏取り対象）</h2>
+<div class="table-scroll"><table><thead><tr><th>事実</th><th>状態</th></tr></thead><tbody><tr><td>上期数値・通期修正</td><td>日経＋株式新聞の2系統 ✓（短信での突合を推奨）</td></tr><tr><td><strong>世界シェア2位（CMP・ドライ真空ポンプ）</strong></td><td>2025年8月説明会ベース。<strong>2026年資料での最新表記確認が必要</strong></td></tr><tr><td>CMP 2,670億円・+25.6%</td><td>2026年5月時点の会社予想（書き起こし）。2Qで更新されていないか確認</td></tr><tr><td>創業物語（1912年・井口×畠山・機械遺産第9号）</td><td>公式＋機械学会の2系統 ✓</td></tr></tbody></table></div>
+<h2>読みチェック語（TTS生成後に人間が確認・最大4）</h2>
+<ol><li><strong>荏原</strong>（えばら） 2. <strong>渦巻ポンプ</strong>（うずまきポンプ） 3. <strong>研磨剤</strong>（けんまざい） 4. <strong>機械遺産</strong>（きかいいさん）</li></ol>
+<h2>判定</h2>
+<p><strong>台本：PASS（1周目通過・差し戻しなし）</strong> → tts-format へ進行可。</p></div></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>ep020 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜古い技術に、新しい市場を足す</h2>
+<h3>ホスト：三崎アオイ／型1 一本深掘り型／5分／density: balanced</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p>
+<p>まず、ある工場の中の話をさせてください。半導体のクリーンルームです。手のひらほどの銀色の円盤、ウェハーが、薬品と研磨剤で鏡のように磨かれていく。その隣では、装置の中を真空に保つポンプが静かに回っている。この「磨く」と「真空」、生成AIの半導体づくりに欠かせないふたつの装置を、どちらも作っている日本の会社があります。荏原製作所。そう、ビルの地下や水道で、毎日水を送っている、あのポンプの会社です。</p>
+<p>今月十四日の決算発表で、この会社の上半期の純利益は三百三十五億円、七パーセント増えて、この期間として過去最高でした。売上は四千九百七億円で九パーセント増。一年の見通しも引き上げて、売上一兆五百三十億円、営業利益一千二百五十億円と、どちらも一割増の計画です。引っ張ったのは精密・電子の部門で、営業利益は三十九パーセント増。会社の説明は『生成AI向けの半導体需要が、業績を支えている』とのことでした。</p>
+<p>柱はふたつです。ひとつはシーエムピーという装置で、ウェハーの表面を薬品と研磨剤で、原子のレベルまで平らに磨く機械。もうひとつはドライ真空ポンプで、半導体づくりに必須の真空環境を作る機械。去年の説明会の時点で、どちらも世界シェア二位とされています。磨く装置のほうは、ことし五月の会社予想で、一年の売上二千六百七十億円、二割五分増の見込みでした。で、面白いのはここからです。調べてみたら、このふたつ、祖業のポンプと同じ技術でできているんだそうです。流体の解析と制御、それに振動を抑える技術。水を送るのも、研磨の薬品を流すのも、真空のために空気を抜くのも、機械の目で見ればぜんぶ「流体」の仕事。これ、現場やった人ならわかると思うんですけど、装置って水物なんです。流体の制御がいちばんむずかしくて、いちばん差がつく。その結果が、去年の説明会の時点で、売上の三分の二が海外という姿です。</p>
+<p>来歴を少しだけ。始まりは一九一二年、東京帝国大学の先生が渦巻ポンプの理論を作り、その教え子が事務所を立ち上げて売り歩きました。理論の人と、売る人の二人組です。一九一四年に特許を取ったそのポンプは、百年後のいま、機械遺産に認定されています。大学の理論から始まった会社が、いままた大学の隣の最先端、半導体に戻ってきたとも言えます。座右の銘として残っているのが『自ら創意工夫する熱意と、誠心誠意やり遂げる心』。以来百年あまり、水道、ビル、ごみ処理と、流体ひと筋のまま市場を足し続けて、いちばん新しい足し先が、半導体だったわけです。</p>
+<p>この番組で前に、調味料の会社が寝かせていた樹脂の技術を、半導体に当てた話をやりました。荏原は逆です。寝かせていない。創業からずっと現役の技術の隣に、新しい市場を足し続けてきた。同じ「畑違いの会社が半導体を支える」でも、道筋がまるで違うんですね。</p>
+<p>ここから、商売の解剖です。きょうの手は、古い技術に新しい市場を足す。三つに分けます。</p>
+<p>一、自社のいちばん古い技術を、「何の技術か」まで言い換える。ポンプ、ではなくて、流体を思い通りに動かす技術。抽象化した瞬間に、足せる市場の数が増えます。</p>
+<p>二、市場を足すときは、技術を変えずに、要求水準だけが上がる相手を選ぶ。水道の水から、半導体の薬品と真空へ。同じ技術のいちばん難しい版が、いちばん高く売れます。</p>
+<p>三、新しい市場が主役になっても、祖業を捨てない。水道やビルと、半導体では、景気の波が違う。波の違う市場を複数持っていることが、装置の商売の安定装置になります。</p>
+<p>今週の宿題です。自社のいちばん古い技術やノウハウをひとつ選んで、「何々を思い通りにする技術」という形に言い換えてみてください。そして、その技術のいちばん難しい版を求めている業界を、ひとつ探してみてください。</p>
+<p>きょうの手は、古い技術に新しい市場を足す、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p></div></section><section class="file-sec" id="shownotes"><h2>配信概要欄<span class="file-name">shownotes.md</span></h2><div class="action-bar inline"><button class="copy-btn secondary" type="button" data-copy="src-shownotes2">概要欄をコピー</button></div><div class="prose compact"><h1>配信概要欄（コピペ用）</h1>
+<p>『その手があったか』第20回｜古い技術に、新しい市場を足す</p>
+<p>半導体のクリーンルームで、ウェハーを鏡のように磨く装置と、真空を作るポンプ。生成AIの半導体づくりに欠かせないこのふたつを、どちらも作っているのは、ビルや水道で水を送ってきたポンプの会社——荏原製作所です。今月十四日の決算で上半期の純利益は三百三十五億円と同期間の最高、通期も上方修正。水も薬品も真空も、機械の目で見ればぜんぶ「流体」。一九一二年に大学の先生の理論から始まった会社が、創業技術の直系のまま、いちばん新しい市場にたどり着くまでを解剖します。</p>
+<p>▼ きっかけになったニュース<br>・荏原製作所 2026年12月期 上期決算（2026/8/14）純利益335億円・+7%で同期間最高。通期を売上1兆530億円・営業利益1,250億円（ともに+10%）へ上方修正<br>・精密・電子セグメントの営業利益+39%（生成AI向け半導体需要）</p>
+<p>▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で<br>（リンク）</p>
+<p>▼ 本編で触れたその他の出典<br>・決算説明会書き起こし（CMP装置・ドライ真空ポンプは世界シェア2位＝2025年8月時点／CMP通期売上予想2,670億円・+25.6%＝2026年5月時点）<br>・荏原製作所「創業の物語」（1912年・ゐのくち式機械事務所／1914年特許・ゐのくち式渦巻ポンプ＝機械遺産第9号／「熱と誠」）<br>※シェア・海外比率・CMP予想は取得時点を本編内で明示しています。</p>
+<p>※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。</p></div><textarea id="src-shownotes2" class="visually-hidden" readonly aria-hidden="true"># 配信概要欄（コピペ用）
+
+『その手があったか』第20回｜古い技術に、新しい市場を足す
+
+半導体のクリーンルームで、ウェハーを鏡のように磨く装置と、真空を作るポンプ。生成AIの半導体づくりに欠かせないこのふたつを、どちらも作っているのは、ビルや水道で水を送ってきたポンプの会社——荏原製作所です。今月十四日の決算で上半期の純利益は三百三十五億円と同期間の最高、通期も上方修正。水も薬品も真空も、機械の目で見ればぜんぶ「流体」。一九一二年に大学の先生の理論から始まった会社が、創業技術の直系のまま、いちばん新しい市場にたどり着くまでを解剖します。
+
+▼ きっかけになったニュース
+・荏原製作所 2026年12月期 上期決算（2026/8/14）純利益335億円・+7%で同期間最高。通期を売上1兆530億円・営業利益1,250億円（ともに+10%）へ上方修正
+・精密・電子セグメントの営業利益+39%（生成AI向け半導体需要）
+
+▼ 詳しい解剖と出典の正確値はnote「週刊 その手があったか」で
+（リンク）
+
+▼ 本編で触れたその他の出典
+・決算説明会書き起こし（CMP装置・ドライ真空ポンプは世界シェア2位＝2025年8月時点／CMP通期売上予想2,670億円・+25.6%＝2026年5月時点）
+・荏原製作所「創業の物語」（1912年・ゐのくち式機械事務所／1914年特許・ゐのくち式渦巻ポンプ＝機械遺産第9号／「熱と誠」）
+※シェア・海外比率・CMP予想は取得時点を本編内で明示しています。
+
+※本編の音声はAIにより制作しています。事実は上記出典に基づき、表現は独自に構成したものです。
+</textarea></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
