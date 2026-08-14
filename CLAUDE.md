@@ -126,7 +126,7 @@ python3 scripts/check.py episodes/<id>
 | 放送済み台帳（重複回避） | `ledger/episodes_log.csv` |
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
 | **ネタの採点表（核2・面白さ5）** | `ledger/selection.yaml` → サイトの「選び方」 |
-| **3つの点数（面白さ・応用・ばらつき）** | `scripts/score.py`。足さない。低いものを見る |
+| **6つの点数**（見立て＝面白さ・応用・ばらつき／実測＝鮮度・裏取り・人物度） | `scripts/score.py`。足さない。低いものを見る |
 | 選定のばらつき（手・動機・風・型・畑・主役・技術度） | `scripts/spread.py`（`episodes_log.csv` から計算） |
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |

@@ -1,25 +1,35 @@
 #!/usr/bin/env python3
-"""ネタの3つの点数を出す。
+"""ネタの6つの点数を出す。
 
     python3 scripts/score.py
 
 この企画の芯は、**手（OP）・動機（MO）・風（TW）の組み合わせで選ぶこと**にある。
-選ぶときに見ているものを、3つの数字に分けて持つ。多くしても見なくなるので3つまで。
+選ぶときの見立てを3つ、出来上がったものの実測を3つ。合わせて6つに分けて持つ。
+
+【見立ての3つ】選ぶときの判断（`ledger/selection.yaml` の ○△✗ から）
 
   ① 面白さ   … 聞きたくなるか      Q1 Q2 C1 C2 C5
   ② 応用     … 持ち帰って使えるか   C3 C4 ＋ 手・動機・風が立っているか
   ③ ばらつき … 前と違う回になるか   7軸それぞれの冷え具合
 
-①② は `ledger/selection.yaml` の ○△✗ から、③ は `ledger/episodes_log.csv` から計算する。
+【実測の3つ】出来上がったものを数えた値（`facts.yaml`・`article.md`・台本から）
+
+  ④ 鮮度     … 何日前のニュースか    トリガから制作までの日数（0日=100・31日=0）
+  ⑤ 裏取り   … 出典がどれだけ厚いか  複数出典率と一次確認率
+  ⑥ 人物度   … 人がどれだけ出るか    動機タグ・記事の人物言及・台本の場面再現
+
 **③ はその回を選んだ時点（それより前の回だけ）で計算する。**後から見て不利にならないようにするため。
 
-3つとも0〜100。合計しない。**合計すると、何が良くて何が悪いのかが消える。**
-続けるうちに、この3つと自分の手応え・note のいいね数を並べて、基準のほうを直していく。
+①〜③は ○△✗ の足し算なので10点刻みになりやすく、差が出にくい。
+**④〜⑥は数えた値なので細かく散る。**弱いところを見つけるにはこちらが効く。
+
+6つとも0〜100。**合計しない。**合計すると、何が良くて何が悪いのかが消える。
 """
 from __future__ import annotations
 
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -80,6 +90,62 @@ def transfer(marks: dict, row: dict) -> int | None:
     return round(sum(got) / (2 * len(got)) * 100)
 
 
+# ---------------------------------------------------------------- 実測の3つ
+
+DATE = re.compile(r"(\d{4})-(\d{2})(?:-(\d{2}))?")
+FRESH_WINDOW = 31           # 憲法§4。この日数を超えたら鮮度ゼロ
+PERSON = re.compile(r"CEO|社長|創業者|代表取締役|会長|氏[はがのをに、。]")
+
+
+def _date(text: str):
+    m = DATE.search(text or "")
+    if not m:
+        return None
+    return date(int(m.group(1)), int(m.group(2)), int(m.group(3) or 1))
+
+
+def freshness(row: dict) -> tuple[int | None, str]:
+    """トリガから制作までの日数。この番組は「この1ヶ月のニュース」として聞かれる"""
+    t, c = _date(row.get("trigger_date", "")), _date(row.get("created_on", ""))
+    if not t or not c:
+        return None, "日付が読めない"
+    days = (c - t).days
+    return round(100 * max(0, 1 - days / FRESH_WINDOW)), f"{days}日前のトリガ"
+
+
+def evidence(ep_dir: Path) -> tuple[int | None, str]:
+    """出典の厚み。複数出典率と一次確認率。verify 欄はep007から入ったので、
+    無い回は複数出典率だけで出す（低く見えるのを避ける）"""
+    f = ep_dir / "facts.yaml"
+    if not f.exists():
+        return None, "facts.yaml が無い"
+    text = f.read_text(encoding="utf-8")
+    cb = [int(x) for x in re.findall(r"confirmed_by:\s*(\d+)", text)]
+    if not cb:
+        return None, "confirmed_by が無い"
+    multi = sum(1 for x in cb if x >= 2) / len(cb)
+    vf = re.findall(r"verify:\s*(\w+)", text)
+    parts, why = [multi], [f"{len(cb)}枚・複数出典{multi:.0%}"]
+    if vf:
+        ver = vf.count("verified") / len(vf)
+        parts.append(ver)
+        why.append(f"一次確認{ver:.0%}")
+    return round(100 * sum(parts) / len(parts)), "／".join(why)
+
+
+def humanity(ep_dir: Path, row: dict) -> tuple[int, str]:
+    """人がどれだけ出てくるか。裏の問い「なんで、その人が」の担い手がいるか"""
+    art = (ep_dir / "article.md")
+    scr = (ep_dir / "script_draft.md")
+    a = art.read_text(encoding="utf-8") if art.exists() else ""
+    s = scr.read_text(encoding="utf-8") if scr.exists() else ""
+    mo = 0.0 if (row.get("motive", "") or "none").startswith("none") else 1.0
+    ppl = len(PERSON.findall(a))
+    q = max(0, s.count("『") - s.count("『その手があったか』"))
+    score = 0.5 * mo + 0.3 * min(ppl, 4) / 4 + 0.2 * min(q, 2) / 2
+    return round(100 * score), f"動機{'あり' if mo else 'なし'}／記事の人物{ppl}／場面再現{q}"
+
+
 def variety(row: dict, hist: dict) -> tuple[int, list[tuple[str, str, str]]]:
     """ばらつき。7軸それぞれを、その時点の履歴に照らして採点する"""
     values = spread.history([row])
@@ -94,7 +160,7 @@ def variety(row: dict, hist: dict) -> tuple[int, list[tuple[str, str, str]]]:
 
 
 def score_all() -> list[dict]:
-    """全エピソードの3点。③ はその回を選んだ時点で計算する"""
+    """全エピソードの6点。③ はその回を選んだ時点で計算する"""
     rows = spread.load_rows()
     entries = load_entries()
     out = []
@@ -103,12 +169,18 @@ def score_all() -> list[dict]:
         marks = entries.get(ep, {})
         hist = spread.history(rows[:i])          # ← その回より前だけ
         var, detail = (variety(row, hist) if i else (None, []))
+        ep_dir = ROOT / "episodes" / ep
+        fresh, fresh_why = freshness(row)
+        evid, evid_why = evidence(ep_dir)
+        human, human_why = humanity(ep_dir, row)
         out.append({
             "ep": ep, "row": row, "marks": marks,
             "interest": interest(marks) if marks else None,
             "transfer": transfer(marks, row) if marks else None,
             "variety": var, "variety_detail": detail,
-            "likes": marks.get("likes", ""), "gut": marks.get("gut", ""),
+            "freshness": fresh, "freshness_why": fresh_why,
+            "evidence": evid, "evidence_why": evid_why,
+            "humanity": human, "humanity_why": human_why,
             "note": marks.get("note", ""),
         })
     return out
@@ -116,19 +188,21 @@ def score_all() -> list[dict]:
 
 def main() -> None:
     rows = score_all()
-    print("\n=== ネタの3つの点数 ===\n")
-    print(f'{"回":<7}{"面白さ":>7}{"応用":>7}{"ばらつき":>9}   {"いいね":>6}  タイトル')
+    print("\n=== ネタの6つの点数 ===\n")
+    cols = [("interest", "面白さ"), ("transfer", "応用"), ("variety", "ばらつき"),
+            ("freshness", "鮮度"), ("evidence", "裏取り"), ("humanity", "人物度")]
+    print("       ── 見立て ──   ── 実測 ──")
+    print(f'{"回":<7}' + "".join(f"{lab:>7}" for _, lab in cols) + "  タイトル")
     for r in rows:
-        f = lambda v: "—" if v is None else f"{v:>3}"  # noqa: E731
-        print(f'{r["ep"]:<7}{f(r["interest"]):>7}{f(r["transfer"]):>7}'
-              f'{f(r["variety"]):>9}   {(r["likes"] or "—"):>6}  '
-              f'{r["row"].get("title", "")}')
-    done = [r for r in rows if r["interest"] is not None]
-    if done:
-        for key, label in (("interest", "面白さ"), ("transfer", "応用"), ("variety", "ばらつき")):
-            vals = [r[key] for r in done if r[key] is not None]
-            print(f"\n{label}の平均: {round(sum(vals) / len(vals))}")
-    print("\n3つは足さない。低いものがどれかを見る。")
+        cells = "".join(f'{"—" if r[k] is None else r[k]:>7}' for k, _ in cols)
+        print(f'{r["ep"]:<7}{cells}  {r["row"].get("title", "")}')
+    print("")
+    for key, label in cols:
+        vals = [r[key] for r in rows if r[key] is not None]
+        if vals:
+            print(f"{label}の平均 {round(sum(vals) / len(vals)):>3}"
+                  f"（最小{min(vals)}・最大{max(vals)}）")
+    print("\n6つは足さない。低いものがどれかを見る。")
 
 
 if __name__ == "__main__":

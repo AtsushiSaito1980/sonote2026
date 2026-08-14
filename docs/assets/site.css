@@ -276,6 +276,14 @@ td { border-bottom: 1px solid var(--line); padding: 8px 10px; vertical-align: to
 .sl b { display: block; font-size: 14px; margin-top: 2px; }
 .sl span:not(.sl-n) { display: block; font-size: 12px; color: var(--ink-2); }
 .sl code { display: inline-block; margin-top: 6px; font-size: 10.5px; color: var(--muted); }
+.sl b em { font-style: normal; font-size: 9.5px; font-weight: 700; margin-left: 6px;
+  padding: 1px 6px; border-radius: 999px; letter-spacing: .04em;
+  background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--muted); }
+.sl.meas { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.sl.meas b em { background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent); }
+.sl-r { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+th.th-meas { color: var(--accent); }
 .miss-row { background: color-mix(in srgb, var(--crit) 7%, transparent); }
 tr.sc-note td { font-size: 12px; color: var(--ink-2); white-space: normal;
   border-top: 0; padding-top: 0; }
