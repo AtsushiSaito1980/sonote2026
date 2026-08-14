@@ -31,3 +31,4 @@ entries:
   - {ep: ep015, url: "", related: "ep012;ep011"}
   - {ep: ep016, url: "", related: "ep006;ep014"}
   - {ep: ep017, url: "", related: "ep004;ep002"}
+  - {ep: ep018, url: "", related: "ep011;ep013"}
