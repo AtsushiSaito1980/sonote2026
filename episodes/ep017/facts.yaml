@@ -1,0 +1,38 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  # --- アンカー・広がり ---
+  - {id: F01, who: 業界メディア, what: 新規7市町の報道, value: 公開7/13・更新8/4, when: 2026-08-04, source_url: "BB宿泊ラボ", confirmed_by: 1, anchor: true, verify: verified, note: "anchor.publishedは最終更新日を採用（公開日は窓を1日外れる）。reviewに明記"}
+  - {id: F02, who: 全国, what: 導入自治体数の急増, value: 17→約50, when: 2025末→2026, source_url: "日経（2026-01・検索要約）", confirmed_by: 1, verify: partial, note: "2026年に約30自治体が課税開始。日経原文または総務省の法定外税一覧での確認＝人間裏取り"}
+  - {id: F03, who: 総務省, what: 新設同意の件数, value: 上半期だけで19件, when: 2026上半期, source_url: "BB宿泊ラボ", confirmed_by: 1, verify: verified, note: "変更2件も。宿泊税は条例可決＋総務大臣の同意で作る法定外目的税"}
+  - {id: F04, who: 熊本市・宮崎市, what: 徴収開始, value: 2026-07-01・1人1泊200円, when: 2026-07-01, source_url: "BB宿泊ラボ", confirmed_by: 1, verify: verified, note: "台本では「先月一日」。熊本は『予約した時期を問わず7/1以降のチェックイン分から課税』（Q02）。宮崎は修学旅行も課税対象"}
+  - {id: F05, who: 那須町・盛岡市・北広島市, what: 徴収開始予定, value: 2026-10-01, when: 2026-10-01予定, source_url: "BB宿泊ラボ／検索確認", confirmed_by: 2, verify: partial, note: "那須町は免税点なし・12歳未満と修学旅行等は免除。公式告知の目視＝人間裏取り"}
+  # --- 設計の三様 ---
+  - {id: F06, who: 山形市・苫小牧市・北広島市, what: 定率方式, value: 宿泊料金の3%, when: 2026-10〜2027-04, source_url: "BB宿泊ラボ", confirmed_by: 1, verify: verified, note: "**免税点なし**。高い宿ほど税額も増える。山形市は2027-04-01確定"}
+  - {id: F07, who: 稚内市・富士吉田市・富士河口湖町, what: 定額方式, value: 1人1泊200円, when: 2027-03〜04予定, source_url: "BB宿泊ラボ", confirmed_by: 1, verify: verified}
+  - {id: F08, who: 名護市, what: 折衷方式, value: 定率1.2%・上限1,200円, when: 2027-02予定, source_url: "BB宿泊ラボ", confirmed_by: 1, verify: verified, note: "定率と定額の折衷。設計の三様の3つ目"}
+  - {id: F09, who: 制度, what: 徴収の仕組み, value: 特別徴収, when: 共通, source_url: "訪日ラボ", confirmed_by: 1, verify: verified, note: "宿泊施設が宿泊料金と一緒に集めて自治体に納める（Q01）。宿が徴収事務を担う＝費用側"}
+  - {id: F10, who: 制度, what: 税の性格, value: 法定外目的税, when: 共通, source_url: "訪日ラボ／各自治体", confirmed_by: 2, verify: verified, note: "使途は観光振興・オーバーツーリズム対策。条例で自治体が独自に作れる"}
+  # --- 先行と今後 ---
+  - {id: F11, who: 先行自治体, what: 先例, value: 東京都2002年〜ほか, when: 2002〜, source_url: "訪日ラボ／東京都主税局", confirmed_by: 2, verify: dated, note: "東京都は現在見直し中。北海道は2026-04開始・松江市は2025-12（中国地方初）。時期明示で使用"}
+  - {id: F12, who: 今後, what: 2027年の予定, value: 沖縄県2027-02ほか, when: 2027予定, source_url: "訪日ラボ", confirmed_by: 1, verify: verified, note: "長崎市は2027-04改定検討。ラッシュは来年も続く"}
+  - {id: F13, who: 周辺, what: 対応特需の存在, value: レジ・システムの対応商品, when: 継続, source_url: "東芝テック コラム", confirmed_by: 1, verify: partial, note: "ベンダーが対応解説・商品を出している。台本では社名を出さず「レジや宿泊システムの会社」"}
+quotes:
+  - {id: Q01, speaker: 制度の説明（訪日ラボ）, gist: "宿泊施設が、宿泊料金と一緒に集めて、自治体に納める", source_url: "訪日ラボ", note: "『』候補①。特別徴収＝宿がレジになる"}
+  - {id: Q02, speaker: 熊本市の告知（趣旨）, gist: "予約した時期を問わず、七月一日以降のチェックイン分から課税します", source_url: "BB宿泊ラボ", note: "『』候補②。実務の細部に設計が出る"}
+rejected:
+  - {claim: 増税の是非・観光公害の善悪, reason: 政治的賛否が主題になる（config/ng.yml）, action: 立ち入らない。設計の違いを事実で並べる}
+  - {claim: 京都市の上限1万円などの個別高額事例, reason: 手元の出典で確認できていない, action: 不使用。確認できた自治体のみ使う}
+  - {claim: 宮崎と那須の免除設計の優劣, reason: 評価の断定になる, action: 「思想の違い」として並べるだけ}
+  - {claim: 税収額の見込み（○億円）, reason: 自治体ごとに未収集, action: 台本では使わない。記事も同様}
+notes: |
+  ・アンカー＝BB宿泊ラボの最終更新2026-08-04（10日前）。公開7/13は32日前で窓を1日外れるため、更新日採用をreviewで開示
+  ・density: balanced。数字3系統（余裕2）：
+    ①時期（先月一日・十月一日・二〇二七年・二〇〇二年・上半期）
+    ②広がり（17→約50・約30自治体・同意19件）
+    ③税額の設計（200円・3%・1.2%と上限1,200円）
+  ・固有名詞1系統：総務省のみ。自治体名は純粋な地名として系統外（熊本・宮崎・那須・盛岡・山形・苫小牧・北広島・稚内・富士吉田・富士河口湖・名護・東京・北海道・松江・沖縄・長崎）——ただし読み上げの負荷を考え、台本で並べるのは6地名程度まで
+  ・『』はQ01・Q02。口癖1回・例え話2まで
+  ・核ガード：「税の解説」でなく「課金設計の教科書」。儲け手（自治体の新財源・対応特需）と費用側（宿の事務）を必ず置く
+  ・評価の断定をしない：設計の違い（定率/定額・免税点・免除）は思想の違いとして並べる

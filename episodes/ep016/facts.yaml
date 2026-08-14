@@ -1,0 +1,35 @@
+# 事実カード（extract-facts出力）
+# ★これ以降の工程に sources/ の原文は渡さない
+# verify 欄：verified = 一次資料で確認 ／ partial = 一部のみ確認 ／ dated = 古い時点の情報（時期明示が必須）
+facts:
+  # --- アンカー（試作＝未来の作り方） ---
+  - {id: F01, who: JFEスチール, what: 試作成功の発表, value: 2026-07-31, when: 2026-07-31, source_url: "公式リリース（一次）", confirmed_by: 1, anchor: true, verify: verified, note: "「日本初、グリーン水素を使用した還元鉄試作に成功」。Q01参照"}
+  - {id: F02, who: JFEスチール, what: 試作の中身, value: 3日間で約1トン, when: 2026-06-29〜07-01, source_url: "公式リリース（一次）", confirmed_by: 1, verify: verified, note: "山梨・米倉山の1.5MW水電解で作った水素を、千葉の小型プラント（15kg/h）へ。安定した還元反応を確認"}
+  - {id: F03, who: 鉄鋼業, what: 排出の位置づけ, value: 日本のCO2の約14%, when: 現在, source_url: "公式リリース（一次）", confirmed_by: 1, verify: verified, note: "産業部門最大の排出産業"}
+  - {id: F04, who: JFEスチール, what: 時間軸, value: 2035年頃に技術確立, when: 計画, source_url: "公式リリース（一次）", confirmed_by: 1, verify: verified, note: "2050年カーボンニュートラル目標。商用化時期の記載なし＝台本でも断定しない"}
+  # --- いま売っている商品（JGreeX） ---
+  - {id: F05, who: JGreeX, what: 何であるか, value: 削減量を鋼材に割り当てた製品, when: 継続, source_url: "JGreeX公式ページ（一次）", confirmed_by: 1, verify: verified, note: "GHG排出削減量を任意の鋼材に割り当てる方式。第三者認証＝日本海事協会（台本では「第三者機関」）"}
+  - {id: F06, who: JGreeX, what: 供給の制約, value: 販売数量に限りがある, when: 現在, source_url: "JGreeX公式ページ（一次）", confirmed_by: 1, verify: verified, note: "Q02参照。削減した分しか割り当てられない＝品薄の構造"}
+  - {id: F07, who: JGreeX, what: 発売時期, value: 2023年度上期, when: 2023, source_url: "業界紙（日本金属新聞）", confirmed_by: 1, verify: dated, note: "2030年500万トン供給目標も同記事。時期明示・一次確認推奨"}
+  - {id: F08, who: JGreeX, what: 採用実績, value: 橋・ボルト・クレーン・変圧器, when: 2024〜2025, source_url: "公式リリース群", confirmed_by: 2, verify: dated, note: "横浜の橋（公共工事・2024年発表）／建築用高力ボルト初採用（2025年3月）／天井クレーン初採用（2025年7月）／産業用大型変圧器（2025年2月）／商社が在庫販売開始（2025年1月）。台本では時期を「去年」「ことし」等で明示"}
+  - {id: F09, who: JFEスチール, what: 供給拡大投資, value: 電炉に3,294億円, when: 2026-02報道, source_url: "日経ビジネス（2026-02-16）", confirmed_by: 1, verify: verified, note: "グリーン鉄供給能力を年50万トン→300万トンへ6倍。「海外のグリーン市場で活路」。台本では「三千三百億円規模」"}
+  # --- 需要側の制度（TW1） ---
+  - {id: F10, who: 経産省, what: EV補助金の加算, value: グリーン鋼材で最大5万円, when: 2025-04適用〜, source_url: "日経＋日本自動車会議所（2系統）", confirmed_by: 2, verify: verified, note: "CEV補助金。**メーカーのグリーン鋼材採用計画等に応じた加算**（鋼材への直接補助ではない）。軽EVは最大3万円。2025年4月1日以降の登録車に適用"}
+  - {id: F11, who: 海外市場, what: 規制の流れ, value: 製造時CO2で測る規制, when: 2026〜, source_url: "検索要約（記事水準）", confirmed_by: 1, verify: partial, note: "欧州でLCAベースの規制の流れ。台本では「海外では、作るときのCO2で車を測る決まりが始まりつつある」の水準で"}
+quotes:
+  - {id: Q01, speaker: JFEスチール（リリース表題の趣旨）, gist: "日本で初めて、グリーン水素を使った還元鉄の試作に成功した", source_url: "公式リリース（一次）", note: "『』候補①"}
+  - {id: Q02, speaker: JGreeX公式ページ, gist: "販売数量には、限りがあります", source_url: "JGreeX公式ページ（一次）", note: "『』候補②。答え合わせの山で使う"}
+rejected:
+  - {claim: グリーン鋼材の価格プレミアムの金額, reason: 非公開, action: 「ふつうの鉄より高い」の水準まで。値差は「埋める制度」の側で語る}
+  - {claim: 電炉の建設場所・稼働時期, reason: 記事の非公開部分, action: 「三千三百億円規模の投資・供給六倍の計画」の水準まで}
+  - {claim: 水素還元鉄=JGreeXの原料という直結, reason: 現時点は別物（試作段階の製法と、削減量割当方式の商品）, action: 「未来の作り方の試作」と「いま売っている商品」を分け、後者が前者の売り場を先に耕している構図で語る}
+notes: |
+  ・アンカー＝2026-07-31（14日前・窓内）。台本では「先月末の発表」
+  ・density: balanced。数字3系統（余裕2）：
+    ①時期（先月末・六月末から三日間・二〇二三年・二〇三〇年・ことしの四月＝加算適用）
+    ②試作の規模（約1トン・CO2の約14%）
+    ③商売側（最大5万円・三千三百億円規模・六倍・五百万トン目標）
+  ・固有名詞2系統：JFEスチール／JGreeX。日本海事協会→「第三者機関」・横浜市→「横浜の橋」・米倉山→「山梨の山あいの施設」
+  ・『』はQ01・Q02。口癖1回・例え話2まで
+  ・T5の核ガード：背骨は「高い鉄の値差を誰がなぜ埋めるか」。技術の凄さの話にしない
+  ・混同ガード：試作（水素還元鉄）とJGreeX（割当方式）は別物と必ず言う
