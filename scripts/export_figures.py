@@ -58,7 +58,24 @@ const scale = Number(process.argv[4]);
       const out = job.outDir + '/' + job.ep + '-' + name + '.png';
       await el.screenshot({ path: out, scale: 'device' });
       const box = await el.boundingBox();
-      done.push({ ep: job.ep, name, out, w: Math.round(box.width), h: Math.round(box.height) });
+      // SVGの文字が重なっていないか、実際の描画位置で見る。
+      // ラベルの重なりは画像にしてから気づくことが多く、目視だと見落とす
+      const overlaps = await el.evaluate(node => {
+        const texts = Array.from(node.querySelectorAll('svg text'));
+        const boxes = texts.map(t => ({ s: t.textContent.trim(), b: t.getBoundingClientRect() }));
+        const hits = [];
+        for (let a = 0; a < boxes.length; a++) {
+          for (let c = a + 1; c < boxes.length; c++) {
+            const x = boxes[a].b, y = boxes[c].b;
+            if (x.right > y.left && y.right > x.left && x.bottom > y.top && y.bottom > x.top) {
+              hits.push(boxes[a].s + ' / ' + boxes[c].s);
+            }
+          }
+        }
+        return hits;
+      });
+      done.push({ ep: job.ep, name, out, w: Math.round(box.width), h: Math.round(box.height),
+                  overlaps });
     }
   }
   await browser.close();
@@ -123,10 +140,17 @@ def main() -> int:
         print(proc.stdout.strip() or "書き出しの結果を読めませんでした", file=sys.stderr)
         return 1
 
+    warned = 0
     for r in done:
         rel = Path(r["out"]).relative_to(ROOT)
         print(f'  {r["ep"]}  {r["name"]:<8} {rel}  {r["w"]*SCALE}x{r["h"]*SCALE}px')
+        for pair in r.get("overlaps") or []:
+            warned += 1
+            print(f'      ⚠ 文字が重なっています: {pair}', file=sys.stderr)
     print(f"書き出し完了: {len(done)}枚（{len(dirs)}エピソード・{SCALE}倍解像度）")
+    if warned:
+        print(f"⚠ SVGの文字の重なり {warned} 件。ラベルを2行に分けるか、"
+              f"viewBox を広げてから書き出し直す", file=sys.stderr)
     return 0
 
 
