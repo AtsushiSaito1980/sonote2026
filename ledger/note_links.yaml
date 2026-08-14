@@ -25,3 +25,9 @@ entries:
   - {ep: ep009, url: "", related: "ep007;ep004"}
   - {ep: ep010, url: "", related: "ep004;ep003"}
   - {ep: ep011, url: "", related: "ep009;ep004"}
+  - {ep: ep012, url: "", related: "ep008;ep007"}
+  - {ep: ep013, url: "", related: "ep008;ep004"}
+  - {ep: ep014, url: "", related: "ep006;ep007"}
+  - {ep: ep015, url: "", related: "ep012;ep011"}
+  - {ep: ep016, url: "", related: "ep006;ep014"}
+  - {ep: ep017, url: "", related: "ep004;ep002"}

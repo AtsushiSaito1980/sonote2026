@@ -1016,6 +1016,12 @@ def build_selection_page(sel, ledger_rows, titles):
 
     scored = sc.score_all()
     ids = ["Q1", "Q2"] + [c["id"] for c in sel["interest"]]
+    NUMS = [("interest", "面白さ", "聞きたくなるか", "Q1 Q2 C1 C2 C5", 0),
+            ("transfer", "応用", "持ち帰って使えるか", "C3 C4 ＋ 手OP・動機MO・風TW", 0),
+            ("variety", "ばらつき", "前と違う回になるか", "7軸の冷え具合", 0),
+            ("freshness", "鮮度", "何日前のニュースか", "トリガから制作までの日数", 1),
+            ("evidence", "裏取り", "出典がどれだけ厚いか", "複数出典率と一次確認率", 1),
+            ("humanity", "人物度", "人がどれだけ出るか", "動機・人物言及・場面再現", 1)]
     body_rows = []
     for r in scored:
         m = r["marks"]
@@ -1031,19 +1037,23 @@ def build_selection_page(sel, ledger_rows, titles):
         tags = "".join(
             f'<span class="mk"><i>{esc(lab)}</i>{esc(v)}{mark(mk)}</span>'
             for lab, v, mk in r["variety_detail"])
+        why = "".join(
+            f'<span class="mk"><i>{esc(lab)}</i>{esc(r.get(key + "_why", ""))}</span>'
+            for key, lab, _, _, meas in NUMS if meas)
+        nums = "".join(num_cell(r[key]) for key, *_ in NUMS)
         body_rows.append(f"""<tr{cls}>
   <td><a href="{esc(ep)}/article.html">{esc(ep)}</a></td>
   <td class="sc-title">{esc(titles.get(ep) or r["row"].get("title", ""))}</td>
-  {num_cell(r["interest"])}{num_cell(r["transfer"])}{num_cell(r["variety"])}
-  <td class="sc-n">{esc(r["likes"] or "—")}</td><td class="sc-n">{mark(r["gut"])}</td>
+  {nums}
 </tr>
-<tr class="sc-note{'' if pass_ok else ' miss-row'}"><td></td><td colspan="6">
+<tr class="sc-note{'' if pass_ok else ' miss-row'}"><td></td><td colspan="7">
   <div class="mkline">{marks_html}</div>
   <div class="mkline">{tags}</div>
+  <div class="mkline">{why}</div>
   <div>{inline(r["note"])}</div></td></tr>""")
 
     avg = {}
-    for key in ("interest", "transfer", "variety"):
+    for key, *_ in NUMS:
         vals = [r[key] for r in scored if r[key] is not None]
         avg[key] = round(sum(vals) / len(vals)) if vals else 0
 
@@ -1091,28 +1101,32 @@ def build_selection_page(sel, ledger_rows, titles):
 点数は <code>scripts/score.py</code>、ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
 
 <section class="sec">
-  <h2>3つの点数</h2>
-  <p class="hint"><strong>足しません。</strong>合計すると、何が良くて何が悪いのかが消えます。低いものがどれかを見ます。</p>
+  <h2>6つの点数</h2>
+  <p class="hint"><strong>足しません。</strong>合計すると、何が良くて何が悪いのかが消えます。低いものがどれかを見ます。
+  数字は平均で、括弧内は最小と最大です。</p>
   <div class="score-legend">
-    <div class="sl"><span class="sl-n">{avg["interest"]}</span><b>面白さ</b>
-      <span>聞きたくなるか</span><code>Q1 Q2 C1 C2 C5</code></div>
-    <div class="sl"><span class="sl-n">{avg["transfer"]}</span><b>応用</b>
-      <span>持ち帰って使えるか</span><code>C3 C4 ＋ 手OP・動機MO・風TW</code></div>
-    <div class="sl"><span class="sl-n">{avg["variety"]}</span><b>ばらつき</b>
-      <span>前と違う回になるか</span><code>7軸の冷え具合</code></div>
+    {"".join(
+      f'<div class="sl{" meas" if meas else ""}"><span class="sl-n">{avg[key]}</span>'
+      f'<b>{esc(lab)}{"<em>実測</em>" if meas else "<em>見立て</em>"}</b>'
+      f'<span>{esc(desc)}</span><code>{esc(src)}</code>'
+      f'<span class="sl-r">{min([r[key] for r in scored if r[key] is not None] or [0])}'
+      f'〜{max([r[key] for r in scored if r[key] is not None] or [0])}</span></div>'
+      for key, lab, desc, src, meas in NUMS)}
   </div>
-  <p class="hint">数字は平均です。<strong>応用に手・動機・風を入れているのは、この企画の芯が
-  「手と動機と風の組み合わせで、新規事業に移せる形に抽象化すること」だからです。</strong>
-  タグが立たない回はここで点が落ちます。ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
+  <p class="hint"><strong>見立ての3つは ○△✗ の足し算なので10点刻みになりやすく、差が出にくい。
+  実測の3つは数えた値なので細かく散ります。</strong>弱いところを見つけるにはこちらが効きます。
+  応用に手・動機・風を入れているのは、この企画の芯が「手と動機と風の組み合わせで、
+  新規事業に移せる形に抽象化すること」だからです。ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
 </section>
 
 <section class="sec">
   <h2>回ごとの点数</h2>
-  <p class="hint">公開したら <code>selection.yaml</code> に <code>likes</code>（note のいいね数）と
-  <code>gut</code>（自分の手応え）を書き足せます。<strong>点数といいねと手応えがずれていたら、直すのは基準のほうです。</strong></p>
+  <p class="hint">各行の下に、採点の ○△✗ と、7軸の判定と、実測の内訳を出しています。
+  <strong>「この基準は甘い／辛い」と言ってもらえれば、基準のほうを直せます。</strong></p>
   <div class="table-scroll"><table class="score-table">
-  <thead><tr><th>回</th><th>タイトル</th><th>面白さ</th><th>応用</th><th>ばらつき</th>
-  <th>いいね</th><th>手応え</th></tr></thead>
+  <thead><tr><th>回</th><th>タイトル</th>
+  {"".join(f'<th class="{"th-meas" if meas else ""}">{esc(lab)}</th>' for _, lab, _, _, meas in NUMS)}
+  </tr></thead>
   <tbody>{"".join(body_rows)}</tbody></table></div>
 </section>
 
@@ -1669,6 +1683,14 @@ td { border-bottom: 1px solid var(--line); padding: 8px 10px; vertical-align: to
 .sl b { display: block; font-size: 14px; margin-top: 2px; }
 .sl span:not(.sl-n) { display: block; font-size: 12px; color: var(--ink-2); }
 .sl code { display: inline-block; margin-top: 6px; font-size: 10.5px; color: var(--muted); }
+.sl b em { font-style: normal; font-size: 9.5px; font-weight: 700; margin-left: 6px;
+  padding: 1px 6px; border-radius: 999px; letter-spacing: .04em;
+  background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--muted); }
+.sl.meas { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.sl.meas b em { background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent); }
+.sl-r { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+th.th-meas { color: var(--accent); }
 .miss-row { background: color-mix(in srgb, var(--crit) 7%, transparent); }
 tr.sc-note td { font-size: 12px; color: var(--ink-2); white-space: normal;
   border-top: 0; padding-top: 0; }
@@ -1897,7 +1919,9 @@ td.src { font-size: 11.5px; color: var(--muted); max-width: 220px; }
 .figviz { flex: 0 0 auto; }
 .figtxt { flex: 1 1 220px; min-width: 0; }
 .figtxt .fn { font-size: 52px; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
-.figtxt .fn small { font-size: 22px; font-weight: 700; color: var(--ink-2); margin-left: 2px; }
+/* 単位は letter-spacing を継承させない。「割超」「品目」など2文字の単位が重なるため */
+.figtxt .fn small { font-size: 22px; font-weight: 700; color: var(--ink-2); margin-left: 2px;
+  letter-spacing: normal; }
 .figtxt .fl { font-size: 15.5px; font-weight: 700; line-height: 1.8; margin-top: 8px; }
 .figtxt .fs { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
 .viz { display: block; }

@@ -27,181 +27,179 @@
 点数は <code>scripts/score.py</code>、ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
 
 <section class="sec">
-  <h2>3つの点数</h2>
-  <p class="hint"><strong>足しません。</strong>合計すると、何が良くて何が悪いのかが消えます。低いものがどれかを見ます。</p>
+  <h2>6つの点数</h2>
+  <p class="hint"><strong>足しません。</strong>合計すると、何が良くて何が悪いのかが消えます。低いものがどれかを見ます。
+  数字は平均で、括弧内は最小と最大です。</p>
   <div class="score-legend">
-    <div class="sl"><span class="sl-n">77</span><b>面白さ</b>
-      <span>聞きたくなるか</span><code>Q1 Q2 C1 C2 C5</code></div>
-    <div class="sl"><span class="sl-n">75</span><b>応用</b>
-      <span>持ち帰って使えるか</span><code>C3 C4 ＋ 手OP・動機MO・風TW</code></div>
-    <div class="sl"><span class="sl-n">44</span><b>ばらつき</b>
-      <span>前と違う回になるか</span><code>7軸の冷え具合</code></div>
+    <div class="sl"><span class="sl-n">77</span><b>面白さ<em>見立て</em></b><span>聞きたくなるか</span><code>Q1 Q2 C1 C2 C5</code><span class="sl-r">10〜100</span></div><div class="sl"><span class="sl-n">75</span><b>応用<em>見立て</em></b><span>持ち帰って使えるか</span><code>C3 C4 ＋ 手OP・動機MO・風TW</code><span class="sl-r">30〜100</span></div><div class="sl"><span class="sl-n">44</span><b>ばらつき<em>見立て</em></b><span>前と違う回になるか</span><code>7軸の冷え具合</code><span class="sl-r">19〜76</span></div><div class="sl meas"><span class="sl-n">57</span><b>鮮度<em>実測</em></b><span>何日前のニュースか</span><code>トリガから制作までの日数</code><span class="sl-r">0〜100</span></div><div class="sl meas"><span class="sl-n">51</span><b>裏取り<em>実測</em></b><span>出典がどれだけ厚いか</span><code>複数出典率と一次確認率</code><span class="sl-r">8〜89</span></div><div class="sl meas"><span class="sl-n">35</span><b>人物度<em>実測</em></b><span>人がどれだけ出るか</span><code>動機・人物言及・場面再現</code><span class="sl-r">10〜100</span></div>
   </div>
-  <p class="hint">数字は平均です。<strong>応用に手・動機・風を入れているのは、この企画の芯が
-  「手と動機と風の組み合わせで、新規事業に移せる形に抽象化すること」だからです。</strong>
-  タグが立たない回はここで点が落ちます。ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
+  <p class="hint"><strong>見立ての3つは ○△✗ の足し算なので10点刻みになりやすく、差が出にくい。
+  実測の3つは数えた値なので細かく散ります。</strong>弱いところを見つけるにはこちらが効きます。
+  応用に手・動機・風を入れているのは、この企画の芯が「手と動機と風の組み合わせで、
+  新規事業に移せる形に抽象化すること」だからです。ばらつきは<strong>その回を選んだ時点</strong>（それより前の回だけ）で計算します。</p>
 </section>
 
 <section class="sec">
   <h2>回ごとの点数</h2>
-  <p class="hint">公開したら <code>selection.yaml</code> に <code>likes</code>（note のいいね数）と
-  <code>gut</code>（自分の手応え）を書き足せます。<strong>点数といいねと手応えがずれていたら、直すのは基準のほうです。</strong></p>
+  <p class="hint">各行の下に、採点の ○△✗ と、7軸の判定と、実測の内訳を出しています。
+  <strong>「この基準は甘い／辛い」と言ってもらえれば、基準のほうを直せます。</strong></p>
   <div class="table-scroll"><table class="score-table">
-  <thead><tr><th>回</th><th>タイトル</th><th>面白さ</th><th>応用</th><th>ばらつき</th>
-  <th>いいね</th><th>手応え</th></tr></thead>
+  <thead><tr><th>回</th><th>タイトル</th>
+  <th class="">面白さ</th><th class="">応用</th><th class="">ばらつき</th><th class="th-meas">鮮度</th><th class="th-meas">裏取り</th><th class="th-meas">人物度</th>
+  </tr></thead>
   <tbody><tr>
   <td><a href="ep001/article.html">ep001</a></td>
   <td class="sc-title">業界が磨いてきた物差しを、逆さに持った3つの商品</td>
-  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum">—</td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum">—</td><td class="snum lo"><span class="sbar" style="width:0%"></span><b>0</b></td><td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum lo"><span class="sbar" style="width:10%"></span><b>10</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-d">△</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>219日前のトリガ</span><span class="mk"><i>裏取り</i>20枚・複数出典70%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現1</span></div>
   <div>業界の物差しを反転させた3商品。小ネタ束ねの形で、数字は個々に散った</div></td></tr><tr>
   <td><a href="ep002/article.html">ep002</a></td>
   <td class="sc-title">カスハラ対策義務化の2ヶ月前に、もう開いていた四つの売り場</td>
-  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:29%"></span><b>29</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:29%"></span><b>29</b></td><td class="snum lo"><span class="sbar" style="width:39%"></span><b>39</b></td><td class="snum lo"><span class="sbar" style="width:35%"></span><b>35</b></td><td class="snum lo"><span class="sbar" style="width:10%"></span><b>10</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-d">△</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP11<span class="sc sc-d">△</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW1<span class="sc sc-d">△</span></span><span class="mk"><i>型</i>T1<span class="sc sc-d">△</span></span><span class="mk"><i>畑</i>制度公共<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>制度<span class="sc sc-d">△</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-d">△</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>19日前のトリガ</span><span class="mk"><i>裏取り</i>23枚・複数出典35%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現1</span></div>
   <div>施行前にもう売り場が開いていた、が意外の芯。立つ数字より日付が主役</div></td></tr><tr>
   <td><a href="ep003/article.html">ep003</a></td>
   <td class="sc-title">夜24時まで店を開けたら、来店が7倍になった</td>
-  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum mid"><span class="sbar" style="width:67%"></span><b>67</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum mid"><span class="sbar" style="width:67%"></span><b>67</b></td><td class="snum lo"><span class="sbar" style="width:16%"></span><b>16</b></td><td class="snum mid"><span class="sbar" style="width:64%"></span><b>64</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-d">△</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP05<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>MO4<span class="sc sc-o">◎</span></span><span class="mk"><i>風</i>TW5<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>生活消費<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-d">△</span></span><span class="mk"><i>技術度</i>中<span class="sc sc-o">◎</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>26日前のトリガ</span><span class="mk"><i>裏取り</i>14枚・複数出典64%</span><span class="mk"><i>人物度</i>動機あり／記事の人物0／場面再現1</span></div>
   <div>「時間をずらす」自体は既知寄り。来店7倍の数字で持たせた</div></td></tr><tr>
   <td><a href="ep004/article.html">ep004</a></td>
   <td class="sc-title">無料の花火大会は、いま誰の財布で上がっているのか</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:19%"></span><b>19</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:19%"></span><b>19</b></td><td class="snum hi"><span class="sbar" style="width:94%"></span><b>94</b></td><td class="snum lo"><span class="sbar" style="width:8%"></span><b>8</b></td><td class="snum lo"><span class="sbar" style="width:10%"></span><b>10</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP03<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>制度公共<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-x">✗</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>2日前のトリガ</span><span class="mk"><i>裏取り</i>13枚・複数出典8%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現1</span></div>
   <div>無料の花火を誰が払っているか。警備費の割合が効いた</div></td></tr><tr>
   <td><a href="ep005/article.html">ep005</a></td>
   <td class="sc-title">兄への偏見を、事業の設計図に変えた双子</td>
-  <td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum lo"><span class="sbar" style="width:29%"></span><b>29</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum lo"><span class="sbar" style="width:29%"></span><b>29</b></td><td class="snum hi"><span class="sbar" style="width:90%"></span><b>90</b></td><td class="snum lo"><span class="sbar" style="width:25%"></span><b>25</b></td><td class="snum hi"><span class="sbar" style="width:92%"></span><b>92</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>動機</i>MO1<span class="sc sc-o">◎</span></span><span class="mk"><i>風</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>生活消費<span class="sc sc-x">✗</span></span><span class="mk"><i>主役</i>人<span class="sc sc-o">◎</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-x">✗</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>3日前のトリガ</span><span class="mk"><i>裏取り</i>12枚・複数出典25%</span><span class="mk"><i>人物度</i>動機あり／記事の人物3／場面再現2</span></div>
   <div>核が両方立った回。動機回の基準値</div></td></tr><tr>
   <td><a href="ep006/article.html">ep006</a></td>
   <td class="sc-title">17年無視された技術が、パネルの載らない屋根を市場にした</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td><td class="snum lo"><span class="sbar" style="width:0%"></span><b>0</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td><td class="snum lo"><span class="sbar" style="width:10%"></span><b>10</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP01<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW4<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>技術研究<span class="sc sc-o">◎</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>高<span class="sc sc-o">◎</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>39日前のトリガ</span><span class="mk"><i>裏取り</i>14枚・複数出典57%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現1</span></div>
   <div>17年寝かせた技術。最初の効率4%が立つ数字</div></td></tr><tr>
   <td><a href="ep007/article.html">ep007</a></td>
   <td class="sc-title">ソフトを10年タダで配った会社は、何を売っているのか</td>
-  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:38%"></span><b>38</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum mid"><span class="sbar" style="width:70%"></span><b>70</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:38%"></span><b>38</b></td><td class="snum lo"><span class="sbar" style="width:42%"></span><b>42</b></td><td class="snum hi"><span class="sbar" style="width:89%"></span><b>89</b></td><td class="snum lo"><span class="sbar" style="width:18%"></span><b>18</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-d">△</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP12<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW2<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>技術研究<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>高<span class="sc sc-d">△</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>18日前のトリガ</span><span class="mk"><i>裏取り</i>19枚・複数出典89%／一次確認89%</span><span class="mk"><i>人物度</i>動機なし／記事の人物1／場面再現1</span></div>
   <div>ソフトウェアの話は耳で絵になりにくい。赤字48億で場面を作った</div></td></tr><tr>
   <td><a href="ep008/article.html">ep008</a></td>
   <td class="sc-title">35万点を貸して33万回まわす商売の、採算はどこで合うのか</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:33%"></span><b>33</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:33%"></span><b>33</b></td><td class="snum mid"><span class="sbar" style="width:61%"></span><b>61</b></td><td class="snum lo"><span class="sbar" style="width:38%"></span><b>38</b></td><td class="snum lo"><span class="sbar" style="width:28%"></span><b>28</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP07<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW5<span class="sc sc-o">○</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>生活消費<span class="sc sc-x">✗</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>中<span class="sc sc-o">○</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>12日前のトリガ</span><span class="mk"><i>裏取り</i>32枚・複数出典25%／一次確認50%</span><span class="mk"><i>人物度</i>動機なし／記事の人物1／場面再現3</span></div>
   <div>戻ってくる倉庫の場面が強い。耐用年数5倍が立つ</div></td></tr><tr>
   <td><a href="ep009/article.html">ep009</a></td>
   <td class="sc-title">無料レシピ動画の会社が、スーパーの棚の上で黒字化するまで</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:48%"></span><b>48</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:48%"></span><b>48</b></td><td class="snum mid"><span class="sbar" style="width:74%"></span><b>74</b></td><td class="snum mid"><span class="sbar" style="width:53%"></span><b>53</b></td><td class="snum lo"><span class="sbar" style="width:18%"></span><b>18</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP13<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW3<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>メディア金融<span class="sc sc-o">◎</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>中<span class="sc sc-d">△</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>8日前のトリガ</span><span class="mk"><i>裏取り</i>31枚・複数出典32%／一次確認74%</span><span class="mk"><i>人物度</i>動機なし／記事の人物1／場面再現1</span></div>
   <div>95.5%が場面ごと立った。売場の画面という絵もある</div></td></tr><tr>
   <td><a href="ep010/article.html">ep010</a></td>
   <td class="sc-title">1日1万円の八百屋を開いた会社が、オフィスに冷蔵庫を置いて6,644社と契約した</td>
-  <td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum hi"><span class="sbar" style="width:76%"></span><b>76</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum hi"><span class="sbar" style="width:76%"></span><b>76</b></td><td class="snum hi"><span class="sbar" style="width:97%"></span><b>97</b></td><td class="snum mid"><span class="sbar" style="width:58%"></span><b>58</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP05<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>MO4<span class="sc sc-o">◎</span></span><span class="mk"><i>風</i>TW1<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>産業BtoB<span class="sc sc-o">◎</span></span><span class="mk"><i>主役</i>人<span class="sc sc-o">○</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-o">○</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>1日前のトリガ</span><span class="mk"><i>裏取り</i>33枚・複数出典42%／一次確認73%</span><span class="mk"><i>人物度</i>動機あり／記事の人物7／場面再現2</span></div>
   <div>1日1万円と6,644社の対比。核が両方立った2本目</div></td></tr><tr class="miss-row">
   <td><a href="ep011/article.html">ep011</a></td>
   <td class="sc-title">9月に値上げされる4,531品目の、理由の欄</td>
-  <td class="snum lo"><span class="sbar" style="width:10%"></span><b>10</b></td><td class="snum lo"><span class="sbar" style="width:30%"></span><b>30</b></td><td class="snum lo"><span class="sbar" style="width:38%"></span><b>38</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum lo"><span class="sbar" style="width:10%"></span><b>10</b></td><td class="snum lo"><span class="sbar" style="width:30%"></span><b>30</b></td><td class="snum lo"><span class="sbar" style="width:38%"></span><b>38</b></td><td class="snum mid"><span class="sbar" style="width:58%"></span><b>58</b></td><td class="snum mid"><span class="sbar" style="width:50%"></span><b>50</b></td><td class="snum lo"><span class="sbar" style="width:20%"></span><b>20</b></td>
 </tr>
-<tr class="sc-note miss-row"><td></td><td colspan="6">
+<tr class="sc-note miss-row"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-x">✗</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C2</i><span class="sc sc-d">△</span></span><span class="mk"><i>C3</i><span class="sc sc-d">△</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-x">✗</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>型</i>T4<span class="sc sc-o">◎</span></span><span class="mk"><i>畑</i>生活消費<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>統計<span class="sc sc-o">◎</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-d">△</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>13日前のトリガ</span><span class="mk"><i>裏取り</i>19枚・複数出典0%／一次確認100%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現2</span></div>
   <div><strong>この表を作るきっかけになった回。</strong>儲けている主体も、動機を持つ人も出てこない。主役が統計そのもので、見立ても出典自身の見立てと同じだった。型の変化球（T4）が10本ゼロだったことと、棚に「手が立たない」で落ちた候補が残っていたことが重なって通った。作り直さず、基準の見本として残す</div></td></tr><tr>
   <td><a href="ep012/article.html">ep012</a></td>
   <td class="sc-title">鉄の筒で国内シェア52%の会社は、なぜ減益を計画できるのか</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:19%"></span><b>19</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:19%"></span><b>19</b></td><td class="snum lo"><span class="sbar" style="width:6%"></span><b>6</b></td><td class="snum mid"><span class="sbar" style="width:55%"></span><b>55</b></td><td class="snum lo"><span class="sbar" style="width:35%"></span><b>35</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP09<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>産業BtoB<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-x">✗</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>29日前のトリガ</span><span class="mk"><i>裏取り</i>20枚・複数出典30%／一次確認80%</span><span class="mk"><i>人物度</i>動機なし／記事の人物2／場面再現2</span></div>
   <div>ベルトコンベヤのローラという地味さがC1、シェア約52%と35期連続黒字がC2、砕石場で回るベルトの絵がC5。Q2は動機素材が未発掘のため✗（収集で社長・創業の一次記録が見つかれば上げる）。2度見送った棚のOP09を、窓の最終日に消化</div></td></tr><tr>
   <td><a href="ep013/article.html">ep013</a></td>
   <td class="sc-title">賞味期限の手前で捨てられる食品を売る会社が、6期ぶりの最高益を出すまで</td>
-  <td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:29%"></span><b>29</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum lo"><span class="sbar" style="width:29%"></span><b>29</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td><td class="snum mid"><span class="sbar" style="width:53%"></span><b>53</b></td><td class="snum hi"><span class="sbar" style="width:100%"></span><b>100</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP06<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>MO3<span class="sc sc-o">◎</span></span><span class="mk"><i>風</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>生活消費<span class="sc sc-x">✗</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-x">✗</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>0日前のトリガ</span><span class="mk"><i>裏取り</i>19枚・複数出典26%／一次確認79%</span><span class="mk"><i>人物度</i>動機あり／記事の人物8／場面再現2</span></div>
   <div>食品ロス削減ECが発表当日の決算で経常6.4倍・6期ぶり最高益予想＝廃棄されるはずの品で最高益、がC1とC2。捨てられる物を仕入れに変える構造がC3。賞味期限の棚の絵がC5。Q2は収集で一次動機に到達し○（父の言葉・震災・中国の廃棄・100戦100敗、すべて対談原文）。主役未使用のOP06と未使用動機MO3を同時に消化。畑「生活消費」は✗熱だが、トリガ最鮮＋◎手＋核2本を理由に通した。核が両方○の3本目</div></td></tr><tr>
   <td><a href="ep014/article.html">ep014</a></td>
   <td class="sc-title">味の素の絶縁フィルムは、売り先のないまま20年寝かされていた</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:52%"></span><b>52</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:52%"></span><b>52</b></td><td class="snum mid"><span class="sbar" style="width:74%"></span><b>74</b></td><td class="snum mid"><span class="sbar" style="width:59%"></span><b>59</b></td><td class="snum lo"><span class="sbar" style="width:20%"></span><b>20</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP10<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW4<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>技術研究<span class="sc sc-o">◎</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>中<span class="sc sc-o">○</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>8日前のトリガ</span><span class="mk"><i>裏取り</i>17枚・複数出典41%／一次確認76%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現2</span></div>
   <div>調味料の会社が半導体の標準材ABFで1Q過去最高・通期上方修正、がC1とC2。うま味研究の副産物技術を用途が来るまで寝かせた構造（待つ×拾う）がC3。パソコンの中のフィルムという絵がC5。Q2は開発者個人の一次記録に未到達のため✗で確定（「技術者たち」の水準で制作）。味のみだったOP10を主役化し、TW4（7回あき）・畑技術研究（6回あき）の◎を同時消化。主役「会社」✗熱は◎3軸を理由に通した</div></td></tr><tr>
   <td><a href="ep015/article.html">ep015</a></td>
   <td class="sc-title">飲食店の売上を「週2回、先に払う」と言った会社の、負債1,151億円</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td><td class="snum hi"><span class="sbar" style="width:87%"></span><b>87</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:20%"></span><b>20</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP08<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW3<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T2<span class="sc sc-o">◎</span></span><span class="mk"><i>畑</i>メディア金融<span class="sc sc-o">◎</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-x">✗</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>4日前のトリガ</span><span class="mk"><i>裏取り</i>15枚・複数出典47%／一次確認73%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現2</span></div>
   <div>初のT2失敗回。今年最大の倒産（決済代行・負債1,151億円）を「束ねて立て替える」構造の死として扱う。C3は前受金・立替を抱えるすべての商売に通じる急所。C5は飲食店のレジに売上金が入ってこない絵。ng.ymlのリスク語×実名は巡回時に人間確認済み（個人を扱わない・構造のみの前提で承認）。T2◎・OP08主役化◎・メディア金融◎・TW3◎の4軸を同時消化</div></td></tr><tr>
   <td><a href="ep016/article.html">ep016</a></td>
   <td class="sc-title">水素で作った高い鉄は、誰が最初に買うのか</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:48%"></span><b>48</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:60%"></span><b>60</b></td><td class="snum lo"><span class="sbar" style="width:48%"></span><b>48</b></td><td class="snum mid"><span class="sbar" style="width:55%"></span><b>55</b></td><td class="snum lo"><span class="sbar" style="width:45%"></span><b>45</b></td><td class="snum lo"><span class="sbar" style="width:20%"></span><b>20</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW1<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T5<span class="sc sc-o">◎</span></span><span class="mk"><i>畑</i>技術研究<span class="sc sc-d">△</span></span><span class="mk"><i>主役</i>会社<span class="sc sc-x">✗</span></span><span class="mk"><i>技術度</i>高<span class="sc sc-o">◎</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>14日前のトリガ</span><span class="mk"><i>裏取り</i>11枚・複数出典18%／一次確認73%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現2</span></div>
   <div>初のT5お題回。日本初のグリーン水素還元鉄（7/31試作）を起点に「最初の1トンを誰に売る」を公開で考える。Q1はJGreeXの実在（採用実績）と、値差を埋める制度（エコカー補助・調達比率計画）で立てた。ep013巡回でhand_weakと棚入れした題材を、T1でなくT5の型で核を立て直して復活させた初の例。T5◎・技術度高◎（8回あき）・TW1◎を消化。手は名指しなし（T4先例に倣う）</div></td></tr><tr>
   <td><a href="ep017/article.html">ep017</a></td>
   <td class="sc-title">一泊200円の「自治体の新商品」が、今年およそ30自治体で発売される</td>
-  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td>
-  <td class="sc-n">—</td><td class="sc-n"><span class="sc ">—</span></td>
+  <td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum hi"><span class="sbar" style="width:80%"></span><b>80</b></td><td class="snum mid"><span class="sbar" style="width:57%"></span><b>57</b></td><td class="snum mid"><span class="sbar" style="width:68%"></span><b>68</b></td><td class="snum lo"><span class="sbar" style="width:46%"></span><b>46</b></td><td class="snum lo"><span class="sbar" style="width:20%"></span><b>20</b></td>
 </tr>
-<tr class="sc-note"><td></td><td colspan="6">
+<tr class="sc-note"><td></td><td colspan="7">
   <div class="mkline"><span class="mk"><i>Q1</i><span class="sc sc-o">○</span></span><span class="mk"><i>Q2</i><span class="sc sc-x">✗</span></span><span class="mk"><i>C1</i><span class="sc sc-o">○</span></span><span class="mk"><i>C2</i><span class="sc sc-o">○</span></span><span class="mk"><i>C3</i><span class="sc sc-o">○</span></span><span class="mk"><i>C4</i><span class="sc sc-o">○</span></span><span class="mk"><i>C5</i><span class="sc sc-o">○</span></span></div>
   <div class="mkline"><span class="mk"><i>手</i>OP03<span class="sc sc-o">◎</span></span><span class="mk"><i>動機</i>なし<span class="sc sc-x">✗</span></span><span class="mk"><i>風</i>TW5<span class="sc sc-o">◎</span></span><span class="mk"><i>型</i>T1<span class="sc sc-x">✗</span></span><span class="mk"><i>畑</i>制度公共<span class="sc sc-o">◎</span></span><span class="mk"><i>主役</i>制度<span class="sc sc-o">◎</span></span><span class="mk"><i>技術度</i>低<span class="sc sc-x">✗</span></span></div>
+  <div class="mkline"><span class="mk"><i>鮮度</i>10日前のトリガ</span><span class="mk"><i>裏取り</i>13枚・複数出典23%／一次確認69%</span><span class="mk"><i>人物度</i>動機なし／記事の人物0／場面再現2</span></div>
   <div>宿泊税ラッシュを「自治体が新商品を出した」と読み替える制度回。導入17→約50自治体への急増と、定率3%免税点なし・定額200円・上限つき定率という設計の違いがC2とC3。フロントで一泊数百円の絵がC5。ユーザー指示により完全新規ネタのみを提示した巡回で選定。制度公共12回あき・主役「制度」14回あき・OP03 12回あき・TW5 8回あきの4◎軸を同時解凍。アンカーは業界メディア記事の最終更新日（8/4）で窓内＝reviewに明記</div></td></tr></tbody></table></div>
 </section>
 
