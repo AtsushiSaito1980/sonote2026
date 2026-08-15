@@ -13,6 +13,7 @@ docs/selection.html に出す（数え方を二重に持たない）。
 from __future__ import annotations
 
 import csv
+import re
 import sys
 from pathlib import Path
 
@@ -70,9 +71,9 @@ def main_hand(cell: str) -> str:
 
 
 def all_hands(rows: list[dict]) -> set[str]:
-    """味付けも含めて、これまでに一度でも登場した手"""
+    """味付けも含めて、これまでに一度でも登場した手。特別編は除く"""
     seen = set()
-    for r in rows:
+    for r in regulars(rows):
         for token in (r.get("hands") or "").split("+"):
             token = token.strip().rstrip("味").strip()
             if token.startswith("OP"):
@@ -92,10 +93,26 @@ def load_rows() -> list[dict]:
         return list(csv.DictReader(f))
 
 
+REGULAR = re.compile(r"^ep\d+$")
+
+
+def is_regular(row: dict) -> bool:
+    """定期回（epNNN）かどうか。**特別編（spNNN）はばらつきの計算に入れない。**
+
+    特別編は巡回で選んだ回ではないので、手や畑の「間隔」を数える対象にすると、
+    定期回の並びが歪む。重複回避のために台帳には載せるが、ここでは外す。
+    """
+    return bool(REGULAR.match((row.get("episode") or "").strip()))
+
+
+def regulars(rows: list[dict]) -> list[dict]:
+    return [r for r in rows if is_regular(r)]
+
+
 def history(rows: list[dict]) -> dict[str, list[tuple[str, str]]]:
-    """軸 → [(回, 値)] を古い順で返す"""
+    """軸 → [(回, 値)] を古い順で返す。特別編は除く"""
     out: dict[str, list[tuple[str, str]]] = {a: [] for a, _, _ in AXES}
-    for r in rows:
+    for r in regulars(rows):
         ep = r.get("episode", "")
         out["hand"].append((ep, main_tag(r.get("hands", ""), "OP")))
         out["motive"].append((ep, main_tag(r.get("motive", ""), "MO")))
@@ -146,7 +163,9 @@ def report(rows: list[dict]) -> str:
         return "台帳が空です。"
     hist = history(rows)
     seen_hands = all_hands(rows)
-    lines = [f"\n=== 選定のばらつき（{len(rows)}本ぶん）===\n"]
+    n_sp = len(rows) - len(regulars(rows))
+    note = f"／特別編 {n_sp} 本は計算に入れない" if n_sp else ""
+    lines = [f"\n=== 選定のばらつき（定期回 {len(regulars(rows))}本ぶん{note}）===\n"]
     for axis, label, help_ in AXES:
         seq = hist[axis]
         counts: dict[str, int] = {}

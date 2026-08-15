@@ -60,7 +60,7 @@ def load_entries() -> dict[str, dict]:
         if not m:
             continue
         body = m.group(1)
-        ep = re.search(r"ep:\s*(ep\d+)", body)
+        ep = re.search(r"ep:\s*((?:ep|sp)\d+)", body)   # sp＝特別編
         if not ep:
             continue
         d = dict(re.findall(r"(\w+):\s*([○△✗◎0-9]+)", body))
@@ -156,8 +156,13 @@ def humanity(ep_dir: Path, row: dict) -> tuple[int, str]:
     return round(100 * score), f"動機{'あり' if mo else 'なし'}／記事の人物{ppl}／場面再現{q}"
 
 
-def variety(row: dict, hist: dict) -> tuple[int, list[tuple[str, str, str]]]:
-    """ばらつき。7軸それぞれを、その時点の履歴に照らして採点する"""
+def variety(row: dict, hist: dict) -> tuple[int | None, list[tuple[str, str, str]]]:
+    """ばらつき。7軸それぞれを、その時点の履歴に照らして採点する。
+
+    **特別編（spNNN）は対象外。**巡回で選んだ回ではないので、間隔を測る意味がない。
+    """
+    if not spread.is_regular(row):
+        return None, []
     values = spread.history([row])
     detail = []
     total = 0
