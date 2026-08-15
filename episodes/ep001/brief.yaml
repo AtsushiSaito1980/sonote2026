@@ -4,7 +4,7 @@ host: tokura
 episode_type: T1
 format: 小ネタ＋本命型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 case_name: "ミズノ JPX ONE（本命）／ガム・プレミアム デンタルブラシ・VSING（小ネタ）"
 operation_tags: [OP04]        # 逆にする（小ネタのVSINGはOP04×TW2の掛け味）

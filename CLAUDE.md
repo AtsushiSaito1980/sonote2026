@@ -131,4 +131,4 @@ python3 scripts/check.py episodes/<id>
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |
-| **文体の教師データ** | `episodes/ep020`（2026-08改・間とフィラーの基準形）・`ep003`（聞き上手）・`ep005`（動機回） |
+| **文体の教師データ** | `episodes/ep020`（間とフィラーの基準形）・`ep003`（聞き上手）・`ep005`（動機回）・`ep008`（拡大版15分） |
