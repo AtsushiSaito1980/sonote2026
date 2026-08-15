@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep008=三崎）
 episode_type: T1
 format: 型1 一本深掘り型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced
 anchor:                     # トリガ情報（制作日2026-08-12から1ヶ月以内＝8日前）
