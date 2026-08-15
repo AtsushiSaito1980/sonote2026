@@ -214,6 +214,22 @@ def check_tts(ep: Path, lim: dict):
     ascii_words = re.findall(r"[A-Za-z]{2,}", stripped)
     add(OK if not ascii_words else NG, "英字の残存（カタカナ展開漏れ）", f"{ascii_words}" if ascii_words else "なし")
 
+    # 辞書の適用漏れ。過去の回で誤読して辞書に書いた語が、この回で開かれていない。
+    # 辞書が育たない原因の本体なので、毎回ここで止める
+    leaks = []
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from dictionary import load as _load_dic
+        words, _keep = _load_dic()
+        body = body_of((ep / "script_draft.md").read_text(encoding="utf-8"))
+        leaks = [f"{s}→{d}" for s, d in words.items() if s in body and d not in t]
+    except Exception as e:                     # 辞書が無い・壊れているときは検査を落とさない
+        add(WARN, "辞書の適用", f"照合できませんでした（{e}）")
+    else:
+        add(OK if not leaks else NG, "辞書の適用",
+            f"{leaks} → python3 scripts/dictionary.py --apply {ep.name}" if leaks
+            else f"適用漏れなし（辞書 {len(words)} 語と照合）")
+
 
 def check_article(ep: Path):
     p = ep / "article.md"

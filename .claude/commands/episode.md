@@ -27,6 +27,8 @@ argument-hint: <episode_id>
 4. **review-episode** → `python3 scripts/check.py episodes/$1` を実行 → `review.md`
    - FAIL → 3へ差し戻し（最大2周、それで通らなければ人間へ）
 5. **tts-format** → `script_tts.txt`
+   - 書いたら `python3 scripts/dictionary.py --apply $1` で辞書を当てる。
+     過去の回の誤読を繰り返さないための工程で、check.py の「辞書の適用」が FAIL で止める
 6. **write-article** → `article.md` ＋ `shownotes.md` → 再度 review
    - 書く前に `episodes/` の直近3本の**タイトルの語尾**を見る（同じ型を3本続けない）
 7. **write-infographic** → `infographic.html`（**省略不可**）
@@ -48,6 +50,8 @@ argument-hint: <episode_id>
 ## 完了後の報告
 - 検算結果のサマリ（PASSした項目数・要判断の判断根拠）
 - **人間がやること**：単独出典の裏取り／TTS通し聴取／制作日依存の表現の確認
+  - 聴いて誤読が出たら、読みを決めて `library/dictionary.yaml` に足す（読みは人間しか決められない）
+  - そのあと `python3 scripts/dictionary.py --collect --write` で、この回で開いた語を辞書へ回収する
 - `ledger/episodes_log.csv` に1行追記する
   - **`created_on` は制作した日（today）を書く。**アーカイブの時系列はこの列で並ぶ
   - `air_date` は公開予定日の目安。**実際に出すかどうかは人間が決める**ので、ここが埋まっていても公開済みを意味しない
