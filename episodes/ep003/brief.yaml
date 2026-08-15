@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep002=三崎）
 episode_type: T1
 format: 小ネタ＋本命型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced           # v3.2新既定＝情報dense水準×芸人の語り
 anchor:                     # トリガ情報（制作日2026-08-09から1ヶ月以内・具体記載）
