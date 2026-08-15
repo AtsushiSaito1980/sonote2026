@@ -132,11 +132,11 @@ python3 scripts/dictionary.py --apply <id>       # 辞書を TTS 稿に当てる
 | 手14・動機7・風5・型8 | `library/` |
 | 読み辞書（育成型） | `library/dictionary.yaml` ／ 回収・検査・適用は `scripts/dictionary.py` |
 | 巡回棚・リスク語 | `config/sources.yml` `config/ng.yml` |
-| 放送済み台帳（重複回避） | `ledger/episodes_log.csv` |
+| 放送済み台帳（重複回避） | `ledger/episodes_log.csv`。**特別編は `spNNN`** で、台帳と採点には載せるが `spread.py` のばらつきからは外れる |
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
 | **ネタの採点表（核2・面白さ5）** | `ledger/selection.yaml` → サイトの「選び方」 |
 | **6つの点数**（見立て＝面白さ・応用・ばらつき／実測＝鮮度・裏取り・人物度） | `scripts/score.py`。足さない。低いものを見る |
-| 選定のばらつき（手・動機・風・型・畑・主役・技術度） | `scripts/spread.py`（`episodes_log.csv` から計算） |
+| 選定のばらつき（手・動機・風・型・畑・主役・技術度） | `scripts/spread.py`（`episodes_log.csv` の**定期回 epNNN だけ**から計算） |
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |

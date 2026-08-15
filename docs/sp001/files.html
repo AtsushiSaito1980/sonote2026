@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>競争しない場所を先に決める｜制作ファイル — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep024/files.html">← ep024</a><span></span></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">sp001</span><span class="spmark">特別編</span><span class="dlabel">作成</span>2026-08-15（土）　<span class="badge review">レビュー中</span></div>
+  <h1>競争しない場所を先に決める</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP08 束ねる</span><span class="chip hand">OP12 開く</span><span class="chip none">動機＝なし</span><span class="chip tailwind">TW3 時流</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="files.html" aria-current="page">制作ファイル</a></nav>
+
+<p class="hint">制作パイプラインの中間ファイル。<strong>ブリーフ →（extract-facts）→ 事実カード →（write-script）→ ドラフト →（review）→ 検査</strong> の順に生まれる。</p>
+<nav class="toc"><a href="#brief">ブリーフ（人間の入力）</a><a href="#facts">事実カード</a><a href="#draft">台本ドラフト（人間レビュー用）</a></nav>
+<section class="file-sec" id="brief"><h2>ブリーフ（人間の入力）<span class="file-name">brief.yaml</span></h2><div class="table-scroll"><table class="kv"><tr><th>エピソードID</th><td>sp001</td></tr><tr><th>ホスト</th><td>tokura（戸倉ハジメ）</td></tr><tr><th>型番号</th><td>T6</td></tr><tr><th>型</th><td>T6 持ち寄り型（特別編）</td></tr><tr><th>シリーズ</th><td>特別編</td></tr><tr><th>尺（分）</th><td>6</td></tr><tr><th>モード</th><td>real</td></tr><tr><th>密度</th><td>balanced</td></tr><tr><th>トリガ（起点情報）</th><td><span class='k'>headline</span> ROBOT PAYMENTが競合系のラクスと資本業務提携（8/12）。自社の請求管理ソフトをもとにOEM製品を作り、開発・保守は自社、営業・販売はラクス側で収益を分け合う<br><span class='k'>published</span> 2026-08-12<br><span class='k'>source_url</span> 財経新聞 2026-08-13（提携発表8/12・第三者割当12万株・総額2.79億円・提携開始8/28予定）</td></tr><tr><th>副トリガ</th><td>2026-06 サッポロ×キリンが神奈川で共同配送（logi-today 956420）<br>2026-06-05 ヤマダHD・パナソニックHDら10社超の配送設置の共同物流会社構想（logi-today 960951/960654＋日経）。売上合算2.5兆円規模</td></tr><tr><th>題材</th><td>競合と組む3例（ビールの共同配送／家電の配送設置の共同会社／請求書SaaSの競合OEM）。協調領域と競争領域の線を、工程ごとに引き直す</td></tr><tr><th>手</th><td>OP08<br>OP12</td></tr><tr><th>動機</th><td>none</td></tr><tr><th>風</th><td>TW3</td></tr><tr><th>つかみ</th><td>きょうは、いつもと少し違います。一本を深く、ではなくて。短い話を、三つ。</td></tr><tr><th>きょうの手（案）</th><td>競争しない場所を、先に決める</td></tr><tr><th>宿題（案）</th><td>自社の仕事を工程で3〜4つに分け、お客さんがそこで自社を選んでいる工程に丸をつける。丸のつかない工程が、誰かと組める場所</td></tr><tr><th>壁・制約</th><td><span class="muted">—</span></td></tr><tr><th>前回参照</th><td>ep007/ep024</td></tr><tr><th>備考</th><td>ROBOT PAYMENT×ラクスは**財経新聞の単独出典**。金額・株数・開始日は一次リリースで突合すること<br>サッポロ×キリンの共同配送も**logi-today単独**。神奈川という地域と開始時期を一次で確認<br>家電の共同物流会社は**構想段階の報道**。「構想が報じられました」の言い方を崩さない（決定事項として断定しない）</td></tr></table></div><details><summary>元の brief.yaml を表示</summary><pre><code>episode_id: sp001
+host: tokura                # 銀行員出身。工程とコスト構造の目、言い直しの芸が本領
+episode_type: T6            # 持ち寄り型（未使用の型）。短い話を3本並べて、同じ手を浮かせる
+format: T6 持ち寄り型（特別編）
+series: &quot;特別編&quot;
+duration_min: 6
+mode: real
+density: balanced
+anchor:                     # トリガ情報（制作日2026-08-15）
+  headline: &quot;ROBOT PAYMENTが競合系のラクスと資本業務提携（8/12）。自社の請求管理ソフトをもとにOEM製品を作り、開発・保守は自社、営業・販売はラクス側で収益を分け合う&quot;
+  published: 2026-08-12
+  source_url: &quot;財経新聞 2026-08-13（提携発表8/12・第三者割当12万株・総額2.79億円・提携開始8/28予定）&quot;
+sub_triggers:
+  - &quot;2026-06 サッポロ×キリンが神奈川で共同配送（logi-today 956420）&quot;
+  - &quot;2026-06-05 ヤマダHD・パナソニックHDら10社超の配送設置の共同物流会社構想（logi-today 960951/960654＋日経）。売上合算2.5兆円規模&quot;
+case_name: &quot;競合と組む3例（ビールの共同配送／家電の配送設置の共同会社／請求書SaaSの競合OEM）。協調領域と競争領域の線を、工程ごとに引き直す&quot;
+operation_tags: [OP08, OP12]  # 束ねる＋開く。前2本が「束ねる」、3本目が「開く」で、段が上がる
+motive_tag: none
+tailwind_tag: TW3
+hook: &quot;きょうは、いつもと少し違います。一本を深く、ではなくて。短い話を、三つ。&quot;
+lesson_draft: &quot;競争しない場所を、先に決める&quot;
+homework_draft: &quot;自社の仕事を工程で3〜4つに分け、お客さんがそこで自社を選んでいる工程に丸をつける。丸のつかない工程が、誰かと組める場所&quot;
+opposition: &quot;&quot;
+prev_episode_ref: &quot;ep007/ep024&quot;   # OP08の系譜。書き分け＝ep007は中核を開いて周りで稼ぐ／ep024は小口を束ねて市場規格に届かせる／
+                                  # sp001は「競合どうしが、工程を選んで組む」＝線引きそのものが主題。台本内の過去回参照は置かない
+notes: |
+  ・**並べる順番が本体**：運ぶ（ビール）→ 届けて据え付ける（家電）→ 売る（請求書ソフト）。
+    お客さんに近い側へ一段ずつ明け渡していき、3本目で「売り場まで競合に渡した」に着地する
+  ・**人間の裏取りが必要（重要）**：
+    - ROBOT PAYMENT×ラクスは**財経新聞の単独出典**。金額・株数・開始日は一次リリースで突合すること
+    - サッポロ×キリンの共同配送も**logi-today単独**。神奈川という地域と開始時期を一次で確認
+    - 家電の共同物流会社は**構想段階の報道**。「構想が報じられました」の言い方を崩さない（決定事項として断定しない）
+  ・時期の明示（憲法§4）：6月・5月の話は「ことしの六月」と月を明示済み。8/12・8/28は日付で言う
+  ・数字は4系統：①二兆五千億円 ②十社超 ③二億七千九百万円 ④日付（六月・八月十二日・八月二十八日）
+  ・固有名詞6以内：サッポロ／キリン／ヤマダ／パナソニック／ロボットペイメント／ラクス。
+    花王・三菱食品・エディオンは台本では出さない（記事では可）
+  ・『』1回：『楽楽債権管理』（発表の仮称）
+  ・**制作情報を一切出さない**：この回がどう選ばれたか、棚に何があるかには触れない（憲法§2-13）
+</code></pre></details></section><section class="file-sec" id="facts"><h2>事実カード<span class="file-name">facts.yaml</span></h2></section><section class="file-sec" id="draft"><h2>台本ドラフト（人間レビュー用）<span class="file-name">script_draft.md</span></h2><div class="prose compact"><h1>sp001 台本（人間レビュー用）</h1>
+<h2>『その手があったか』｜競争しない場所を、先に決める</h2>
+<h3>ホスト：戸倉ハジメ／T6 持ち寄り型（特別編）／6分／density: balanced</h3>
+<h3>2026-08改：咀嚼の3拍・平均文長18字以下・フィラーで間を作る</h3>
+<hr>
+<p>はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p>
+<p>きょうは、いつもと少し違います。一本を深く、ではなくて。短い話を、三つ。</p>
+<p>まあ、並べると、同じ手が見えてくる。そういう回です。</p>
+<p>ひとつめ。ビールです。</p>
+<p>ことしの六月から。神奈川で、サッポロとキリンが。同じトラックに、ビールを積んで運び始めました。</p>
+<p>私、競合と組むって。どちらかが弱ったときに、やることだと思ってたんです。</p>
+<p>ええ、そうでもないんですね。棚の上では、変わらず取り合っている。運ぶところだけ、一緒にした。</p>
+<p>で、ここが大事で。ビールって、重いんですよ。重くて、かさばって、単価が高くない。運ぶ手間のわりに、稼ぎが薄い。</p>
+<p>そう。そういう荷物は、トラックの上で相乗りしたほうが。両方とも、得をします。</p>
+<p>で。棚の上の勝ち負けは、味と、値段と、置き場所で決まります。トラックの中では、決まりません。まあ、決まらない場所で。別々に走っていた、ということですね。</p>
+<p>ふたつめ。家電です。</p>
+<p>これも、ことしの六月。ヤマダやパナソニックなど、十社を超える会社が。配送と設置だけを、共同でやる会社を作る構想が、報じられました。</p>
+<p>売上を合算すると、二兆五千億円ほどの規模だそうです。</p>
+<p>ええ。これ、一社の売上では、ありません。競っている会社の売上を、足した数字です。足したうえで、配送の台数だけを、共通の分母にする。</p>
+<p>で、私、これも、コストを下げる話だと思うじゃないですか。</p>
+<p>まあ、それだけじゃ、ないんですね。冷蔵庫や洗濯機の配達って、難所なんです。</p>
+<p>時間の指定がある。留守だと、もう一度、行く。据え付けの工事がいる。古い機械も、引き取って帰る。</p>
+<p>ええ。一社ぶんの台数では、この段取り、うまく回らないんです。</p>
+<p>だから、一社では効率が上がらないところだけを、切り出して、束ねた。店の中では、これまでどおり、取り合ったままです。</p>
+<p>みっつめ。ここが、きょういちばん、へえ、と思ったところです。</p>
+<p>八月十二日。請求書のソフトを作っている、ロボットペイメントという会社が。同じ市場で競っている、ラクスと、資本業務提携を発表しました。</p>
+<p>第三者割当で、二億七千九百万円。提携は、八月二十八日から始まる予定です。</p>
+<p>で、中身を調べてみたら。これが、変わっていまして。</p>
+<p>ロボットペイメントが持っている請求管理のソフトを、もとにして。相手のブランドの製品を、作る。発表では『楽楽債権管理』という、仮の名前がついているそうです。</p>
+<p>開発と保守は、ロボットペイメントが持ったまま。営業と販売は、ラクスの側。そして、収益を分け合う。</p>
+<p>そう。お客さんが買うときに見るのは、ラクスの看板です。中で動いているのは、ロボットペイメントのソフト。</p>
+<p>私、さすがに、売る場所までは渡さないだろう、と思ったんです。</p>
+<p>ところが。渡したんですね。</p>
+<p>そう。作る力と、売る力を。会社ごとに、分けた。</p>
+<p>さて。ここから、商売の解剖です。きょうの手は、競争しない場所を、先に決める。三つに、分けます。</p>
+<p>一。自社の工程を並べて「ここで勝っているわけではない」ところに、印をつける。ビールなら、運ぶところ。家電なら、届けて、据え付けるところ。お客さんが、そこで店を選んでいないなら。そこは、競争していないんです。</p>
+<p>二。競争していない工程ほど、一社では効率が上がりません。台数が、足りないから。だから、束ねると効く。しかも、束ねても、勝ち負けは変わらない。ここが、組みやすい理由です。相手も、同じところで困っているので。話が、早いんですね。</p>
+<p>三。逆から見ると。自分が強い工程は、他社に貸せます。ロボットペイメントは、作る力を貸した。ラクスは、売る力を貸した。まあ、銀行員のころの言葉で言うと。これは、設備の共同利用に近いんですね。持っているものが違うから、貸し借りが成り立つ。同じものを持っている相手とは、貸し借りに、なりません。</p>
+<p>これ、現場やった人ならわかると思うんですけど。新規事業って、全部を自前でそろえようとして、時間が溶けるんですよね。</p>
+<p>作るのは、自分。売るのは、売るのがうまい会社。ええ、その分け方でも、商売は立ちます。</p>
+<p>今週の宿題です。自社の仕事を、工程で三つか四つに、分けてください。そのうえで。お客さんが「そこ」で自社を選んでいる工程に、丸をつける。丸のつかなかった工程が、誰かと組める場所です。順番も、大事でして。困ってから探すと、足元を見られます。困る前に、線を引いておく。</p>
+<p>きょうの手は、競争しない場所を先に決める、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p></div></section>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -546,6 +546,11 @@ def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
 """
 
 
+def sp_mark(ep_id: str) -> str:
+    """特別編（spNNN）のしるし。定期回と混ざると、ばらつきの計算から
+    外れていることが読み取れなくなる"""
+    return '<span class="spmark">特別編</span>' if ep_id.startswith("sp") else ""
+
 def ep_tabs(ep_id: str, current: str) -> str:
     tabs = [("infographic", "インフォグラフィック"), ("article", "note記事"),
             ("figures", "note用の画像"), ("script", "台本（コピー用）"), ("files", "制作ファイル")]
@@ -565,7 +570,7 @@ def ep_header(meta: dict, current: str) -> str:
     return f"""
 <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
 <div class="ep-head">
-  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span><span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
   <h1>{esc(meta["title"])}</h1>
   <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>
 </div>
@@ -587,7 +592,9 @@ def build_script_page(meta, ep_dir):
         return page("../", f'{meta["title"]}｜台本 — その手があったか',
                     ep_header(meta, "script") + body_main)
 
-    tags = re.findall(r"\[([a-z]+)\]", tts)
+    # 感情タグと pause タグは役割が別なので分けて数える（check.py と同じ数え方）
+    tags = re.findall(r"\[(?:bright|curious|serious|excited|thoughtful|warm|calm)\]", tts)
+    pauses = re.findall(r"\[(?:long |short )?pause\]", tts)
     count = jp_len(tts)
     paras = []
     for para in re.split(r"\n\s*\n", tts.strip()):
@@ -605,7 +612,7 @@ def build_script_page(meta, ep_dir):
 <div class="action-bar">
   <button class="copy-btn" type="button" data-copy="src-tts">🎙 台本をコピー（ElevenLabs用）</button>
   {sn_btn}
-  <span class="count-note">{count:,}文字（空白除く）・オーディオタグ {len(tags)} 個</span>
+  <span class="count-note">{count:,}文字（空白除く）・感情タグ {len(tags)} 個・pause {len(pauses)} 個</span>
 </div>
 <p class="hint">コピーした本文をそのまま ElevenLabs に貼り付ける。<strong>生成後は必ず一度通して聴いてから公開</strong>（誤読は <code>library/dictionary.yaml</code> に追記）。</p>
 <article class="tts">
@@ -887,7 +894,7 @@ def build_index(metas, waits):
         assumed = "・推定" if m["assumed"] else ""
         cards.append(f"""
 <article class="ep-card">
-  <div class="ep-date"><span class="epid">{esc(m["ep"])}</span><span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <div class="ep-date"><span class="epid">{esc(m["ep"])}</span>{sp_mark(m["ep"])}<span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
   <h2 class="ep-title"><a href="{m["ep"]}/infographic.html">{esc(m["title"])}</a></h2>
   <p class="ep-hook">{esc(m.get("hook", ""))}</p>
   <div class="chips">{f'<span class="chip host">{esc(m["host"])}</span>' if m["host"] else ''}{chips}</div>
@@ -919,7 +926,7 @@ def build_index(metas, waits):
     body = f"""
 <div class="hero">
   <h1>その手があったか</h1>
-  <p class="tagline">なんで、それで儲かるんですか？ — 5分の音声番組と note 記事。台本・記事・インフォグラフィック・制作データの置き場。</p>
+  <p class="tagline">なんで、それで儲かるんですか？ — 6分の音声番組と note 記事。台本・記事・インフォグラフィック・制作データの置き場。</p>
   <p class="hero-meta">エピソード {len(metas)} 本{f'・最新の作成 {latest.month}月{latest.day}日' if latest else ''}　<span class="muted">日付は作成日です。公開するかどうかは、ここを見て決めます</span></p>
 </div>
 {"".join(cards)}
@@ -1308,8 +1315,9 @@ def main():
             ledger_rows = [row for row in reader if any((v or "").strip() for v in row.values())]
     ledger_by_ep = {r["episode"]: r for r in ledger_rows if r.get("episode")}
 
+    # epNNN＝定期回、spNNN＝特別編。どちらもサイトに並べる
     ep_dirs = sorted(d for d in EPISODES.iterdir()
-                     if d.is_dir() and re.match(r"^ep\d+$", d.name))
+                     if d.is_dir() and re.match(r"^(?:ep|sp)\d+$", d.name))
 
     metas = []
     for idx, d in enumerate(ep_dirs):
@@ -1341,7 +1349,7 @@ def main():
     # 出力（docs/ の生成対象だけ消して作り直す。plan.md 等は残す）
     OUT.mkdir(exist_ok=True)
     known = {m["ep"] for m in metas}
-    for old in OUT.glob("ep*"):
+    for old in [*OUT.glob("ep*"), *OUT.glob("sp*")]:
         if not old.is_dir():
             continue
         if old.name not in known:
@@ -1490,6 +1498,9 @@ header.site { display: flex; justify-content: space-between; align-items: center
   font-weight: 700; }
 .bl-bar .bl-toggle { margin-left: auto; }
 .bl-head .badge { margin-left: 2px; }
+.spmark { font-size: 11px; font-weight: 700; letter-spacing: .04em; border-radius: 7px;
+  padding: 2px 8px; margin-right: 4px; background: color-mix(in srgb, var(--accent-2) 15%, transparent);
+  color: var(--accent-2); }
 .epid { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .04em;
   margin-right: 9px; font-variant-numeric: tabular-nums; }
 .ep-title { font-size: 20px; margin: 6px 0 2px; line-height: 1.5; }
