@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep023=戸倉）。給�
 episode_type: T1            # ✗熱（直近5回中3回）。理由：T2は2本前（ep022）で消化済み・T5素材が窓内になし・制度/統計主役の窓内素材は本日分枯渇
 format: 型1 一本深掘り型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced
 anchor:                     # トリガ情報（制作日2026-08-15の前日）
