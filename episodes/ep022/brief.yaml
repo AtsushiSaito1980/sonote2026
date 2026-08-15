@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep021=戸倉）。場�
 episode_type: T2            # 失敗回（年3〜4本枠の2本目・ep015以来6回ぶり◎）。T1連続4回をここで断つ
 format: T2失敗回（型1アレンジ・ep015準拠）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced           # 数字5系統・固有名詞6・facts7+・例え話2・並走句3〜4
 anchor:                     # トリガ情報（制作日2026-08-15）

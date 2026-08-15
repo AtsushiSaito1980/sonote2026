@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep015=戸倉）。元�
 episode_type: T5            # お題回（シリーズ初）。「この技術、どこに売る？」の公開思考
 format: 型1 一本深掘り型（T5アレンジ：お題→仮説3つ→答え合わせ→解剖）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced
 anchor:                     # トリガ情報（制作日2026-08-14から14日前）

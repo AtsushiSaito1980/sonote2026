@@ -125,7 +125,12 @@ def evidence(ep_dir: Path) -> tuple[int | None, str]:
     if not f.exists():
         return None, "facts.yaml が無い"
     text = f.read_text(encoding="utf-8")
+    # confirmed_by は2つの書き方がある。数（confirmed_by: 2）と、
+    # 出典IDの一覧（confirmed_by: [S1a, S1c]）。ep021以降は後者。
+    # 一覧は要素数がそのまま出典の本数
     cb = [int(x) for x in re.findall(r"confirmed_by:\s*(\d+)", text)]
+    cb += [len([y for y in x.split(",") if y.strip()])
+           for x in re.findall(r"confirmed_by:\s*\[([^\]]*)\]", text)]
     if not cb:
         return None, "confirmed_by が無い"
     multi = sum(1 for x in cb if x >= 2) / len(cb)

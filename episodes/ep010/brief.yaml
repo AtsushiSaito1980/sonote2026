@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep009=徳良）
 episode_type: T1
 format: 型3 人物深掘り型（動機回）   # ep005と同型。今週まだ動機回0本のため
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: narrative          # 動機回。motives.md「反対・制約・孤立の記録」必須 → opposition欄に原文到達済みの場面あり
 anchor:                     # トリガ情報（制作日2026-08-13から1ヶ月以内＝前日）

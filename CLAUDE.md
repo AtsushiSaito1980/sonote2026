@@ -105,13 +105,22 @@ git push -u origin claude/<内容>              # → PR を作る
 python3 scripts/check.py episodes/<id>
 ```
 
+読み辞書の回収・適用漏れも機械の仕事：
+
+```bash
+python3 scripts/dictionary.py                    # 適用漏れと未登録の英字を見る
+python3 scripts/dictionary.py --collect --write  # その回で開いた語を辞書へ回収
+python3 scripts/dictionary.py --apply <id>       # 辞書を TTS 稿に当てる
+```
+
 数字系統数・固有名詞数・キメ台詞の有無は機械判定できないため、スクリプトの候補出力を見て**モデルが判断し、review.md に数え方の根拠を書く**。
 
 ## 7. 人間が必ずやること（省略不可）
 
 1. brief.yaml の記入と、sources/ への素材投入
 2. 単独出典・要約経由の数字の裏取り
-3. **TTS生成後の通し聴取**（誤読は `library/dictionary.yaml` に追記。**その回で開いた語も必ず書き戻す**）
+3. **TTS生成後の通し聴取**（誤読した語を `library/dictionary.yaml` に追記する。
+   **読みを決めるのは人間。**その回で開いた語の回収と、次の回への適用は `scripts/dictionary.py` が機械でやる）
 4. 公開の承認
 
 ## 8. ファイル地図
@@ -121,7 +130,7 @@ python3 scripts/check.py episodes/<id>
 | 全仕様 | `docs/plan.md` |
 | ホスト・作家 | `personas/` |
 | 手14・動機7・風5・型8 | `library/` |
-| 読み辞書（育成型） | `library/dictionary.yaml` |
+| 読み辞書（育成型） | `library/dictionary.yaml` ／ 回収・検査・適用は `scripts/dictionary.py` |
 | 巡回棚・リスク語 | `config/sources.yml` `config/ng.yml` |
 | 放送済み台帳（重複回避） | `ledger/episodes_log.csv` |
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
@@ -131,4 +140,4 @@ python3 scripts/check.py episodes/<id>
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |
-| **文体の教師データ** | `episodes/ep020`（2026-08改・間とフィラーの基準形）・`ep003`（聞き上手）・`ep005`（動機回） |
+| **文体の教師データ** | `episodes/ep020`（間とフィラーの基準形）・`ep003`（聞き上手）・`ep005`（動機回）・`ep008`（拡大版15分） |

@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep022=三崎）。数�
 episode_type: T1            # ✗熱（直近5回中3回）だが、直前ep022でT2を消化済み・制度3軸◎を優先→理由記録の上で採用
 format: 型1 一本深掘り型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced
 anchor:                     # トリガ情報（制作日2026-08-15）

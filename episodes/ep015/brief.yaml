@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep014=三崎）。元�
 episode_type: T2            # 失敗回（シリーズ初）。「同じ手で死んだ話」＝束ねる手の裏side
 format: 型1 一本深掘り型（T2失敗回アレンジ：儲かる構造→急所→死に方→解剖）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced
 anchor:                     # トリガ情報（制作日2026-08-14から4日前）

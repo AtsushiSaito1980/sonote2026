@@ -32,7 +32,12 @@
 <div class="ep-head">
   <p class="hint">note の本文に貼る図版（3枚）。<strong>1枚で意味が通るように作ってあります。</strong>
   下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
-  <p class="hint">まだ書き出されていません。<code>python3 scripts/export_figures.py ep022</code> を実行すると <code>docs/ep022/images/</code> に PNG が出ます。</p>
+  <div class="dl-shelf">
+  <div class="dl-head">書き出し済みの画像（4枚・2倍解像度）</div>
+  <div class="dl-list"><a class="dl" href="images/ep022-combo.png" download><span class="dl-name">ep022-combo.png</span><span class="dl-size">141 KB</span></a><a class="dl" href="images/ep022-cover.png" download><span class="dl-name">ep022-cover.png</span><span class="dl-size">83 KB</span></a><a class="dl" href="images/ep022-number.png" download><span class="dl-name">ep022-number.png</span><span class="dl-size">110 KB</span></a><a class="dl" href="images/ep022-table-1.png" download><span class="dl-name">ep022-table-1.png</span><span class="dl-size">83 KB</span></a></div>
+  <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
+  作り直したら <code>python3 scripts/export_figures.py ep022</code> を再実行。</p>
+</div>
 </div>
 <!-- ep022 note用の書き出し図版。.fig ひとつ＝画像1枚。data-fig がファイル名になる。評価語なし・事実のみ -->
 
@@ -79,13 +84,16 @@
   <div class="fig-kicker">そうだったのか、という数字</div>
   <div class="figstat">
     <div class="figviz">
-      <svg class="viz" width="170" height="150" viewBox="0 0 170 150" role="img" aria-label="3社の負債の内訳。パルス約139.9億円、オッドナンバー約107.3億円、イグニス約50.2億円の3本の棒">
-        <rect class="b2" x="22" y="45" width="34" height="80" rx="3"/>
-        <rect class="b2" x="68" y="63" width="34" height="62" rx="3"/>
-        <rect class="b1" x="114" y="96" width="34" height="29" rx="3"/>
-        <text class="tlab" x="39" y="140" text-anchor="middle">パルス 139.9億</text>
-        <text class="tlab" x="85" y="140" text-anchor="middle">オッド 107.3億</text>
-        <text class="tlab" x="131" y="140" text-anchor="middle">イグニス 50.2億</text>
+      <svg class="viz" width="250" height="164" viewBox="0 0 250 164" role="img" aria-label="3社の負債の内訳。パルス約139.9億円、オッドナンバー約107.3億円、イグニス約50.2億円の3本の棒">
+        <rect class="b2" x="28" y="45" width="34" height="80" rx="3"/>
+        <rect class="b2" x="108" y="63" width="34" height="62" rx="3"/>
+        <rect class="b1" x="188" y="96" width="34" height="29" rx="3"/>
+        <text class="tlab" x="45" y="138" text-anchor="middle">パルス</text>
+        <text class="tlab" x="45" y="154" text-anchor="middle">139.9億</text>
+        <text class="tlab" x="125" y="138" text-anchor="middle">オッド</text>
+        <text class="tlab" x="125" y="154" text-anchor="middle">107.3億</text>
+        <text class="tlab" x="205" y="138" text-anchor="middle">イグニス</text>
+        <text class="tlab" x="205" y="154" text-anchor="middle">50.2億</text>
       </svg>
     </div>
     <div class="figtxt">

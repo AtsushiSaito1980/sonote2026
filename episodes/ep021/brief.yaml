@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep020=三崎）。数�
 episode_type: T1            # ✗熱（直近5回中3回）だが、窓内4候補すべてT1（T2/T5素材なし・T3定点観測は後期規定）→理由記録の上で採用
 format: 型3 人物深掘り型（動機回）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: narrative          # 数字3系統・固有名詞4・facts4前後・例え話2・並走句無制限。反対・制約・孤立の記録必須
 anchor:                     # トリガ情報（制作日2026-08-15の前日）

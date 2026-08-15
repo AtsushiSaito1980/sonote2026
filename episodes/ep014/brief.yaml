@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep013=戸倉）。元�
 episode_type: T1            # 事例回・一本深掘り
 format: 型1 一本深掘り型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced           # 数字5系統・固有名詞6・facts7点以上・例え話2・並走句3〜4
 anchor:                     # トリガ情報（制作日2026-08-14から8日前）

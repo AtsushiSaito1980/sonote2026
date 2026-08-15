@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep004=三崎）
 episode_type: T1
 format: 型3 人物深掘り型（動機回）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: narrative          # 初使用。v3.5編成ルール⑥の実演
 anchor:
