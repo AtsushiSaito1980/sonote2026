@@ -1,6 +1,6 @@
 # その手があったか — 制作憲法
 
-平日毎日1本、5分の音声番組と、独立した note 記事を作る。
+平日毎日1本、6分の音声番組と、独立した note 記事を作る。
 詳細仕様は `docs/plan.md`（v3.5）。**矛盾したら plan.md が勝つ。**
 
 ## 1. 番組の核
@@ -111,7 +111,7 @@ python3 scripts/check.py episodes/<id>
 
 1. brief.yaml の記入と、sources/ への素材投入
 2. 単独出典・要約経由の数字の裏取り
-3. **TTS生成後の通し聴取**（誤読は `library/dictionary.yaml` に追記）
+3. **TTS生成後の通し聴取**（誤読は `library/dictionary.yaml` に追記。**その回で開いた語も必ず書き戻す**）
 4. 公開の承認
 
 ## 8. ファイル地図
@@ -131,4 +131,4 @@ python3 scripts/check.py episodes/<id>
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |
-| **文体の教師データ** | `episodes/ep001〜006`（台本を書く前に直近2〜3本を読む） |
+| **文体の教師データ** | `episodes/ep020`（2026-08改・間とフィラーの基準形）・`ep003`（聞き上手）・`ep005`（動機回） |
