@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep010=三崎）
 episode_type: T4            # 数字回（シリーズ初）。統計の中の物語
 format: 型1 一本深掘り型（T4数字回アレンジ）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: dense              # §4-7「情報主体。速報・数字回向け」＝数字6系統・固有名詞7・facts8点以上・例え話1・並走句2まで（同義の言い直し禁止）
 anchor:                     # トリガ情報（制作日2026-08-13から13日前）
