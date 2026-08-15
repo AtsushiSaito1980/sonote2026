@@ -35,6 +35,14 @@ def spec_for(duration_min: int, density: str):
     （企画書§5-1 の「18分＝5,400字前後」＝毎分300字に合わせる）。
     """
     base = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])
+    if duration_min == 6:
+        # 2026-08改の新方針。5分1,700〜2,000字（毎分340〜400字）は速すぎて
+        # 間が入らなかったため6分に延ばし、増えた分は事実ではなく
+        # 咀嚼・短文・フィラーに使う。brief で duration_min: 6 と書いた回だけ適用
+        return {
+            "chars": (1900, 2200), "quotes": (1, 2), "kuse": 1, "tags": (8, 10),
+            "mult": 1.0, **base,
+        }
     if duration_min <= 5:
         return {
             "chars": (1700, 2000), "quotes": (1, 2), "kuse": 1, "tags": (4, 6),
@@ -144,6 +152,30 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
     hits = [h for h in KIME_HINTS if h in body]
     add(WARN if hits else OK, "キメ台詞の候補", f"{hits}（該当語があっても事実の平叙なら可。文脈で判断）" if hits else "検出なし")
 
+    # 語りの検査は 2026-08 の新方針（duration_min: 6）の回だけに当てる。
+    # 旧方針の回に当てても直す予定が無く、要確認が増えるだけなので
+    if duration_min < 6:
+        return body
+
+    # 語りの間は、文の短さで作る。読点でつなぐと TTS が止まらない
+    sents = [x.strip() for x in re.split(r"[。？]", body) if x.strip()]
+    avg = sum(len(x) for x in sents) / max(len(sents), 1)
+    short = sum(1 for x in sents if len(x) <= 8)
+    add(OK if avg <= 18 else WARN, "平均文長",
+        f"{avg:.1f}字（18字以下が目安）→ 読点を句点に替える" if avg > 18 else f"{avg:.1f}字")
+    add(OK if short >= 20 else WARN, "一語だけの文",
+        f"8字以下が {short} 文（20以上が目安）→ 間を置く場所を単独の文にする"
+        if short < 20 else f"8字以下が {short} 文")
+
+    # フィラーは口癖ではなく間の代わり。無音が作れないぶんを音で埋める
+    fillers = ["えー", "えーと", "あの、", "まあ、", "うん、", "うん。", "ええ。",
+               "なんか、", "で。", "そう。", "ね。"]
+    n_fill = sum(body.count(f) for f in fillers)
+    add(OK if 10 <= n_fill <= 30 else WARN, "フィラー",
+        f"{n_fill} 個（1回に15〜20個が目安）" if 10 <= n_fill <= 30
+        else f"{n_fill} 個 → 少なすぎ（間が作れない）" if n_fill < 10
+        else f"{n_fill} 個 → 多すぎ（耳につく）")
+
     return body
 
 
@@ -159,7 +191,18 @@ def check_tts(ep: Path, lim: dict):
     add(OK if not re.search(r"^#|^##|MC：|ナレーター", t, re.M) else NG, "見出し・話者ラベル", "なし" if not re.search(r"^#", t, re.M) else "残存")
     add(OK if "香月" not in t else NG, "TTS稿の「香月」", f"{t.count('香月')} 回")
     add(OK if "…" not in t else NG, "TTS稿の三点リーダー", f"{t.count('…')} 個")
-    stripped = re.sub(r"\[[a-z]+\]", "", t)  # オーディオタグは除外して判定
+    # break タグは Eleven v3 で効かず、実機で無視された（2026-08 確認）
+    brk = len(re.findall(r"<break", t))
+    add(OK if brk == 0 else NG, "breakタグ",
+        f"{brk} 個 → v3 では効かない。句点・単独文・フィラーで間を作る" if brk else "なし")
+
+    # [pause] 系は効くが、多いと音質が落ちる。ここぞの場所だけ
+    pause = len(re.findall(r"\[(?:long |short )?pause\]", t))
+    add(OK if pause <= 5 else WARN, "pauseタグ",
+        f"{pause} 個 → 5個まで。解剖の直前と咀嚼の折れ目に絞る" if pause > 5
+        else f"{pause} 個（5個まで）")
+
+    stripped = re.sub(r"\[[a-z ]+\]", "", t)  # 音声タグ・pauseタグは除外して判定
     ascii_words = re.findall(r"[A-Za-z]{2,}", stripped)
     add(OK if not ascii_words else NG, "英字の残存（カタカナ展開漏れ）", f"{ascii_words}" if ascii_words else "なし")
 

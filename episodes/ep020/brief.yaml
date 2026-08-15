@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep019=戸倉）。ポ�
 episode_type: T1
 format: 型1 一本深掘り型
 series: ""
-duration_min: 5
+duration_min: 6            # 2026-08改の新方針（間・フィラー）
 mode: real
 density: balanced
 anchor:                     # トリガ情報（制作日2026-08-15の前日）
