@@ -2,7 +2,7 @@ episode_id: ep002
 host: misaki                # 編成表#10相当（記事を先行制作。台本は未着手）
 episode_type: T1
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: dense              # v3.1新設。情報主体
 anchor:                     # 起点情報（制作日2026-08-08から1ヶ月以内）
