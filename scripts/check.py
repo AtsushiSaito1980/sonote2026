@@ -31,22 +31,23 @@ EXPANDED_MULT = 1.5
 def spec_for(duration_min: int, density: str):
     """尺と density から数値ゲートを決める。
 
-    5分＝標準（1,700〜2,000字）。それ以外は拡大版として毎分300字で換算する
-    （企画書§5-1 の「18分＝5,400字前後」＝毎分300字に合わせる）。
+    **6分＝標準（1,900〜2,200字）。2026-08改でここに移した。**
+    5分1,700〜2,000字（毎分340〜400字）は速すぎて間が入らなかったため延ばし、
+    増えた分は事実ではなく咀嚼・短文・フィラーに使う。
+    拡大版は毎分300字で換算する（企画書§5-1 の「18分＝5,400字前後」）。
+    毎分300字は新標準（毎分317〜367字）より遅いので、尺の側は据え置く。
     """
     base = DENSITY_LIMITS.get(density, DENSITY_LIMITS["balanced"])
     if duration_min == 6:
-        # 2026-08改の新方針。5分1,700〜2,000字（毎分340〜400字）は速すぎて
-        # 間が入らなかったため6分に延ばし、増えた分は事実ではなく
-        # 咀嚼・短文・フィラーに使う。brief で duration_min: 6 と書いた回だけ適用
         return {
             "chars": (1900, 2200), "quotes": (1, 2), "kuse": 1, "tags": (8, 10),
-            "mult": 1.0, **base,
+            "pause": 5, "mult": 1.0, **base,
         }
     if duration_min <= 5:
+        # 旧方式。ep001（archived）だけが残る。新しい回では使わない
         return {
             "chars": (1700, 2000), "quotes": (1, 2), "kuse": 1, "tags": (4, 6),
-            "mult": 1.0, **base,
+            "pause": 5, "mult": 1.0, **base,
         }
     target = duration_min * 300
     r50 = lambda x: int(round(x / 50.0) * 50)
@@ -54,7 +55,8 @@ def spec_for(duration_min: int, density: str):
         "chars": (r50(target * 0.955), r50(target * 1.067)),
         "quotes": (2, 3),
         "kuse": int(round(1 * EXPANDED_MULT)),
-        "tags": (int(round(4 * duration_min / 5)), int(round(6 * duration_min / 5))),
+        "tags": (int(round(8 * duration_min / 6)), int(round(10 * duration_min / 6))),
+        "pause": int(round(5 * duration_min / 6)),
         "mult": EXPANDED_MULT,
         "min_facts": int(round(base["min_facts"] * EXPANDED_MULT)),
         "num": int(round(base["num"] * EXPANDED_MULT)),
@@ -140,7 +142,7 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
 
     # 取材話法（主語なし＋伝聞）
     denbun = sum(body.count(x) for x in ["そうです", "とのことでした", "だそうで", "報じられ", "残っています", "紹介されています"])
-    torizai = sum(body.count(x) for x in ["調べてみ", "調べていく", "聞いてみ", "확", "あとで確かめ", "確かめた"])
+    torizai = sum(body.count(x) for x in ["調べてみ", "調べていく", "聞いてみ", "あとで確かめ", "確かめた"])
     add(OK if denbun >= 2 and torizai >= 1 else WARN, "取材話法",
         f"伝聞 {denbun} 回 / 調べる・聞く {torizai} 回（各1以上が目安）")
 
@@ -152,28 +154,33 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
     hits = [h for h in KIME_HINTS if h in body]
     add(WARN if hits else OK, "キメ台詞の候補", f"{hits}（該当語があっても事実の平叙なら可。文脈で判断）" if hits else "検出なし")
 
-    # 語りの検査は 2026-08 の新方針（duration_min: 6）の回だけに当てる。
-    # 旧方針の回に当てても直す予定が無く、要確認が増えるだけなので
+    # 語りの検査（2026-08改）。旧方式の5分回だけ対象外にする
     if duration_min < 6:
+        add(WARN, "語りの検査", "旧方式（5分）のため未適用。duration_min を 6 にすると当たる")
         return body
+
+    # 目安は6分を基準に、尺で比例させる（拡大版もそのまま当たる）
+    k = duration_min / 6.0
 
     # 語りの間は、文の短さで作る。読点でつなぐと TTS が止まらない
     sents = [x.strip() for x in re.split(r"[。？]", body) if x.strip()]
     avg = sum(len(x) for x in sents) / max(len(sents), 1)
     short = sum(1 for x in sents if len(x) <= 8)
+    short_need = int(round(20 * k))
     add(OK if avg <= 18 else WARN, "平均文長",
         f"{avg:.1f}字（18字以下が目安）→ 読点を句点に替える" if avg > 18 else f"{avg:.1f}字")
-    add(OK if short >= 20 else WARN, "一語だけの文",
-        f"8字以下が {short} 文（20以上が目安）→ 間を置く場所を単独の文にする"
-        if short < 20 else f"8字以下が {short} 文")
+    add(OK if short >= short_need else WARN, "一語だけの文",
+        f"8字以下が {short} 文（{short_need}以上が目安）→ 間を置く場所を単独の文にする"
+        if short < short_need else f"8字以下が {short} 文")
 
     # フィラーは口癖ではなく間の代わり。無音が作れないぶんを音で埋める
     fillers = ["えー", "えーと", "あの、", "まあ、", "うん、", "うん。", "ええ。",
                "なんか、", "で。", "そう。", "ね。"]
     n_fill = sum(body.count(f) for f in fillers)
-    add(OK if 10 <= n_fill <= 30 else WARN, "フィラー",
-        f"{n_fill} 個（1回に15〜20個が目安）" if 10 <= n_fill <= 30
-        else f"{n_fill} 個 → 少なすぎ（間が作れない）" if n_fill < 10
+    f_lo, f_hi = int(round(10 * k)), int(round(30 * k))
+    add(OK if f_lo <= n_fill <= f_hi else WARN, "フィラー",
+        f"{n_fill} 個（{int(round(15 * k))}〜{int(round(20 * k))}個が目安）" if f_lo <= n_fill <= f_hi
+        else f"{n_fill} 個 → 少なすぎ（間が作れない）" if n_fill < f_lo
         else f"{n_fill} 個 → 多すぎ（耳につく）")
 
     return body
@@ -198,9 +205,10 @@ def check_tts(ep: Path, lim: dict):
 
     # [pause] 系は効くが、多いと音質が落ちる。ここぞの場所だけ
     pause = len(re.findall(r"\[(?:long |short )?pause\]", t))
-    add(OK if pause <= 5 else WARN, "pauseタグ",
-        f"{pause} 個 → 5個まで。解剖の直前と咀嚼の折れ目に絞る" if pause > 5
-        else f"{pause} 個（5個まで）")
+    pmax = lim["pause"]
+    add(OK if pause <= pmax else WARN, "pauseタグ",
+        f"{pause} 個 → {pmax}個まで。解剖の直前と咀嚼の折れ目に絞る" if pause > pmax
+        else f"{pause} 個（{pmax}個まで）")
 
     stripped = re.sub(r"\[[a-z ]+\]", "", t)  # 音声タグ・pauseタグは除外して判定
     ascii_words = re.findall(r"[A-Za-z]{2,}", stripped)
@@ -351,7 +359,7 @@ def check_article(ep: Path):
 
 def check_meta(ep: Path):
     b = ep / "brief.yaml"
-    density, duration_min = "balanced", 5
+    density, duration_min = "balanced", 6   # 2026-08改：既定は6分
     if not b.exists():
         add(NG, "brief.yaml", "見つかりません")
         return density, duration_min
@@ -363,7 +371,10 @@ def check_meta(ep: Path):
     if d:
         duration_min = int(d.group(1))
     add(OK, "density", density)
-    add(OK, "尺", f"{duration_min} 分" + ("（標準）" if duration_min <= 5 else f"（拡大版・上限×{EXPANDED_MULT}）"))
+    add(OK if duration_min >= 6 else WARN, "尺",
+        f"{duration_min} 分（標準）" if duration_min == 6
+        else f"{duration_min} 分 → **旧方式**。2026-08改の標準は 6 分"
+        if duration_min <= 5 else f"{duration_min} 分（拡大版・上限×{EXPANDED_MULT}）")
     add(OK if re.search(r"^anchor:", txt, re.M) else NG, "anchor（トリガ）", "記載あり" if "anchor:" in txt else "なし")
     pub = re.search(r"published:\s*([0-9]{4}-[0-9]{2}(?:-[0-9]{2})?)", txt)
     add(WARN, "トリガ公開日", f"{pub.group(1) if pub else '未記載'} → 制作日から1ヶ月以内か目視確認")

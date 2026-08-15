@@ -9,6 +9,8 @@ argument-hint: <episode_id>
 
 ## ゲート0（開始前）
 - `sources/` が空 → **生成せずに停止**
+- **`duration_min` が 6 でない → 6 に直してから始める。**2026-08改の標準は6分（1,900〜2,200字）。
+  拡大版（総集編・特集）を人間が明示して指定したときだけ例外
 - `anchor.published` が制作日から31日超 → **停止**して、より新しいトリガを探すか `trigger_wait` に回すか人間に確認
 - **`ledger/selection.yaml` にこの回の採点が無い → 停止。**`/patrol` の採点を先に記録する
 - 採点の**核（Q1／Q2）が両方 ✗ → 停止して人間に確認。**儲けている主体も動機を持つ人も出てこない回は、
@@ -20,6 +22,8 @@ argument-hint: <episode_id>
 2. **write-outline** → `outline.md`
 3. **write-script** → `script_draft.md`
    - 書く前に `personas/{host}.md` と `episodes/` の直近2〜3本を必ず読む
+   - **6分・咀嚼の3拍・平均文長18字以下・フィラー15〜20個。**字数の下限は
+     事実ではなく咀嚼で埋める（`library/episode_types.md` の「語りの作り」）
 4. **review-episode** → `python3 scripts/check.py episodes/$1` を実行 → `review.md`
    - FAIL → 3へ差し戻し（最大2周、それで通らなければ人間へ）
 5. **tts-format** → `script_tts.txt`
