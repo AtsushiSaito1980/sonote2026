@@ -3,7 +3,7 @@ host: tokura                # 日替わり交互（前日ep016=三崎）。制�
 episode_type: T1            # 事例回。ただし主役は「制度」（spread軸で14回あきの初解凍）
 format: 型1 一本深掘り型
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: balanced
 anchor:                     # トリガ情報。※公開7/13の記事の「最終更新2026-08-04」を採用（reviewに明記）

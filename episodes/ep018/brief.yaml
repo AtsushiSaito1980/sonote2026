@@ -3,7 +3,7 @@ host: misaki                # 日替わり交互（前日ep017=戸倉）。T4は
 episode_type: T4            # 数字回・第2弾。ep011（1/5判定）のリベンジ設計
 format: 型1 一本深掘り型（T4アレンジ：統計→カラクリ→儲け手ズーム）
 series: ""
-duration_min: 5
+duration_min: 6
 mode: real
 density: dense              # 数字回はdense（数字6系統・固有名詞7・facts8+・例え話1・並走句2まで）
 anchor:                     # トリガ情報（制作日2026-08-14から10日前）
