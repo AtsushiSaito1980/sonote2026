@@ -160,6 +160,7 @@ def variety(row: dict, hist: dict) -> tuple[int | None, list[tuple[str, str, str
     """ばらつき。7軸それぞれを、その時点の履歴に照らして採点する。
 
     **特別編（spNNN）は対象外。**巡回で選んだ回ではないので、間隔を測る意味がない。
+    **履歴は同じ地域（国内／海外）の回だけ。**呼び出し側で絞ってから渡す。
     """
     if not spread.is_regular(row):
         return None, []
@@ -182,8 +183,11 @@ def score_all() -> list[dict]:
     for i, row in enumerate(rows):
         ep = row.get("episode", "")
         marks = entries.get(ep, {})
-        hist = spread.history(rows[:i])          # ← その回より前だけ
-        var, detail = (variety(row, hist) if i else (None, []))
+        # その回より前で、**同じ地域**の回だけ。国内と海外は別勘定なので、
+        # 海外1本目のばらつきは「国内で何を使ったか」に影響されない
+        prev = spread.in_region(rows[:i], spread.region_of(row))
+        hist = spread.history(prev)
+        var, detail = (variety(row, hist) if prev else (None, []))
         ep_dir = ROOT / "episodes" / ep
         fresh, fresh_why = freshness(row)
         evid, evid_why = evidence(ep_dir)

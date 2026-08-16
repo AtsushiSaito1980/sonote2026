@@ -1,38 +1,71 @@
 # 巡回棚（6分類）。/patrol はこの全棚を必ず舐める。
 # robots.txt / 利用規約を確認したものだけ登録する。AI利用を拒否しているサイトは登録しない。
+#
+# 棚は国内・海外で共通。変わるのは「どこを見に行くか」だけなので、
+# 各棚に hint（国内）と hint_global（海外）を並べて持つ。
+# **どちらの地域を巡回するかは、そのつど人間が指示する**（regions.policy を見よ）。
 
 shelves:
   1_price_ops:
     label: 価格・営業・商品
     hint: 値上げ/値下げ、営業時間、品揃え、サブスク化、新商品リリース
+    hint_global: 値付けの変更、サブスク/従量への切り替え、販売チャネルの変更、リコマース参入
     sources: []          # 例: PR TIMES 各カテゴリ、業界紙
+    sources_global: []   # 例: 各社ニュースルーム、業界紙の英語版
 
   2_regulation:
     label: 制度
     hint: 官報、審議会、パブコメ、義務化の施行日、都道府県の条例審議（国の予告編）
+    hint_global: EU官報・指令の施行日、米国の州法、規制当局の最終規則、標準化団体の決定
     sources: []
+    sources_global: []
 
   3_tech_milestone:
     label: 技術の節目
     hint: 量産開始、実用化、受賞、特許切れ、コスト逆転、学会発表→事業化
+    hint_global: 量産開始、規制承認、特許切れ、コスト逆転、研究所からのスピンアウト
     sources: []
+    sources_global: []
 
   4_partnership:
     label: 提携
     hint: 資本業務提携、協業開始、老舗×スタートアップ、大学発ベンチャー
+    hint_global: 出資・協業の発表、老舗×スタートアップ、大学発ベンチャー、事業の切り出し
     sources: []
+    sources_global: []
 
   5_earnings:
     label: 決算
     hint: 四半期ごとに、在庫事例の「再トリガ」を確認する棚
+    hint_global: 四半期決算とその説明会。米国は 8-K / 10-Q、欧州は年次・半期報告が一次
     sources: []
+    sources_global: []
 
   6_people:
     label: 人物・動機の節目
     hint: 上場、資金調達、受賞、周年、事業承継、書籍出版。創業物語はこの瞬間に再点火する
+    hint_global: 上場申請（目論見書は動機の宝庫）、資金調達、受賞、周年、創業者インタビュー
     sources: []
+    sources_global: []
 
 policy:
   primary_first: true          # 一次情報を優先。Wikipediaはキー事実の単独ソースにしない
   key_number_min_sources: 2    # キー数字は2ソース以上または一次資料
   trigger_window_days: 31
+
+regions:
+  values: [国内, 海外]
+  default: 国内                # 台帳・棚で地域が空欄なら国内
+  policy: 指示ベース            # 頻度は固定しない。「国内で探して」「海外で探して」と
+                               # 言われたらその地域を巡回する。指示が無ければ国内から入り、
+                               # spread.py の海外側が長く空いていれば候補に1件混ぜて提案する
+  accounting: 別勘定            # ばらつき（手・動機・風・型・畑・主役・技術度）は
+                               # 国内と海外で別々に数える（scripts/spread.py）
+
+  # 海外を巡回するときだけ効く追加ルール。詳細は CLAUDE.md「9. 国内と海外」
+  global_rules:
+    output_language: 日本語      # 出所が海外になるだけ。台本も記事も日本語で作る
+    primary_in_original: true   # 英語の一次資料に当たる。日本語の翻訳記事を一次と数えない
+    currency: 原通貨のまま        # 円換算は事実カードに無い数字になる。するなら換算日を明示
+    localize_step: true         # 解剖の三点のうち1つは、日本の業界への置き換えにする
+    politics_as_terrain: true   # 関税・制裁・エネルギー政策は地形として扱い、是非を論評しない

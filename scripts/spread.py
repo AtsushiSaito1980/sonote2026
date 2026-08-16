@@ -4,11 +4,16 @@
 `ledger/episodes_log.csv` から軸ごとの使用履歴を取り出し、
 「直近と被っている値」と「しばらく出ていない値」を出す。
 
-    python3 scripts/spread.py
+    python3 scripts/spread.py          # 国内と海外を、別々に出す
+    python3 scripts/spread.py 海外     # 海外だけ
 
 `/patrol` が候補を探す**前**に実行する。冷えている値を先に知ってから探すと、
 同じ畑・同じ主役に寄らずに済む。build_site.py も同じ計算を使って
 docs/selection.html に出す（数え方を二重に持たない）。
+
+**国内と海外は別勘定。**同じ手でも、国内で3回前に使ったことと、海外で一度も
+使っていないことは、別の事実として扱う。混ぜて数えると、海外を始めた直後は
+どの軸も「最近出ている」ことになり、冷えている値が見えなくなる。
 """
 from __future__ import annotations
 
@@ -45,6 +50,14 @@ VOCAB = {
 # 「なし」は値ではない。冷えていても ◎ にしない（手なし・動機なしを優先する理由が無い）
 EMPTY = {"—", "なし", ""}
 
+# 地域。ばらつきは地域ごとに別勘定で数える（軸には入れない）
+REGIONS = ["国内", "海外"]
+DEFAULT_REGION = "国内"        # 台帳の region 欄が空の行は国内とみなす
+REGION_ALIASES = {
+    "国内": "国内", "domestic": "国内", "jp": "国内", "japan": "国内",
+    "海外": "海外", "global": "海外", "world": "海外", "overseas": "海外",
+}
+
 RECENT_BLOCK = 3   # 直近この本数に同じ値があれば △
 RECENT_HOT = 5     # 直近この本数に2回以上あれば ✗
 COLD_GAP = 5       # 最後に出てからこの本数あいていれば ◎（優先して探す）
@@ -68,6 +81,26 @@ def main_tag(cell: str, prefix: str) -> str:
 
 def main_hand(cell: str) -> str:
     return main_tag(cell, "OP")
+
+
+def region_of(row: dict) -> str:
+    """その回の地域。空欄は国内（列を足す前の回がすべて国内だったため）"""
+    raw = (row.get("region") or "").strip()
+    return REGION_ALIASES.get(raw.lower(), raw) or DEFAULT_REGION
+
+
+def in_region(rows: list[dict], region: str | None) -> list[dict]:
+    """地域で絞る。region が None なら絞らない"""
+    if region is None:
+        return list(rows)
+    return [r for r in rows if region_of(r) == region]
+
+
+def regions_present(rows: list[dict]) -> list[str]:
+    """台帳に出てくる地域を、REGIONS の順で返す"""
+    found = {region_of(r) for r in regulars(rows)}
+    ordered = [g for g in REGIONS if g in found]
+    return ordered + sorted(found - set(REGIONS))
 
 
 def all_hands(rows: list[dict]) -> set[str]:
@@ -150,22 +183,31 @@ def verdict(axis: str, value: str, hist: dict) -> tuple[str, str]:
 
 
 def cold_values(axis: str, hist: dict) -> list[tuple[str, int]]:
-    """しばらく出ていない値を、あいた本数の多い順に返す"""
+    """しばらく出ていない値を、あいた本数の多い順に返す。
+
+    **一度も出ていない値は、本数が少なくても冷えている。**地域を分けた直後は
+    海外側が数本しかなく、あき本数だけで見ると全部が「最近出ている」ことになる。
+    未使用（gap > 本数）は無条件で拾う。
+    """
     seq = [v for _, v in hist[axis]]
     known = VOCAB.get(axis, sorted({v for v in seq if v not in EMPTY}))
     scored = [(v, gap_of(v, seq)) for v in known if v not in EMPTY]
-    return sorted([x for x in scored if x[1] >= COLD_GAP],
+    return sorted([x for x in scored if x[1] >= COLD_GAP or x[1] > len(seq)],
                   key=lambda kv: -kv[1])
 
 
-def report(rows: list[dict]) -> str:
+def report(rows: list[dict], region: str | None = None) -> str:
+    """1地域ぶんのばらつき。region=None なら地域で絞らずに数える"""
+    rows = in_region(rows, region)
     if not rows:
-        return "台帳が空です。"
+        label = region or ""
+        return f"\n=== 選定のばらつき｜{label} ===\n\n  まだ1本もありません。すべての軸が未使用です。\n"
     hist = history(rows)
     seen_hands = all_hands(rows)
     n_sp = len(rows) - len(regulars(rows))
     note = f"／特別編 {n_sp} 本は計算に入れない" if n_sp else ""
-    lines = [f"\n=== 選定のばらつき（定期回 {len(regulars(rows))}本ぶん{note}）===\n"]
+    head = f"選定のばらつき｜{region}" if region else "選定のばらつき"
+    lines = [f"\n=== {head}（定期回 {len(regulars(rows))}本ぶん{note}）===\n"]
     for axis, label, help_ in AXES:
         seq = hist[axis]
         counts: dict[str, int] = {}
@@ -200,6 +242,28 @@ def report(rows: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def report_all(rows: list[dict], region: str | None = None) -> str:
+    """地域ごとに分けて出す。region 指定があればその地域だけ"""
+    if region:
+        return report(rows, region)
+    out = []
+    for g in regions_present(rows) or [DEFAULT_REGION]:
+        out.append(report(rows, g))
+    for g in REGIONS:                       # まだ1本も無い地域も、存在は知らせる
+        if g not in regions_present(rows):
+            out.append(report([], g))
+    return "\n".join(out)
+
+
+def parse_region_arg(argv: list[str]) -> str | None:
+    """引数から地域を読む。「海外」「global」など。無ければ None（全地域）"""
+    for a in argv[1:]:
+        key = REGION_ALIASES.get(a.strip().lower())
+        if key:
+            return key
+    return None
+
+
 if __name__ == "__main__":
-    print(report(load_rows()))
+    print(report_all(load_rows(), parse_region_arg(sys.argv)))
     sys.exit(0)

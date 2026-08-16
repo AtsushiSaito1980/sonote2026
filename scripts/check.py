@@ -122,6 +122,11 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
     halfsp = len(re.findall(r"[ぁ-ヶ一-龥][ ][ぁ-ヶ一-龥]", body))
     add(OK if halfsp == 0 else NG, "和文の半角スペース", f"{halfsp} 箇所")
 
+    # 海外回で残りやすい。記号は読み上げられないので「ドル」「ユーロ」と開いて書く
+    cur = sorted(set(re.findall(r"[$€£¥￥]", body)))
+    add(OK if not cur else NG, "通貨記号",
+        f"{cur} ← カタカナで開くこと（ドル・ユーロ）" if cur else "なし")
+
     add(OK if body.startswith(OP_PREFIX) else NG, "OP定型", "一字一句一致" if body.startswith(OP_PREFIX) else "不一致")
     add(OK if ED_CORE in body else NG, "ED定型", "一致（また明日）" if ED_CORE in body else "不一致")
 
@@ -198,6 +203,9 @@ def check_tts(ep: Path, lim: dict):
     add(OK if not re.search(r"^#|^##|MC：|ナレーター", t, re.M) else NG, "見出し・話者ラベル", "なし" if not re.search(r"^#", t, re.M) else "残存")
     add(OK if "香月" not in t else NG, "TTS稿の「香月」", f"{t.count('香月')} 回")
     add(OK if "…" not in t else NG, "TTS稿の三点リーダー", f"{t.count('…')} 個")
+    tcur = sorted(set(re.findall(r"[$€£¥￥]", t)))
+    add(OK if not tcur else NG, "TTS稿の通貨記号",
+        f"{tcur} ← 読み上げられない。ドル・ユーロと開く" if tcur else "なし")
     # break タグは Eleven v3 で効かず、実機で無視された（2026-08 確認）
     brk = len(re.findall(r"<break", t))
     add(OK if brk == 0 else NG, "breakタグ",

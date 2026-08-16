@@ -551,6 +551,12 @@ def sp_mark(ep_id: str) -> str:
     外れていることが読み取れなくなる"""
     return '<span class="spmark">特別編</span>' if ep_id.startswith("sp") else ""
 
+
+def region_mark(region: str) -> str:
+    """海外回のしるし。国内は既定なので付けない（付けると全回に付いて情報が消える）。
+    ばらつきは国内と海外で別勘定なので、どちらの系列かが見えている必要がある"""
+    return '<span class="glmark">海外</span>' if (region or "").strip() == "海外" else ""
+
 def ep_tabs(ep_id: str, current: str) -> str:
     tabs = [("infographic", "インフォグラフィック"), ("article", "note記事"),
             ("figures", "note用の画像"), ("script", "台本（コピー用）"), ("files", "制作ファイル")]
@@ -570,7 +576,7 @@ def ep_header(meta: dict, current: str) -> str:
     return f"""
 <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
 <div class="ep-head">
-  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}{region_mark(meta.get("region", ""))}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
   <h1>{esc(meta["title"])}</h1>
   <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>
 </div>
@@ -894,7 +900,7 @@ def build_index(metas, waits):
         assumed = "・推定" if m["assumed"] else ""
         cards.append(f"""
 <article class="ep-card">
-  <div class="ep-date"><span class="epid">{esc(m["ep"])}</span>{sp_mark(m["ep"])}<span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
+  <div class="ep-date"><span class="epid">{esc(m["ep"])}</span>{sp_mark(m["ep"])}{region_mark(m.get("region", ""))}<span class="dlabel">作成</span>{esc(m["date_disp"])}{assumed}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
   <h2 class="ep-title"><a href="{m["ep"]}/infographic.html">{esc(m["title"])}</a></h2>
   <p class="ep-hook">{esc(m.get("hook", ""))}</p>
   <div class="chips">{f'<span class="chip host">{esc(m["host"])}</span>' if m["host"] else ''}{chips}</div>
@@ -1105,7 +1111,8 @@ def build_selection_page(sel, ledger_rows, titles):
 <div class="ep-head"><h1>ネタの選び方</h1>
 <p class="hint">候補を出すときに1件ずつ採点します（<code>ledger/selection.yaml</code>）。
 <strong>核（Q1・Q2）が両方 ✗ なら、点数を見るまでもなく不採用。</strong>
-点数は <code>scripts/score.py</code>、ばらつきは <code>scripts/spread.py</code> が台帳から計算します。</p></div>
+点数は <code>scripts/score.py</code>、ばらつきは <code>scripts/spread.py</code> が台帳から計算します。
+<strong>ばらつきは国内と海外で別勘定です</strong>（混ぜて数えると、海外を始めた直後は冷えている値が見えなくなるため）。</p></div>
 
 <section class="sec">
   <h2>6つの点数</h2>
@@ -1339,6 +1346,7 @@ def main():
             "ep": d.name, "dir": d,
             "title": (led.get("title") or brief.get("case_name") or d.name).strip(),
             "host": HOSTS.get((led.get("host") or brief.get("host") or "").strip(), ""),
+            "region": (led.get("region") or "").strip(),
             "date": dt, "assumed": assumed, "date_disp": disp,
             "status": status, "chips": chips,
             "hook": str(brief.get("hook", "")),
@@ -1501,6 +1509,9 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .spmark { font-size: 11px; font-weight: 700; letter-spacing: .04em; border-radius: 7px;
   padding: 2px 8px; margin-right: 4px; background: color-mix(in srgb, var(--accent-2) 15%, transparent);
   color: var(--accent-2); }
+.glmark { font-size: 11px; font-weight: 700; letter-spacing: .04em; border-radius: 7px;
+  padding: 2px 8px; margin-right: 4px; background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent); }
 .epid { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .04em;
   margin-right: 9px; font-variant-numeric: tabular-nums; }
 .ep-title { font-size: 20px; margin: 6px 0 2px; line-height: 1.5; }
