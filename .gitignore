@@ -21,3 +21,11 @@ id_*
 * [0-9][0-9].html
 *のコピー.*
 * copy.*
+
+# iCloud がファイルを退避したときに置く実体なしのプレースホルダ
+# （".index 11.html.icloud" 型）。実体が戻ると消えるので、git に入れると
+# 追加と削除を延々と繰り返す。2026-08-19 に21件が混入したので以後は無視する
+*.icloud
+
+# Claude Code のこの端末だけの設定
+.claude/settings.local.json
