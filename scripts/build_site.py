@@ -550,8 +550,29 @@ def render_list(lines, i, out):
 
 # ---------------------------------------------------------------- ページの骨組み
 
-def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
-    """共通シェル。rel はルートへの相対プレフィックス（'' か '../'）"""
+def site_header(rel: str, active_nav: str = "") -> str:
+    return f"""<header class="site">
+  <div class="brand"><a href="{rel}index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="{rel}inbox.html" class="nav-link{' on' if active_nav == 'inbox' else ''}">ネタ帳</a>
+    <a href="{rel}selection.html" class="nav-link{' on' if active_nav == 'selection' else ''}">選び方</a>
+    <a href="{rel}backlog.html" class="nav-link{' on' if active_nav == 'backlog' else ''}">ボツネタ棚</a>
+    <a href="{rel}ledger.html" class="nav-link{' on' if active_nav == 'ledger' else ''}">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>"""
+
+
+def page(rel: str, title: str, body: str, active_nav: str = "",
+         nav_bottom: bool = False) -> str:
+    """共通シェル。rel はルートへの相対プレフィックス（'' か '../'）
+
+    nav_bottom=True は読み上げページ用。**ヘッダを画面のいちばん下へ回す。**
+    iPhone の Safari などの読み上げは画面の上から順に読むので、
+    上にリンクやボタンがあると「ネタ帳 選び方 ボツネタ棚」まで読まれてしまう。
+    """
+    head_nav = "" if nav_bottom else site_header(rel, active_nav)
+    foot_nav = site_header(rel, active_nav) if nav_bottom else ""
     return f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -565,18 +586,10 @@ def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
 <body>
 <!-- scripts/build_site.py が生成。手で編集しない -->
 <div class="wrap">
-<header class="site">
-  <div class="brand"><a href="{rel}index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
-  <div class="site-nav">
-    <a href="{rel}inbox.html" class="nav-link{' on' if active_nav == 'inbox' else ''}">ネタ帳</a>
-    <a href="{rel}selection.html" class="nav-link{' on' if active_nav == 'selection' else ''}">選び方</a>
-    <a href="{rel}backlog.html" class="nav-link{' on' if active_nav == 'backlog' else ''}">ボツネタ棚</a>
-    <a href="{rel}ledger.html" class="nav-link{' on' if active_nav == 'ledger' else ''}">台帳</a>
-    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
-  </div>
-</header>
+{head_nav}
 {body}
 <footer class="site-foot">
+  {foot_nav}
   <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
 </footer>
 </div>
@@ -683,10 +696,6 @@ def build_script_page(meta, ep_dir):
 EMO_TAG = re.compile(r"\[(?:bright|curious|serious|excited|thoughtful|warm|calm)\]\s*")
 PAUSE_SPLIT = re.compile(r"\[(long |short )?pause\]")
 
-# 間の大きさ。ブラウザの読み上げでは**ブロックの切れ目が間**になるので、
-# どれも「1つの改行」に落ちる。差が付くのはこのページの再生ボタンのときだけ
-GAP_MS = {"n": 0, "p": 350, "l": 700}
-
 
 def read_blocks(tts: str) -> list[tuple[str, str]]:
     """script_tts.txt → [(間の大きさ, 本文)]。ブラウザの音声読み上げ用。
@@ -711,106 +720,48 @@ def read_blocks(tts: str) -> list[tuple[str, str]]:
 
 
 def build_read_page(meta, ep_dir):
-    """読み上げページ。タグも注釈も無い、台本の本文だけ。
+    """読み上げページ。**台本の本文だけ。**タグも注釈も、再生ボタンも置かない。
 
-    元にするのは `script_draft.md` ではなく **`script_tts.txt`**。
-    読み辞書で開いた読み（「初速」→「しょそく」等）が当たっているほうが、
-    ブラウザの音声でも誤読しないため。目で読むと仮名が多いのはその代償。
+    読み上げるのは iPhone の Safari など**ブラウザ側の機能**なので、
+    このページの仕事は「読まれて困らない並び」で本文を出すことだけ。
+
+    - 画面のいちばん上がタイトル、すぐ下が台本。**リンクとタブは最下部**
+      （上にあると「ネタ帳 選び方 …」までが先に読まれる）
+    - 間は改行。読み上げは段落の切れ目で息を入れる
+    - 元は `script_draft.md` ではなく **`script_tts.txt`**。読み辞書で開いた読み
+      （「初速」→「しょそく」等）が当たっているほうが、誤読しないため
     """
-    head = ep_header(meta, "read", bare=True)
     tts = read(ep_dir / "script_tts.txt")
     title = f'{meta["title"]}｜読み上げ — その手があったか'
+
+    prev_l = (f'<a class="pn" href="../{meta["prev"]}/read.html">← {meta["prev"]}</a>'
+              if meta["prev"] else "<span></span>")
+    next_l = (f'<a class="pn" href="../{meta["next"]}/read.html">{meta["next"]} →</a>'
+              if meta["next"] else "<span></span>")
+    foot = f"""
+<nav class="rl-foot">
+  <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
+  {ep_tabs(meta["ep"], "read")}
+  <p class="rl-src"><span class="epid">{esc(meta["ep"])}</span> の台本本文です。読みは <code>script_tts.txt</code> に合わせてあるので、
+  仮名で書いてあるところがあります。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、
+  演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a>。</p>
+</nav>"""
+
     if not tts:
         return page("../", title,
-                    head + '<p class="empty">script_tts.txt がまだありません。</p>')
+                    f'<main class="rl-page"><h1 class="rl-title">{esc(meta["title"])}</h1>'
+                    '<p class="empty">script_tts.txt がまだありません。</p></main>' + foot,
+                    nav_bottom=True)
 
-    blocks = read_blocks(tts)
-    paras = "".join(f'<p class="rl-{g}" data-gap="{g}">{esc(t)}</p>' for g, t in blocks)
-    n_pause = sum(1 for g, _ in blocks if g != "n")
-    gap_js = "{" + ", ".join(f"{k}: {v}" for k, v in GAP_MS.items()) + "}"
-
-    body = f"""{head}
-<div class="rl-bar" id="rl-bar">
-  <button class="btn rl-go" id="rl-play" type="button">▶︎　読み上げる</button>
-  <button class="btn rl-go" id="rl-stop" type="button" hidden>■　止める</button>
-  <label class="rl-rate">速さ
-    <select id="rl-rate">
-      <option value="0.85">ゆっくり</option>
-      <option value="1" selected>ふつう</option>
-      <option value="1.2">はやめ</option>
-    </select>
-  </label>
-  <span class="rl-note" id="rl-note"></span>
-</div>
-<article class="rl" id="rl-body">
+    paras = "".join(f'<p class="rl-{g}">{esc(t)}</p>' for g, t in read_blocks(tts))
+    body = f"""<main class="rl-page">
+<h1 class="rl-title">{esc(meta["title"])}</h1>
+<article class="rl">
 {paras}
 </article>
-<details class="rl-help">
-  <summary>このページについて</summary>
-  <p>台本の本文だけを置いてあります。<strong>間を置くところが、そのまま改行になっています</strong>（{n_pause} 箇所）。ブラウザの読み上げ機能は段落の切れ目で間を取るので、そこで息が入ります。</p>
-  <p>上の「読み上げる」はブラウザ内蔵の音声を使います。<strong>間の長さは、ここで再生したときだけ区別されます</strong>（短い間と長い間）。ブラウザ側の読み上げ機能を使うと、どの間も同じ長さになります。</p>
-  <p>本文は <code>script_tts.txt</code> から作っています。読み辞書で開いた読みが当たっているので、目で追うと仮名が多く見えますが、耳で聴くとこちらのほうが正しく読まれます。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a> にあります。</p>
-</details>
-<script>
-(function () {{
-  var body = document.getElementById('rl-body'),
-      bar = document.getElementById('rl-bar'),
-      play = document.getElementById('rl-play'),
-      stop = document.getElementById('rl-stop'),
-      note = document.getElementById('rl-note'),
-      rate = document.getElementById('rl-rate');
-  var synth = window.speechSynthesis;
-  if (!body || !synth) {{ if (bar) bar.hidden = true; return; }}
-  var ps = Array.prototype.slice.call(body.querySelectorAll('p')),
-      GAP = {gap_js},
-      at = 0, timer = null, on = false;
-
-  function jaVoice() {{
-    var vs = synth.getVoices() || [];
-    for (var i = 0; i < vs.length; i++) {{ if (/^ja/i.test(vs[i].lang)) return vs[i]; }}
-    return null;
-  }}
-  function clear() {{ for (var i = 0; i < ps.length; i++) ps[i].classList.remove('on'); }}
-  function finish() {{
-    on = false; clearTimeout(timer); synth.cancel(); clear();
-    play.hidden = false; stop.hidden = true; note.textContent = '';
-  }}
-  function speak(n) {{
-    if (!on) return;
-    if (n >= ps.length) {{ finish(); return; }}
-    at = n; clear(); ps[n].classList.add('on');
-    ps[n].scrollIntoView({{ block: 'center', behavior: 'smooth' }});
-    note.textContent = (n + 1) + ' / ' + ps.length;
-    var u = new SpeechSynthesisUtterance(ps[n].textContent);
-    u.lang = 'ja-JP';
-    u.rate = parseFloat(rate.value) || 1;
-    var v = jaVoice(); if (v) u.voice = v;
-    u.onend = function () {{
-      var next = ps[n + 1];
-      timer = setTimeout(function () {{ speak(n + 1); }},
-                         next ? (GAP[next.getAttribute('data-gap')] || 0) : 0);
-    }};
-    u.onerror = finish;
-    synth.speak(u);
-  }}
-  function start(from) {{
-    on = true; play.hidden = true; stop.hidden = false;
-    synth.cancel();                       // 直後に speak すると Chrome が取りこぼす
-    timer = setTimeout(function () {{ speak(from); }}, 80);
-  }}
-  play.addEventListener('click', function () {{ start(0); }});
-  stop.addEventListener('click', finish);
-  rate.addEventListener('change', function () {{ if (on) {{ clearTimeout(timer); start(at); }} }});
-  // 段落をクリックすると、そこから読む
-  for (var i = 0; i < ps.length; i++) {{
-    (function (n) {{ ps[n].addEventListener('click', function () {{ start(n); }}); }})(i);
-  }}
-  window.addEventListener('beforeunload', function () {{ synth.cancel(); }});
-  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function () {{}};
-}})();
-</script>
+</main>{foot}
 """
-    return page("../", title, body)
+    return page("../", title, body, nav_bottom=True)
 
 
 def build_article_page(meta, ep_dir, links=None, titles=None):
@@ -1957,32 +1908,28 @@ table.bl-kv tr:last-child th, table.bl-kv tr:last-child td { border-bottom: 0; }
   background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 6px;
   padding: 1px 7px; margin-right: 6px; letter-spacing: .04em; }
 
-/* 読み上げページ。**間を置くところが、そのまま段落の切れ目**になっている */
-.rl-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center;
-  flex-wrap: wrap; padding: 10px 0; margin-bottom: 6px;
-  background: var(--bg); border-bottom: 1px solid var(--line); }
-.rl-go { min-width: 148px; justify-content: center; font-weight: 700; }
-.rl-rate { font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
-.rl-rate select { font: inherit; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; }
-.rl-note { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.rl { max-width: 640px; margin: 18px auto 30px; font-size: 18px; line-height: 2.15;
-  letter-spacing: .01em; }
-.rl p { margin: 0; padding: 3px 12px; border-radius: 8px; cursor: pointer;
-  transition: background .15s; }
-.rl p:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
-/* 段落の間そのものが「間」。pause の分だけ余白を足して、目でも息継ぎが見えるようにする */
+/* 読み上げページ。**上からタイトル → 台本**の順だけ。リンクとタブは最下部。
+   iPhone の Safari などの読み上げは画面を上から読むので、
+   上にボタンやタブがあると、本文の前にその名前が読まれてしまう */
+.rl-page { max-width: 640px; margin: 0 auto; padding-top: 8px; }
+.rl-title { font-size: 23px; line-height: 1.55; margin: 0 0 10px; letter-spacing: .01em; }
+.rl { font-size: 18px; line-height: 2.15; letter-spacing: .01em; }
+.rl p { margin: 0; }
+/* 段落の切れ目が、そのまま間。pause の分だけ余白を足して、目でも息継ぎが見えるようにする */
 .rl p.rl-n { margin-top: 1.15em; }
 .rl p.rl-p { margin-top: 2.3em; }
 .rl p.rl-l { margin-top: 3.6em; }
 .rl p:first-child { margin-top: 0; }
-.rl p.on { background: color-mix(in srgb, var(--accent) 14%, transparent); }
-.rl-help { max-width: 640px; margin: 0 auto 8px; font-size: 13px; color: var(--ink-2); }
-.rl-help > summary { cursor: pointer; padding: 6px 0; color: var(--muted); font-size: 12.5px; }
-.rl-help p { margin: 8px 0; line-height: 1.9; }
+.rl-foot { max-width: 640px; margin: 46px auto 0; padding-top: 18px;
+  border-top: 1px solid var(--line); }
+.rl-foot .crumbs { margin-bottom: 10px; }
+.rl-foot .tabs { margin: 0 0 12px; }
+.rl-src { font-size: 12px; line-height: 1.9; color: var(--muted); margin: 0; }
+/* 最下部に回したヘッダは、区切り線を持たせない（footer 側が持っている） */
+.site-foot .site { border-bottom: 0; margin-bottom: 10px; padding: 0 0 6px; }
 @media (max-width: 620px) {
+  .rl-title { font-size: 21px; }
   .rl { font-size: 17px; line-height: 2.05; }
-  .rl-go { min-width: 0; flex: 1 1 auto; }
 }
 
 /* 記事・Markdown */

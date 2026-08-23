@@ -262,32 +262,28 @@ table.bl-kv tr:last-child th, table.bl-kv tr:last-child td { border-bottom: 0; }
   background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 6px;
   padding: 1px 7px; margin-right: 6px; letter-spacing: .04em; }
 
-/* 読み上げページ。**間を置くところが、そのまま段落の切れ目**になっている */
-.rl-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center;
-  flex-wrap: wrap; padding: 10px 0; margin-bottom: 6px;
-  background: var(--bg); border-bottom: 1px solid var(--line); }
-.rl-go { min-width: 148px; justify-content: center; font-weight: 700; }
-.rl-rate { font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
-.rl-rate select { font: inherit; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; }
-.rl-note { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.rl { max-width: 640px; margin: 18px auto 30px; font-size: 18px; line-height: 2.15;
-  letter-spacing: .01em; }
-.rl p { margin: 0; padding: 3px 12px; border-radius: 8px; cursor: pointer;
-  transition: background .15s; }
-.rl p:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
-/* 段落の間そのものが「間」。pause の分だけ余白を足して、目でも息継ぎが見えるようにする */
+/* 読み上げページ。**上からタイトル → 台本**の順だけ。リンクとタブは最下部。
+   iPhone の Safari などの読み上げは画面を上から読むので、
+   上にボタンやタブがあると、本文の前にその名前が読まれてしまう */
+.rl-page { max-width: 640px; margin: 0 auto; padding-top: 8px; }
+.rl-title { font-size: 23px; line-height: 1.55; margin: 0 0 10px; letter-spacing: .01em; }
+.rl { font-size: 18px; line-height: 2.15; letter-spacing: .01em; }
+.rl p { margin: 0; }
+/* 段落の切れ目が、そのまま間。pause の分だけ余白を足して、目でも息継ぎが見えるようにする */
 .rl p.rl-n { margin-top: 1.15em; }
 .rl p.rl-p { margin-top: 2.3em; }
 .rl p.rl-l { margin-top: 3.6em; }
 .rl p:first-child { margin-top: 0; }
-.rl p.on { background: color-mix(in srgb, var(--accent) 14%, transparent); }
-.rl-help { max-width: 640px; margin: 0 auto 8px; font-size: 13px; color: var(--ink-2); }
-.rl-help > summary { cursor: pointer; padding: 6px 0; color: var(--muted); font-size: 12.5px; }
-.rl-help p { margin: 8px 0; line-height: 1.9; }
+.rl-foot { max-width: 640px; margin: 46px auto 0; padding-top: 18px;
+  border-top: 1px solid var(--line); }
+.rl-foot .crumbs { margin-bottom: 10px; }
+.rl-foot .tabs { margin: 0 0 12px; }
+.rl-src { font-size: 12px; line-height: 1.9; color: var(--muted); margin: 0; }
+/* 最下部に回したヘッダは、区切り線を持たせない（footer 側が持っている） */
+.site-foot .site { border-bottom: 0; margin-bottom: 10px; padding: 0 0 6px; }
 @media (max-width: 620px) {
+  .rl-title { font-size: 21px; }
   .rl { font-size: 17px; line-height: 2.05; }
-  .rl-go { min-width: 0; flex: 1 1 auto; }
 }
 
 /* 記事・Markdown */
