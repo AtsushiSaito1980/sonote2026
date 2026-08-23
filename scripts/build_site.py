@@ -719,6 +719,10 @@ def read_blocks(tts: str) -> list[tuple[str, str]]:
     return out
 
 
+RULE = re.compile(r"\n-{3,}\n")
+CPM = 380          # ブラウザの日本語読み上げの、おおよその速さ（字/分）
+
+
 def build_read_page(meta, ep_dir):
     """読み上げページ。**台本の本文だけ。**タグも注釈も、再生ボタンも置かない。
 
@@ -728,32 +732,58 @@ def build_read_page(meta, ep_dir):
     - 画面のいちばん上がタイトル、すぐ下が台本。**リンクとタブは最下部**
       （上にあると「ネタ帳 選び方 …」までが先に読まれる）
     - 間は改行。読み上げは段落の切れ目で息を入れる
-    - 元は `script_draft.md` ではなく **`script_tts.txt`**。読み辞書で開いた読み
-      （「初速」→「しょそく」等）が当たっているほうが、誤読しないため
+
+    元にする台本は2つある。**`script_read.md` があればそちらが優先。**
+    無感情な機械の声で聴くための書き直し（フィラーを抜き、接続詞を足し、
+    尺を伸ばして詳しくしたもの）で、ラジオ用の `script_tts.txt` とは別物。
+    無い回は `script_tts.txt` から作る（読み辞書の読みが当たっているので、
+    仮名が多いかわりに誤読しない）。
     """
-    tts = read(ep_dir / "script_tts.txt")
+    src = ep_dir / "script_read.md"
+    if src.exists():
+        text, from_read = RULE.split(read(src))[-1].strip(), True
+    else:
+        text, from_read = read(ep_dir / "script_tts.txt"), False
     title = f'{meta["title"]}｜読み上げ — その手があったか'
 
     prev_l = (f'<a class="pn" href="../{meta["prev"]}/read.html">← {meta["prev"]}</a>'
               if meta["prev"] else "<span></span>")
     next_l = (f'<a class="pn" href="../{meta["next"]}/read.html">{meta["next"]} →</a>'
               if meta["next"] else "<span></span>")
+
+    if from_read:
+        note = ("<strong>読み上げ用に書き直した台本です。</strong>"
+                "抑揚の付かない機械の声で聴くために、あいづちを抜いて、つなぎの言葉を足して、"
+                "尺を伸ばして詳しくしてあります。"
+                'ラジオ用の台本は <a href="script.html">台本（コピー用）</a> にあります。')
+    else:
+        note = ('ラジオ用の台本（<code>script_tts.txt</code>）をそのまま出しています。'
+                "読み辞書に合わせてあるので、仮名で書いてあるところがあります。"
+                'タグの付いた原稿は <a href="script.html">台本（コピー用）</a>。')
+
+    if text:
+        n = jp_len(text)
+        length = (f'<p class="rl-len">約 {round(n / CPM)} 分・{n:,}文字'
+                  "<span>（声と読み上げの速さで変わります）</span></p>")
+    else:
+        length = ""
+
     foot = f"""
 <nav class="rl-foot">
   <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
   {ep_tabs(meta["ep"], "read")}
-  <p class="rl-src"><span class="epid">{esc(meta["ep"])}</span> の台本本文です。読みは <code>script_tts.txt</code> に合わせてあるので、
-  仮名で書いてあるところがあります。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、
+  {length}
+  <p class="rl-src"><span class="epid">{esc(meta["ep"])}</span> {note}
   演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a>。</p>
 </nav>"""
 
-    if not tts:
+    if not text:
         return page("../", title,
                     f'<main class="rl-page"><h1 class="rl-title">{esc(meta["title"])}</h1>'
-                    '<p class="empty">script_tts.txt がまだありません。</p></main>' + foot,
+                    '<p class="empty">読み上げる台本がまだありません。</p></main>' + foot,
                     nav_bottom=True)
 
-    paras = "".join(f'<p class="rl-{g}">{esc(t)}</p>' for g, t in read_blocks(tts))
+    paras = "".join(f'<p class="rl-{g}">{esc(t)}</p>' for g, t in read_blocks(text))
     body = f"""<main class="rl-page">
 <h1 class="rl-title">{esc(meta["title"])}</h1>
 <article class="rl">
@@ -1924,6 +1954,8 @@ table.bl-kv tr:last-child th, table.bl-kv tr:last-child td { border-bottom: 0; }
   border-top: 1px solid var(--line); }
 .rl-foot .crumbs { margin-bottom: 10px; }
 .rl-foot .tabs { margin: 0 0 12px; }
+.rl-len { font-size: 13px; color: var(--ink-2); margin: 0 0 8px; font-weight: 700; }
+.rl-len span { font-weight: 400; color: var(--muted); font-size: 11.5px; }
 .rl-src { font-size: 12px; line-height: 1.9; color: var(--muted); margin: 0; }
 /* 最下部に回したヘッダは、区切り線を持たせない（footer 側が持っている） */
 .site-foot .site { border-bottom: 0; margin-bottom: 10px; padding: 0 0 6px; }

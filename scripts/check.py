@@ -239,6 +239,43 @@ def check_tts(ep: Path, lim: dict):
             else f"適用漏れなし（辞書 {len(words)} 語と照合）")
 
 
+def check_read(ep: Path):
+    """読み上げ用の台本（script_read.md）。**あるときだけ検査する。**
+
+    ラジオ用の数値ゲート（字数・平均文長・フィラー・タグ）は当てない。
+    相手が無感情な機械の声なので、狙う形が違うため（フィラーはむしろ邪魔になる）。
+    当てるのは、**外へ出るもの全部にかかる憲法の縛り**だけ。
+    """
+    p = ep / "script_read.md"
+    if not p.exists():
+        return
+    body = body_of(p.read_text(encoding="utf-8"))
+    n = jp_len(body)
+    add(WARN, "読み上げ用の台本", f"約 {round(n / 380)} 分・{n:,}字（380字/分で概算）")
+
+    add(OK if body.startswith(OP_PREFIX) else NG, "読み上げ稿のOP定型",
+        "一字一句一致" if body.startswith(OP_PREFIX) else "不一致")
+    add(OK if ED_CORE in body else NG, "読み上げ稿のED定型",
+        "一致（また明日）" if ED_CORE in body else "不一致")
+    add(OK if "香月" not in body else NG, "読み上げ稿の「香月」", f"{body.count('香月')} 回")
+
+    leak = sorted(set(METHOD_LEAK.findall(body)))
+    add(OK if not leak else NG, "読み上げ稿の制作情報", leak or "なし")
+    verdict = [v for v in VERDICT_WORDS if v in body]
+    add(OK if not verdict else WARN, "読み上げ稿の評価語",
+        f"{verdict} ← 出典にそう書かれているか確認" if verdict else "なし")
+    ascii_ = sorted(set(re.findall(r"[A-Za-z]{2,}", body)))
+    add(OK if not ascii_ else NG, "読み上げ稿の英字",
+        f"{ascii_} ← 読み上げが崩れる。カナに開く" if ascii_ else "なし")
+    cur = sorted(set(re.findall(r"[$€£¥￥]", body)))
+    add(OK if not cur else NG, "読み上げ稿の通貨記号", cur or "なし")
+    add(OK if "…" not in body else NG, "読み上げ稿の三点リーダー", f"{body.count('…')} 個")
+    # タグは読み上げでそのまま音になる
+    tag = sorted(set(re.findall(r"\[[a-z ]+\]", body)))
+    add(OK if not tag else NG, "読み上げ稿のタグ",
+        f"{tag} ← そのまま読まれる。間は改行で作る" if tag else "なし")
+
+
 def check_article(ep: Path):
     p = ep / "article.md"
     if not p.exists():
@@ -555,6 +592,7 @@ def main():
     lim = spec_for(duration_min, density)
     check_script(ep, lim, density, duration_min)
     check_tts(ep, lim)
+    check_read(ep)
     check_article(ep)
     check_infographic(ep)
     check_figures(ep)
