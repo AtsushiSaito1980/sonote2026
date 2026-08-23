@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>値上げの天井を先に測る｜読み上げ — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../inbox.html" class="nav-link">ネタ帳</a>
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep031/read.html">← ep031</a><a class="pn" href="../ep033/read.html">ep033 →</a></span></div>
+<div class="ep-head">
+  <h1>値上げの天井を先に測る</h1>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="read.html" aria-current="page">読み上げ</a><a class="tab" href="files.html">制作ファイル</a></nav>
+
+<div class="rl-bar" id="rl-bar">
+  <button class="btn rl-go" id="rl-play" type="button">▶︎　読み上げる</button>
+  <button class="btn rl-go" id="rl-stop" type="button" hidden>■　止める</button>
+  <label class="rl-rate">速さ
+    <select id="rl-rate">
+      <option value="0.85">ゆっくり</option>
+      <option value="1" selected>ふつう</option>
+      <option value="1.2">はやめ</option>
+    </select>
+  </label>
+  <span class="rl-note" id="rl-note"></span>
+</div>
+<article class="rl" id="rl-body">
+<p class="rl-n" data-gap="n">はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。三崎アオイです。</p><p class="rl-n" data-gap="n">まず、ショーケースの話をさせてください。</p><p class="rl-n" data-gap="n">ケーキ屋さんの、あのガラスのショーケース。ええ。誕生日に買うホールケーキ。いくらまでなら「普通」だと感じますか。</p><p class="rl-n" data-gap="n">その感覚の話を、きょうはします。ええ。値段の感覚です。</p><p class="rl-n" data-gap="n">で。四十五件。ことしの一月から七月までに倒れた、ケーキと菓子の店の数です。八月十一日に、信用調査会社の集計が出ました。調べてみたら、過去三十年で、同じ期間ではいちばん多い。去年一年の五十八件を、抜く勢いだそうです。</p><p class="rl-n" data-gap="n">きょうは、数字の回です。なぜ、飲食の中でも、ケーキ屋さんから倒れるのか。パンでも、定食でもなく。ここには、値段にまつわる三枚のカラクリが重なっています。順番に、めくっていきます。</p><p class="rl-n" data-gap="n">一枚目。私、ケーキが売れなくなったのかと、思いました。</p><p class="rl-n" data-gap="n">違うんです。売れても、利益が残らない。残らないんです。</p><p class="rl-n" data-gap="n">二〇二五年度の調査では、洋菓子店の営業利益率は、平均で〇.七パーセントでした。ゼロ点七。これ、たとえばの換算をすると。五百円のケーキを一個売って、手元に残るのは、およそ三円五十銭です。</p><p class="rl-n" data-gap="n">三円五十銭。</p><p class="rl-p" data-gap="p">うん。ショートケーキを百個売って、三百五十円。ここ、聞き間違いじゃないです。</p><p class="rl-n" data-gap="n">バターが上がり、卵が上がる。小麦も、砂糖も上がる。オーブンを回す光熱費も、上がった。全部です。売れているのに、残らない。</p><p class="rl-n" data-gap="n">二枚目。じゃあ、値上げすればいいじゃないかと。ええ、私も思いました。</p><p class="rl-n" data-gap="n">ここに、ケーキ特有の天井があります。天井、です。</p><p class="rl-n" data-gap="n">そう。誕生日や記念日の、ハレの日の商品なんです。毎日買うものなら、十円の値上げは慣れます。まあ、いつの間にか。でも、年に数回の特別な買い物は、値段の記憶が残る。去年三千円だったホールケーキが、三千六百円になる。すると、買う側の景色が変わるんですよね。</p><p class="rl-n" data-gap="n">しかも、倒れた店の約七割は、資本金一千万円未満の小さな店。破産が大半です。うん。常連さんの顔が見える店ほど、値札を動かしにくいんです。</p><p class="rl-n" data-gap="n">で、三枚目。挟んでくる、もう一枚があります。あるんです。</p><p class="rl-n" data-gap="n">四百円から六百円の、中価格帯。街のケーキ屋さんの主戦場です。ここに、工場でまとめて作って全国に配る側——コンビニのスイーツ——が、専門店級の品質で入ってきました。個人の店がいちばん頼ってきた価格帯が、いちばん競争の激しい場所になった。そういうことです。</p><p class="rl-n" data-gap="n">整理します。原価は、全部上がる。売値には、天井がある。真ん中には、大量生産が入ってくる。三重の、はさみ撃ちです。どれか一つなら、しのげたかもしれません。三つ同時が、この数字の正体です。</p><p class="rl-n" data-gap="n">そして。買う側も、変わっています。集計には、こういう見出しが付いていました。『値上げで、帰省の手土産も我慢』。贈り物や手土産の習慣そのものが、少しずつ縮んでいる。ええ。作る側の三重苦に、買う側の変化が重なりました。</p><p class="rl-n" data-gap="n">これ、現場やった人ならわかると思うんですけど、値決めの会議って「原価が上がったから」で上げ幅を決めがちなんですよね。原価の表を見て、はい何パーセント、と。でも、天井を決めているのは、原価ではなくて、お客さんの側の記憶なんです。なんか、ここが逆なんですよ。</p><p class="rl-n" data-gap="n">ここから、商売の解剖です。きょうの手は、値上げの天井を、先に測る。三つに分けます。</p><p class="rl-n" data-gap="n">一。自社の商品を、日常型と、ハレの日型に分けてください。分けるんです。ハレの日型は、買う頻度が低いぶん、値上げが記憶に残ります。転嫁しやすそうに見えて、実は天井が低い。逆説です。</p><p class="rl-n" data-gap="n">二。利益率〇.七パーセントの世界では、まあ、良い商品を作るだけでは続きません。続けるなら、構造ごと動かす。天井の高い場所——特注、引き出物、法人の贈答——へ価格帯をずらすか、作る仕組みを規模の側へ寄せるか。どちらもしないままの我慢が、いちばん危ない。</p><p class="rl-n" data-gap="n">三。倒産の統計は、不幸のニュースではなくて、「どの構造が限界に達したか」の一覧表です。一覧表。ハレの日型で、原価高で、中価格帯に大手が来る。花屋さん、写真館、旅館。似た形の業種は、ほかにもあります。ケーキの次にこの三重のはさみ撃ちが来るのは、どの業種か。自分の業界に、同じ形がないかを探す道具になります。</p><p class="rl-n" data-gap="n">今週の宿題です。自社の商品をひとつ選んで、日常型か、ハレの日型かを決めてください。まず、そこから。ハレの日型なら、お客さんの記憶に残らない値上げ幅はいくらまでか。天井の高さを、先に測ってみてください。</p><p class="rl-n" data-gap="n">きょうの手は、値上げの天井を先に測る、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。三崎アオイでした。</p>
+</article>
+<details class="rl-help">
+  <summary>このページについて</summary>
+  <p>台本の本文だけを置いてあります。<strong>間を置くところが、そのまま改行になっています</strong>（1 箇所）。ブラウザの読み上げ機能は段落の切れ目で間を取るので、そこで息が入ります。</p>
+  <p>上の「読み上げる」はブラウザ内蔵の音声を使います。<strong>間の長さは、ここで再生したときだけ区別されます</strong>（短い間と長い間）。ブラウザ側の読み上げ機能を使うと、どの間も同じ長さになります。</p>
+  <p>本文は <code>script_tts.txt</code> から作っています。読み辞書で開いた読みが当たっているので、目で追うと仮名が多く見えますが、耳で聴くとこちらのほうが正しく読まれます。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a> にあります。</p>
+</details>
+<script>
+(function () {
+  var body = document.getElementById('rl-body'),
+      bar = document.getElementById('rl-bar'),
+      play = document.getElementById('rl-play'),
+      stop = document.getElementById('rl-stop'),
+      note = document.getElementById('rl-note'),
+      rate = document.getElementById('rl-rate');
+  var synth = window.speechSynthesis;
+  if (!body || !synth) { if (bar) bar.hidden = true; return; }
+  var ps = Array.prototype.slice.call(body.querySelectorAll('p')),
+      GAP = {n: 0, p: 350, l: 700},
+      at = 0, timer = null, on = false;
+
+  function jaVoice() {
+    var vs = synth.getVoices() || [];
+    for (var i = 0; i < vs.length; i++) { if (/^ja/i.test(vs[i].lang)) return vs[i]; }
+    return null;
+  }
+  function clear() { for (var i = 0; i < ps.length; i++) ps[i].classList.remove('on'); }
+  function finish() {
+    on = false; clearTimeout(timer); synth.cancel(); clear();
+    play.hidden = false; stop.hidden = true; note.textContent = '';
+  }
+  function speak(n) {
+    if (!on) return;
+    if (n >= ps.length) { finish(); return; }
+    at = n; clear(); ps[n].classList.add('on');
+    ps[n].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    note.textContent = (n + 1) + ' / ' + ps.length;
+    var u = new SpeechSynthesisUtterance(ps[n].textContent);
+    u.lang = 'ja-JP';
+    u.rate = parseFloat(rate.value) || 1;
+    var v = jaVoice(); if (v) u.voice = v;
+    u.onend = function () {
+      var next = ps[n + 1];
+      timer = setTimeout(function () { speak(n + 1); },
+                         next ? (GAP[next.getAttribute('data-gap')] || 0) : 0);
+    };
+    u.onerror = finish;
+    synth.speak(u);
+  }
+  function start(from) {
+    on = true; play.hidden = true; stop.hidden = false;
+    synth.cancel();                       // 直後に speak すると Chrome が取りこぼす
+    timer = setTimeout(function () { speak(from); }, 80);
+  }
+  play.addEventListener('click', function () { start(0); });
+  stop.addEventListener('click', finish);
+  rate.addEventListener('change', function () { if (on) { clearTimeout(timer); start(at); } });
+  // 段落をクリックすると、そこから読む
+  for (var i = 0; i < ps.length; i++) {
+    (function (n) { ps[n].addEventListener('click', function () { start(n); }); })(i);
+  }
+  window.addEventListener('beforeunload', function () { synth.cancel(); });
+  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function () {};
+})();
+</script>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -599,7 +599,8 @@ def region_mark(region: str) -> str:
 
 def ep_tabs(ep_id: str, current: str) -> str:
     tabs = [("infographic", "インフォグラフィック"), ("article", "note記事"),
-            ("figures", "note用の画像"), ("script", "台本（コピー用）"), ("files", "制作ファイル")]
+            ("figures", "note用の画像"), ("script", "台本（コピー用）"),
+            ("read", "読み上げ"), ("files", "制作ファイル")]
     links = []
     for key, label in tabs:
         cur = ' aria-current="page"' if key == current else ""
@@ -607,18 +608,26 @@ def ep_tabs(ep_id: str, current: str) -> str:
     return '<nav class="tabs">' + "".join(links) + "</nav>"
 
 
-def ep_header(meta: dict, current: str) -> str:
+def ep_header(meta: dict, current: str, bare: bool = False) -> str:
+    """回の見出し。
+
+    bare=True は読み上げページ用。**手・動機・風のタグを出さない。**
+    ブラウザの読み上げは画面の文字を順に読むので、本文の前にタグが並んでいると
+    「オーピーイレブン のる」まで読み上げてしまう。
+    """
     chips = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in meta["chips"])
     status_cls, status_label = meta["status"]
     assumed = '<span class="chip none">作成日は推定</span>' if meta["assumed"] else ""
     prev_l = f'<a class="pn" href="../{meta["prev"]}/{current}.html">← {meta["prev"]}</a>' if meta["prev"] else "<span></span>"
     next_l = f'<a class="pn" href="../{meta["next"]}/{current}.html">{meta["next"]} →</a>' if meta["next"] else "<span></span>"
+    meta_rows = "" if bare else f"""
+  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}{region_mark(meta.get("region", ""))}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>"""
+    chip_row = "" if bare else f"""
+  <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>"""
     return f"""
 <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
-<div class="ep-head">
-  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}{region_mark(meta.get("region", ""))}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
-  <h1>{esc(meta["title"])}</h1>
-  <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>
+<div class="ep-head">{meta_rows}
+  <h1>{esc(meta["title"])}</h1>{chip_row}
 </div>
 {ep_tabs(meta["ep"], current)}
 """
@@ -669,6 +678,139 @@ def build_script_page(meta, ep_dir):
 <p class="hint">読み上げない元原稿（見出し・演出メモ付き）は <a href="files.html#draft">制作ファイル → 台本ドラフト</a> にあります。</p>
 """
     return page("../", f'{meta["title"]}｜台本 — その手があったか', body)
+
+
+EMO_TAG = re.compile(r"\[(?:bright|curious|serious|excited|thoughtful|warm|calm)\]\s*")
+PAUSE_SPLIT = re.compile(r"\[(long |short )?pause\]")
+
+# 間の大きさ。ブラウザの読み上げでは**ブロックの切れ目が間**になるので、
+# どれも「1つの改行」に落ちる。差が付くのはこのページの再生ボタンのときだけ
+GAP_MS = {"n": 0, "p": 350, "l": 700}
+
+
+def read_blocks(tts: str) -> list[tuple[str, str]]:
+    """script_tts.txt → [(間の大きさ, 本文)]。ブラウザの音声読み上げ用。
+
+    読み上げに要らないものを落とす：**感情タグは消し、pause タグは改行に変える。**
+    ブラウザは段落（ブロック要素）の切れ目で間を取るので、
+    間を置きたいところが1つの段落の切れ目になるように割り直している。
+    """
+    out: list[tuple[str, str]] = []
+    gap = "n"
+    for para in re.split(r"\n\s*\n", tts.strip()):
+        parts = PAUSE_SPLIT.split(EMO_TAG.sub("", para))
+        # parts = [本文, マーカー, 本文, ...]（マーカーは "long " か None）
+        for i in range(0, len(parts), 2):
+            if i:
+                gap = "l" if (parts[i - 1] or "").strip() == "long" else "p"
+            text = (parts[i] or "").strip()
+            if text:
+                out.append((gap, text))
+                gap = "n"          # 次は通常の段落の間に戻す
+    return out
+
+
+def build_read_page(meta, ep_dir):
+    """読み上げページ。タグも注釈も無い、台本の本文だけ。
+
+    元にするのは `script_draft.md` ではなく **`script_tts.txt`**。
+    読み辞書で開いた読み（「初速」→「しょそく」等）が当たっているほうが、
+    ブラウザの音声でも誤読しないため。目で読むと仮名が多いのはその代償。
+    """
+    head = ep_header(meta, "read", bare=True)
+    tts = read(ep_dir / "script_tts.txt")
+    title = f'{meta["title"]}｜読み上げ — その手があったか'
+    if not tts:
+        return page("../", title,
+                    head + '<p class="empty">script_tts.txt がまだありません。</p>')
+
+    blocks = read_blocks(tts)
+    paras = "".join(f'<p class="rl-{g}" data-gap="{g}">{esc(t)}</p>' for g, t in blocks)
+    n_pause = sum(1 for g, _ in blocks if g != "n")
+    gap_js = "{" + ", ".join(f"{k}: {v}" for k, v in GAP_MS.items()) + "}"
+
+    body = f"""{head}
+<div class="rl-bar" id="rl-bar">
+  <button class="btn rl-go" id="rl-play" type="button">▶︎　読み上げる</button>
+  <button class="btn rl-go" id="rl-stop" type="button" hidden>■　止める</button>
+  <label class="rl-rate">速さ
+    <select id="rl-rate">
+      <option value="0.85">ゆっくり</option>
+      <option value="1" selected>ふつう</option>
+      <option value="1.2">はやめ</option>
+    </select>
+  </label>
+  <span class="rl-note" id="rl-note"></span>
+</div>
+<article class="rl" id="rl-body">
+{paras}
+</article>
+<details class="rl-help">
+  <summary>このページについて</summary>
+  <p>台本の本文だけを置いてあります。<strong>間を置くところが、そのまま改行になっています</strong>（{n_pause} 箇所）。ブラウザの読み上げ機能は段落の切れ目で間を取るので、そこで息が入ります。</p>
+  <p>上の「読み上げる」はブラウザ内蔵の音声を使います。<strong>間の長さは、ここで再生したときだけ区別されます</strong>（短い間と長い間）。ブラウザ側の読み上げ機能を使うと、どの間も同じ長さになります。</p>
+  <p>本文は <code>script_tts.txt</code> から作っています。読み辞書で開いた読みが当たっているので、目で追うと仮名が多く見えますが、耳で聴くとこちらのほうが正しく読まれます。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a> にあります。</p>
+</details>
+<script>
+(function () {{
+  var body = document.getElementById('rl-body'),
+      bar = document.getElementById('rl-bar'),
+      play = document.getElementById('rl-play'),
+      stop = document.getElementById('rl-stop'),
+      note = document.getElementById('rl-note'),
+      rate = document.getElementById('rl-rate');
+  var synth = window.speechSynthesis;
+  if (!body || !synth) {{ if (bar) bar.hidden = true; return; }}
+  var ps = Array.prototype.slice.call(body.querySelectorAll('p')),
+      GAP = {gap_js},
+      at = 0, timer = null, on = false;
+
+  function jaVoice() {{
+    var vs = synth.getVoices() || [];
+    for (var i = 0; i < vs.length; i++) {{ if (/^ja/i.test(vs[i].lang)) return vs[i]; }}
+    return null;
+  }}
+  function clear() {{ for (var i = 0; i < ps.length; i++) ps[i].classList.remove('on'); }}
+  function finish() {{
+    on = false; clearTimeout(timer); synth.cancel(); clear();
+    play.hidden = false; stop.hidden = true; note.textContent = '';
+  }}
+  function speak(n) {{
+    if (!on) return;
+    if (n >= ps.length) {{ finish(); return; }}
+    at = n; clear(); ps[n].classList.add('on');
+    ps[n].scrollIntoView({{ block: 'center', behavior: 'smooth' }});
+    note.textContent = (n + 1) + ' / ' + ps.length;
+    var u = new SpeechSynthesisUtterance(ps[n].textContent);
+    u.lang = 'ja-JP';
+    u.rate = parseFloat(rate.value) || 1;
+    var v = jaVoice(); if (v) u.voice = v;
+    u.onend = function () {{
+      var next = ps[n + 1];
+      timer = setTimeout(function () {{ speak(n + 1); }},
+                         next ? (GAP[next.getAttribute('data-gap')] || 0) : 0);
+    }};
+    u.onerror = finish;
+    synth.speak(u);
+  }}
+  function start(from) {{
+    on = true; play.hidden = true; stop.hidden = false;
+    synth.cancel();                       // 直後に speak すると Chrome が取りこぼす
+    timer = setTimeout(function () {{ speak(from); }}, 80);
+  }}
+  play.addEventListener('click', function () {{ start(0); }});
+  stop.addEventListener('click', finish);
+  rate.addEventListener('change', function () {{ if (on) {{ clearTimeout(timer); start(at); }} }});
+  // 段落をクリックすると、そこから読む
+  for (var i = 0; i < ps.length; i++) {{
+    (function (n) {{ ps[n].addEventListener('click', function () {{ start(n); }}); }})(i);
+  }}
+  window.addEventListener('beforeunload', function () {{ synth.cancel(); }});
+  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function () {{}};
+}})();
+</script>
+"""
+    return page("../", title, body)
 
 
 def build_article_page(meta, ep_dir, links=None, titles=None):
@@ -1504,6 +1646,7 @@ def main():
         (out_dir / "article.html").write_text(
             build_article_page(meta, meta["dir"], note_links, note_titles), encoding="utf-8")
         (out_dir / "script.html").write_text(build_script_page(meta, meta["dir"]), encoding="utf-8")
+        (out_dir / "read.html").write_text(build_read_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "figures.html").write_text(build_figures_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "files.html").write_text(build_files_page(meta, meta["dir"]), encoding="utf-8")
 
@@ -1536,7 +1679,7 @@ def main():
     (OUT / "selection.html").write_text(
         build_selection_page(load_selection(), ledger_rows, note_titles), encoding="utf-8")
 
-    n_pages = 5 + 4 * len(metas)
+    n_pages = 5 + 6 * len(metas)      # 共通5 ＋ 1本あたり6ページ
     untaken = [i["file"] for i in inbox_items if i["slug"] not in taken]
     print(f"生成完了: docs/ に {n_pages} ページ（エピソード {len(metas)} 本・"
           f"ボツネタ {len(backlog)} 件・ネタ帳 {len(inbox_items)} 件）")
@@ -1684,6 +1827,8 @@ a.badge { text-decoration: none; }
 a.badge:hover { filter: brightness(1.08); }
 .ep-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 13px; }
 @media (max-width: 620px) { .ep-actions { grid-template-columns: 1fr 1fr; } }
+/* .btn の display が UA の hidden を上書きしてしまうので、明示的に打ち消す */
+[hidden] { display: none !important; }
 .btn { display: block; text-align: center; padding: 9px 8px; border-radius: 11px;
   border: 1px solid var(--border); background: var(--surface); color: var(--ink);
   font-size: 12.5px; text-decoration: none; }
@@ -1811,6 +1956,34 @@ table.bl-kv tr:last-child th, table.bl-kv tr:last-child td { border-bottom: 0; }
 .audio-tag { display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent);
   background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 6px;
   padding: 1px 7px; margin-right: 6px; letter-spacing: .04em; }
+
+/* 読み上げページ。**間を置くところが、そのまま段落の切れ目**になっている */
+.rl-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center;
+  flex-wrap: wrap; padding: 10px 0; margin-bottom: 6px;
+  background: var(--bg); border-bottom: 1px solid var(--line); }
+.rl-go { min-width: 148px; justify-content: center; font-weight: 700; }
+.rl-rate { font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
+.rl-rate select { font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; }
+.rl-note { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rl { max-width: 640px; margin: 18px auto 30px; font-size: 18px; line-height: 2.15;
+  letter-spacing: .01em; }
+.rl p { margin: 0; padding: 3px 12px; border-radius: 8px; cursor: pointer;
+  transition: background .15s; }
+.rl p:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+/* 段落の間そのものが「間」。pause の分だけ余白を足して、目でも息継ぎが見えるようにする */
+.rl p.rl-n { margin-top: 1.15em; }
+.rl p.rl-p { margin-top: 2.3em; }
+.rl p.rl-l { margin-top: 3.6em; }
+.rl p:first-child { margin-top: 0; }
+.rl p.on { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.rl-help { max-width: 640px; margin: 0 auto 8px; font-size: 13px; color: var(--ink-2); }
+.rl-help > summary { cursor: pointer; padding: 6px 0; color: var(--muted); font-size: 12.5px; }
+.rl-help p { margin: 8px 0; line-height: 1.9; }
+@media (max-width: 620px) {
+  .rl { font-size: 17px; line-height: 2.05; }
+  .rl-go { min-width: 0; flex: 1 1 auto; }
+}
 
 /* 記事・Markdown */
 .prose { font-size: 15px; line-height: 2.0; max-width: 720px; }
