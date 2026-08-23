@@ -43,14 +43,17 @@ def spec_for(duration_min: int, density: str):
             "chars": (1900, 2200), "quotes": (1, 2), "kuse": 1, "tags": (8, 10),
             "pause": 5, "mult": 1.0, **base,
         }
-    if duration_min <= 5:
-        # 旧方式。ep001（archived）だけが残る。新しい回では使わない
+    r50 = lambda x: int(round(x / 50.0) * 50)
+    if duration_min < 6:
+        # 6分より短い回（総集編の短縮版など）。**旧方式の毎分340〜400字には戻さない。**
+        # 標準をそのまま尺で縮める。速く詰め込むためではなく、短くするための短さ
+        k = duration_min / 6.0
         return {
-            "chars": (1700, 2000), "quotes": (1, 2), "kuse": 1, "tags": (4, 6),
-            "pause": 5, "mult": 1.0, **base,
+            "chars": (r50(1900 * k), r50(2200 * k)), "quotes": (1, 2), "kuse": 1,
+            "tags": (int(round(8 * k)), int(round(10 * k))),
+            "pause": max(1, int(round(5 * k))), "mult": 1.0, **base,
         }
     target = duration_min * 300
-    r50 = lambda x: int(round(x / 50.0) * 50)
     return {
         "chars": (r50(target * 0.955), r50(target * 1.067)),
         "quotes": (2, 3),
@@ -159,12 +162,8 @@ def check_script(ep: Path, lim: dict, density: str, duration_min: int):
     hits = [h for h in KIME_HINTS if h in body]
     add(WARN if hits else OK, "キメ台詞の候補", f"{hits}（該当語があっても事実の平叙なら可。文脈で判断）" if hits else "検出なし")
 
-    # 語りの検査（2026-08改）。旧方式の5分回だけ対象外にする
-    if duration_min < 6:
-        add(WARN, "語りの検査", "旧方式（5分）のため未適用。duration_min を 6 にすると当たる")
-        return body
-
-    # 目安は6分を基準に、尺で比例させる（拡大版もそのまま当たる）
+    # 語りの検査（2026-08改）。**尺にかかわらず当てる。**
+    # 目安は6分を基準に、尺で比例させる（短縮版も拡大版もそのまま当たる）
     k = duration_min / 6.0
 
     # 語りの間は、文の短さで作る。読点でつなぐと TTS が止まらない
