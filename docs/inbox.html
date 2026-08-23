@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ネタ帳 — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="inbox.html" class="nav-link on">ネタ帳</a>
+    <a href="selection.html" class="nav-link">選び方</a>
+    <a href="backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="ep-head">
+  <h1>ネタ帳</h1>
+  <p class="hint">巡回の外——移動中や店先で拾ったネタを、スマホのチャットで聞き出して持ち帰ったもの（<code>inbox/</code>）。<strong>棚の1行は要約なので、数字の時点・裏取りの状況・まだ分かっていないことは、ここにしか残っていません。</strong>次の巡回は、これを未採点の新規候補として読みます。</p>
+  <div class="bl-counts"><span class="bl-count inbox"><b>0</b>件</span>
+    <span class="bl-count"><b>0</b>未取り込み</span></div>
+</div>
+<div id="nb-list">
+<p class="empty">まだ何も置かれていません。<br>
+スマホの Claude に <code>inbox/ネタ集めの手引き.md</code> を添付してネタを話し、
+出てきた <code>.md</code> を <code>inbox/</code> に置いて <code>/intake</code> を実行してください。</p></div>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>
