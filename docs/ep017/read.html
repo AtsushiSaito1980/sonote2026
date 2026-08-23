@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>一回ごとに薄く値札を貼る｜読み上げ — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../inbox.html" class="nav-link">ネタ帳</a>
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep016/read.html">← ep016</a><a class="pn" href="../ep018/read.html">ep018 →</a></span></div>
+<div class="ep-head">
+  <h1>一回ごとに薄く値札を貼る</h1>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="read.html" aria-current="page">読み上げ</a><a class="tab" href="files.html">制作ファイル</a></nav>
+
+<div class="rl-bar" id="rl-bar">
+  <button class="btn rl-go" id="rl-play" type="button">▶︎　読み上げる</button>
+  <button class="btn rl-go" id="rl-stop" type="button" hidden>■　止める</button>
+  <label class="rl-rate">速さ
+    <select id="rl-rate">
+      <option value="0.85">ゆっくり</option>
+      <option value="1" selected>ふつう</option>
+      <option value="1.2">はやめ</option>
+    </select>
+  </label>
+  <span class="rl-note" id="rl-note"></span>
+</div>
+<article class="rl" id="rl-body">
+<p class="rl-n" data-gap="n">はい、始まりました。『その手があったか』。世の中の商売の、その手を持ち帰る時間です。戸倉ハジメです。</p><p class="rl-n" data-gap="n">まず、二百円。これ、何の値段だと思います？</p><p class="rl-p" data-gap="p">ホテルのフロントで、宿代と一緒に払う税金です。宿泊税。先月一日から、熊本と宮崎で、徴収が始まりました。</p><p class="rl-n" data-gap="n">で。この税、いま全国で一気に増えていまして。ことし始める自治体は、およそ三十。導入済みは、去年の末の十七から、五十ほどへ跳ね上がる見込みだそうです。</p><p class="rl-n" data-gap="n">増税のニュースって聞くと、憂鬱になりますよね。</p><p class="rl-n" data-gap="n">まあ、きょうは、見方を変えます。自治体が、新商品を出した。そう読むと。これは、商売の設計の話になるんです。</p><p class="rl-n" data-gap="n">この商品、正式には、法定外目的税といいます。国の法律の外で、自治体が条例で独自に作れる税金。</p><p class="rl-n" data-gap="n">私、条例だけで作れるのかと、思っていました。</p><p class="rl-p" data-gap="p">ええ、違うんですね。総務省、総務大臣の同意が要るんだそうです。ことしの上半期だけで、新設の同意が、十九件。つまり、勝手に作れるものではなくて。国の承認を通った、正式な商品、ということですね。</p><p class="rl-n" data-gap="n">使いみちは、観光の振興に限られていて。集め方は『宿が、宿泊料金と一緒に集めて、自治体に納める』。</p><p class="rl-n" data-gap="n">そう。町じゅうのホテルと旅館が、この商品のレジになる仕組みです。</p><p class="rl-n" data-gap="n">なんで今、これが売れるのか。観光客が増えると、道路も、トイレも、ごみ処理も、案内の人手も要ります。</p><p class="rl-n" data-gap="n">ところが。</p><p class="rl-p" data-gap="p">その費用の財布は、これまで住民税でした。使う人と、払う人が。ずれていたんです。</p><p class="rl-n" data-gap="n">宿泊税は、その費用を生んでいる「来た人」に、払う人を入れ替えた。しかも、一泊二百円という薄さです。</p><p class="rl-n" data-gap="n">まあ、この額で旅行をやめる人は、まずいません。単価で取らずに。人数と、泊数の掛け算で、集める設計です。</p><p class="rl-n" data-gap="n">さて。</p><p class="rl-l" data-gap="l">面白いのは、ここからで。</p><p class="rl-n" data-gap="n">私、同じ宿泊税なら、どこも同じ作りかと思ってました。ええ、三様に分かれているんですね。</p><p class="rl-n" data-gap="n">一つ目は、いまの定額二百円組。</p><p class="rl-n" data-gap="n">二つ目は、定率組です。山形などは、宿泊料金の三パーセント。しかも、安い宿を除外する線、免税点を設けない。高い宿に泊まる人ほど、多く払う形です。</p><p class="rl-n" data-gap="n">三つ目は、折衷。名護は一・二パーセント。ただし、上限千二百円。</p><p class="rl-n" data-gap="n">さらに細部を見ると。同じ二百円でも、宮崎は修学旅行も課税。十月から始める那須は、子どもや修学旅行を免除と、逆の線を引いています。</p><p class="rl-n" data-gap="n">そう。どこを無料にするかに、その町の考え方が、出るんですね。</p><p class="rl-n" data-gap="n">熊本の案内には『予約した時期を問わず、七月一日以降のチェックイン分から課税します』とありました。予約時点で税を知らなかった客への説明も。レジの改修も。宿の仕事になります。</p><p class="rl-n" data-gap="n">で、実際。レジや宿泊システムの会社が、対応の商品を出しています。新しい決まりが生まれる場所には、受け皿の商売も、一緒に立ち上がるんですね。ええ。税が動くと、まず、レジが動く。そこに、商売が一本、生まれます。</p><p class="rl-n" data-gap="n">調べてみたら、先行組も、それぞれ動いていました。北海道は、ことしの四月から道全体で開始。松江は去年の十二月、中国地方で初めて導入しました。</p><p class="rl-n" data-gap="n">この先も、十月一日には那須と盛岡が始まります。来年の二月には沖縄が控えていて、改定を検討している町もある。二〇〇二年から先行してきた東京は、いま制度の見直し中だそうです。ラッシュは、まだ続きます。</p><p class="rl-n" data-gap="n">さて。</p><p class="rl-l" data-gap="l">ここから、商売の解剖です。きょうは、課金設計の教科書として、三つ。</p><p class="rl-n" data-gap="n">一。費用を生んでいる人が、いまの客の外にいるなら。払う人を、入れ替えられないか考える。誰が使って、誰が払っているか。受益と負担の地図を先に描くと、ずれが見えます。そう。ずれているところが、値札を貼れる場所です。</p><p class="rl-n" data-gap="n">二。薄く。その場で。出口で集める。単価を上げるのではなくて、回数と人数の掛け算で取る。まあ、払う痛みがいちばん小さい瞬間を選ぶのが、この設計の芯です。</p><p class="rl-n" data-gap="n">三。定率か、定額か。誰を免除するかは、思想の表明です。自社の料金表も同じで。何を無料にしているかに、会社の考えが出ます。無料の線を引き直すだけでも、料金表は、新商品になります。</p><p class="rl-n" data-gap="n">ここだけ持って帰ってください。税金の設計書は、読み手を選ばない、公開された料金設計の教科書です。しかもいま、全国で五十近い設計例が、出そろいつつあります。</p><p class="rl-n" data-gap="n">今週の宿題です。自社のサービスで、費用を生んでいるのに、誰にも請求していない行為を、ひとつ書き出してください。特急対応。キャンセル。重い問い合わせ。そこに薄い値札を貼れないか、考えてみてください。</p><p class="rl-n" data-gap="n">きょうの手は、一回ごとに、薄く値札を貼る、でした。あなたの業界の当たり前、ひとつだけ動かすなら、どこですか。答えがひとつでも浮かんだら、それが、あなたの企画書の一行目です。それでは、また明日。戸倉ハジメでした。</p>
+</article>
+<details class="rl-help">
+  <summary>このページについて</summary>
+  <p>台本の本文だけを置いてあります。<strong>間を置くところが、そのまま改行になっています</strong>（5 箇所）。ブラウザの読み上げ機能は段落の切れ目で間を取るので、そこで息が入ります。</p>
+  <p>上の「読み上げる」はブラウザ内蔵の音声を使います。<strong>間の長さは、ここで再生したときだけ区別されます</strong>（短い間と長い間）。ブラウザ側の読み上げ機能を使うと、どの間も同じ長さになります。</p>
+  <p>本文は <code>script_tts.txt</code> から作っています。読み辞書で開いた読みが当たっているので、目で追うと仮名が多く見えますが、耳で聴くとこちらのほうが正しく読まれます。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a> にあります。</p>
+</details>
+<script>
+(function () {
+  var body = document.getElementById('rl-body'),
+      bar = document.getElementById('rl-bar'),
+      play = document.getElementById('rl-play'),
+      stop = document.getElementById('rl-stop'),
+      note = document.getElementById('rl-note'),
+      rate = document.getElementById('rl-rate');
+  var synth = window.speechSynthesis;
+  if (!body || !synth) { if (bar) bar.hidden = true; return; }
+  var ps = Array.prototype.slice.call(body.querySelectorAll('p')),
+      GAP = {n: 0, p: 350, l: 700},
+      at = 0, timer = null, on = false;
+
+  function jaVoice() {
+    var vs = synth.getVoices() || [];
+    for (var i = 0; i < vs.length; i++) { if (/^ja/i.test(vs[i].lang)) return vs[i]; }
+    return null;
+  }
+  function clear() { for (var i = 0; i < ps.length; i++) ps[i].classList.remove('on'); }
+  function finish() {
+    on = false; clearTimeout(timer); synth.cancel(); clear();
+    play.hidden = false; stop.hidden = true; note.textContent = '';
+  }
+  function speak(n) {
+    if (!on) return;
+    if (n >= ps.length) { finish(); return; }
+    at = n; clear(); ps[n].classList.add('on');
+    ps[n].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    note.textContent = (n + 1) + ' / ' + ps.length;
+    var u = new SpeechSynthesisUtterance(ps[n].textContent);
+    u.lang = 'ja-JP';
+    u.rate = parseFloat(rate.value) || 1;
+    var v = jaVoice(); if (v) u.voice = v;
+    u.onend = function () {
+      var next = ps[n + 1];
+      timer = setTimeout(function () { speak(n + 1); },
+                         next ? (GAP[next.getAttribute('data-gap')] || 0) : 0);
+    };
+    u.onerror = finish;
+    synth.speak(u);
+  }
+  function start(from) {
+    on = true; play.hidden = true; stop.hidden = false;
+    synth.cancel();                       // 直後に speak すると Chrome が取りこぼす
+    timer = setTimeout(function () { speak(from); }, 80);
+  }
+  play.addEventListener('click', function () { start(0); });
+  stop.addEventListener('click', finish);
+  rate.addEventListener('change', function () { if (on) { clearTimeout(timer); start(at); } });
+  // 段落をクリックすると、そこから読む
+  for (var i = 0; i < ps.length; i++) {
+    (function (n) { ps[n].addEventListener('click', function () { start(n); }); })(i);
+  }
+  window.addEventListener('beforeunload', function () { synth.cancel(); });
+  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function () {};
+})();
+</script>
+
+<footer class="site-foot">
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

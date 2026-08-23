@@ -61,9 +61,19 @@
 `gist` は普通の日本語で1〜2文。**半年後に棚を眺めたとき、そこだけ読めば中身を思い出せること**が条件で、タイトルと題材名だけでは思い出せない。
 `/patrol` は毎回、**新しく探す前にこの棚を読む。** 同じネタを二度探し直さないための仕組み。
 
+### 巡回の外で拾ったネタ（inbox）
+
+`/patrol` が回るのは決まった6つの棚だけ。**移動中や店先で見つけたものは、そこに載らない。**
+スマホの Claude に `inbox/ネタ集めの手引き.md` を添付して話すと、聞き役になって `.md` を書き出す。それを `inbox/` に置いて `/intake` を実行すると、`status: inbox`（外で拾った・**未採点**）で棚に入る。
+
+- **チャットは採点も選定もしない。**台帳もばらつきも見えないので、できるのは詳しく聞き出すことだけ
+- 取り込んだ `.md` は**消さない。**棚の1行は要約で、数字の時点・裏取りの状況・まだ分かっていないことは元の `.md` にしか残らない（サイトの「ネタ帳」に全文が出る）
+- 見立ての欄は仮置き。**確定するのは `/patrol` 側**（台帳と冷えている軸を見てから）
+
 ## 5. ワークフロー
 
 ```
+/intake            → inbox/ に置いたネタの .md を backlog.yaml へ整形（status: inbox・未採点）
 /patrol [国内|海外] → spread.py でばらつきを見る（地域ごとに別勘定）→ 6つの巡回棚をスキャン
                    → ledger照合 → 候補を1件ずつ採点して提示（地域の指定が無ければ国内）
 （人間が1本選ぶ。選んだ回を ledger/selection.yaml に記録）
@@ -134,6 +144,7 @@ python3 scripts/dictionary.py --apply <id>       # 辞書を TTS 稿に当てる
 | 巡回棚・リスク語 | `config/sources.yml` `config/ng.yml` |
 | 放送済み台帳（重複回避） | `ledger/episodes_log.csv`。**特別編は `spNNN`** で、台帳と採点には載せるが `spread.py` のばらつきからは外れる |
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
+| **巡回の外で拾ったネタ** | `inbox/` → `/intake` で棚へ。手引きは `inbox/ネタ集めの手引き.md` |
 | **ネタの採点表（核2・面白さ5）** | `ledger/selection.yaml` → サイトの「選び方」 |
 | **6つの点数**（見立て＝面白さ・応用・ばらつき／実測＝鮮度・裏取り・人物度） | `scripts/score.py`。足さない。低いものを見る |
 | 選定のばらつき（手・動機・風・型・畑・主役・技術度） | `scripts/spread.py`（`episodes_log.csv` の**定期回 epNNN だけ**から、**国内と海外を別勘定で**計算） |
@@ -141,6 +152,7 @@ python3 scripts/dictionary.py --apply <id>       # 辞書を TTS 稿に当てる
 | note の公開URLと記事間の関連 | `ledger/note_links.yaml`（公開したらURLを書き足す） |
 | note に貼る図版 | `episodes/<id>/figures.html` → `scripts/export_figures.py` → `docs/<id>/images/` |
 | 閲覧サイトの生成 | `scripts/build_site.py` → `docs/` |
+| **ブラウザで聴く（読み上げ用）** | `docs/<id>/read.html`。`script_tts.txt` からタグを落として生成。**間＝改行**（読み上げは段落の切れ目で息を入れる）。手で書くものは無い |
 | **文体の教師データ** | `episodes/ep020`（間とフィラーの基準形）・`ep003`（聞き上手）・`ep005`（動機回）・`ep008`（拡大版15分） |
 
 ## 9. 国内と海外

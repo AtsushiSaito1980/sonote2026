@@ -28,6 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EPISODES = ROOT / "episodes"
+INBOX = ROOT / "inbox"
 OUT = ROOT / "docs"
 
 WEEKDAYS = ["月", "火", "水", "木", "金", "土", "日"]
@@ -204,8 +205,46 @@ def parse_backlog(text: str) -> list:
     return out
 
 
+FRONT = re.compile(r"^---\s*\n(.*?)\n---\s*\n(.*)$", re.S)
+
+
+def parse_inbox() -> list:
+    """inbox/*.md → [dict]。巡回の外（スマホのチャット）で集めたネタの生ファイル。
+
+    `/intake` が backlog.yaml へ要約して1行にするが、**要約に入りきらない細かいところ
+    （数字の時点・裏取りの状況・まだ分かっていないこと）は、この生ファイルにしか残らない。**
+    だからサイトでも全文をそのまま出す。
+    """
+    if not INBOX.is_dir():
+        return []
+    out = []
+    for p in sorted(INBOX.glob("*.md"), reverse=True):   # 新しい順（先頭が日付）
+        if p.name == "README.md" or p.stem.startswith("ネタ集め"):
+            continue                                     # 手引きと説明書は取り込みの対象外
+        text = read(p)
+        meta, body = {}, text
+        m = FRONT.match(text)
+        if m:
+            for line in m.group(1).splitlines():
+                kv = re.match(r"^\s*([A-Za-z_]+):\s*(.*?)\s*$", line)
+                if kv:
+                    meta[kv.group(1)] = kv.group(2)
+            body = m.group(2)
+        title = meta.get("title", "")
+        if not title:
+            h = re.search(r"^#\s+(.+?)\s*$", body, re.M)
+            title = h.group(1).strip() if h else p.stem
+        # 見出しの h1 はカードの表題に出すので、本文からは落とす
+        body = re.sub(r"^#\s+.+?\s*$\n?", "", body.strip(), count=1, flags=re.M)
+        out.append({"slug": p.stem, "file": p.name, "title": title,
+                    "meta": meta, "body": body.strip()})
+    return out
+
+
 # 見送り理由。順序＝表示順（復活の見込みが高いものから）
+# inbox だけは「見送った理由」ではなく「まだ採点していない」の意味。先頭に置く
 BACKLOG_STATUS = [
+    ("inbox",         "外で拾った",   "inbox",   "巡回の外で見つけた。まだ採点していない"),
     ("trigger_wait",  "トリガ待ち",   "wait",    "手は立つ。窓内の発表がまだ無い"),
     ("trigger_stale", "鮮度切れ",     "stale",   "トリガはあったが31日の窓を外れた"),
     ("overlap",       "直近と被る",   "overlap", "手・業界が直近5回と重なる"),
@@ -529,6 +568,7 @@ def page(rel: str, title: str, body: str, active_nav: str = "") -> str:
 <header class="site">
   <div class="brand"><a href="{rel}index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
   <div class="site-nav">
+    <a href="{rel}inbox.html" class="nav-link{' on' if active_nav == 'inbox' else ''}">ネタ帳</a>
     <a href="{rel}selection.html" class="nav-link{' on' if active_nav == 'selection' else ''}">選び方</a>
     <a href="{rel}backlog.html" class="nav-link{' on' if active_nav == 'backlog' else ''}">ボツネタ棚</a>
     <a href="{rel}ledger.html" class="nav-link{' on' if active_nav == 'ledger' else ''}">台帳</a>
@@ -559,7 +599,8 @@ def region_mark(region: str) -> str:
 
 def ep_tabs(ep_id: str, current: str) -> str:
     tabs = [("infographic", "インフォグラフィック"), ("article", "note記事"),
-            ("figures", "note用の画像"), ("script", "台本（コピー用）"), ("files", "制作ファイル")]
+            ("figures", "note用の画像"), ("script", "台本（コピー用）"),
+            ("read", "読み上げ"), ("files", "制作ファイル")]
     links = []
     for key, label in tabs:
         cur = ' aria-current="page"' if key == current else ""
@@ -567,18 +608,26 @@ def ep_tabs(ep_id: str, current: str) -> str:
     return '<nav class="tabs">' + "".join(links) + "</nav>"
 
 
-def ep_header(meta: dict, current: str) -> str:
+def ep_header(meta: dict, current: str, bare: bool = False) -> str:
+    """回の見出し。
+
+    bare=True は読み上げページ用。**手・動機・風のタグを出さない。**
+    ブラウザの読み上げは画面の文字を順に読むので、本文の前にタグが並んでいると
+    「オーピーイレブン のる」まで読み上げてしまう。
+    """
     chips = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in meta["chips"])
     status_cls, status_label = meta["status"]
     assumed = '<span class="chip none">作成日は推定</span>' if meta["assumed"] else ""
     prev_l = f'<a class="pn" href="../{meta["prev"]}/{current}.html">← {meta["prev"]}</a>' if meta["prev"] else "<span></span>"
     next_l = f'<a class="pn" href="../{meta["next"]}/{current}.html">{meta["next"]} →</a>' if meta["next"] else "<span></span>"
+    meta_rows = "" if bare else f"""
+  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}{region_mark(meta.get("region", ""))}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>"""
+    chip_row = "" if bare else f"""
+  <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>"""
     return f"""
 <div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set">{prev_l}{next_l}</span></div>
-<div class="ep-head">
-  <div class="ep-date"><span class="epid">{esc(meta["ep"])}</span>{sp_mark(meta["ep"])}{region_mark(meta.get("region", ""))}<span class="dlabel">作成</span>{esc(meta["date_disp"])}　<span class="badge {status_cls}">{esc(status_label)}</span></div>
-  <h1>{esc(meta["title"])}</h1>
-  <div class="chips">{f'<span class="chip host">{esc(meta["host"])}</span>' if meta["host"] else ''}{chips}{assumed}</div>
+<div class="ep-head">{meta_rows}
+  <h1>{esc(meta["title"])}</h1>{chip_row}
 </div>
 {ep_tabs(meta["ep"], current)}
 """
@@ -629,6 +678,139 @@ def build_script_page(meta, ep_dir):
 <p class="hint">読み上げない元原稿（見出し・演出メモ付き）は <a href="files.html#draft">制作ファイル → 台本ドラフト</a> にあります。</p>
 """
     return page("../", f'{meta["title"]}｜台本 — その手があったか', body)
+
+
+EMO_TAG = re.compile(r"\[(?:bright|curious|serious|excited|thoughtful|warm|calm)\]\s*")
+PAUSE_SPLIT = re.compile(r"\[(long |short )?pause\]")
+
+# 間の大きさ。ブラウザの読み上げでは**ブロックの切れ目が間**になるので、
+# どれも「1つの改行」に落ちる。差が付くのはこのページの再生ボタンのときだけ
+GAP_MS = {"n": 0, "p": 350, "l": 700}
+
+
+def read_blocks(tts: str) -> list[tuple[str, str]]:
+    """script_tts.txt → [(間の大きさ, 本文)]。ブラウザの音声読み上げ用。
+
+    読み上げに要らないものを落とす：**感情タグは消し、pause タグは改行に変える。**
+    ブラウザは段落（ブロック要素）の切れ目で間を取るので、
+    間を置きたいところが1つの段落の切れ目になるように割り直している。
+    """
+    out: list[tuple[str, str]] = []
+    gap = "n"
+    for para in re.split(r"\n\s*\n", tts.strip()):
+        parts = PAUSE_SPLIT.split(EMO_TAG.sub("", para))
+        # parts = [本文, マーカー, 本文, ...]（マーカーは "long " か None）
+        for i in range(0, len(parts), 2):
+            if i:
+                gap = "l" if (parts[i - 1] or "").strip() == "long" else "p"
+            text = (parts[i] or "").strip()
+            if text:
+                out.append((gap, text))
+                gap = "n"          # 次は通常の段落の間に戻す
+    return out
+
+
+def build_read_page(meta, ep_dir):
+    """読み上げページ。タグも注釈も無い、台本の本文だけ。
+
+    元にするのは `script_draft.md` ではなく **`script_tts.txt`**。
+    読み辞書で開いた読み（「初速」→「しょそく」等）が当たっているほうが、
+    ブラウザの音声でも誤読しないため。目で読むと仮名が多いのはその代償。
+    """
+    head = ep_header(meta, "read", bare=True)
+    tts = read(ep_dir / "script_tts.txt")
+    title = f'{meta["title"]}｜読み上げ — その手があったか'
+    if not tts:
+        return page("../", title,
+                    head + '<p class="empty">script_tts.txt がまだありません。</p>')
+
+    blocks = read_blocks(tts)
+    paras = "".join(f'<p class="rl-{g}" data-gap="{g}">{esc(t)}</p>' for g, t in blocks)
+    n_pause = sum(1 for g, _ in blocks if g != "n")
+    gap_js = "{" + ", ".join(f"{k}: {v}" for k, v in GAP_MS.items()) + "}"
+
+    body = f"""{head}
+<div class="rl-bar" id="rl-bar">
+  <button class="btn rl-go" id="rl-play" type="button">▶︎　読み上げる</button>
+  <button class="btn rl-go" id="rl-stop" type="button" hidden>■　止める</button>
+  <label class="rl-rate">速さ
+    <select id="rl-rate">
+      <option value="0.85">ゆっくり</option>
+      <option value="1" selected>ふつう</option>
+      <option value="1.2">はやめ</option>
+    </select>
+  </label>
+  <span class="rl-note" id="rl-note"></span>
+</div>
+<article class="rl" id="rl-body">
+{paras}
+</article>
+<details class="rl-help">
+  <summary>このページについて</summary>
+  <p>台本の本文だけを置いてあります。<strong>間を置くところが、そのまま改行になっています</strong>（{n_pause} 箇所）。ブラウザの読み上げ機能は段落の切れ目で間を取るので、そこで息が入ります。</p>
+  <p>上の「読み上げる」はブラウザ内蔵の音声を使います。<strong>間の長さは、ここで再生したときだけ区別されます</strong>（短い間と長い間）。ブラウザ側の読み上げ機能を使うと、どの間も同じ長さになります。</p>
+  <p>本文は <code>script_tts.txt</code> から作っています。読み辞書で開いた読みが当たっているので、目で追うと仮名が多く見えますが、耳で聴くとこちらのほうが正しく読まれます。タグの付いた原稿は <a href="script.html">台本（コピー用）</a>、演出メモ付きの元原稿は <a href="files.html#draft">制作ファイル</a> にあります。</p>
+</details>
+<script>
+(function () {{
+  var body = document.getElementById('rl-body'),
+      bar = document.getElementById('rl-bar'),
+      play = document.getElementById('rl-play'),
+      stop = document.getElementById('rl-stop'),
+      note = document.getElementById('rl-note'),
+      rate = document.getElementById('rl-rate');
+  var synth = window.speechSynthesis;
+  if (!body || !synth) {{ if (bar) bar.hidden = true; return; }}
+  var ps = Array.prototype.slice.call(body.querySelectorAll('p')),
+      GAP = {gap_js},
+      at = 0, timer = null, on = false;
+
+  function jaVoice() {{
+    var vs = synth.getVoices() || [];
+    for (var i = 0; i < vs.length; i++) {{ if (/^ja/i.test(vs[i].lang)) return vs[i]; }}
+    return null;
+  }}
+  function clear() {{ for (var i = 0; i < ps.length; i++) ps[i].classList.remove('on'); }}
+  function finish() {{
+    on = false; clearTimeout(timer); synth.cancel(); clear();
+    play.hidden = false; stop.hidden = true; note.textContent = '';
+  }}
+  function speak(n) {{
+    if (!on) return;
+    if (n >= ps.length) {{ finish(); return; }}
+    at = n; clear(); ps[n].classList.add('on');
+    ps[n].scrollIntoView({{ block: 'center', behavior: 'smooth' }});
+    note.textContent = (n + 1) + ' / ' + ps.length;
+    var u = new SpeechSynthesisUtterance(ps[n].textContent);
+    u.lang = 'ja-JP';
+    u.rate = parseFloat(rate.value) || 1;
+    var v = jaVoice(); if (v) u.voice = v;
+    u.onend = function () {{
+      var next = ps[n + 1];
+      timer = setTimeout(function () {{ speak(n + 1); }},
+                         next ? (GAP[next.getAttribute('data-gap')] || 0) : 0);
+    }};
+    u.onerror = finish;
+    synth.speak(u);
+  }}
+  function start(from) {{
+    on = true; play.hidden = true; stop.hidden = false;
+    synth.cancel();                       // 直後に speak すると Chrome が取りこぼす
+    timer = setTimeout(function () {{ speak(from); }}, 80);
+  }}
+  play.addEventListener('click', function () {{ start(0); }});
+  stop.addEventListener('click', finish);
+  rate.addEventListener('change', function () {{ if (on) {{ clearTimeout(timer); start(at); }} }});
+  // 段落をクリックすると、そこから読む
+  for (var i = 0; i < ps.length; i++) {{
+    (function (n) {{ ps[n].addEventListener('click', function () {{ start(n); }}); }})(i);
+  }}
+  window.addEventListener('beforeunload', function () {{ synth.cancel(); }});
+  if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = function () {{}};
+}})();
+</script>
+"""
+    return page("../", title, body)
 
 
 def build_article_page(meta, ep_dir, links=None, titles=None):
@@ -1170,6 +1352,74 @@ def build_selection_page(sel, ledger_rows, titles):
     return page("", "ネタの選び方 — その手があったか", body, active_nav="selection")
 
 
+def build_inbox_page(items, tag_names, taken):
+    """ネタ帳。巡回の外で拾ったネタを、チャットから持ち帰った形のまま出す。
+
+    taken: {slug: bl_id} — /intake で棚へ取り込み済みのものの紐づけ
+    """
+    cards = []
+    for it in items:
+        meta = it["meta"]
+        chips = (tag_chips(meta.get("hand", ""), "hand", tag_names)
+                 + tag_chips(meta.get("motive", ""), "motive", tag_names)
+                 + tag_chips(meta.get("tailwind", ""), "tailwind", tag_names))
+        chip_html = "".join(f'<span class="chip {k}">{esc(t)}</span>' for t, k in chips)
+        ax = [(lab, meta.get(k, "")) for k, lab in
+              (("region", "地域"), ("field", "畑"), ("subject", "主役"), ("tech", "技術度"))]
+        chip_html += "".join(f'<span class="chip none">{esc(lab)} {esc(v)}</span>'
+                             for lab, v in ax if v)
+
+        rows = []
+        for key, lab in (("case_names", "題材"), ("industries", "業界"),
+                         ("trigger_on", "公開された日")):
+            if meta.get(key):
+                rows.append((lab, esc(meta[key].replace(";", "／"))))
+        rows.append(("元のファイル", f'<code>inbox/{esc(it["file"])}</code>'))
+        kv = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows)
+
+        bl = taken.get(it["slug"])
+        state = (f'<a class="badge used" href="backlog.html">棚へ取り込み済み {esc(bl)}</a>'
+                 if bl else '<span class="badge inbox">未取り込み</span>')
+        m = re.match(r"^(\d{4}-\d{2}-\d{2})", it["slug"])
+        found = m.group(1) if m else meta.get("found_on", "")
+        # トリガが空のまま持ち帰ったものは、あとで拾い直すときに効くので目に見える形にする
+        warn = ('' if meta.get("trigger_on") else
+                '<p class="nb-warn">公開された日が未特定。'
+                '鮮度が測れないので、拾い直すときに日付を探すこと</p>')
+
+        cards.append(f"""
+<article class="nb-card" id="{esc(it["slug"])}">
+  <div class="nb-head">
+    <span class="nb-date">{esc(found)}</span>
+    <h3>{esc(it["title"])}</h3>
+    {state}
+  </div>
+  <div class="chips">{chip_html}</div>
+  {warn}
+  <div class="table-scroll"><table class="kv bl-kv">{kv}</table></div>
+  <details class="nb-more">
+    <summary>チャットで聞いた全文</summary>
+    <div class="nb-body">{md_to_html(it["body"])}</div>
+  </details>
+</article>""")
+
+    listing = "".join(cards) if cards else """
+<p class="empty">まだ何も置かれていません。<br>
+スマホの Claude に <code>inbox/ネタ集めの手引き.md</code> を添付してネタを話し、
+出てきた <code>.md</code> を <code>inbox/</code> に置いて <code>/intake</code> を実行してください。</p>"""
+
+    body = f"""
+<div class="ep-head">
+  <h1>ネタ帳</h1>
+  <p class="hint">巡回の外——移動中や店先で拾ったネタを、スマホのチャットで聞き出して持ち帰ったもの（<code>inbox/</code>）。<strong>棚の1行は要約なので、数字の時点・裏取りの状況・まだ分かっていないことは、ここにしか残っていません。</strong>次の巡回は、これを未採点の新規候補として読みます。</p>
+  <div class="bl-counts"><span class="bl-count inbox"><b>{len(items)}</b>件</span>
+    <span class="bl-count"><b>{sum(1 for i in items if not taken.get(i["slug"]))}</b>未取り込み</span></div>
+</div>
+<div id="nb-list">{listing}</div>
+"""
+    return page("", "ネタ帳 — その手があったか", body, active_nav="inbox")
+
+
 def build_backlog_page(entries, tag_names):
     labels = {k: (lab, cls, blurb) for k, lab, cls, blurb in BACKLOG_STATUS}
     hope = {k: i for i, (k, _, _, _) in enumerate(BACKLOG_STATUS)}
@@ -1218,6 +1468,12 @@ def build_backlog_page(entries, tag_names):
             rows.append(("手がかり", f'<span class="src">{esc(e["sources"])}</span>'))
         if e.get("note"):
             rows.append(("メモ", esc(e["note"])))
+        if e.get("source_md"):
+            # この行は要約。チャットで聞いた全文はネタ帳にしか無いので、必ず行けるようにする
+            slug = re.sub(r"\.md$", "", e["source_md"].rsplit("/", 1)[-1])
+            rows.append(("聞いた全文",
+                         f'<a href="inbox.html#{esc(slug)}">ネタ帳で見る</a>'
+                         f' <code>{esc(e["source_md"])}</code>'))
         kv = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in rows)
         found = " ".join(x for x in (e.get("found_on", ""), e.get("found_in", "")) if x)
 
@@ -1256,7 +1512,7 @@ def build_backlog_page(entries, tag_names):
     body = f"""
 <div class="ep-head">
   <h1>ボツネタ棚</h1>
-  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>一覧に載せる前に落とした種（<span class="badge wait">種のまま</span>）も置いてあります。次の巡回では、まずこの棚を読んで復活できるものを探します。</p>
+  <p class="hint">巡回で挙がったが、その回では選ばなかったネタ（<code>ledger/backlog.yaml</code>）。<strong>見送った理由が、そのまま「いつ復活できるか」を決めます。</strong>一覧に載せる前に落とした種（<span class="badge wait">種のまま</span>）も置いてあります。次の巡回では、まずこの棚を読んで復活できるものを探します。<br><span class="badge inbox">外で拾った</span>だけは意味が違い、<strong>巡回の外で拾ってまだ一度も採点していないもの</strong>です（<a href="inbox.html">ネタ帳</a>に全文があります）。</p>
   <div class="bl-counts">{"".join(counts)}</div>
   <div class="bl-bar">
     <span class="bl-lab">並び</span>{sort_btns}
@@ -1390,6 +1646,7 @@ def main():
         (out_dir / "article.html").write_text(
             build_article_page(meta, meta["dir"], note_links, note_titles), encoding="utf-8")
         (out_dir / "script.html").write_text(build_script_page(meta, meta["dir"]), encoding="utf-8")
+        (out_dir / "read.html").write_text(build_read_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "figures.html").write_text(build_figures_page(meta, meta["dir"]), encoding="utf-8")
         (out_dir / "files.html").write_text(build_files_page(meta, meta["dir"]), encoding="utf-8")
 
@@ -1407,14 +1664,28 @@ def main():
                 "note": "episodes_log.csv から自動で取り込み。backlog.yaml へ移すこと",
             })
 
+    # 巡回の外で拾ったネタ。棚の行（要約）と、チャットで聞いた全文を紐づける
+    inbox_items = parse_inbox()
+    taken = {}
+    for b in backlog:
+        if b.get("source_md"):
+            taken[re.sub(r"\.md$", "", b["source_md"].rsplit("/", 1)[-1])] = b.get("id", "")
+
     (OUT / "index.html").write_text(build_index(metas, backlog), encoding="utf-8")
     (OUT / "ledger.html").write_text(build_ledger_page(ledger_rows, header), encoding="utf-8")
     (OUT / "backlog.html").write_text(build_backlog_page(backlog, tag_names), encoding="utf-8")
+    (OUT / "inbox.html").write_text(
+        build_inbox_page(inbox_items, tag_names, taken), encoding="utf-8")
     (OUT / "selection.html").write_text(
         build_selection_page(load_selection(), ledger_rows, note_titles), encoding="utf-8")
 
-    n_pages = 4 + 4 * len(metas)
-    print(f"生成完了: docs/ に {n_pages} ページ（エピソード {len(metas)} 本・ボツネタ {len(backlog)} 件）")
+    n_pages = 5 + 6 * len(metas)      # 共通5 ＋ 1本あたり6ページ
+    untaken = [i["file"] for i in inbox_items if i["slug"] not in taken]
+    print(f"生成完了: docs/ に {n_pages} ページ（エピソード {len(metas)} 本・"
+          f"ボツネタ {len(backlog)} 件・ネタ帳 {len(inbox_items)} 件）")
+    if untaken:
+        print(f"  ネタ帳に未取り込みが {len(untaken)} 件（/intake で棚へ）: "
+              f"{'／'.join(untaken[:5])}{' ほか' if len(untaken) > 5 else ''}")
     for meta in metas:
         has_ig = "手作り" if (meta["dir"] / "infographic.html").exists() else "自動"
         print(f"  {meta['ep']}  {meta['title']}  [インフォグラフィック: {has_ig}]")
@@ -1472,16 +1743,25 @@ pre code { background: none; padding: 0; font-size: 12px; }
 .pre-line { white-space: pre-line; }
 
 /* ヘッダ */
-header.site { display: flex; justify-content: space-between; align-items: center; gap: 10px;
+header.site { display: flex; justify-content: space-between; align-items: center;
+  gap: 10px; flex-wrap: wrap;
   padding: 13px 0; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
 .brand a { color: inherit; text-decoration: none; font-weight: 800; letter-spacing: .02em; }
 .brand .sub { font-size: 11.5px; color: var(--ink-2); margin-left: 8px; font-weight: 600; }
-.site-nav { display: flex; align-items: center; gap: 10px; }
+.site-nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* 日本語のリンク名は、幅が足りないと一文字ずつ折り返される。nowrap で止める */
 .nav-link { font-size: 13px; color: var(--ink-2); text-decoration: none; padding: 5px 10px;
-  border-radius: 8px; }
+  border-radius: 8px; white-space: nowrap; }
 .nav-link.on, .nav-link:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); color: var(--ink); }
 .theme-btn { border: 1px solid var(--border); background: var(--surface); color: var(--ink-2);
-  border-radius: 999px; padding: 5px 12px; font-size: 12px; cursor: pointer; }
+  border-radius: 999px; padding: 5px 12px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+@media (max-width: 620px) {
+  header.site { gap: 6px; padding: 11px 0; }
+  .brand { flex: 1 0 100%; }
+  .site-nav { gap: 4px; margin-left: -6px; }
+  .nav-link { font-size: 12.5px; padding: 5px 7px; }
+  .theme-btn { padding: 4px 9px; font-size: 11.5px; }
+}
 .site-foot { margin-top: 56px; border-top: 1px solid var(--line); padding-top: 14px;
   font-size: 12px; color: var(--muted); }
 
@@ -1541,8 +1821,14 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .badge.archived::before, .badge.none::before { background: var(--baseline); }
 .badge.wait { background: color-mix(in srgb, var(--serious) 14%, transparent); }
 .badge.wait::before { background: var(--serious); }
+.badge.inbox { background: color-mix(in srgb, var(--accent) 13%, transparent); color: var(--accent); }
+.badge.inbox::before { background: var(--accent); }
+a.badge { text-decoration: none; }
+a.badge:hover { filter: brightness(1.08); }
 .ep-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 13px; }
 @media (max-width: 620px) { .ep-actions { grid-template-columns: 1fr 1fr; } }
+/* .btn の display が UA の hidden を上書きしてしまうので、明示的に打ち消す */
+[hidden] { display: none !important; }
 .btn { display: block; text-align: center; padding: 9px 8px; border-radius: 11px;
   border: 1px solid var(--border); background: var(--surface); color: var(--ink);
   font-size: 12.5px; text-decoration: none; }
@@ -1575,6 +1861,7 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .bl-count b { font-size: 14px; color: var(--ink); font-weight: 800; }
 .bl-count.wait b { color: var(--serious); }
 .bl-count.stale b { color: var(--accent-2); }
+.bl-count.inbox b { color: var(--accent); }
 .bl-sec { margin: 34px 0; }
 .bl-sec > h2 { font-size: 15px; display: flex; align-items: center; gap: 10px;
   flex-wrap: wrap; margin-bottom: 12px; }
@@ -1582,6 +1869,7 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .bl-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
   padding: 15px 17px 12px; margin: 10px 0; border-left: 4px solid var(--baseline); }
 .bl-card.wait { border-left-color: var(--serious); }
+.bl-card.inbox { border-left-color: var(--accent); }
 .bl-card.stale { border-left-color: var(--accent-2); }
 .bl-card.overlap { border-left-color: var(--warn); }
 .bl-card.unver { border-left-color: var(--crit); }
@@ -1593,6 +1881,29 @@ header.site { display: flex; justify-content: space-between; align-items: center
 .bl-card .chips { margin: 8px 0 4px; }
 .bl-gist { font-size: 14px; line-height: 1.85; color: var(--ink); margin: 9px 0 0; }
 .bl-gist.none { font-size: 12.5px; color: var(--muted); font-style: italic; }
+
+/* ネタ帳（inbox）。棚のカードと同じ見た目にして、行き来しても迷わないようにする */
+.nb-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 15px 17px 12px; margin: 12px 0; border-left: 4px solid var(--accent);
+  scroll-margin-top: 18px; }
+.nb-head { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+.nb-head h3 { font-size: 16px; margin: 0; line-height: 1.5; flex: 1 1 auto; }
+.nb-date { font-size: 11px; font-weight: 800; color: var(--accent);
+  font-family: ui-monospace, monospace; white-space: nowrap; }
+.nb-card .chips { margin: 9px 0 6px; }
+.nb-card .kv { margin-top: 6px; }
+.nb-warn { font-size: 12.5px; color: var(--warn-text, var(--ink-2)); margin: 8px 0 0;
+  padding: 7px 11px; border-radius: 9px;
+  background: color-mix(in srgb, var(--warn) 12%, transparent); }
+.nb-more { margin-top: 10px; }
+.nb-more > summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2);
+  padding: 6px 0; }
+.nb-body { font-size: 14px; line-height: 1.9; border-top: 1px solid var(--line);
+  margin-top: 6px; padding-top: 10px; }
+.nb-body h2 { font-size: 14px; margin: 18px 0 4px; color: var(--accent); }
+.nb-body h2:first-child { margin-top: 4px; }
+.nb-body p, .nb-body ul, .nb-body ol { margin: 6px 0; }
+.nb-body li { margin: 3px 0; }
 .bl-revive { font-size: 12.5px; line-height: 1.8; color: var(--ink-2); margin: 9px 0 0;
   padding: 8px 12px; background: var(--page); border: 1px solid var(--border); border-radius: 9px; }
 .bl-revive span { font-size: 10.5px; font-weight: 800; color: var(--serious);
@@ -1645,6 +1956,34 @@ table.bl-kv tr:last-child th, table.bl-kv tr:last-child td { border-bottom: 0; }
 .audio-tag { display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent);
   background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 6px;
   padding: 1px 7px; margin-right: 6px; letter-spacing: .04em; }
+
+/* 読み上げページ。**間を置くところが、そのまま段落の切れ目**になっている */
+.rl-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center;
+  flex-wrap: wrap; padding: 10px 0; margin-bottom: 6px;
+  background: var(--bg); border-bottom: 1px solid var(--line); }
+.rl-go { min-width: 148px; justify-content: center; font-weight: 700; }
+.rl-rate { font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
+.rl-rate select { font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px; }
+.rl-note { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rl { max-width: 640px; margin: 18px auto 30px; font-size: 18px; line-height: 2.15;
+  letter-spacing: .01em; }
+.rl p { margin: 0; padding: 3px 12px; border-radius: 8px; cursor: pointer;
+  transition: background .15s; }
+.rl p:hover { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+/* 段落の間そのものが「間」。pause の分だけ余白を足して、目でも息継ぎが見えるようにする */
+.rl p.rl-n { margin-top: 1.15em; }
+.rl p.rl-p { margin-top: 2.3em; }
+.rl p.rl-l { margin-top: 3.6em; }
+.rl p:first-child { margin-top: 0; }
+.rl p.on { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.rl-help { max-width: 640px; margin: 0 auto 8px; font-size: 13px; color: var(--ink-2); }
+.rl-help > summary { cursor: pointer; padding: 6px 0; color: var(--muted); font-size: 12.5px; }
+.rl-help p { margin: 8px 0; line-height: 1.9; }
+@media (max-width: 620px) {
+  .rl { font-size: 17px; line-height: 2.05; }
+  .rl-go { min-width: 0; flex: 1 1 auto; }
+}
 
 /* 記事・Markdown */
 .prose { font-size: 15px; line-height: 2.0; max-width: 720px; }
