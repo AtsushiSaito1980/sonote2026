@@ -707,7 +707,8 @@ def read_blocks(tts: str) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     gap = "n"
     for para in re.split(r"\n\s*\n", tts.strip()):
-        parts = PAUSE_SPLIT.split(EMO_TAG.sub("", para))
+        # 強調の ** は Markdown の記号で、読み上げではそのまま音になる。落とす
+        parts = PAUSE_SPLIT.split(EMO_TAG.sub("", para).replace("**", ""))
         # parts = [本文, マーカー, 本文, ...]（マーカーは "long " か None）
         for i in range(0, len(parts), 2):
             if i:
