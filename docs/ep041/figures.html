@@ -35,12 +35,13 @@
   下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
   <div class="dl-shelf">
   <div class="dl-head">書き出し済みの画像（4枚・2倍解像度）</div>
-  <div class="dl-list"><a class="dl" href="images/ep041-combo.png" download><span class="dl-name">ep041-combo.png</span><span class="dl-size">138 KB</span></a><a class="dl" href="images/ep041-cover.png" download><span class="dl-name">ep041-cover.png</span><span class="dl-size">99 KB</span></a><a class="dl" href="images/ep041-number.png" download><span class="dl-name">ep041-number.png</span><span class="dl-size">126 KB</span></a><a class="dl" href="images/ep041-table-1.png" download><span class="dl-name">ep041-table-1.png</span><span class="dl-size">78 KB</span></a></div>
+  <div class="dl-list"><a class="dl" href="images/ep041-combo.png" download><span class="dl-name">ep041-combo.png</span><span class="dl-size">138 KB</span></a><a class="dl" href="images/ep041-cover.png" download><span class="dl-name">ep041-cover.png</span><span class="dl-size">99 KB</span></a><a class="dl" href="images/ep041-number.png" download><span class="dl-name">ep041-number.png</span><span class="dl-size">191 KB</span></a><a class="dl" href="images/ep041-table-1.png" download><span class="dl-name">ep041-table-1.png</span><span class="dl-size">79 KB</span></a></div>
   <p class="hint">クリックで保存 → note の本文にアップロードして貼る。
   作り直したら <code>python3 scripts/export_figures.py ep041</code> を再実行。</p>
 </div>
 </div>
-<!-- ep041 note用の書き出し図版。価格は非公表のため数字に使わない -->
+<!-- ep041 note用の書き出し図版。装置価格と導入病院数は非公表なので使わない。
+     数字図で使うバッグの価格は通販サイトの店頭表示で、病院の仕入れ値ではない旨を .fs に明記する -->
 
 <div class="cover-wrap">
 <figure class="fig cover" data-fig="cover">
@@ -85,36 +86,33 @@
   <div class="fig-kicker">そうだったのか、という数字</div>
   <div class="figstat">
     <div class="figviz">
-      <svg class="viz" width="250" height="164" viewBox="0 0 250 164" role="img" aria-label="手術のあいだ、15分おきに看護師が尿バッグを確認する回数を、時間軸上の8つの目盛りで示した図">
-        <path class="axis" d="M20 72h210" stroke-width="2" fill="none"/>
-        <rect class="b1" x="22" y="52" width="7" height="40" rx="2"/>
-        <rect class="b1" x="51" y="52" width="7" height="40" rx="2"/>
-        <rect class="b1" x="80" y="52" width="7" height="40" rx="2"/>
-        <rect class="b1" x="109" y="52" width="7" height="40" rx="2"/>
-        <rect class="b1" x="138" y="52" width="7" height="40" rx="2"/>
-        <rect class="b1" x="167" y="52" width="7" height="40" rx="2"/>
-        <rect class="b1" x="196" y="52" width="7" height="40" rx="2"/>
-        <rect class="b2" x="225" y="52" width="7" height="40" rx="2"/>
-        <text class="tlab" x="60" y="140" text-anchor="middle">手術のあいだ</text>
-        <text class="tlab" x="60" y="156" text-anchor="middle">ずっと</text>
-        <text class="tlab" x="190" y="140" text-anchor="middle">15分ごとに</text>
-        <text class="tlab" x="190" y="156" text-anchor="middle">1回ずつ</text>
+      <svg class="viz" width="250" height="164" viewBox="0 0 250 164" role="img" aria-label="計量目盛り付きの採尿バッグ1枚1,584円と、汎用の採尿バッグ1枚626円を棒の高さで比べ、差額が958円であることを示した図">
+        <path class="tick" d="M20 112h210"/>
+        <rect class="b1" x="48" y="32" width="44" height="80" rx="3"/>
+        <rect class="b2" x="158" y="80" width="44" height="32" rx="3"/>
+        <path class="tick" d="M94 33h118" stroke-dasharray="3 3"/>
+        <path class="tick" d="M208 33v47M204 33h8M204 80h8"/>
+        <text class="vlab" x="146" y="25" text-anchor="middle">差 958円</text>
+        <text class="tlab" x="70" y="130" text-anchor="middle">計量付きの袋</text>
+        <text class="tlab" x="70" y="147" text-anchor="middle">1,584円</text>
+        <text class="tlab" x="180" y="130" text-anchor="middle">汎用の袋</text>
+        <text class="tlab" x="180" y="147" text-anchor="middle">626円</text>
       </svg>
     </div>
     <div class="figtxt">
-      <div class="fn">15分に1回</div>
-      <div class="fl">看護師が尿バッグを見て、時刻と量を紙に書き写す間隔。<strong>決まった時間に見に行く作業は、手が離せないときほど時間が来る。</strong>この装置はそこを置き換えるが、芯は精度ではなく「開けないこと」にある。</div>
-      <div class="fs">近畿経済産業局note（2026年7月6日）／イシダメディカル代表の現場見学時の証言</div>
+      <div class="fn">1患者あたり958円</div>
+      <div class="fl">高い袋を安い袋に落とすと浮く額。<strong>ただし採尿バッグは定期交換しないので、入院日数を掛けられない。</strong>1人に1枚で打ち止めになる。会社の説明はもう1本あり、開けて捨てるたびに要る感染防護の消耗品——こちらは1日に何度も起きる。売り文句の並び順と、効き目の順は一致しないことがある。</div>
+      <div class="fs">医療用品通販サイトの店頭表示（税込・2026年8月時点／病院の仕入れ値ではない）／CDC CAUTI防止ガイドライン2009ほか各種マニュアル（定期交換は非推奨）</div>
     </div>
   </div>
-  <div class="fig-foot"><b>その手があったか</b><span>面倒な作業の裏には、たいてい別のリスクが付いている</span></div>
+  <div class="fig-foot"><b>その手があったか</b><span>指さされた場所より、大きく効く場所が別にあることがある</span></div>
 </figure>
 
 <figure class="fig" data-fig="table-1">
   <div class="fig-kicker">記事の表 1</div>
-  <p class="fig-lead">二、海外勢はラインを作り替え、ハカリ屋はバッグを吊るした</p>
+  <p class="fig-lead">三、差額を実際に測ってみると、思ったより小さい</p>
   <div class="table-scroll"><table class="compare">
-    <thead><tr><th></th><th>測る場所</th><th>専用の使い捨て</th></tr></thead><tbody><tr><td>海外勢（Accuryn／Clarity RMS ほか）</td><td>カテーテル・ドレインラインの側</td><td>要る</td></tr><tr><td>ウロチェッカー</td><td>袋の外側（吊るして重さ）</td><td>要らない</td></tr></tbody></table></div>
+    <thead><tr><th>製品</th><th>1枚あたり</th></tr></thead><tbody><tr><td>クリエートメディック 精密尿量計付</td><td><strong>1,584円</strong></td></tr><tr><td>クリエートメディック クリニー採尿バッグ</td><td><strong>626円</strong></td></tr><tr><td>ニプロ ユローズバッグ</td><td>370円</td></tr><tr><td>テルモ ウロガードプラス</td><td>605円</td></tr><tr><td>メディコン ラウンドウロバッグ</td><td>1,011円</td></tr></tbody></table></div>
   <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
 </figure>
 
