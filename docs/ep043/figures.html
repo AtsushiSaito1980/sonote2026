@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>払う側の表に自分の名前が載るまでが開発｜note用の画像 — その手があったか</title>
+<script>(function(){try{var t=localStorage.getItem('sonote-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- scripts/build_site.py が生成。手で編集しない -->
+<div class="wrap">
+<header class="site">
+  <div class="brand"><a href="../index.html">その手があったか</a><span class="sub">制作アーカイブ</span></div>
+  <div class="site-nav">
+    <a href="../inbox.html" class="nav-link">ネタ帳</a>
+    <a href="../selection.html" class="nav-link">選び方</a>
+    <a href="../backlog.html" class="nav-link">ボツネタ棚</a>
+    <a href="../ledger.html" class="nav-link">台帳</a>
+    <button id="themeBtn" class="theme-btn" type="button">テーマ：自動</button>
+  </div>
+</header>
+
+<div class="crumbs"><a href="../index.html">← 一覧</a><span class="pn-set"><a class="pn" href="../ep042/figures.html">← ep042</a><a class="pn" href="../sp001/figures.html">sp001 →</a></span></div>
+<div class="ep-head">
+  <div class="ep-date"><span class="epid">ep043</span><span class="dlabel">作成</span>2026-08-30（日）　<span class="badge review">レビュー中</span></div>
+  <h1>払う側の表に自分の名前が載るまでが開発</h1>
+  <div class="chips"><span class="chip host">戸倉ハジメ</span><span class="chip hand">OP11 乗る</span><span class="chip hand">OP13 翻訳する（味）</span><span class="chip motive">MO1 当事者だった</span><span class="chip tailwind">TW1 制度</span></div>
+</div>
+<nav class="tabs"><a class="tab" href="infographic.html">インフォグラフィック</a><a class="tab" href="article.html">note記事</a><a class="tab" href="figures.html" aria-current="page">note用の画像</a><a class="tab" href="script.html">台本（コピー用）</a><a class="tab" href="read.html">読み上げ</a><a class="tab" href="files.html">制作ファイル</a></nav>
+
+<div class="ep-head">
+  <p class="hint">note の本文に貼る図版（3枚）。<strong>1枚で意味が通るように作ってあります。</strong>
+  下のプレビューがそのまま画像になります。うち1枚は記事中の表で、note が表に対応しないため画像にしています。</p>
+  <p class="hint">まだ書き出されていません。<code>python3 scripts/export_figures.py ep043</code> を実行すると <code>docs/ep043/images/</code> に PNG が出ます。</p>
+</div>
+<!-- ep043 note用の書き出し図版。価格・販売台数・自己負担額は非公表なので使わない。
+     倫理線：切断を感動の材料にしない。当事者性は「不便を数えた記録」として扱う -->
+
+<div class="cover-wrap">
+<figure class="fig cover" data-fig="cover">
+  <div>
+    <div class="fig-kicker">その手があったか</div>
+    <div class="cv-lesson">払う側の表に、自分の名前が載るまでが、開発。</div>
+    <div class="cv-title">保険の償還コードが5つ付いた日から、そのロボット義足は売れるようになった</div>
+  </div>
+  <div>
+    <div class="cv-stat"><span class="cv-n">5<small>つのコード</small></span><span class="cv-cap">2024年5月24日、米国のPDACがBio Legに承認した償還コードの数。うちL5859はモーターの力で膝の曲げ伸ばしを補助する義足膝のコード（BionicM）</span></div>
+    <div class="fig-foot"><b>その手があったか</b><span>なんで、それで儲かるんですか？</span></div>
+  </div>
+</figure>
+</div>
+
+<figure class="fig" data-fig="combo">
+  <div class="fig-kicker">この回の見立て</div>
+  <p class="fig-lead">使うのは切断した本人、費用を出すのは保険。だから、払う側の償還表に載るまで、それは「買えない製品」のままになる。</p>
+  <div class="combo">
+    <div class="cbox">
+      <svg class="cico" viewBox="0 0 24 24" fill="none"><path d="M12 3v7"/><path d="M9 10h6l-1 6a2 2 0 0 1-4 0l-1-6Z"/><path d="M11 16v5"/><circle cx="12" cy="21" r="1" fill="currentColor" stroke="none"/></svg>
+      <div class="ct">モーターで動く義足</div>
+      <div class="cd">センサーが動きを読み取り、モーターが歩行を補助する</div>
+    </div>
+    <div class="cop">×</div>
+    <div class="cbox">
+      <svg class="cico" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M7 13h4M7 16h8"/></svg>
+      <div class="ct">払う側の償還表</div>
+      <div class="cd">もとからある欄。そのどれに入るかを審査機関が確定させる</div>
+    </div>
+    <div class="cop">＝</div>
+    <div class="cbox out">
+      <svg class="cico" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5"/></svg>
+      <div class="ct">買える製品になる</div>
+      <div class="cd">コードの承認は、米国での販売開始より前にある</div>
+    </div>
+  </div>
+  <div class="fig-foot"><b>その手があったか</b><span>出典：BionicM「Bio Leg Has Obtained PDAC approval with 5 L-codes」（2024/5/24）</span></div>
+</figure>
+
+<figure class="fig" data-fig="number">
+  <div class="fig-kicker">そうだったのか、という数字</div>
+  <div class="figstat">
+    <div class="figviz">
+      <svg class="viz" width="250" height="164" viewBox="0 0 250 164" role="img" aria-label="丸5個で承認された5つの償還コードを表し、そのうち1個だけ色を変えて、モーターの力で膝の曲げ伸ばしを補助する機能に対するコードであることを示した図">
+        <circle class="dot on" cx="45" cy="62" r="16"/>
+        <circle class="dot" cx="90" cy="62" r="16"/>
+        <circle class="dot" cx="135" cy="62" r="16"/>
+        <circle class="dot" cx="180" cy="62" r="16"/>
+        <circle class="dot" cx="225" cy="62" r="16"/>
+        <path class="tick" d="M45 84v14" stroke-dasharray="3 3"/>
+        <text class="vlab" x="45" y="115" text-anchor="middle">L5859</text>
+        <text class="tlab" x="125" y="140" text-anchor="middle">モーターの力で膝の曲げ伸ばしを</text>
+        <text class="tlab" x="125" y="157" text-anchor="middle">補助する機能に対するコード</text>
+      </svg>
+    </div>
+    <div class="figtxt">
+      <div class="fn">5<small>つ</small></div>
+      <div class="fl">2024年5月24日に承認された償還コードの数。<strong>売れるようになったのは、性能が上がった日ではなく、この日から</strong>だった。コードは新設ではなく、もとからある欄に入ることが確定した。</div>
+      <div class="fs">出典：BionicM（2024年5月24日）。※ 日本を含むアジアのメーカーの義足膝で初、というのは同社の説明</div>
+    </div>
+  </div>
+  <div class="fig-foot"><b>その手があったか</b><span>使う人と払う人が違うなら、払う側の一覧を先に見る</span></div>
+</figure>
+
+<figure class="fig" data-fig="table-1">
+  <div class="fig-kicker">記事の表 1</div>
+  <p class="fig-lead">三、通らなかった異動申請と、「もっと会社に勤めた方がいいよ」</p>
+  <div class="table-scroll"><table class="compare">
+    <thead><tr><th>時期</th><th>出来事</th></tr></thead><tbody><tr><td>1996年</td><td>9歳で骨肉腫により右脚を切断</td></tr><tr><td>2010年</td><td>東京大学大学院へ進学。公的補助で初めて義足を装着</td></tr><tr><td>2018年12月</td><td>BionicM設立</td></tr><tr><td>2021年</td><td>日本と中国で販売開始</td></tr><tr><td>2023年7月</td><td>FDAにクラスII医療機器として登録</td></tr><tr><td>2024年5月24日</td><td>PDACが5つのLコードを承認</td></tr><tr><td>2026年8月27日</td><td>大学発ベンチャー表彰2026 経済産業大臣賞</td></tr></tbody></table></div>
+  <div class="fig-foot"><b>その手があったか</b><span>note は表に対応しないため、画像で貼る</span></div>
+</figure>
+
+<footer class="site-foot">
+  
+  <p>『その手があったか』制作アーカイブ — <code>python3 scripts/build_site.py</code> で再生成</p>
+</footer>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>
