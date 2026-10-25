@@ -75,7 +75,7 @@
 ```
 /intake            → inbox/ に置いたネタの .md を backlog.yaml へ整形（status: inbox・未採点）
 /patrol [国内|海外] → spread.py でばらつきを見る（地域ごとに別勘定）→ 6つの巡回棚をスキャン
-                   → ledger照合 → 候補を1件ずつ採点して提示（地域の指定が無ければ国内）
+                   → ledger照合 → 候補を1件ずつ採点し、感想の目（feedback.yaml）を添えて提示（地域の指定が無ければ国内）
 （人間が1本選ぶ。選んだ回を ledger/selection.yaml に記録）
 /episode <id>      → 以下を順に実行
   1. extract-facts   sources/ → facts.yaml（★以降 原文は渡さない）
@@ -89,6 +89,7 @@
   9. build_site.py   docs/ を再生成（出力が「自動」なら7が漏れている）
  10. export_figures.py → docs/<id>/images/ に PNG。そのあと build_site.py を再実行
 （人間が選ばなかった候補は ledger/backlog.yaml へ書き戻す）
+（制作後に人間が感想を言ったら ledger/feedback.yaml へ。次の /patrol が「感想の目」として読む）
 ```
 
 ### git の進め方：1変更＝1ブランチ＝1PR
@@ -146,6 +147,7 @@ python3 scripts/dictionary.py --apply <id>       # 辞書を TTS 稿に当てる
 | **ボツネタ棚（見送り理由と復活条件）** | `ledger/backlog.yaml` |
 | **巡回の外で拾ったネタ** | `inbox/` → `/intake` で棚へ。手引きは `inbox/ネタ集めの手引き.md` |
 | **ネタの採点表（核2・面白さ5）** | `ledger/selection.yaml` → サイトの「選び方」 |
+| **人間の感想と、そこから抜き出した選定の目** | `ledger/feedback.yaml`。`/patrol` が採点の前に読む。**点数には足さない** |
 | **6つの点数**（見立て＝面白さ・応用・ばらつき／実測＝鮮度・裏取り・人物度） | `scripts/score.py`。足さない。低いものを見る |
 | 選定のばらつき（手・動機・風・型・畑・主役・技術度） | `scripts/spread.py`（`episodes_log.csv` の**定期回 epNNN だけ**から、**国内と海外を別勘定で**計算） |
 | 国内／海外の区別 | `episodes_log.csv` と `backlog.yaml` の `region` 欄（空欄は国内）。ルールは §9 |
